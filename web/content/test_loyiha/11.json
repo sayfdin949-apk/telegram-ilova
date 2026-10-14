@@ -1,0 +1,12 @@
+{
+ "dars": 11,
+ "nomi": "Tanvinli harflar va tanvinli tashdid — test",
+ "holat": "loyiha",
+ "savollar": [
+  {"q": "Tanvin nima?", "opts": ["So'z boshidagi harfni ikkilantirish", "So'z oxiridagi harakatga sukunli nuun (نْ) qo'shish", "Harfni 2 harakat cho'zish", "So'z oxiridagi harfni o'qimaslik"], "ok": 1, "izoh": "Tanvin — so'z oxiridagi harakatga sukunli nuun qo'shish: «-an», «-in», «-un». Ikkilantirish — tashdid, cho'zish — mad.", "manba": "dars23.json: slaydlar[0].bandlar[0–1]; taqdimot 5, 17-slayd"},
+  {"q": "Qaysi tanvinda so'z oxiriga alif (ا) ham qo'shiladi?", "opts": ["Tanvin kasrada", "Tanvin dammada", "Tanvin fathada", "Uchalasida ham"], "ok": 2, "izoh": "Faqat tanvin fathada alif qo'shiladi: بَيْتًا. Tanvin kasra va dammada ortiqcha harf yo'q: دَفْتَرٍ، قَلَمٌ.", "manba": "dars23.json: slaydlar[2]; taqdimot 5, 19-slayd"},
+  {"q": "قَلَمٌ so'zi qanday o'qiladi?", "opts": ["«Qolamu»", "«Qolaman»", "«Qolamin»", "«Qolamun»"], "ok": 3, "izoh": "Oxirida ikkita damma — tanvin damma: «-un». «Qolamu» — oddiy damma, tanvinsiz.", "manba": "dars23.json: slaydlar[1].misollar[2]; taqdimot 5, 18-slayd"},
+  {"q": "حَبًّا so'zi qanday o'qiladi?", "opts": ["«Habban»", "«Haban»", "«Habbaa»", "«Habbun»"], "ok": 0, "izoh": "Tashdid va tanvin birga: avval ب ikkilantiriladi, so'ng tanvin fatha «-an» bilan o'qiladi. Oxiridagi alif cho'zilmaydi.", "manba": "dars25.json: slaydlar[0], slaydlar[3].diqqat; taqdimot 5, 31 va 34-slayd"},
+  {"q": "Tanvinni o'qishda nimadan saqlanish kerak?", "opts": ["Sukunli nuunni to'liq bildirishdan", "Nuunni tebratib (qalqala qilib) o'qishdan", "Tashdidli harfni ikkilantirishdan", "«-an», «-in», «-un» deb o'qishdan"], "ok": 1, "izoh": "Tanvindagi sukunli nuunni to'liq bildirib, qalqalasiz o'qish kerak. Qolgan variantlar to'g'ri o'qish usullari.", "manba": "dars23.json: slaydlar[3]; dars25.json: slaydlar[2]; taqdimot 5, 20 va 33-slayd"}
+ ]
+}

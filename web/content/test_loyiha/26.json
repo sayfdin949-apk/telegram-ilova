@@ -1,0 +1,12 @@
+{
+ "dars": 26,
+ "nomi": "Tabiiy va qo'shilgan cho'zish — test",
+ "holat": "loyiha",
+ "savollar": [
+  {"q": "Mad harflari so'zdagi holatiga ko'ra necha turga bo'linadi?", "opts": ["3 turga", "5 turga", "7 turga", "4 turga"], "ok": 2, "izoh": "7 turga: tabiiy, qo'shilgan, ajralgan, o'zgarmas, o'zgaruvchan, o'zgarmas yumshoq va o'zgaruvchan yumshoq cho'zish.", "manba": "dars52.json: slaydlar[0] «Mad qoidalari»"},
+  {"q": "Tabiiy cho'zish qachon bo'ladi?", "opts": ["Mad harfidan keyin hamza ham, sukunli harf ham kelmasa", "Mad harfidan keyin bir so'zda hamza kelsa", "Mad harfidan keyin sukunli harf kelsa", "Mad harfi faqat so'z oxirida kelsa"], "ok": 0, "izoh": "Mad harfidan keyin hamza yoki sukunli harf kelmasa — tabiiy cho'zish, ikki harakat.", "manba": "dars52.json: slaydlar[1] «1. Tabiiy cho'zish»"},
+  {"q": "Qo'shilgan cho'zish necha harakat cho'ziladi?", "opts": ["2 harakat", "4 harakat shart, 5 harakat afzalroq", "6 harakat", "1 harakat"], "ok": 1, "izoh": "Qo'shilgan cho'zishni to'rt harakat cho'zish shart, besh harakat cho'zish afzalroq. 2 harakat — tabiiy cho'zish.", "manba": "dars53.json: slaydlar[0] «2. Qo'shilgan cho'zish»"},
+  {"q": "Qaysi so'zda qo'shilgan cho'zish bor?", "opts": ["قَالَ", "يَقُولُ", "قِيلَ", "جَآءَ"], "ok": 3, "izoh": "جَآءَ — mad harfidan keyin bir so'zning ichida hamza keldi. قَالَ، يَقُولُ، قِيلَ — tabiiy cho'zish.", "manba": "dars53.json: slaydlar[0]; dars52.json: slaydlar[1] misollari"},
+  {"q": "لَهُۥ so'zidagi kichik vaav (ۥ) qanday cho'ziladi?", "opts": ["Cho'zilmaydi", "Tabiiy — ikki harakat", "To'rt-besh harakat", "Olti harakat"], "ok": 1, "izoh": "Vovi muqaddara (ۥ) ham tabiiy cho'ziladi — ikki harakat.", "manba": "dars52.json: slaydlar[1] misollari; yakun[3]"}
+ ]
+}

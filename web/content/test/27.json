@@ -1,0 +1,61 @@
+{
+ "dars": 27,
+ "nomi": "Ajralgan va o'zgarmas cho'zish — test",
+ "savollar": [
+  {
+   "q": "Ajralgan cho'zish qachon bo'ladi?",
+   "opts": [
+    "Mad harfi va hamza bir so'zda kelsa",
+    "Mad harfidan keyin o'zgarmas sukunli harf kelsa",
+    "Mad harfidan keyin hamza ham, sukun ham kelmasa",
+    "Mad harfi bir so'z oxirida, hamza keyingi so'z boshida kelsa"
+   ],
+   "ok": 3,
+   "izoh": "Mad harfi va hamza boshqa-boshqa so'zlarda kelsa — ajralgan cho'zish. Bir so'zda kelsa — qo'shilgan cho'zish."
+  },
+  {
+   "q": "Ajralgan cho'zish necha harakat cho'ziladi?",
+   "opts": [
+    "Olti harakat",
+    "To'rt yoki besh harakat",
+    "Ikki harakat",
+    "Bir harakat"
+   ],
+   "ok": 1,
+   "izoh": "Ajralgan cho'zish to'rt yoki besh harakat miqdorida cho'ziladi."
+  },
+  {
+   "q": "O'zgarmas cho'zish necha harakat cho'ziladi?",
+   "opts": [
+    "Olti harakat",
+    "Besh harakat",
+    "To'rt harakat",
+    "Ikki harakat"
+   ],
+   "ok": 0,
+   "izoh": "O'zgarmas cho'zish olti harakat miqdorida cho'ziladi."
+  },
+  {
+   "q": "Qaysi misolda ajralgan cho'zish bor?",
+   "opts": [
+    "حَآرٌّ",
+    "قَالَ",
+    "مَآ أَخَذَ",
+    "جَآءَ"
+   ],
+   "ok": 2,
+   "izoh": "مَآ — so'z oxirida mad harfi, أَخَذَ — keyingi so'z boshida hamza. جَآءَ — qo'shilgan, حَآرٌّ — o'zgarmas, قَالَ — tabiiy cho'zish."
+  },
+  {
+   "q": "حَآرٌّ so'zida mad nega olti harakat cho'ziladi?",
+   "opts": [
+    "Mad harfi so'z oxirida turibdi",
+    "Mad harfidan keyin o'zgarmas sukunli harf keladi: حَآرْرٌ",
+    "Mad harfidan keyin hamza keladi",
+    "So'z tanvin bilan tugaydi"
+   ],
+   "ok": 1,
+   "izoh": "Shaddali ر ning birinchisi sukunli: حَآرْرٌ. Mad harfidan keyin o'zgarmas sukunli harf kelsa — o'zgarmas cho'zish."
+  }
+ ]
+}

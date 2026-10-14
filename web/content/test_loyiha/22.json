@@ -1,0 +1,12 @@
+{
+ "dars": 22,
+ "nomi": "Yashirib talaffuz: 2–3-mashq — test",
+ "holat": "loyiha",
+ "savollar": [
+  {"q": "عَمَلًا سَهْلًا birikmasida tanvin qanday o'qiladi?", "opts": ["Mimga almashtirib", "Bildirib, aniq", "Yashirib, dimog' bilan", "Kirgazib, g'unnasiz"], "ok": 2, "izoh": "Tanvindan keyin س keldi — u yashirish harfi. Shuning uchun nun yashirilib, dimog' bilan o'qiladi.", "manba": "dars45.json: yakun[1]"},
+  {"q": "Qaysi birikmada yashirish bor?", "opts": ["وَلَدٌ زَكِىٌّ", "مِنْ عَوَاقِبِ", "مِن رَّجُلٍ", "صَعْبٍۢ بَعْدَ"], "ok": 0, "izoh": "ز — yashirish harfi. مِن رَّجُلٍ — kirgazish, صَعْبٍۢ بَعْدَ — almashtirish, مِنْ عَوَاقِبِ — bildirish.", "manba": "dars45.json: slaydlar[0] «Yashirib talaffuz: 2-mashq», 7-, 12-, 13-, 15-jumlalar"},
+  {"q": "يَنذُرُ so'zida nun nega yashirib o'qiladi?", "opts": ["Nun so'z oxirida turibdi", "Undan keyin bildirish harfi keladi", "Nun tanvindan hosil bo'lgan", "Undan keyin ذ keladi — u yashirish harfi"], "ok": 3, "izoh": "Nundan keyin ذ keldi, ذ — 15 ta yashirish harfidan biri. Yashirish so'z ichida ham bo'ladi.", "manba": "dars46.json: yakun[1]"},
+  {"q": "قَمَرٍ ظَاهِرٍ birikmasida qaysi qoida bor?", "opts": ["Tanvin mimga almashtiriladi", "Tanvin yashirilib, dimog' bilan o'qiladi", "Tanvin bildiriladi", "Tanvin kirgaziladi, ظ ikkilanadi"], "ok": 1, "izoh": "Tanvindan keyin ظ keldi — u yashirish harfi. Shuning uchun nun ظ maxrajiga yashiriladi.", "manba": "dars46.json: yakun[1]"},
+  {"q": "Qaysi misolda yashirish tanvindan keyin keladi?", "opts": ["أُنثَىٰ", "يَنذُرُ", "مِن ذَكَرٍ", "رَجُلًا ظَرِيفًا"], "ok": 3, "izoh": "رَجُلًا — tanvinli so'z, undan keyin ظ keldi. يَنذُرُ va أُنثَىٰ — so'z ichida, مِن ذَكَرٍ — sukunli nun ikki so'zda.", "manba": "dars46.json: slaydlar[0] «Yashirib talaffuz: 3-mashq», 1-, 2-, 4-, 14-jumlalar"}
+ ]
+}

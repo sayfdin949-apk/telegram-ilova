@@ -1,0 +1,61 @@
+{
+ "dars": 24,
+ "nomi": "Sukunli mim qoidalari — test",
+ "savollar": [
+  {
+   "q": "Sukunli mim (مْ) ning nechta qoidasi bor?",
+   "opts": [
+    "3 ta",
+    "4 ta",
+    "6 ta",
+    "2 ta"
+   ],
+   "ok": 0,
+   "izoh": "3 ta: labda yashirib, labda kirgazib va labda bildirib talaffuz qilish. 4 ta qoida sukunli nun va tanvinga tegishli."
+  },
+  {
+   "q": "Sukunli mimdan keyin ب kelsa, mim qanday o'qiladi?",
+   "opts": [
+    "Nunga almashtirilib",
+    "Labda bildirib, aniq",
+    "Labda kirgazib",
+    "Labda yashirib, dimog' bilan"
+   ],
+   "ok": 3,
+   "izoh": "مْ + ب — labda yashirib talaffuz qilish (lab ixfosi): mim ب maxrajiga yashirilib, dimog' bilan o'qiladi."
+  },
+  {
+   "q": "هُمْ مَشَوْا birikmasida mim qanday o'qiladi?",
+   "opts": [
+    "Tushirib qoldiriladi",
+    "Labda kirgazib, dimog' bilan",
+    "Labda yashirib",
+    "Labda bildirib, aniq"
+   ],
+   "ok": 1,
+   "izoh": "مْ + م — birinchi mim keyingisiga kirgazilib, dimog' bilan o'qiladi."
+  },
+  {
+   "q": "Qaysi birikmada mim labda bildirib o'qiladi?",
+   "opts": [
+    "لَكُمْ مَسْكَنٌ",
+    "بِهِمْ بَرَكَةٌ",
+    "لَهُمْ خَيْرٌ",
+    "هُمْ بَنَوْا"
+   ],
+   "ok": 2,
+   "izoh": "Mimdan keyin خ keldi — ب va م dan boshqa harf. Shuning uchun mim aniq o'qiladi."
+  },
+  {
+   "q": "Labda bildirishda mim qanday aytiladi?",
+   "opts": [
+    "Keyingi harfga kirgazib",
+    "Aniq, g'unnasiz",
+    "Ikki harakat cho'zib",
+    "Dimog' bilan, yashirib"
+   ],
+   "ok": 1,
+   "izoh": "Labda bildirishda mim aniq, g'unnasiz o'qiladi. Dimog' bilan faqat ب va م oldida o'qiladi."
+  }
+ ]
+}

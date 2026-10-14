@@ -1,0 +1,61 @@
+{
+ "dars": 4,
+ "nomi": "Yaa, Baa, Kaaf, Laam, Vaav, Haa — test",
+ "savollar": [
+  {
+   "q": "Vaav (و) aytilganda lablar qanday holatda bo'ladi?",
+   "opts": [
+    "Pastki lab yuqori tishlarga tegadi",
+    "Doira shaklida yumaloqlanib, oldinga cho'ziladi",
+    "Ikki lab mahkam yopiladi",
+    "Lablar ishtirok etmaydi"
+   ],
+   "ok": 1,
+   "izoh": "Vaav — lablar yumaloqlanib oldinga chiqadi, til oxiri ko'tariladi. O'zbekcha «v» kabi (tish labga tegib) o'qilmaydi."
+  },
+  {
+   "q": "Kaaf (ك) ning sifatlari qaysi qatorda to'g'ri?",
+   "opts": [
+    "Jahr, Shidda, Istifola, Infitah, Izlaq, Qalqala",
+    "Jahr, Bayniya, Istifola, Infitah, Izlaq, Inhirof",
+    "Hams, Rixva, Istifola, Infitah, Ismat",
+    "Hams, Shidda, Istifola, Infitah, Ismat"
+   ],
+   "ok": 3,
+   "izoh": "Kaaf — Hams, Shidda, Istifola, Infitah, Ismat (5 ta). Boshqa qatorlar — Baa, Laam va Haa (ه) sifatlari."
+  },
+  {
+   "q": "Liin (yumshoq) sifati qaysi harflarda bor?",
+   "opts": [
+    "و ي",
+    "ب م",
+    "ل ر",
+    "ك ه"
+   ],
+   "ok": 0,
+   "izoh": "Liin — Vaav va Yaa sifati: fathadan keyin sukunli kelganda yumshoq aytiladi, masalan بَيْتُ — «baytu»."
+  },
+  {
+   "q": "Haa (ه) qayerdan chiqadi?",
+   "opts": [
+    "Halqumning o'rta qismidan",
+    "Tilning orqa qismi va tanglaydan",
+    "Halqumning eng ostidan — aqsal-halq",
+    "Ikki labdan"
+   ],
+   "ok": 2,
+   "izoh": "Haa (ه) — halqumning eng ostidan, Hamza bilan maxrajdosh. O'zbekcha «h» kabi emas, halqum tubidan aytiladi."
+  },
+  {
+   "q": "اَبْ — sukunli Baa qanday aytiladi?",
+   "opts": [
+    "O'zbekcha «p» kabi",
+    "G'unna bilan, burundan",
+    "Qalqala bilan — maxrajda kichik titrash",
+    "Umuman aytilmaydi"
+   ],
+   "ok": 2,
+   "izoh": "Baa — Qalqala harfi: sukunli bo'lsa, maxrajda kichik titrash bilan aytiladi. O'zbekcha «p» kabi o'qilmaydi."
+  }
+ ]
+}

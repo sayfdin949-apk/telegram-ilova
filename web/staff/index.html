@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="uz" data-v="sahro" data-m="kun">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#E8DABA">
+<meta name="format-detection" content="telephone=no">
+<title>Boshqaruv · Muhammadamin</title>
+<script src="https://telegram.org/js/telegram-web-app.js?59"></script>
+<script>
+/* NUQTA: birinchi chizishdan oldin manzara va rejim (rang "sakrashi" bo'lmasin).
+   Har ochilganda keyingi manzara (Sahro, Voha, Shahar, Qahva, Xattot, Shom; xodimlar sahifasining o'z ko'rsatkichi -
+   talaba ilovasi va admin panel aylanishiga ta'sir qilmaydi), rejim soatga qarab: 06:00-18:59 kunduzgi, qolgani tungi. */
+(function () {
+  var d = document.documentElement, V = ['sahro', 'voha', 'shahar', 'qahva', 'xattot', 'shom'], K = 'nuqta.staff.manzara';
+  try {
+    var k = V.indexOf(localStorage.getItem(K));
+    var v = V[k < 0 ? Math.floor(Math.random() * V.length) : (k + 1) % V.length];
+    localStorage.setItem(K, v);
+    d.setAttribute('data-v', v);
+  } catch (e) { d.setAttribute('data-v', V[new Date().getDay() % V.length]); }
+  var h = new Date().getHours();
+  d.setAttribute('data-m', h >= 6 && h < 19 ? 'kun' : 'tun');
+})();
+</script>
+<link rel="stylesheet" href="/shared/fonts.css">
+<link rel="stylesheet" href="/shared/nuqta-tokens.css">
+<link rel="stylesheet" href="/staff/staff.css">
+</head>
+<body>
+<div id="app">
+  <div class="gate" aria-busy="true">
+    <div class="gate-box">
+      <div class="brand"><span class="nq-sig" aria-hidden="true"><i></i><i></i><i></i></span><div><b>Muhammadamin</b><small>Boshqaruv</small></div></div>
+      <div class="card gate-card">
+        <span class="sk sk-line" style="width:60%"></span>
+        <span class="sk sk-line" style="width:90%"></span>
+        <span class="sk sk-line" style="width:75%"></span>
+        <p class="sr" role="status">Yuklanmoqda</p>
+      </div>
+    </div>
+    <div class="gate-sc" aria-hidden="true"><div data-scene data-focus="full"></div></div>
+  </div>
+  <noscript><p style="text-align:center;padding:16px">Boshqaruv paneli uchun JavaScript yoqilgan bo'lishi kerak.</p></noscript>
+</div>
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+<div id="sheetRoot"></div>
+<script src="/shared/nuqta-sahnalar.js"></script>
+<script src="/staff/staff.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+# Maxfiy: bot tokenlari, kalitlar
+.env
+*.env
+data/
+*.key
+
+# Ish vaqtidagi fayllar
+log/
+*.pid
+*.db
+*.db-shm
+*.db-wal
+__pycache__/
+*.pyc
+
+# Sinov qoldiqlari (1,2 GB)
+_sinov/
+
+# cloudflared.exe (53 MB, rasmiy saytdan qayta olinadi)
+server/bin/

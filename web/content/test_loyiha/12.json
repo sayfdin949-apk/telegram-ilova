@@ -1,0 +1,12 @@
+{
+ "dars": 12,
+ "nomi": "Hamza: qat'iy va vasliy hamza — test",
+ "holat": "loyiha",
+ "savollar": [
+  {"q": "Hamza harfi qayerdan chiqadi va qaysi harf bilan maxrajdosh?", "opts": ["Halqumning quyi qismidan; Haa (ه) bilan", "Halqumning o'rtasidan; Ayn (ع) bilan", "Til uchidan; Taa (ت) bilan", "Ikki labdan; Baa (ب) bilan"], "ok": 0, "izoh": "Hamza halqumning quyi qismidan chiqadi va Haa (ه) bilan maxrajdosh.", "manba": "dars27.json: slaydlar[0].bandlar[0–1]; taqdimot 6, 4-slayd"},
+  {"q": "Qat'iy hamza haqida qaysi gap to'g'ri?", "opts": ["Faqat so'z boshida keladi", "So'zlar orasida talaffuzdan tushib qoladi", "Doim talaffuz qilinadi, hech qachon tushib qolmaydi", "Doim faqat alif bilan keladi"], "ok": 2, "izoh": "Qat'iy hamza boshda, o'rtada, oxirda keladi va doim o'qiladi. Qolgan gaplar vasliy hamzaga tegishli.", "manba": "dars27.json: slaydlar[1].bandlar[2–3], slaydlar[7]; taqdimot 6, 5 va 12-slayd"},
+  {"q": "مُؤَلِّفْ، سَائِلْ so'zlarida hamzaga tayanch bo'lgan و va ى qanday o'qiladi?", "opts": ["Mad harfidek cho'zib o'qiladi", "O'qilmaydi — faqat hamzaning harakati yoki sukuni o'qiladi", "Hamzadan oldin alohida o'qiladi", "Hamzadan keyin alohida o'qiladi"], "ok": 1, "izoh": "Tayanch (kursi) harflar o'qilmaydi, faqat hamzadagi harakat va sukun talaffuz qilinadi.", "manba": "dars27.json: slaydlar[6].bandlar[0], slaydlar[3–4]; taqdimot 6, 11-slayd"},
+  {"q": "Vasliy hamzaga qachon fatha qo'yib o'qiladi?", "opts": ["Uchinchi harf dammali bo'lsa", "Uchinchi harf kasrali bo'lsa", "So'zlar orasida kelsa", "Undan keyin Laam kelsa (ٱلْ)"], "ok": 3, "izoh": "Vasliy hamzadan keyin Laam kelsa — fatha: ٱلْكِتَابُ «al-kitaabu». Uchinchi harfga Laam bo'lmaganda qaraladi; so'zlar orasida esa umuman o'qilmaydi.", "manba": "dars28.json: slaydlar[0].bandlar[1]; taqdimot 6, 15-slayd"},
+  {"q": "ٱخْرُجْ so'zi qanday boshlanadi?", "opts": ["Fatha bilan: «axruj»", "Kasra bilan: «ixruj»", "Damma bilan: «uxruj»", "Hamza o'qilmaydi: «xruj»"], "ok": 2, "izoh": "Laam yo'q, uchinchi harf ر dammali — vasliy hamzaga damma qo'yiladi: «uxruj». So'z boshida vasliy hamza o'qiladi.", "manba": "dars28.json: slaydlar[2].bandlar[3], misollar[2]; taqdimot 6, 18-slayd"}
+ ]
+}

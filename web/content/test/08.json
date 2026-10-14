@@ -1,0 +1,11 @@
+{
+ "dars": 8,
+ "nomi": "Mad harflari — test",
+ "savollar": [
+  {"q": "Mad harflari qaysilar?", "opts": ["ب ت ث", "ا و ي", "ا ل م", "و ه ي"], "ok": 1, "izoh": "Mad harflari uchta: ا و ي. Boshqa variantlarda mad bo'lmaydigan harflar bor (ب ت ث ل م ه)."},
+  {"q": "Kasradan keyin qaysi harakatsiz harf mad bo'ladi?", "opts": ["ا", "و", "ي", "ه"], "ok": 2, "izoh": "Kasra + harakatsiz ي. Alif fathadan, vaav dammadan keyin keladi; ه mad harfi emas."},
+  {"q": "Mad harfi necha harakat miqdorida cho'ziladi?", "opts": ["1 harakat", "2 harakat", "4 harakat", "6 harakat"], "ok": 1, "izoh": "Asl mad 2 harakat. 4 va 6 harakat keyingi «qo'shilgan cho'zish» mavzusiga tegishli, 1 harakat — oddiy harakat."},
+  {"q": "Qaysi so'zda alif «oo» deb o'qiladi?", "opts": ["مَالْ", "كَلَامْ", "طَالِبْ", "نَارْ"], "ok": 2, "izoh": "ط — yo'g'on harf, shuning uchun «Toolib». م ل ن yupqa — «aa»."},
+  {"q": "Qaysi o'qish to'g'ri?", "opts": ["بِي — «bee»", "بُو — «bo'o'»", "بِي — «bii»", "بَا — «ba»"], "ok": 2, "izoh": "«bii». A va B — o'zbekcha «e»/«o'» xatosi; D — cho'zilmagan."}
+ ]
+}

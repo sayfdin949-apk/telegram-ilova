@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<title>Doimiy server — sotib olish qo'llanmasi</title>
+<!-- NOON:HEAD -->
+<style>
+.mono{font-family:Consolas,'Courier New',monospace;font-size:10.5px;background:#EEF6EC;border:1px solid rgba(13,58,26,.12);border-radius:8px;padding:8px 10px;word-break:break-all;color:#0D3A1A}
+.rec{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;background:#E3F7DF;color:#1A6A2A;margin-left:6px}
+table.noon td,table.noon th{font-size:11px;vertical-align:top}
+.small{font-size:11px;color:#3A6040}
+ol.steps li{margin-bottom:5px}
+</style>
+</head>
+<body>
+
+<section class="page">
+  <header class="hero">
+    <div class="kicker">{{server}} Telegram ilova · doimiy server</div>
+    <h1>Kompyuter o'chsa ham ishlaydigan botlar</h1>
+    <div class="sub">Nima sotib olinadi, qanday sotib olinadi va menga nima yuborasiz — qadamma-qadam.</div>
+    <div class="tbar"></div>
+    <div class="meta"><span class="pill">4 qadam</span><span class="pill">~30–60 daqiqa</span><span class="pill">oyiga ~200 000 so'm</span><span class="pill dark">03.10.2026</span></div>
+  </header>
+  <div class="page-body">
+    <div class="card">
+      <div class="card-head">{{route}}<h3>Umumiy yo'l</h3></div>
+      <ol class="steps">
+        <li><b>Server (VPS) sotib olasiz</b> — internetdagi doim yoqiq kompyuter. Operatsion tizim: <b>Ubuntu 24.04</b>.</li>
+        <li><b>Domen sotib olasiz</b> — doimiy manzil, masalan <b>muhammadamin.uz</b>, va uni serverga yo'naltirasiz.</li>
+        <li><b>"5 - Serverga kalit qo'shish.bat"</b> ni ishga tushirasiz — parol faqat sizda qoladi.</li>
+        <li><b>Menga IP manzil va domen nomini yozasiz.</b> Qolganini men qilaman: o'rnatish, sinov, o'quvchilar ma'lumotini ko'chirish.</li>
+      </ol>
+    </div>
+    <div class="grid-3">
+      <div class="card stat"><div class="v">200 000</div><div class="l">so'm / oy — server (AIRNET)</div></div>
+      <div class="card stat"><div class="v">27 000</div><div class="l">so'm / yil — .uz domen</div></div>
+      <div class="card stat"><div class="v">~5 daq</div><div class="l">ko'chirishda botlar uzilishi</div></div>
+    </div>
+    <div class="note">{{info}}<div>Arzonroq variant ham bor: aHOST — oyiga <b>140 000 so'm</b>. Lekin u yerda Ubuntu 24.04 va root kirish borligini to'lashdan oldin so'rab olish kerak (2-bo'lim).</div></div>
+  </div>
+  <footer class="foot"><span class="brand"><span class="dot"></span>Muhammadamin</span><span class="pno"></span></footer>
+</section>
+
+<section class="page">
+  <div class="run-head"><span class="brand">Doimiy server</span><span>Sotib olish qo'llanmasi</span></div>
+  <div class="page-body">
+    <div class="sec"><div class="ico">{{scale}}</div><div><h2><span class="num">1.</span>Qaysi serverni olish kerak</h2><div class="tbar"></div></div></div>
+    <div class="tbl-wrap"><table class="noon">
+      <thead><tr><th>Provayder</th><th>Tarif</th><th>Narx</th><th>To'lov</th><th>Izoh</th></tr></thead>
+      <tbody>
+        <tr><td><b>AIRNET</b> (Toshkent)<span class="rec">tavsiya</span></td><td>Strong: 2 yadro, 4 GB, 50 GB SSD</td><td>200 000 so'm/oy<br><span class="small">6 oy oldindan — 10% arzon</span></td><td>Payme, Click, Paynet, Visa/MasterCard</td><td>Ubuntu 24.04 va root kirish saytda tasdiqlangan. Domen ham shu yerda — bitta hisob.</td></tr>
+        <tr><td><b>aHOST</b> (Toshkent)</td><td>VDS Cloud 20: 1 yadro, 1 GB, 20 GB SSD</td><td>140 000 so'm/oy</td><td>Payme, Click, Uzum, Paynet (komissiyasiz)</td><td>Bot uchun yetarli. Ubuntu 24.04 va root kirishni avval qo'llab-quvvatlashdan so'rang. Ro'yxatdan o'tish: OneID/MyID yoki pasport.</td></tr>
+        <tr><td>Serverspace (Toshkent)</td><td>eng kichigi</td><td>67 000 so'm/oydan (aniq tarif tekshirilmagan)</td><td>Uzcard/Humo</td><td>Faqat email bilan ro'yxatdan o'tiladi. Ishlatgancha to'lanadi.</td></tr>
+        <tr><td>DigitalOcean (Yevropa)</td><td>1 GB, 25 GB</td><td>6 $/oy (~71 000 so'm)</td><td>Faqat <b>jismoniy</b> Visa/MasterCard</td><td>Virtual kartani qabul qilmaydi. Server uzoqda — sahifalar biroz sekinroq ochiladi.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="note warn">{{triangle-alert}}<div><b>Rossiyadagi serverni tanlamang</b> (Moskva, Sankt-Peterburg): 2026-yildan u yerda Telegram sekinlashtirilgan. Aeza provayderidan ham foydalanmang (xalqaro sanksiya ostida). Ba'zi narxlar QQSsiz ko'rsatilgan — taxminan 12% qo'shiladi.</div></div>
+    <div class="card">
+      <div class="card-head">{{map-pin}}<h3>Nega O'zbekistondagi server?</h3></div>
+      <p class="small">O'quvchilar darslar, slaydlar va videolarni to'g'ridan-to'g'ri serverdan ochadi. Toshkentdagi server (TAS-IX tarmog'i) ularga ancha tez ishlaydi. O'zbekistonda Telegram bloklanmagan. Server ma'lumotlari ham mamlakat ichida qoladi.</p>
+    </div>
+  </div>
+  <footer class="foot"><span class="brand"><span class="dot"></span>Muhammadamin</span><span class="pno"></span></footer>
+</section>
+
+<section class="page">
+  <div class="run-head"><span class="brand">Doimiy server</span><span>Sotib olish qo'llanmasi</span></div>
+  <div class="page-body">
+    <div class="sec"><div class="ico">{{server}}</div><div><h2><span class="num">2.</span>Serverni sotib olish (AIRNET)</h2><div class="tbar"></div></div></div>
+    <div class="card">
+      <ol class="steps">
+        <li><b>airnet.uz</b> saytida VDS bo'limini oching (<b>airnet.uz/en/vds</b>) → <b>"Strong"</b> tarifi → <b>Buyurtma berish</b>.</li>
+        <li>Hisob oching: ism, email, telefon raqami.</li>
+        <li>Operatsion tizim: <b>Ubuntu 24.04</b>. Boshqa versiyani tanlamang.</li>
+        <li>Agar buyurtma sahifasida <b>"SSH key"</b> maydoni bo'lsa, unga quyidagi qatorni joylang. Bo'lmasa, o'tkazib yuboring — 4-bo'limdagi fayl buni o'zi qiladi.</li>
+        <li>Payme yoki Click orqali to'lang. 6 oyni oldindan to'lasangiz, 10% arzonroq.</li>
+        <li>Taxminan 30 daqiqada emailga <b>IP manzil</b> va <b>root paroli</b> keladi. Shu xatni saqlab qo'ying.</li>
+      </ol>
+      <div class="mono">ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKikW151XkAzPhQHTXa4mO4Wb71Q1H8b2dsrc6zXFqCN noon-vps</div>
+      <p class="small">Bu kalitning <b>ochiq</b> qismi, maxfiy emas: u faqat sizning kompyuteringizga serverga kirishga ruxsat beradi. Matn faylda ham bor: <b>Telegram ilova\deploy\ssh_kalit_ochiq.txt</b>.</p>
+    </div>
+    <div class="card">
+      <div class="card-head">{{message-circle-question}}<h3>aHOST'ni tanlasangiz</h3></div>
+      <p class="small">To'lashdan oldin qo'llab-quvvatlash xizmatiga yozing: <i>"VDS Cloud 20 tarifida Ubuntu 24.04 o'rnatsa bo'ladimi va root SSH kirish beriladimi?"</i> Ikkalasiga ham "ha" desa — bemalol oling. Ro'yxatdan o'tish: clients.ahost.uz (OneID, MyID yoki pasport ma'lumotlari).</p>
+    </div>
+    <div class="sec"><div class="ico">{{globe}}</div><div><h2><span class="num">3.</span>Domen sotib olish va serverga yo'naltirish</h2><div class="tbar"></div></div></div>
+    <div class="card">
+      <ol class="steps">
+        <li>Nom tanlang: <b>airnet.uz/domains</b> sahifasida qidiring. Masalan <b>muhammadamin.uz</b>, <b>noonacademy.uz</b> yoki <b>fonetika.uz</b> — bandmi, bo'shmi, shu yerda ko'rinadi.</li>
+        <li><b>Buyurtma berish</b>. .uz domen uchun pasport ma'lumotlari kerak: F.I.Sh., pasport seriyasi va raqami, JShShIR, manzil, telefon, email. Bu davlat qoidasi.</li>
+        <li>Payme yoki Click orqali to'lang: <b>27 000 so'm/yil</b>. Domen bir necha daqiqada faollashadi.</li>
+        <li>Domen panelida <b>DNS</b> bo'limini oching va bitta yozuv qo'shing:</li>
+      </ol>
+      <div class="tbl-wrap"><table class="noon">
+        <thead><tr><th>Turi</th><th>Nomi (host)</th><th>Qiymati</th></tr></thead>
+        <tbody><tr><td><b>A</b></td><td><b>@</b> (domenning o'zi)</td><td>serverning IP manzili (emaildagi)</td></tr></tbody>
+      </table></div>
+      <p class="small">Qanday qilishni bilmasangiz, AIRNET qo'llab-quvvatlashga yozing: <i>"muhammadamin.uz uchun A yozuvini shu IP ga qo'yib bering: …"</i>. Telefon: +998 71 202-87-00, Telegram: @airnetuzb. Yozuv 5 daqiqadan bir necha soatgacha tarqaladi — bu normal.</p>
+    </div>
+    <div class="note">{{lock}}<div>HTTPS (qulfcha belgisi) uchun hech narsa sotib olmaysiz: server sertifikatni bepul va avtomatik oladi, muddati tugasa o'zi yangilaydi.</div></div>
+  </div>
+  <footer class="foot"><span class="brand"><span class="dot"></span>Muhammadamin</span><span class="pno"></span></footer>
+</section>
+
+<section class="page">
+  <div class="run-head"><span class="brand">Doimiy server</span><span>Sotib olish qo'llanmasi</span></div>
+  <div class="page-body">
+    <div class="sec"><div class="ico">{{key-round}}</div><div><h2><span class="num">4.</span>Kalitni serverga qo'shish</h2><div class="tbar"></div></div></div>
+    <div class="card">
+      <ol class="steps">
+        <li><b>Desktop\MUHAMMAD AMIN\Telegram ilova</b> papkasini oching.</li>
+        <li><b>"5 - Serverga kalit qo'shish.bat"</b> ni ikki marta bosing.</li>
+        <li>IP manzilni yozing → Enter. Foydalanuvchi nomida shunchaki Enter bosing (root).</li>
+        <li>Birinchi ulanishda <i>"Are you sure you want to continue connecting"</i> chiqsa — <b>yes</b> deb yozing.</li>
+        <li>Emaildagi <b>root parolini</b> kiriting. Yozganda ekranda ko'rinmaydi — bu normal. Enter.</li>
+        <li><b>"Tayyor: kalit qo'shildi"</b> yozuvi chiqsa — tamom.</li>
+      </ol>
+    </div>
+    <div class="sec"><div class="ico">{{send}}</div><div><h2><span class="num">5.</span>Menga nima yozasiz</h2><div class="tbar"></div></div></div>
+    <div class="grid-2">
+      <div class="card"><div class="card-head">{{circle-check}}<h3>Yozing</h3></div><ul class="check"><li>IP manzil (masalan 185.12.34.56)</li><li>Domen nomi (masalan muhammadamin.uz)</li></ul></div>
+      <div class="card"><div class="card-head">{{circle-x}}<h3>Yozmang</h3></div><ul class="check"><li>Root paroli</li><li>Bot tokenlari</li><li>Pasport ma'lumotlari</li></ul></div>
+    </div>
+    <div class="card card-deep">
+      <div class="card-head">{{rocket}}<h3>Keyin men nima qilaman</h3></div>
+      <ol class="steps">
+        <li>Serverni sozlayman: Python, HTTPS, botlar xizmati, har kungi zaxira nusxa, xavfsizlik devori. Shu payt botlar hali sizning kompyuteringizda ishlab turadi.</li>
+        <li>Sizdan ruxsat so'rayman, keyin ko'chiraman: o'quvchilar ma'lumoti, tokenlar va kalit himoyalangan kanal orqali o'tadi. Botlar ~5 daqiqa uziladi.</li>
+        <li>Tekshiraman: ilova, xodimlar paneli, darslar, videolar, testlar. Biror narsa ishlamasa, botlar avtomatik ravishda yana sizning kompyuteringizga qaytadi.</li>
+      </ol>
+    </div>
+  </div>
+  <footer class="foot"><span class="brand"><span class="dot"></span>Muhammadamin</span><span class="pno"></span></footer>
+</section>
+
+</body>
+</html>

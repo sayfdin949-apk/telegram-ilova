@@ -1,0 +1,12 @@
+{
+ "dars": 25,
+ "nomi": "Roo harfi qoidalari — test",
+ "holat": "loyiha",
+ "savollar": [
+  {"q": "Roo (ر) harfi necha holatda yo'g'on, necha o'rinda ingichka o'qiladi?", "opts": ["4 ta yo'g'on, 8 ta ingichka", "6 ta yo'g'on, 6 ta ingichka", "8 ta yo'g'on, 4 ta ingichka", "8 ta yo'g'on, 2 ta ingichka"], "ok": 2, "izoh": "Roo 8 ta holatda yo'g'on, 4 ta o'rinda ingichka o'qiladi.", "manba": "dars50.json: slaydlar[0] «Roo harfi qoidalari»"},
+  {"q": "Qaysi so'zda Roo ingichka o'qiladi?", "opts": ["رَجُلٌ", "رِزْقٌ", "رُشْدٌ", "غُرْفَةٌ"], "ok": 1, "izoh": "رِزْقٌ — Roo kasrali, shuning uchun ingichka. Fathali, dammali va dammadan keyingi sukunli Roo yo'g'on.", "manba": "dars50.json: slaydlar[4] «Ingichka o'qilish (1–3)», 1-holat"},
+  {"q": "قِرْطَاسٌ so'zida Roo qanday o'qiladi?", "opts": ["Ingichka — oldidagi harf kasrali", "Ingichka — Roo sukunli", "Yo'g'on — Roo fathali", "Yo'g'on — Roodan keyin fathali yo'g'on harf (ط) kelgan"], "ok": 3, "izoh": "Roo sukunli, oldidagi harf kasrali, lekin undan keyin fathali yo'g'on ط keldi — bu 8-holat, Roo yo'g'on.", "manba": "dars50.json: slaydlar[3] «Yo'g'on o'qilish (7–8)», 8-holat"},
+  {"q": "خَيْرٌ so'zida to'xtaganda (خَيْرْ) Roo qanday o'qiladi?", "opts": ["Ingichka — oldida liin harfi yaa (يْ) bor", "Yo'g'on — oldidagi harf fathali", "Yo'g'on — Roo sukunli", "Ingichka — Roo kasrali"], "ok": 0, "izoh": "Sukunli Roo dan oldin liin harfi yaa (يْ) kelsa, Roo ingichka o'qiladi.", "manba": "dars50.json: slaydlar[5] «Ingichka o'qilish (4)»"},
+  {"q": "ٱرْجِعْ so'zida Roo qanday o'qiladi?", "opts": ["Ingichka — undan keyin kasra bor", "Yo'g'on — oldida vasliy hamza (ٱ) bor", "Ingichka — Roo sukunli", "Yo'g'on — Roo dammali"], "ok": 1, "izoh": "Sukunli Roo dan oldin vasliy hamza kelsa, Roo yo'g'on o'qiladi (7-holat).", "manba": "dars50.json: slaydlar[3] «Yo'g'on o'qilish (7–8)», 7-holat"}
+ ]
+}

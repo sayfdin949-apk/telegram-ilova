@@ -1,0 +1,61 @@
+{
+ "dars": 15,
+ "nomi": "Aniqlik lomi: qamariy va shamsiy harflar — test",
+ "savollar": [
+  {
+   "q": "Qamariy harflar oldida aniqlik lomi (ٱَلْ) qanday o'qiladi?",
+   "opts": [
+    "O'qilmaydi",
+    "Cho'zib o'qiladi",
+    "Keyingi harf ikkilantiriladi",
+    "Bildirib (izhor qilib) o'qiladi"
+   ],
+   "ok": 3,
+   "izoh": "14 ta qamariy harf oldida lam bildirib o'qiladi: ٱَلْقَمَرُ — «al-qomaru»."
+  },
+  {
+   "q": "Qaysi so'zda aniqlik lomi o'qilmaydi?",
+   "opts": [
+    "ٱَلْقَمَرُ",
+    "ٱَلْبَيْتُ",
+    "ٱَلشَّمْسُ",
+    "ٱَلْكِتَابُ"
+   ],
+   "ok": 2,
+   "izoh": "ش — shamsiy harf: lam o'qilmaydi, ش ikkilantiriladi: «ash-shamsu». Qolganlarida qamariy harf — lam o'qiladi."
+  },
+  {
+   "q": "Shamsiy harf oldidagi aniqlik lomining yozuvdagi alomati qanday?",
+   "opts": [
+    "Lam ustida sukun bor, keyingi harfda tashdid yo'q",
+    "Lam ustida sukun yo'q, keyingi harfda tashdid (ـّ) bor",
+    "Lam ustida tashdid bor",
+    "Lam ustida kichkina dumaloq belgi bor"
+   ],
+   "ok": 1,
+   "izoh": "Shamsiyda lamga sukun qo'yilmaydi, keyingi harfga tashdid qo'yiladi. A — qamariy harfning alomati."
+  },
+  {
+   "q": "Qaysi qatorda faqat qamariy harflar berilgan?",
+   "opts": [
+    "ب ج ق",
+    "ت د ش",
+    "ر س ن",
+    "ب ت ق"
+   ],
+   "ok": 0,
+   "izoh": "ب ج ق — qamariy harflar. ت د ش ر س ن — shamsiy harflar."
+  },
+  {
+   "q": "ٱَلدَّرْسُ so'zi qanday o'qiladi?",
+   "opts": [
+    "«al-darsu»",
+    "«ad-darsu»",
+    "«adarsu»",
+    "«al-dorsu»"
+   ],
+   "ok": 1,
+   "izoh": "د — shamsiy harf: lam o'qilmaydi, د tashdid bilan ikkilantiriladi: «ad-darsu»."
+  }
+ ]
+}

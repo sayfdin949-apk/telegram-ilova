@@ -1,0 +1,61 @@
+{
+ "dars": 21,
+ "nomi": "Almashtirib va yashirib talaffuz — test",
+ "savollar": [
+  {
+   "q": "Sukunli nun yoki tanvindan keyin ب kelsa, nun qanday o'qiladi?",
+   "opts": [
+    "Bildirib, aniq",
+    "Mimga (م) almashtirilib, dimog' bilan",
+    "ب ga kirgazilib, g'unnasiz",
+    "Tushirib qoldiriladi"
+   ],
+   "ok": 1,
+   "izoh": "Bu — almashtirib talaffuz qilish: nun mimga aylanadi va dimog' bilan o'qiladi. Ona tilimizda ham bor: shanba — «shamba»."
+  },
+  {
+   "q": "Yashirish harflari nechta?",
+   "opts": [
+    "4 ta",
+    "6 ta",
+    "1 ta",
+    "15 ta"
+   ],
+   "ok": 3,
+   "izoh": "Yashirish harflari 15 ta: ت د ط ز س ص ث ذ ظ ج ش ض ف ق ك. 6 ta — bildirish va kirgazish, 1 ta — almashtirish (ب)."
+  },
+  {
+   "q": "مِنْ بَابِ qanday o'qiladi?",
+   "opts": [
+    "مِمْبَابِ",
+    "مِنْبَابِ",
+    "مِبَّابِ",
+    "مِنَّابِ"
+   ],
+   "ok": 0,
+   "izoh": "ب oldida nun mimga almashtiriladi: «mimbaabi», dimog' bilan."
+  },
+  {
+   "q": "Qaysi birikmada nun yashirib o'qiladi?",
+   "opts": [
+    "عَنْ مَا",
+    "مِنْ بَابِ",
+    "مِنْ دُونِ",
+    "مَنْ أَفْضَلُ"
+   ],
+   "ok": 2,
+   "izoh": "د — yashirish harfi. أ oldida nun bildiriladi, م oldida kirgaziladi, ب oldida mimga almashtiriladi."
+  },
+  {
+   "q": "Yashirib talaffuz qilishda nun qanday o'qiladi?",
+   "opts": [
+    "Keyingi harf maxrajiga yashirilib, dimog' bilan",
+    "Hech o'zgarmay, aniq",
+    "Mimga aylanib",
+    "Keyingi harf ichiga kirib, u harf ikkilanadi"
+   ],
+   "ok": 0,
+   "izoh": "Yashirishda nun keyingi harf maxrajiga yashiriladi va dimog' (g'unna) bilan o'qiladi. Mimga aylanish — almashtirish, ikkilanish — kirgazish."
+  }
+ ]
+}

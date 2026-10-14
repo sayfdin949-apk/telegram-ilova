@@ -1,0 +1,12 @@
+{
+ "dars": 14,
+ "nomi": "Yozilsa-da o'qilmaydigan va yozilishiga xilof o'qiladigan harflar — test",
+ "holat": "loyiha",
+ "savollar": [
+  {"q": "Yozilsa-da o'qilmaydigan harflar nechta va qaysilar?", "opts": ["2 ta: ىٰ va وٰ", "3 ta: alif, vaav, yaa (ا و ي)", "3 ta: ـٰ ۦ ۥ", "4 ta: ا و ي ة"], "ok": 1, "izoh": "O'qilmaydigan harflar 3 ta: alif, vaav, yaa. ىٰ وٰ — yozilishiga xilof o'qiladigan, ـٰ ۦ ۥ — muqaddara harflar.", "manba": "dars33.json: slaydlar[0].bandlar[1]; taqdimot 6, 51-slayd"},
+  {"q": "Harf yozilsa-da o'qilmasligining alomati qanday?", "opts": ["Ustiga sukun (ـْ) qo'yiladi", "Ustiga tashdid (ـّ) qo'yiladi", "Ustiga kichkina dumaloq belgi (ـ۟) qo'yiladi", "Ustiga kichkina alif (ـٰ) qo'yiladi"], "ok": 2, "izoh": "O'qilmaydigan harf ustida sukundan farqli kichkina dumaloq belgi (ـ۟) turadi. Kichkina alif esa alifdek o'qishga ishora.", "manba": "dars33.json: slaydlar[0].bandlar[2]; taqdimot 6, 51-slayd"},
+  {"q": "كَتَبُوا۟ so'zi qanday o'qiladi?", "opts": ["«katabuu»", "«katabuua»", "«katabuvaa»", "«katabu»"], "ok": 0, "izoh": "Dumaloq belgili alif (ا۟) o'qilmaydi, vaav esa mad bo'lib cho'ziladi: «katabuu».", "manba": "dars33.json: slaydlar[0].misollar[0]; taqdimot 6, 51-slayd"},
+  {"q": "عَلَىٰ so'zidagi ىٰ qanday o'qiladi?", "opts": ["Yaadek «ii» deb", "Umuman o'qilmaydi", "«ay» deb", "Alifdek cho'zib: «'alaa»"], "ok": 3, "izoh": "Fathadan keyingi nuqtasiz va harakatsiz yaa — yoi alifiya: ustidagi kichkina alif tufayli alifdek o'qiladi.", "manba": "dars33.json: slaydlar[3].misollar[1]; taqdimot 6, 54-slayd"},
+  {"q": "حَيَوٰةٌ so'zi qanday o'qiladi?", "opts": ["«hayavatun»", "«hayaatun»", "«hayuutun»", "«hayavun»"], "ok": 1, "izoh": "Fathadan keyingi harakatsiz vaav — vovi alifiya (وٰ): «v» emas, alifdek «aa» deb o'qiladi.", "manba": "dars33.json: slaydlar[5].misollar[1], slaydlar[6].diqqat; taqdimot 6, 56–57-slayd"}
+ ]
+}

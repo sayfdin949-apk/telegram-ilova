@@ -1,0 +1,12 @@
+{
+ "dars": 29,
+ "nomi": "Harflarning nomlari va cho'zishlari — test",
+ "holat": "loyiha",
+ "savollar": [
+  {"q": "Harf nomlaridagi cho'zishlarga ko'ra harflar necha qismga bo'linadi?", "opts": ["2 qismga", "3 qismga", "4 qismga", "7 qismga"], "ok": 2, "izoh": "4 qism: mutlaqo cho'zilmaydigan, tabiiy cho'zishli, o'zgarmas cho'zishli va o'zgarmas yumshoq cho'zishli harflar. 7 tur — mad qoidalarining soni.", "manba": "dars59.json: 1-slayd, yakun; taqdimot 4, 56-slayd"},
+  {"q": "Qaysi harfning nomi mutlaqo cho'zilmaydi?", "opts": ["بَا (Baa)", "أَلِفْ (Alif)", "عَيٓنْ (Ayn)", "مِيٓمْ (Miim)"], "ok": 1, "izoh": "Alif nomining o'rtasida mad harfi ham, yumshoq harf ham yo'q. Bunday harf birgina — alif.", "manba": "dars59.json: «Mutlaqo cho'zilmaydigan harf»; taqdimot 4, 57-slayd"},
+  {"q": "رَا (Roo) nomidagi alif qancha cho'ziladi?", "opts": ["2 harakat — tabiiy cho'zish", "4 harakat — qo'shilgan cho'zish", "6 harakat — o'zgarmas cho'zish", "Cho'zilmaydi"], "ok": 0, "izoh": "Nomi ikki harfli, ikkinchisi mad harfi bo'lgan 12 ta harf tabiiy cho'zish bilan 2 harakat cho'ziladi. Roo ham shular qatorida.", "manba": "dars59.json: «Tabiiy cho'zishli harf»; taqdimot 4, 58-slayd"},
+  {"q": "Qaysi harfning nomi 6 harakat cho'ziladi?", "opts": ["تَا (Taa)", "هَا (Haa)", "ظَا (Zoo)", "قَآفْ (Qoof)"], "ok": 3, "izoh": "قَآفْ — nomi uch harfli, o'rtasi mad harfi, oxiri o'zgarmas sukunli: o'zgarmas cho'zish, 6 harakat. Qolganlari ikki harfli — 2 harakat.", "manba": "dars59.json: «O'zgarmas cho'zishli harf»; taqdimot 4, 59-slayd"},
+  {"q": "Nomi o'zgarmas yumshoq cho'zish bilan o'qiladigan harflar qaysilar?", "opts": ["نٓ va مٓ (Nuun, Miim)", "عٓ va غ (Ayn, G'oyn)", "ب va ت (Baa, Taa)", "ا va ي (Alif, Yaa)"], "ok": 1, "izoh": "Ayn va G'oyn nomlari o'rtasida yumshoq yaa, oxirida o'zgarmas sukunli nuun bor — 6 harakat. Nuun va Miim nomida esa mad harfi bor (o'zgarmas cho'zish).", "manba": "dars59.json: «O'zgarmas yumshoq cho'zishli harf»; taqdimot 4, 60-slayd"}
+ ]
+}

@@ -1,0 +1,67 @@
+{
+ "dars": 10,
+ "nomi": "Tashdidli harflar — test",
+ "holat": "loyiha",
+ "savollar": [
+  {
+   "q": "Tashdidli harf qanday o'qiladi?",
+   "opts": [
+    "Bir marta, qisqa aytiladi",
+    "Ikkilantirib: avval sukunli, keyin harakatli",
+    "2 harakat cho'zib aytiladi",
+    "Burundan, g'unna bilan aytiladi"
+   ],
+   "ok": 1,
+   "izoh": "Tashdid (ـّ) — harfni ikkilantirish belgisi: harf avval sukunli, keyin harakatli aytiladi. Cho'zish mad harflariga tegishli.",
+   "manba": "dars19.json: slaydlar[0].bandlar[1]; dars20.json: yakun[0]; taqdimot 5, 4-slayd"
+  },
+  {
+   "q": "Tashdid so'zning qaysi qismida kelmaydi?",
+   "opts": [
+    "O'rtasida",
+    "Oxirida",
+    "Boshida",
+    "O'rtasida ham, oxirida ham keladi"
+   ],
+   "ok": 2,
+   "izoh": "Tashdid so'z boshida kelmaydi — faqat o'rtasida yoki oxirida keladi.",
+   "manba": "dars19.json: slaydlar[0].bandlar[3]; taqdimot 5, 4-slayd"
+  },
+  {
+   "q": "عَلَّمَ so'zi qanday o'qiladi?",
+   "opts": [
+    "«al-lama»",
+    "«alama»",
+    "«allaama»",
+    "«aalama»"
+   ],
+   "ok": 0,
+   "izoh": "ل tashdidli — ikkilantiriladi: «al-lama». B — tashdid tushib qolgan; C va D — ortiqcha cho'zilgan.",
+   "manba": "dars19.json: slaydlar[3].diqqat; taqdimot 5, 7-slayd"
+  },
+  {
+   "q": "Ikkita bir xil harf yonma-yon kelib, birinchisi sukunli, ikkinchisi harakatli bo'lsa, yozuvda nima qilinadi?",
+   "opts": [
+    "Ikkalasi ham yoziladi, hech qanday belgi qo'yilmaydi",
+    "Biri yoziladi, ustiga sukun qo'yiladi",
+    "Ikkalasi yoziladi, ustiga mad belgisi qo'yiladi",
+    "Biri yoziladi, ustiga tashdid (ـّ) qo'yiladi"
+   ],
+   "ok": 3,
+   "izoh": "Ikki bir xil harf bitta harf bilan yoziladi: harf bir marta yozilib, ustiga tashdid qo'yiladi. Harfni ikkita yozish o'zbek tiliga xos (katta, mahalla).",
+   "manba": "dars19.json: slaydlar[0].bandlar[0–1], slaydlar[1].bandlar[1]; taqdimot 5, 4–5-slayd"
+  },
+  {
+   "q": "Qaysi so'zda tashdid so'zning oxirida kelgan?",
+   "opts": [
+    "دَبَّرَ",
+    "اِحْمَرَّ",
+    "عَلَّمَ",
+    "مُتَعَلِّمْ"
+   ],
+   "ok": 1,
+   "izoh": "اِحْمَرَّ — tashdid oxirgi harf ر da. Qolganlarida tashdid so'z o'rtasida.",
+   "manba": "dars21.json: slaydlar[1].qatorlar[0], yakun[2]; taqdimot 5, 11-slayd"
+  }
+ ]
+}

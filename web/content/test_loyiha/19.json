@@ -1,0 +1,12 @@
+{
+ "dars": 19,
+ "nomi": "Sukunli nun va tanvin: bildirib talaffuz — test",
+ "holat": "loyiha",
+ "savollar": [
+  {"q": "Qaysi biri sukunli nun?", "opts": ["نَ", "نْ", "نِ", "نُ"], "ok": 1, "izoh": "Sukunli nun — fatha, kasra va dammadan xoli nun (نْ). Qolganlari harakatli nun.", "manba": "dars41.json: slaydlar[0] «Sukunli nun»"},
+  {"q": "Tanvin so'zning qayerida keladi?", "opts": ["Faqat so'z boshida", "So'z o'rtasida va oxirida", "Faqat so'z oxirida", "So'zning istalgan joyida"], "ok": 2, "izoh": "Tanvin faqat so'z oxirida keladi. Sukunli nun esa so'z o'rtasida ham, oxirida ham kelaveradi.", "manba": "dars41.json: slaydlar[3] «Nun va tanvin farqi (4–5)»"},
+  {"q": "Sukunli nun yoki tanvindan keyin qaysi harflar kelsa, nun bildirib o'qiladi?", "opts": ["ء ه ع ح غ خ", "ت د ط ز س ص", "ي ر م ل و ن", "ب ف ق ك ج ش"], "ok": 0, "izoh": "Bildirish harflari 6 ta: ء ه ع ح غ خ. Boshqa variantlardagi harflar oldida nun bildirilmaydi.", "manba": "dars41.json: slaydlar[5] «1. Bildirib talaffuz qilish»"},
+  {"q": "Qaysi birikmada tanvindan keyin bildirish harfi kelgan?", "opts": ["قَلَمٌ جَمِيلٌ", "عِلْمٌ نَافِعٌ", "رَجُلٌ أَمِينٌ", "رَجُلٌ بَخِيلٌ"], "ok": 2, "izoh": "أَمِينٌ hamza (ء) bilan boshlanadi — hamza bildirish harfi. ج ن ب bildirish harflari emas.", "manba": "dars41.json: slaydlar[6] «Bildirish misollari», 1-qator"},
+  {"q": "To'xtaganda (vaqfda) qaysi biri o'qilmay tushirib qoldiriladi?", "opts": ["Hech biri", "Ikkalasi ham", "Sukunli nun", "Tanvin"], "ok": 3, "izoh": "Tanvin vaslda o'qiladi, vaqfda tushiriladi. Sukunli nun esa vaslda ham, vaqfda ham talaffuz qilinadi.", "manba": "dars41.json: slaydlar[2] «Nun va tanvin farqi (1–3)», 3-band"}
+ ]
+}

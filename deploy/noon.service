@@ -1,0 +1,22 @@
+[Unit]
+Description=Noon Telegram ilova (talaba + xodim botlari, Mini App)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=noon
+Group=noon
+WorkingDirectory=/opt/noon
+ExecStart=/opt/noon/venv/bin/python /opt/noon/server/main.py
+Restart=always
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+Environment=PYTHONDONTWRITEBYTECODE=1
+# xavfsizlik: faqat /opt/noon/data, log va backup ga yoza oladi
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/opt/noon/data /opt/noon/log /opt/noon/backup
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,628 @@
+{
+ "dek": "C:\\Users\\N.M\\Desktop\\MUHAMMAD AMIN\\Telegram ilova\\NUQTA\\_manba\\taqdimot\\1\\index.html",
+ "chiqish": "C:\\Users\\N.M\\Desktop\\MUHAMMAD AMIN\\Telegram ilova\\NUQTA\\web\\content\\taqdimot\\1\\index.html",
+ "sana": "2026-10-06 06:02",
+ "min_oxshashlik": 0.3,
+ "ichiga": false,
+ "klip_soni": 15,
+ "klip_bayt": 176202,
+ "ovoz_papka": "C:\\Users\\N.M\\Desktop\\MUHAMMAD AMIN\\Telegram ilova\\NUQTA\\web\\content\\taqdimot\\1\\ovoz",
+ "kliplar": [
+  "01_1_1",
+  "01_25_1",
+  "01_25_2",
+  "01_25_3",
+  "01_2_1",
+  "01_3_1",
+  "01_4_1",
+  "01_5_1",
+  "03_17_1",
+  "03_17_2",
+  "03_17_3",
+  "04_30_1",
+  "04_30_2",
+  "04_30_3",
+  "04_6_1"
+ ],
+ "darslar": {
+  "1": {
+   "slaydlar": [
+    1,
+    34
+   ],
+   "soz_json": true,
+   "jami_joy": 130,
+   "unik": 58,
+   "ovozli_joy": 19,
+   "ovozli_unik": 15,
+   "yoq_unik": 40,
+   "yoq_soz": 3,
+   "yoq_harf": 31,
+   "yoq_shakl": 6,
+   "shubhali_unik": 3,
+   "oralmadi_unik": 0,
+   "boshqa_darsdan": {
+    "بَ": "04_30_1",
+    "بِ": "04_30_2",
+    "بُ": "04_30_3",
+    "اَبْ": "04_6_1",
+    "رَ": "03_17_1",
+    "رِ": "03_17_2",
+    "رُ": "03_17_3"
+   },
+   "qoshilgan": {
+    "رُ": "03_17_3",
+    "فَحَثَّهُ": "01_25_1",
+    "شَخْصٌ": "01_25_2",
+    "سَكَتْ": "01_25_3"
+   },
+   "uzun": {},
+   "yoq": [
+    {
+     "ar": "ٮٮٮ",
+     "tur": "shakl",
+     "slaydlar": [
+      3,
+      4,
+      5
+     ],
+     "dek_slaydlar": [
+      3,
+      4,
+      5
+     ]
+    },
+    {
+     "ar": "بنت",
+     "tur": "shakl",
+     "slaydlar": [
+      5
+     ],
+     "dek_slaydlar": [
+      5
+     ]
+    },
+    {
+     "ar": "ٮ",
+     "tur": "harf",
+     "slaydlar": [
+      6
+     ],
+     "dek_slaydlar": [
+      6
+     ]
+    },
+    {
+     "ar": "ب",
+     "tur": "harf",
+     "slaydlar": [
+      6,
+      7,
+      21,
+      28
+     ],
+     "dek_slaydlar": [
+      6,
+      7,
+      21,
+      28
+     ]
+    },
+    {
+     "ar": "أ",
+     "tur": "harf",
+     "slaydlar": [
+      7
+     ],
+     "dek_slaydlar": [
+      7
+     ]
+    },
+    {
+     "ar": "ت",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      20,
+      28,
+      30
+     ],
+     "dek_slaydlar": [
+      7,
+      20,
+      28,
+      30
+     ]
+    },
+    {
+     "ar": "ث",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      20,
+      30
+     ],
+     "dek_slaydlar": [
+      7,
+      20,
+      30
+     ]
+    },
+    {
+     "ar": "ج",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      20
+     ],
+     "dek_slaydlar": [
+      7,
+      20
+     ]
+    },
+    {
+     "ar": "ح",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      19,
+      30
+     ],
+     "dek_slaydlar": [
+      7,
+      19,
+      30
+     ]
+    },
+    {
+     "ar": "خ",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      19,
+      30
+     ],
+     "dek_slaydlar": [
+      7,
+      19,
+      30
+     ]
+    },
+    {
+     "ar": "د",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      20,
+      31
+     ],
+     "dek_slaydlar": [
+      7,
+      20,
+      31
+     ]
+    },
+    {
+     "ar": "ذ",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      20,
+      31
+     ],
+     "dek_slaydlar": [
+      7,
+      20,
+      31
+     ]
+    },
+    {
+     "ar": "ر",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      20,
+      31
+     ],
+     "dek_slaydlar": [
+      7,
+      20,
+      31
+     ]
+    },
+    {
+     "ar": "ز",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      13,
+      20,
+      31
+     ],
+     "dek_slaydlar": [
+      7,
+      13,
+      20,
+      31
+     ]
+    },
+    {
+     "ar": "س",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      13,
+      20,
+      23,
+      30
+     ],
+     "dek_slaydlar": [
+      7,
+      13,
+      20,
+      23,
+      30
+     ]
+    },
+    {
+     "ar": "ش",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      20,
+      30
+     ],
+     "dek_slaydlar": [
+      7,
+      20,
+      30
+     ]
+    },
+    {
+     "ar": "ص",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      20,
+      23,
+      30
+     ],
+     "dek_slaydlar": [
+      7,
+      20,
+      23,
+      30
+     ]
+    },
+    {
+     "ar": "ض",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      20
+     ],
+     "dek_slaydlar": [
+      7,
+      20
+     ]
+    },
+    {
+     "ar": "ط",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      20
+     ],
+     "dek_slaydlar": [
+      7,
+      20
+     ]
+    },
+    {
+     "ar": "ظ",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      20
+     ],
+     "dek_slaydlar": [
+      7,
+      20
+     ]
+    },
+    {
+     "ar": "ع",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      19
+     ],
+     "dek_slaydlar": [
+      7,
+      19
+     ]
+    },
+    {
+     "ar": "غ",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      19
+     ],
+     "dek_slaydlar": [
+      7,
+      19
+     ]
+    },
+    {
+     "ar": "ف",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      21,
+      30
+     ],
+     "dek_slaydlar": [
+      7,
+      21,
+      30
+     ]
+    },
+    {
+     "ar": "ق",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      16,
+      20
+     ],
+     "dek_slaydlar": [
+      7,
+      16,
+      20
+     ]
+    },
+    {
+     "ar": "ك",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      20,
+      30
+     ],
+     "dek_slaydlar": [
+      7,
+      20,
+      30
+     ]
+    },
+    {
+     "ar": "ل",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      20,
+      31
+     ],
+     "dek_slaydlar": [
+      7,
+      20,
+      31
+     ]
+    },
+    {
+     "ar": "م",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      21,
+      22
+     ],
+     "dek_slaydlar": [
+      7,
+      21,
+      22
+     ]
+    },
+    {
+     "ar": "ن",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      20,
+      22
+     ],
+     "dek_slaydlar": [
+      7,
+      20,
+      22
+     ]
+    },
+    {
+     "ar": "ه",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      19,
+      30
+     ],
+     "dek_slaydlar": [
+      7,
+      19,
+      30
+     ]
+    },
+    {
+     "ar": "و",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      17,
+      18,
+      21,
+      31
+     ],
+     "dek_slaydlar": [
+      7,
+      17,
+      18,
+      21,
+      31
+     ]
+    },
+    {
+     "ar": "ي",
+     "tur": "harf",
+     "slaydlar": [
+      7,
+      17,
+      18,
+      20
+     ],
+     "dek_slaydlar": [
+      7,
+      17,
+      18,
+      20
+     ]
+    },
+    {
+     "ar": "بْ",
+     "tur": "so'z",
+     "slaydlar": [
+      15
+     ],
+     "dek_slaydlar": [
+      15
+     ]
+    },
+    {
+     "ar": "ا",
+     "tur": "harf",
+     "slaydlar": [
+      17,
+      18,
+      31
+     ],
+     "dek_slaydlar": [
+      17,
+      18,
+      31
+     ]
+    },
+    {
+     "ar": "ء",
+     "tur": "harf",
+     "slaydlar": [
+      19
+     ],
+     "dek_slaydlar": [
+      19
+     ]
+    },
+    {
+     "ar": "سَيْف",
+     "tur": "so'z",
+     "slaydlar": [
+      24
+     ],
+     "dek_slaydlar": [
+      24
+     ]
+    },
+    {
+     "ar": "صَيْف",
+     "tur": "so'z",
+     "slaydlar": [
+      24
+     ],
+     "dek_slaydlar": [
+      24
+     ]
+    },
+    {
+     "ar": "لـ",
+     "tur": "shakl",
+     "slaydlar": [
+      31
+     ],
+     "dek_slaydlar": [
+      31
+     ]
+    },
+    {
+     "ar": "ـلـ",
+     "tur": "shakl",
+     "slaydlar": [
+      31
+     ],
+     "dek_slaydlar": [
+      31
+     ]
+    },
+    {
+     "ar": "ـل",
+     "tur": "shakl",
+     "slaydlar": [
+      31
+     ],
+     "dek_slaydlar": [
+      31
+     ]
+    },
+    {
+     "ar": "ـا",
+     "tur": "shakl",
+     "slaydlar": [
+      31
+     ],
+     "dek_slaydlar": [
+      31
+     ]
+    }
+   ],
+   "shubhali": [
+    {
+     "ar": "قَ",
+     "tur": "so'z",
+     "slaydlar": [
+      27
+     ],
+     "dek_slaydlar": [
+      27
+     ],
+     "klip": "05_8_1",
+     "oxshashlik": 0.0,
+     "eshitildi_uzunlik": 0.83
+    },
+    {
+     "ar": "قِ",
+     "tur": "so'z",
+     "slaydlar": [
+      27
+     ],
+     "dek_slaydlar": [
+      27
+     ],
+     "klip": "05_8_2",
+     "oxshashlik": 0.22,
+     "eshitildi_uzunlik": 0.92
+    },
+    {
+     "ar": "قُ",
+     "tur": "so'z",
+     "slaydlar": [
+      27
+     ],
+     "dek_slaydlar": [
+      27
+     ],
+     "klip": "05_8_3",
+     "oxshashlik": 0.0,
+     "eshitildi_uzunlik": 1.08
+    }
+   ],
+   "oralmadi": []
+  }
+ }
+}

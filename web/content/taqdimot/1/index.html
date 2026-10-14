@@ -1,0 +1,1207 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fonetika — 1-dars</title>
+<link rel="stylesheet" href="fonts/inter.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;700&display=swap">
+<style>
+  :root{
+    --deep:#004a4c; --deeper:#003739; --deepest:#002628; --ink:#001a1c;
+    --mint:#38b49b; --amber:#e7af3b; --sand:#fbdf8d; --white:#fff;
+    --soft:rgba(255,255,255,.82); --faint:rgba(255,255,255,.55);
+    --rule:rgba(56,180,155,.34); --rule-soft:rgba(56,180,155,.16);
+    --font:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    --ar2:"Noto Naskh Arabic","Geeza Pro","Amiri",serif;
+    --ar:"Amiri","Geeza Pro","Noto Naskh Arabic","Traditional Arabic",serif;
+    /* ── XOSHIYA (har bir slayd uchun xavfsiz maydon) ──
+       --pad-x   : yon tomonlar
+       --pad-top : tepa (progress chizig'idan keyin)
+       --pad-bot : past (HUD qatori + zaxira)
+       Slayd konteni hech qachon shu chegaralardan chiqmasligi kerak. */
+    --pad:clamp(1.4rem,2.6vw,3rem);
+    --pad-x:clamp(1.6rem,2.8vw,3.2rem);
+    --pad-top:clamp(1.5rem,2.5vw,2.8rem);
+    --pad-bot:clamp(3rem,4.4vw,4.6rem);
+    --swap:.30s;
+    --iconsz:clamp(34px,3.2vw,52px);
+    --radius:clamp(8px,.8vw,13px);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ink);color:var(--white);font-family:var(--font);
+       font-weight:400;-webkit-font-smoothing:antialiased;overflow:hidden;height:100vh}
+
+  /* ═══════════ Webinar sahnasi ═══════════ */
+  .stage{display:grid;grid-template-columns:1fr;height:100vh;width:100vw}
+
+  /* ── O'ng: slaydlar ── */
+  .deck{position:relative;overflow:hidden;min-width:0;background:var(--deep)}
+  /* Rasm to'liq yuklanmaguncha ko'rinmaydi — "singan rasm" belgisi chiqmaydi */
+  .slide img{opacity:0;transition:opacity .25s ease}
+  .slide img.rdy{opacity:1}
+  .deck::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(75% 60% at 92% 6%,rgba(56,180,155,.14),transparent 60%),
+               radial-gradient(60% 70% at 4% 96%,rgba(231,175,59,.09),transparent 62%)}
+  .slide{position:absolute;inset:0;
+    padding:var(--pad-top) var(--pad-x) var(--pad-bot);
+    opacity:0;visibility:hidden;pointer-events:none;transform:translateY(26px);
+    transition:opacity var(--swap) ease,transform var(--swap) cubic-bezier(.22,.61,.36,1),
+               visibility 0s var(--swap);
+    overflow-y:auto;z-index:1}
+  .slide.from-above{transform:translateY(-26px)}
+  .slide.active{opacity:1;visibility:visible;pointer-events:auto;transform:none;
+    transition:opacity var(--swap) ease,transform var(--swap) cubic-bezier(.22,.61,.36,1),visibility 0s}
+  .slide.leaving-up,.slide.leaving-down{visibility:visible;opacity:0;
+    transition:opacity var(--swap) ease,transform var(--swap) cubic-bezier(.22,.61,.36,1),
+               visibility 0s var(--swap)}
+  .slide.leaving-up{transform:translateY(-26px)}
+  .slide.leaving-down{transform:translateY(26px)}
+  .wrap{max-width:1180px;margin:0 auto;width:100%;height:100%;min-height:0;
+        display:flex;flex-direction:column;justify-content:center}
+  .stack{display:flex;flex-direction:column;gap:clamp(.7rem,1.3vw,1.3rem);
+         min-width:0;min-height:0;max-height:100%}
+  /* Bo'sh joyni to'ldiradigan slayd: rasm bloki qolgan balandlikka moslashadi */
+  .stack.fill{height:100%}
+  .stack.loose{gap:clamp(1rem,1.9vw,1.9rem)}
+  .stack.tight{gap:clamp(.4rem,.7vw,.7rem)}
+
+  /* Ketma-ket chiqish */
+  [data-step]{opacity:0;transform:translateY(14px);
+    transition:opacity .38s ease,transform .38s cubic-bezier(.22,.61,.36,1)}
+  [data-step].shown{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    [data-step]{transition-duration:.01ms!important;transform:none!important}
+  }
+
+  /* ═══════════ Tipografiya ═══════════ */
+  .eyebrow{font-size:clamp(1rem,1.35vw,1.35rem);font-weight:700;letter-spacing:.15em;
+           text-transform:uppercase;color:var(--mint);margin:0}
+  .eyebrow b{color:var(--amber);font-weight:700}
+  h1{font-weight:700;font-size:clamp(2.5rem,4.8vw,4.6rem);line-height:1.06;
+     letter-spacing:-.025em;margin:0 0 0 -.04em;text-wrap:balance}
+  h2{font-weight:700;font-size:clamp(2rem,3.5vw,3.3rem);line-height:1.1;
+     letter-spacing:-.022em;margin:0 0 0 -.035em;text-wrap:balance}
+  h3{font-weight:700;font-size:clamp(1.4rem,2.2vw,2.1rem);line-height:1.18;
+     letter-spacing:-.012em;margin:0}
+  .ask{color:var(--sand)}
+  p{font-size:clamp(1.18rem,1.75vw,1.75rem);line-height:1.45;font-weight:400;
+    color:var(--soft);max-width:38ch;margin:0}
+  p.lead{color:var(--white);font-weight:500;font-size:clamp(1.35rem,2.1vw,2.1rem);max-width:34ch}
+  p.small{font-size:clamp(1rem,1.35vw,1.35rem);color:var(--faint);max-width:46ch}
+  strong{color:var(--sand);font-weight:700}
+  .keyword{font-weight:700;font-size:clamp(2.4rem,5.4vw,4.6rem);line-height:1;
+           letter-spacing:-.035em;color:var(--sand);margin:0;max-width:none}
+
+  /* ═══════════ Arab yozuvi ═══════════ */
+  .ar{font-family:var(--ar);direction:rtl;unicode-bidi:isolate;font-weight:400;
+      color:var(--sand);line-height:1.55}
+  .ar.big{font-size:clamp(3.2rem,7.5vw,6.4rem);line-height:1.25;display:block;
+          text-align:center;margin:.1em 0}
+  .ar.big.ibora{white-space:nowrap;font-size:clamp(2.4rem,5.4vw,4.6rem);
+                line-height:1.9;letter-spacing:.02em}
+  /* Yonma-yon, ustma-ust tushmaydigan ibora */
+  .ar.big.clear{font-family:var(--ar2);font-size:clamp(2.2rem,4.8vw,4.2rem);
+                line-height:2.05;word-spacing:.32em;white-space:nowrap;
+                margin:.2em 0 .1em}
+  .translit{display:block;text-align:center;direction:ltr;
+            font-size:clamp(1.05rem,1.75vw,1.65rem);font-weight:500;
+            letter-spacing:.06em;color:var(--mint);margin-bottom:.5em}
+  .ar.med{font-size:clamp(1.8rem,3.4vw,3rem)}
+  .ar.inl{font-size:1.32em;color:inherit;vertical-align:-.08em}
+  .harf{display:inline-flex;align-items:baseline;gap:.5em}
+  .harf .ar{font-size:1.5em}
+
+  /* Harflar qatori */
+  /* direction:rtl bo'lgani uchun flex-end = chap chekka */
+  .letters{display:flex;flex-wrap:wrap;gap:clamp(.45rem,.9vw,.9rem);direction:rtl;
+           justify-content:flex-end}
+  .letters.mid{justify-content:center}
+  .letters .lt{display:flex;flex-direction:column;align-items:center;gap:clamp(.4rem,.8vw,.7rem);
+       min-width:clamp(3.2rem,5vw,4.6rem);padding:clamp(.5rem,.9vw,.85rem) .4rem;
+       border:1px solid var(--rule-soft);border-radius:var(--radius);
+       background:rgba(56,180,155,.06)}
+  .letters .lt .g{font-family:var(--ar);font-size:clamp(2.1rem,3.6vw,3.3rem);
+                  color:var(--sand);line-height:1.35;padding-bottom:.08em}
+  .letters .lt .n{font-size:clamp(.82rem,1.05vw,1.05rem);color:var(--faint);direction:ltr;
+                  letter-spacing:.04em}
+  /* 28 harf — ixcham jadval */
+  .letters.all{gap:clamp(.25rem,.5vw,.5rem);justify-content:center}
+  .letters.all .lt{min-width:clamp(2.2rem,3.3vw,3.1rem);
+                   padding:clamp(.36rem,.65vw,.6rem) .25rem .32rem;gap:clamp(.3rem,.55vw,.5rem)}
+  .letters.all .lt .g{font-size:clamp(1.5rem,2.5vw,2.3rem)}
+  .letters.all .lt .n{font-size:clamp(.6rem,.82vw,.82rem);letter-spacing:.02em}
+  .letters.hot .lt{border-color:rgba(231,175,59,.42);background:rgba(231,175,59,.08)}
+
+  /* Bosqichlar: nuqtasiz -> nuqtali -> harakatli */
+  .stages{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;
+          gap:clamp(.4rem,1vw,1rem);align-items:stretch}
+  .stg{display:flex;flex-direction:column;align-items:center;justify-content:center;
+       gap:clamp(.4rem,.8vw,.8rem);padding:clamp(.8rem,1.5vw,1.5rem) .6rem;
+       border:1px solid var(--rule-soft);border-radius:var(--radius);
+       background:rgba(56,180,155,.06)}
+  .stg.hot{border-color:rgba(231,175,59,.45);background:rgba(231,175,59,.08)}
+  .stg .g{font-family:var(--ar);direction:rtl;font-size:clamp(2.6rem,5.4vw,5rem);
+          line-height:1.3;color:var(--sand)}
+  .stg .n{font-size:clamp(.85rem,1.1vw,1.1rem);font-weight:700;letter-spacing:.1em;
+          text-transform:uppercase;color:var(--faint);text-align:center;line-height:1.3}
+  .stg.hot .n{color:var(--amber)}
+  .arw{display:flex;align-items:center;color:var(--mint);
+       font-size:clamp(1.3rem,2.2vw,2.2rem)}
+  @media (max-width:820px){ .stages{grid-template-columns:1fr} .arw{transform:rotate(90deg);justify-content:center} }
+
+  /* Bitta skeletdan chiqadigan so'zlar */
+  .reads{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(.5rem,1.1vw,1.1rem)}
+  .rd{display:flex;flex-direction:column;align-items:center;gap:.45rem;
+      padding:clamp(.8rem,1.5vw,1.5rem) .5rem;border:1px solid var(--rule);
+      border-radius:var(--radius);background:rgba(56,180,155,.07)}
+  .rd .g{font-family:var(--ar);direction:rtl;font-size:clamp(2.4rem,5vw,4.6rem);
+         line-height:1.35;color:var(--sand)}
+  .rd .t{font-size:clamp(1rem,1.4vw,1.4rem);color:var(--white);font-weight:700}
+  .rd .m{font-size:clamp(.88rem,1.15vw,1.15rem);color:var(--faint)}
+  @media (max-width:820px){ .reads{grid-template-columns:1fr} }
+
+  /* ═══════════ Ikonka ═══════════ */
+  .icon{width:var(--iconsz);height:var(--iconsz);flex:none;display:block;
+        fill:none;stroke:url(#gold);stroke-width:1.5;
+        stroke-linecap:round;stroke-linejoin:round}
+
+  /* ═══════════ Ro'yxat ═══════════ */
+  ul.marks{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;
+           gap:clamp(.5rem,.95vw,.9rem)}
+  ul.marks li{position:relative;padding-left:clamp(1.6rem,2.3vw,2.3rem);
+              font-size:clamp(1.18rem,1.75vw,1.75rem);line-height:1.38;color:var(--soft)}
+  ul.marks li::before{content:"";position:absolute;left:0;top:.6em;
+                      width:.5rem;height:.5rem;border-radius:50%;background:var(--mint)}
+  ul.marks li b{color:var(--white);font-weight:700}
+  ul.marks.num{counter-reset:m}
+  ul.marks.num li{counter-increment:m;padding-left:clamp(1.9rem,2.6vw,2.6rem)}
+  ul.marks.num li::before{content:counter(m);background:none;width:auto;height:auto;
+    top:0;font-size:.88em;font-weight:700;color:var(--amber);
+    font-variant-numeric:tabular-nums}
+  ul.marks.two{display:grid;grid-template-columns:1fr 1fr;
+               gap:clamp(.5rem,.9vw,.85rem) clamp(1.2rem,2.4vw,2.4rem)}
+
+  /* ═══════════ Kartalar ═══════════ */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));
+         gap:clamp(.6rem,1.1vw,1.1rem)}
+  .card{display:flex;flex-direction:column;gap:clamp(.4rem,.75vw,.7rem);
+        padding:clamp(.85rem,1.5vw,1.45rem);border:1px solid var(--rule);
+        border-radius:var(--radius);background:rgba(56,180,155,.07)}
+  .card .cn{font-size:clamp(.88rem,1.15vw,1.15rem);font-weight:700;letter-spacing:.12em;
+            text-transform:uppercase;color:var(--amber)}
+  .card .ct{font-size:clamp(1.5rem,2.4vw,2.3rem);font-weight:700;line-height:1.14;
+            letter-spacing:-.02em;color:var(--white)}
+  .card .cd{font-size:clamp(1.12rem,1.6vw,1.6rem);line-height:1.36;color:var(--soft)}
+  .card .cd b{color:var(--white);font-weight:700}
+  .cards.vert{grid-template-columns:1fr}
+  .cards.vert .card{flex-direction:row;align-items:baseline;gap:clamp(.8rem,1.6vw,1.6rem)}
+  .cards.vert .card .cn{flex:none;width:clamp(5rem,9vw,9rem)}
+  .card.hot{border-color:rgba(231,175,59,.45);background:rgba(231,175,59,.08)}
+  .card.hot .cn{color:var(--sand)}
+
+  /* Kartalar ichidagi harf misollari */
+  .cards.vert .card:has(.ex){align-items:center}
+  .card .ex{margin-left:auto;flex:none;display:flex;align-items:flex-end;
+            gap:clamp(.55rem,1.1vw,1.1rem)}
+  .exi{display:flex;flex-direction:column;align-items:center;gap:.28rem}
+  .exi .n{font-size:clamp(.68rem,.88vw,.88rem);font-weight:700;letter-spacing:.08em;
+          text-transform:uppercase;color:var(--faint);white-space:nowrap}
+  .exg{font-family:var(--ar);direction:rtl;font-size:clamp(1.9rem,3vw,2.9rem);
+       color:var(--sand);line-height:1.25;display:block}
+  .exa{color:var(--mint);font-size:clamp(1.1rem,1.6vw,1.6rem);padding-bottom:.55em}
+
+  /* Abul Aswad usuli: qizil nuqtali harakat */
+  .rdot{position:relative;display:block;padding:.62em .68em}
+  .rdot i{position:absolute;font-size:clamp(1.9rem,3vw,2.9rem);
+          width:.3em;height:.3em;border-radius:50%;background:#f05a48;
+          box-shadow:0 0 0 .09em rgba(240,90,72,.32)}
+  .rdot i.up{top:.02em;left:50%;transform:translateX(-50%)}
+  .rdot i.dn{bottom:.02em;left:50%;transform:translateX(-50%)}
+  .rdot i.lf{left:.02em;top:48%;transform:translateY(-50%)}
+  @media (max-width:820px){ .card .ex{margin-left:0;flex-wrap:wrap} }
+
+  /* ═══════════ Qadamlar ═══════════ */
+  .flow{display:flex;flex-direction:column;gap:clamp(.4rem,.7vw,.65rem)}
+  .fstep{display:grid;grid-template-columns:auto 1fr;gap:clamp(.7rem,1.3vw,1.2rem);
+         align-items:baseline;padding:clamp(.5rem,.9vw,.8rem) clamp(.75rem,1.2vw,1.1rem);
+         border:1px solid var(--rule-soft);border-radius:var(--radius)}
+  .fstep .fn{font-weight:700;color:var(--amber);font-variant-numeric:tabular-nums;
+             font-size:clamp(1.15rem,1.65vw,1.65rem);min-width:1.5em}
+  .fstep .ft{font-size:clamp(1.15rem,1.7vw,1.7rem);line-height:1.36;color:var(--soft)}
+  .fstep .ft b{color:var(--white);font-weight:700}
+
+  /* Arabcha + lotincha juftlik */
+  .pr{display:inline-flex;align-items:baseline;gap:.4em;white-space:nowrap;
+      margin-inline-end:clamp(.9rem,1.8vw,1.8rem)}
+  .pr .ar{color:var(--sand)}
+  .pr b{color:var(--white);font-weight:700}
+
+
+  /* ═══════════ Rasmlar ═══════════ */
+  .figs{display:grid;gap:clamp(.5rem,1vw,1rem);min-height:0;margin:0}
+  .figs.two{grid-template-columns:1fr 1fr}
+  /* 4 ta rasm — 2x2. Qolgan bo'sh balandlikni egallaydi, oshib ketmaydi. */
+  .figs.four{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;
+             gap:clamp(.6rem,1.2vw,1.2rem);
+             flex:1 1 auto;min-height:0;width:min(100%,72vh);margin-inline:auto}
+  .figs.four .fig{min-height:0}
+  .fig{display:flex;flex-direction:column;gap:.45rem;min-width:0;margin:0}
+  .fig .ph{overflow:hidden;border-radius:var(--radius);
+           border:1px solid var(--rule-soft);background:#00343a}
+  .fig .ph img{display:block;width:100%;height:100%;object-fit:cover}
+  .figs.two .ph{aspect-ratio:1/1}
+  /* Katak balandlikdan kvadrat bo'ladi -> rasm chetida bo'sh joy qolmaydi */
+  .figs.four .ph{flex:1 1 auto;min-height:0;height:auto;width:auto;
+                 aspect-ratio:1/1;margin-inline:auto;max-width:100%}
+  .figs.four .ph img{width:100%;height:100%;object-fit:cover}
+  .figs.four figcaption{text-align:center}
+  .figs.wide .ph{aspect-ratio:4/3}
+  .fig figcaption{font-size:clamp(.92rem,1.2vw,1.2rem);color:var(--soft);line-height:1.3}
+  .fig figcaption b{color:var(--white);font-weight:700}
+  .col .figs{margin-bottom:.15rem}
+  .col .fig figcaption{font-size:clamp(.82rem,1.02vw,1.02rem)}
+
+  /* katta yakka rasm */
+  .hero-pic{border-radius:var(--radius);border:1px solid var(--rule-soft);
+            overflow:hidden;background:#00343a;min-height:0;margin:0}
+  .hero-pic img{display:block;width:100%;height:auto;max-height:36vh;object-fit:contain}
+  .hero-pic.short img{max-height:27vh}
+
+  /* rasm va matn yonma-yon */
+  .split{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1fr);
+         gap:clamp(.9rem,1.8vw,1.8rem);align-items:center;min-height:0}
+  .split .shot{border-radius:var(--radius);border:1px solid var(--rule-soft);
+               overflow:hidden;background:#00343a;min-width:0;align-self:center;
+               max-width:100%;margin-inline:auto}
+  .split .shot img{display:block;width:100%;height:auto}
+  .split .sx{display:flex;flex-direction:column;gap:clamp(.65rem,1.2vw,1.2rem);min-width:0}
+  /* matn chapda, rasm o'ngda */
+  .split.pic-right{grid-template-columns:minmax(0,1fr) minmax(0,.92fr)}
+  /* ostida yana kontent bo'lsa rasm pastroq bo'ladi */
+  .split.slim .shot{max-width:min(100%,54vh)}
+  .split .sx h2{margin:0}
+  /* Icon va sarlavha bitta qatorda — balandlikdan yutamiz */
+  .head{display:flex;align-items:center;gap:clamp(.7rem,1.4vw,1.4rem);min-width:0}
+  .head h1,.head h2{margin:0}
+  .head .icon{flex:none}
+  /* Pastroq rasm kataklari */
+  /* Kvadrat rasm kesilmasin: katak ham kvadrat, o'lchami balandlikdan cheklanadi */
+  .figs.short .ph{aspect-ratio:1/1;max-width:min(100%,31vh);margin-inline:auto}
+  .figs.short figcaption{text-align:center}
+  /* Past ekranlarda rasm va oraliqlar qisqaradi */
+  @media (max-height:830px){
+    .figs.short .ph{max-width:min(100%,24vh)}
+    .col .ar.big{font-size:clamp(1.8rem,3.4vw,2.6rem)}
+    .letters .lt{padding:clamp(.35rem,.6vw,.6rem) .35rem}
+    .letters .lt .g{font-size:clamp(1.6rem,2.6vw,2.4rem)}
+    .stack.loose{gap:clamp(.6rem,1.1vw,1.1rem)}
+    .split.slim .shot{max-width:min(100%,46vh)}
+  }
+  .split:has(.sx > h2:only-child){align-items:center}
+
+  /* ═══════════ Ikki ustun ═══════════ */
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(.7rem,1.4vw,1.4rem)}
+  .col{display:flex;flex-direction:column;gap:clamp(.55rem,1vw,.95rem);
+       padding:clamp(.85rem,1.5vw,1.5rem);border:1px solid var(--rule);
+       border-radius:var(--radius)}
+  .col.warm{border-color:rgba(231,175,59,.45)}
+  .col.warm ul.marks li::before{background:var(--amber)}
+  .col h4{margin:0;font-size:clamp(1rem,1.3vw,1.3rem);font-weight:700;
+          letter-spacing:.13em;text-transform:uppercase;color:var(--mint)}
+  .col.warm h4{color:var(--amber)}
+  .col .ar.big{font-size:clamp(2.4rem,5vw,4rem)}
+
+  /* ═══════════ Amaliy sinov ═══════════ */
+  .try{display:flex;gap:clamp(.7rem,1.3vw,1.2rem);align-items:flex-start;
+       padding:clamp(.85rem,1.5vw,1.4rem);border-radius:var(--radius);
+       border:1px dashed rgba(231,175,59,.5);background:rgba(231,175,59,.07)}
+  .try .icon{--iconsz:clamp(26px,2.4vw,38px)}
+  .try .tx{display:flex;flex-direction:column;gap:.3rem}
+  .try .tx b{font-size:clamp(.92rem,1.18vw,1.18rem);font-weight:700;letter-spacing:.13em;
+             text-transform:uppercase;color:var(--sand)}
+  .try .tx span{font-size:clamp(1.12rem,1.6vw,1.6rem);line-height:1.38;color:var(--soft)}
+
+  /* ═══════════ Iqtibos ═══════════ */
+  blockquote{margin:0;padding-left:clamp(.9rem,1.7vw,1.6rem);border-left:3px solid var(--amber)}
+  blockquote p{font-weight:700;font-size:clamp(1.9rem,3.6vw,3.3rem);line-height:1.14;
+               letter-spacing:-.028em;color:var(--white);max-width:20ch}
+
+  /* ═══════════ HUD ═══════════ */
+
+  .hud{position:absolute;left:0;right:0;bottom:0;z-index:4;display:flex;align-items:center;
+       gap:1rem;padding:clamp(.5rem,.9vw,.8rem) var(--pad);
+       font-size:clamp(.66rem,.82vw,.8rem);font-weight:500;letter-spacing:.11em;
+       color:var(--mint);pointer-events:none;text-transform:uppercase}
+  .hud .sect{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .hud .count{font-variant-numeric:tabular-nums;color:var(--faint)}
+  .bar{position:absolute;top:0;left:0;height:3px;background:var(--amber);width:0;
+       transition:width var(--swap) ease;z-index:5}
+  .hint{position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);z-index:4;
+        font-size:clamp(.68rem,.86vw,.82rem);font-weight:500;letter-spacing:.07em;
+        color:var(--faint);opacity:1;transition:opacity .6s ease;pointer-events:none;
+        white-space:nowrap}
+  /* Past ekranlarda sahna kengligi balandlikka ham bog'lanadi,
+     shunda rasmli slaydlar pastdan kesilmaydi */
+  @media (max-height:780px){ .wrap{max-width:min(1180px,150vh)} }
+  .hint.gone{opacity:0}
+  .hint kbd{font-family:inherit;border:1px solid var(--rule);border-radius:4px;
+            padding:.12rem .42rem;color:var(--mint)}
+
+  @media (max-width:820px){
+    ul.marks.two,.duo{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){
+    :root{--swap:.01ms}
+    .slide,.bar{transition-duration:.01ms!important}
+    .slide,.slide.from-above,.slide.leaving-up,.slide.leaving-down{transform:none!important}
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="gold" gradientUnits="userSpaceOnUse" x1="2" y1="2" x2="24" y2="24">
+    <stop offset="0" stop-color="#fbdf8d"/><stop offset="1" stop-color="#e7af3b"/>
+  </linearGradient>
+  <g id="i-book"><path d="M3.5 5.5A2 2 0 0 1 5.5 3.5H12v17H5.5a2 2 0 0 0-2 2z"/>
+    <path d="M22.5 5.5a2 2 0 0 0-2-2H14v17h6.5a2 2 0 0 1 2 2z"/><path d="M12 3.5v17"/></g>
+  <g id="i-pen"><path d="M6 20.5l1.6-4.4L18.2 5.5a1.9 1.9 0 0 1 2.7 2.7L10.4 18.9z"/>
+    <path d="M16.6 7.1l2.7 2.7"/><path d="M7.6 16.1l2.8 2.8"/></g>
+  <g id="i-wave"><path d="M2 13h3l2.5-7 3.5 14 3-11 2.5 6H24"/></g>
+  <g id="i-mouth"><ellipse cx="13" cy="13" rx="10" ry="5.6"/>
+    <path d="M3.4 13c3-2.6 16.2-2.6 19.2 0" class="hot"/>
+    <path d="M9 9.2v7.6M17 9.2v7.6"/></g>
+  <g id="i-throat"><path d="M13 2.5a5 5 0 0 0-5 5v3.2c0 1.6-.7 2.6-1.6 3.6A5.6 5.6 0 0 0 5 18.2c0 2.6 2.4 5 5.6 5"/>
+    <path d="M13 2.5a5 5 0 0 1 5 5v3.2c0 1.6.7 2.6 1.6 3.6A5.6 5.6 0 0 1 21 18.2c0 2.6-2.4 5-5.6 5" class="hot"/>
+    <circle cx="13" cy="12" r="1.5" class="fillhot" fill="#e7af3b" stroke="none"/></g>
+  <g id="i-nose"><path d="M14.5 3.5l-1.8 9.6c-.2 1 .3 1.6 1.2 1.6h1.6"/>
+    <path d="M15.5 14.7c0 2.6-1.4 4.2-4 4.2s-4.4-1.6-4.4-4.2" class="hot"/>
+    <path d="M8 22.5h9"/></g>
+  <g id="i-tongue"><path d="M4.5 8.5C4.5 5.2 8.3 3 13 3s8.5 2.2 8.5 5.5c0 4.4-3.2 6-3.2 9.2A4.3 4.3 0 0 1 13 22a4.3 4.3 0 0 1-5.3-4.3c0-3.2-3.2-4.8-3.2-9.2z" class="hot"/>
+    <path d="M13 12.5v8"/></g>
+  <g id="i-layers"><path d="M13 2.8L23 8l-10 5.2L3 8z"/><path d="M3 13l10 5.2L23 13" class="hot"/>
+    <path d="M3 17.8L13 23l10-5.2"/></g>
+  <g id="i-split"><path d="M3 13h5"/><path d="M8 13l5-6h10M8 13l5 6h10" class="hot"/>
+    <circle cx="3" cy="13" r="1.6" class="fillhot" fill="#e7af3b" stroke="none"/></g>
+  <g id="i-shape"><rect x="3" y="3.5" width="8" height="8" rx="1.5"/>
+    <circle cx="19" cy="7.5" r="4.2" class="hot"/>
+    <path d="M7 14.5l4.5 8h-9z"/><rect x="15" y="14.5" width="8" height="8" rx="1.5" class="hot"/></g>
+  <g id="i-check"><circle cx="13" cy="13" r="9.8"/><path d="M8.6 13.2l3 3 6-6.4" class="hot"/></g>
+  <g id="i-hist"><circle cx="13" cy="13" r="9.8"/><path d="M13 7.2V13l4.2 2.6" class="hot"/>
+    <path d="M3.6 9.6l3.4 1.2" /></g>
+  <g id="i-dots"><circle cx="7" cy="8" r="1.7" class="fillhot" fill="#e7af3b" stroke="none"/>
+    <circle cx="13" cy="8" r="1.7" class="fillhot" fill="#e7af3b" stroke="none"/>
+    <circle cx="19" cy="8" r="1.7" class="fillhot" fill="#e7af3b" stroke="none"/>
+    <path d="M3.5 14.5h19M3.5 19.5h13"/></g>
+  <g id="i-warn"><path d="M13 3.4L23.4 21.4H2.6z"/><path d="M13 10v5" class="hot"/>
+    <circle cx="13" cy="18.2" r=".95" class="fillhot" fill="#e7af3b" stroke="none"/></g>
+  <g id="i-globe"><circle cx="13" cy="13" r="9.6"/><ellipse cx="13" cy="13" rx="4.2" ry="9.6"/>
+    <path d="M3.6 10h18.8M3.6 16h18.8"/></g>
+  <g id="i-target"><circle cx="13" cy="13" r="9.6"/><circle cx="13" cy="13" r="5.4"/>
+    <circle cx="13" cy="13" r="1.6" class="fillhot" fill="#e7af3b" stroke="none"/></g>
+</defs></svg>
+
+<div class="stage">
+
+  <!-- ── Slaydlar ── -->
+  <main class="deck" id="deck">
+  <div class="bar" id="bar"></div>
+<!-- 01 -->
+<section class="slide" data-sect="Ochilish">
+  <div class="wrap"><div class="stack loose">
+    <svg class="icon" viewBox="0 0 26 26"><use href="#i-book"/></svg>
+    <p class="eyebrow">Noon Akademiyasi &middot; <b>1-dars</b></p>
+    <h1>Arab tiliga kirish</h1>
+    <p class="lead">Harflarning paydo bo&#39;lishi va yozuv tarixi</p>
+  </div></div>
+</section>
+
+<!-- 03 -->
+<section class="slide" data-sect="Tarix">
+  <div class="wrap"><div class="stack loose">
+    <svg class="icon" viewBox="0 0 26 26"><use href="#i-hist"/></svg>
+    <h2>Yozuv bir kunda paydo bo&#39;lmagan</h2>
+    <ul class="marks">
+      <li>Asrlar davomida arab yozuviga <b>e&#39;tibor berilmagan</b></li>
+      <li>Ta&#39;lim <b>og&#39;zaki</b> edi &mdash; darslik yo&#39;q</li>
+      <li>Hudud kengaygach, yozuvga ehtiyoj tug&#39;ildi</li>
+    </ul>
+  </div></div>
+</section>
+
+<!-- 04 -->
+<section class="slide" data-sect="Tarix">
+  <div class="wrap"><div class="stack loose">
+    <svg class="icon" viewBox="0 0 26 26"><use href="#i-warn"/></svg>
+    <p class="eyebrow">Muammo</p>
+    <h2>Yozuv <span class="ask">nuqtasiz va harakatsiz</span> edi</h2>
+    <span class="ar big" style="font-size:clamp(5rem,11vw,10rem)">ٮٮٮ</span>
+    <p class="lead">Bu qaysi so&#39;z?</p>
+  </div></div>
+</section>
+
+<!-- 05 -->
+<section class="slide" data-sect="Tarix">
+  <div class="wrap"><div class="stack loose">
+    <h2>Bitta skelet &mdash; uch xil so&#39;z</h2>
+    <div class="reads">
+      <div class="rd"><span class="g">بِنْت</span>
+        <span class="t">bint</span><span class="m">qiz</span></div>
+      <div class="rd"><span class="g">ثَبَتَ</span>
+        <span class="t">sabata</span><span class="m">sobit bo&#39;ldi</span></div>
+      <div class="rd"><span class="g">نَبَتَ</span>
+        <span class="t">nabata</span><span class="m">o&#39;sdi</span></div>
+    </div>
+    <p class="lead">Uchalasining skeleti bir xil: <span class="ar inl">ٮٮٮ</span></p>
+  </div></div>
+</section>
+
+<!-- 06 -->
+<section class="slide" data-sect="Tarix">
+  <div class="wrap"><div class="stack loose">
+    <h2>Yozuv qanday to&#39;ldirilgan</h2>
+    <div class="stages">
+      <div class="stg"><span class="g">ٮٮٮ</span>
+        <span class="n">Nuqtasiz<br>harakatsiz</span></div>
+      <div class="arw">&rarr;</div>
+      <div class="stg"><span class="g">بنت</span>
+        <span class="n">Nuqta<br>qo&#39;shildi</span></div>
+      <div class="arw">&rarr;</div>
+      <div class="stg hot"><span class="g">بِنْت</span>
+        <span class="n">Harakat<br>qo&#39;shildi</span></div>
+    </div>
+    <p class="lead">Har bosqich <strong>bitta noaniqlikni</strong> yo&#39;q qildi.</p>
+  </div></div>
+</section>
+
+<!-- 07 -->
+<section class="slide" data-sect="Tarix">
+  <div class="wrap"><div class="stack loose">
+    <svg class="icon" viewBox="0 0 26 26"><use href="#i-dots"/></svg>
+    <h2>Uch bosqich</h2>
+    <div class="cards vert">
+      <div class="card"><span class="cn">Nuqtalar</span>
+        <span class="cd"><b>Nasr ibn Osim</b> va <b>Yahyo ibn Ya&#39;mar</b></span>
+        <span class="ex">
+          <span class="exi"><span class="exg">ٮ</span><span class="n">oldin</span></span>
+          <span class="exa">&rarr;</span>
+          <span class="exi"><span class="exg">ب</span><span class="n">keyin</span></span>
+        </span></div>
+      <div class="card"><span class="cn">Qizil nuqta</span>
+        <span class="cd"><b>Abul Aswad Adduali</b> &mdash; harakat o&#39;rnida qizil nuqta</span>
+        <span class="ex">
+          <span class="exi"><span class="rdot"><span class="exg">ب</span><i class="up"></i></span><span class="n">fatha</span></span>
+          <span class="exi"><span class="rdot"><span class="exg">ب</span><i class="dn"></i></span><span class="n">kasra</span></span>
+          <span class="exi"><span class="rdot"><span class="exg">ب</span><i class="lf"></i></span><span class="n">damma</span></span>
+        </span></div>
+      <div class="card hot"><span class="cn">Harakatlar</span>
+        <span class="cd"><b>Al-Xalil al-Farohidiy</b> &mdash; bugungi belgilar</span>
+        <span class="ex">
+          <span class="exi"><span class="exg">بَ</span><span class="n">fatha</span></span>
+          <span class="exi"><span class="exg">بِ</span><span class="n">kasra</span></span>
+          <span class="exi"><span class="exg">بُ</span><span class="n">damma</span></span>
+        </span></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 08 -->
+<section class="slide" data-sect="Tarix">
+  <div class="wrap"><div class="stack loose">
+    <h2>28 harfning <span class="ask">hammasi undosh</span></h2>
+    <p class="lead">Unli harf yo&#39;q. Shuning uchun unli <strong>belgi</strong> kerak bo&#39;ldi &mdash; harakatlar.</p>
+    <div class="letters all">
+      <span class="lt"><span class="g">أ</span><span class="n">Hamza</span></span>
+      <span class="lt"><span class="g">ب</span><span class="n">B</span></span>
+      <span class="lt"><span class="g">ت</span><span class="n">T</span></span>
+      <span class="lt"><span class="g">ث</span><span class="n">S</span></span>
+      <span class="lt"><span class="g">ج</span><span class="n">J</span></span>
+      <span class="lt"><span class="g">ح</span><span class="n">H̲</span></span>
+      <span class="lt"><span class="g">خ</span><span class="n">X</span></span>
+      <span class="lt"><span class="g">د</span><span class="n">D</span></span>
+      <span class="lt"><span class="g">ذ</span><span class="n">Z</span></span>
+      <span class="lt"><span class="g">ر</span><span class="n">R</span></span>
+      <span class="lt"><span class="g">ز</span><span class="n">Z</span></span>
+      <span class="lt"><span class="g">س</span><span class="n">S</span></span>
+      <span class="lt"><span class="g">ش</span><span class="n">Sh</span></span>
+      <span class="lt"><span class="g">ص</span><span class="n">S</span></span>
+      <span class="lt"><span class="g">ض</span><span class="n">D</span></span>
+      <span class="lt"><span class="g">ط</span><span class="n">T</span></span>
+      <span class="lt"><span class="g">ظ</span><span class="n">Z</span></span>
+      <span class="lt"><span class="g">ع</span><span class="n">Ayn</span></span>
+      <span class="lt"><span class="g">غ</span><span class="n">G&#39;</span></span>
+      <span class="lt"><span class="g">ف</span><span class="n">F</span></span>
+      <span class="lt"><span class="g">ق</span><span class="n">Q</span></span>
+      <span class="lt"><span class="g">ك</span><span class="n">K</span></span>
+      <span class="lt"><span class="g">ل</span><span class="n">L</span></span>
+      <span class="lt"><span class="g">م</span><span class="n">M</span></span>
+      <span class="lt"><span class="g">ن</span><span class="n">N</span></span>
+      <span class="lt"><span class="g">ه</span><span class="n">H</span></span>
+      <span class="lt"><span class="g">و</span><span class="n">V</span></span>
+      <span class="lt"><span class="g">ي</span><span class="n">Y</span></span>
+    </div>
+  </div></div>
+</section>
+
+<section class="slide" data-sect="Harakatlar">
+  <div class="wrap"><div class="stack loose">
+    <h2>Harakatlar &mdash; <span class="ask">unlilar</span></h2>
+    <p class="lead">Unli tovushni harf emas, <strong>harakat</strong> bildiradi. Harakat harfning ustiga yoki ostiga qo&#39;yiladi.</p>
+    <div class="reads" style="grid-template-columns:repeat(4,1fr)">
+      <div class="rd"><span class="g">بَ</span> <span class="t">ba</span><span class="m">fatha &mdash; ustida, &laquo;a&raquo;</span></div>
+      <div class="rd"><span class="g">بِ</span> <span class="t">bi</span><span class="m">kasra &mdash; ostida, &laquo;i&raquo;</span></div>
+      <div class="rd"><span class="g">بُ</span> <span class="t">bu</span><span class="m">damma &mdash; ustida, &laquo;u&raquo;</span></div>
+      <div class="rd"><span class="g">اَبْ</span> <span class="t">ab</span><span class="m">sukun &mdash; unli yo&#39;q</span></div>
+    </div>
+    <p class="lead">Harf + harakat = <strong>bo&#39;g&#39;in</strong>. Sukunli harf unlisiz, to&#39;xtab aytiladi.</p>
+  </div></div>
+</section>
+
+<!-- 09 -->
+<section class="slide" data-sect="Harf qanday paydo bo'ladi">
+  <div class="wrap"><div class="stack loose">
+    <svg class="icon" viewBox="0 0 26 26"><use href="#i-wave"/></svg>
+    <h2>Harf nimadan iborat?</h2>
+    <div class="duo">
+      <div class="col"><h4>Havo</h4>
+        <div class="figs short"><figure class="fig"><span class="ph"><img decoding="sync" loading="eager" src="rasmlar/08-havo.jpg" alt=""></span></figure></div>
+        <p>O&#39;pkadan chiqadi</p></div>
+      <div class="col warm"><h4>Tovush</h4>
+        <div class="figs short"><figure class="fig"><span class="ph"><img decoding="sync" loading="eager" src="rasmlar/08-tovush.jpg" alt=""></span></figure></div>
+        <p>Ovoz pardasi hosil qiladi</p></div>
+    </div>
+    <p class="lead">Ikkalasisiz harf yo&#39;q.</p>
+  </div></div>
+</section>
+
+<!-- 10 -->
+<section class="slide" data-sect="Harf qanday paydo bo'ladi">
+  <div class="wrap"><div class="stack loose fill">
+    <h2>Tovush to&#39;rt holatda paydo bo&#39;ladi</h2>
+    <div class="figs four">
+      <figure class="fig"><span class="ph"><img decoding="sync" loading="eager" src="rasmlar/09-1-urilish.jpg" alt=""></span>
+        <figcaption><b>1. Urilish</b></figcaption></figure>
+      <figure class="fig"><span class="ph"><img decoding="sync" loading="eager" src="rasmlar/09-2-ajralish.jpg" alt=""></span>
+        <figcaption><b>2. Ajralish</b></figcaption></figure>
+      <figure class="fig"><span class="ph"><img decoding="sync" loading="eager" src="rasmlar/09-3-ishqalanish.jpg" alt=""></span>
+        <figcaption><b>3. Ishqalanish</b></figcaption></figure>
+      <figure class="fig"><span class="ph"><img decoding="sync" loading="eager" src="rasmlar/09-4-tebranish.jpg" alt=""></span>
+        <figcaption><b>4. Tebranish</b></figcaption></figure>
+    </div>
+    <p class="lead">Nutq tovushi &mdash; <strong>tebranish</strong>dan.</p>
+  </div></div>
+</section>
+
+<!-- 11 -->
+<section class="slide" data-sect="Ovoz pardasi">
+  <div class="wrap"><div class="stack loose">
+    <svg class="icon" viewBox="0 0 26 26"><use href="#i-throat"/></svg>
+    <h2>Ovoz pardasi &mdash; eshik</h2>
+    <div class="duo">
+      <div class="col"><h4>Ochiq</h4>
+        <div class="figs two wide">
+          <figure class="fig"><span class="ph"><img decoding="sync" loading="eager" src="rasmlar/10-1-eshik-ochiq.jpg" alt=""></span>
+        <figcaption>Eshik to&#39;liq ochiq</figcaption></figure>
+          <figure class="fig"><span class="ph"><img decoding="sync" loading="eager" src="rasmlar/10-2-parda-ochiq.jpg" alt=""></span>
+        <figcaption>Ovoz pardasi ochiq</figcaption></figure>
+        </div>
+        <p>Shamol bemalol kiradi. Titramaydi.</p></div>
+      <div class="col warm"><h4>Qiya</h4>
+        <div class="figs two wide">
+          <figure class="fig"><span class="ph"><img decoding="sync" loading="eager" src="rasmlar/10-3-eshik-qiya.jpg" alt=""></span>
+        <figcaption>Eshik qiya ochiq</figcaption></figure>
+          <figure class="fig"><span class="ph"><img decoding="sync" loading="eager" src="rasmlar/10-4-parda-yopiq.jpg" alt=""></span>
+        <figcaption>Parda nomiga ochiq</figcaption></figure>
+        </div>
+        <p>Havo yo&#39;li torayadi. Titraydi &mdash; tovush chiqadi.</p></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 12 -->
+<section class="slide" data-sect="Amaliyot">
+  <div class="wrap"><div class="stack loose">
+    <svg class="icon" viewBox="0 0 26 26"><use href="#i-check"/></svg>
+    <p class="eyebrow">Amaliyot &mdash; birga qilamiz</p>
+    <h2>Ikki qo&#39;l bilan tekshiramiz</h2>
+    <div class="flow">
+      <div class="fstep"><span class="fn">1</span><span class="ft">Sukunga tushiramiz: <span class="pr"><span class="ar inl">أَزْ</span> <b>azz</b></span><span class="pr"><span class="ar inl">أَسْ</span> <b>ass</b></span></span></div>
+      <div class="fstep"><span class="fn">2</span><span class="ft">Bir qo&#39;l <b>bo&#39;g&#39;izga</b> &mdash; tebranyaptimi?</span></div>
+      <div class="fstep"><span class="fn">3</span><span class="ft">Ikkinchisi <b>og&#39;iz oldiga</b> &mdash; havo chiqyaptimi?</span></div>
+    </div>
+  </div></div>
+</section>
+<section class="slide" data-sect="Jahr va Hams">
+  <div class="wrap"><div class="stack loose">
+    <h2>Jahr va Hams</h2>
+    <div class="duo">
+      <div class="col warm"><h4>Jahr &mdash; jarangli</h4>
+        <span class="ar big">ز</span>
+        <p>Parda <strong>tebranadi</strong>. Havo erkin chiqmaydi.</p></div>
+      <div class="col"><h4>Hams &mdash; jarangsiz</h4>
+        <span class="ar big">س</span>
+        <p>Parda tebranmaydi. Havo <strong>erkin</strong> chiqadi.</p></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 14 -->
+<section class="slide" data-sect="Maxraj">
+  <div class="wrap"><div class="stack loose">
+    <svg class="icon" viewBox="0 0 26 26"><use href="#i-target"/></svg>
+    <p class="eyebrow">Mavzu 3</p>
+    <h1>Maxraj &mdash; <span class="ask">chiqish joyi</span></h1>
+    <p class="lead">Ya&#39;ni harfning chiqish joyi.</p>
+  </div></div>
+</section>
+
+<!-- 15 -->
+<section class="slide" data-sect="Maxraj">
+  <div class="wrap"><div class="stack loose">
+    <div class="split pic-right slim">
+      <div class="sx">
+        <h2>Maxrajni qanday topamiz</h2>
+      </div>
+      <div class="shot"><img decoding="sync" loading="eager" src="rasmlar/14-maxraj.jpg" alt=""></div>
+    </div>
+    <div class="cards vert">
+      <div class="card"><span class="cn">1-yo&#39;l</span>
+        <span class="cd">Ovoz <b>uzilgan</b> nuqta</span></div>
+      <div class="card"><span class="cn">2-yo&#39;l</span>
+        <span class="cd">Ikki a&#39;zo <b>uchrashgan</b> nuqta</span></div>
+    </div>
+    <div class="try">
+      <svg class="icon" viewBox="0 0 26 26"><use href="#i-mouth"/></svg>
+      <div class="tx"><b>Misol</b>
+        <span><span class="ar inl">بْ</span> &rarr; &laquo;ab&raquo;. Ovoz lablarda uzildi.
+        Demak maxraji &mdash; <strong>lablar</strong>.</span></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 16 -->
+<section class="slide" data-sect="Maxraj">
+  <div class="wrap"><div class="stack loose">
+    <svg class="icon" viewBox="0 0 26 26"><use href="#i-globe"/></svg>
+    <h2>Maxraj nimaga kerak?</h2>
+    <p class="lead">Nafaqat ajamga &mdash; <strong>arablarning o&#39;ziga ham</strong>. 22 ta davlat, ~100 ta sheva.</p>
+    <div class="cards">
+      <div class="card hot"><span class="cn">Adabiy til</span><span class="ct ar">ق</span>
+        <span class="cd"><b>Q</b></span></div>
+      <div class="card"><span class="cn">Misr</span><span class="ct ar">ق</span>
+        <span class="cd"><b>&#39;</b></span></div>
+      <div class="card"><span class="cn">Sudan</span><span class="ct ar">ق</span>
+        <span class="cd"><b>G&#39;</b></span></div>
+      <div class="card"><span class="cn">Yaman</span><span class="ct ar">ق</span>
+        <span class="cd"><b>G</b></span></div>
+    </div>
+    <p class="small">Maxraj <strong>1200 yildan beri</strong> saqlanib kelayotganining eng katta sababi shu &mdash; bo&#39;lmasa qaysi biriga ishonishni bilmas edik.</p>
+  </div></div>
+</section>
+
+<!-- 17 -->
+<section class="slide" data-sect="Maxraj turlari">
+  <div class="wrap"><div class="stack loose">
+    <svg class="icon" viewBox="0 0 26 26"><use href="#i-layers"/></svg>
+    <h2>Maxraj ikki turli</h2>
+    <div class="duo">
+      <div class="col"><h4>Haqiqiy</h4>
+        <p>Ikki a&#39;zo aniq uchrashadi. <strong>100%</strong> suyanadi.</p>
+        <p class="small">Halq &middot; Lisan &middot; Shafatayn &middot; Xayshum</p></div>
+      <div class="col warm"><h4>Taqdiriy</h4>
+        <p>Aniq nuqtasi yo&#39;q. <strong>30%</strong> suyanadi.</p>
+        <span class="ar big" style="font-size:clamp(2rem,4vw,3.4rem)">ا و ي</span>
+        <p class="small">Jawf &mdash; og&#39;iz bo&#39;shlig&#39;i. Faqat cho&#39;ziq holatda.</p></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 18 -->
+<section class="slide" data-sect="Jawf">
+  <div class="wrap"><div class="stack loose">
+    <p class="eyebrow">Taqdiriy maxraj</p>
+    <h2>Jawf &mdash; og&#39;iz bo&#39;shlig&#39;i</h2>
+    <div class="letters hot">
+      <span class="lt"><span class="g">ا</span><span class="n">alif</span></span>
+      <span class="lt"><span class="g">و</span><span class="n">vov</span></span>
+      <span class="lt"><span class="g">ي</span><span class="n">yo</span></span>
+    </div>
+    <p class="lead">Faqat <strong>cho&#39;ziq</strong> holatda. Harfning o&#39;zi emas.</p>
+  </div></div>
+</section>
+
+<!-- 19 -->
+<section class="slide" data-sect="Halq">
+  <div class="wrap"><div class="stack loose">
+    <svg class="icon" viewBox="0 0 26 26"><use href="#i-throat"/></svg>
+    <h2>Halq &mdash; tomoq</h2>
+    <div class="split">
+      <div class="shot"><img decoding="sync" loading="eager" src="rasmlar/18-halq.jpg" alt=""></div>
+      <div class="sx">
+        <div class="cards vert">
+          <div class="card"><span class="cn">Eng tubi</span><span class="ct ar">ء &nbsp; ه</span></div>
+          <div class="card"><span class="cn">O&#39;rtasi</span><span class="ct ar">ع &nbsp; ح</span></div>
+          <div class="card"><span class="cn">Yuqorisi</span><span class="ct ar">غ &nbsp; خ</span></div>
+        </div>
+        <p class="lead">Uch qism &mdash; har biridan <strong>ikkitadan harf</strong>.</p>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 20 -->
+<section class="slide" data-sect="Lisan">
+  <div class="wrap"><div class="stack loose">
+    <svg class="icon" viewBox="0 0 26 26"><use href="#i-tongue"/></svg>
+    <h2>Lisan &mdash; til</h2>
+    <div class="split pic-right slim">
+      <div class="sx">
+        <p class="lead">Eng katta maxraj: <strong>10 nuqta, 18 harf</strong>.</p>
+      </div>
+      <div class="shot"><img decoding="sync" loading="eager" src="rasmlar/19-lisan.jpg" alt=""></div>
+    </div>
+    <ul class="marks num two">
+      <li><span class="ar inl">ق</span> &mdash; eng orqa, yumshoq tanglay</li>
+      <li><span class="ar inl">ك</span> &mdash; orqa, qattiq tanglay</li>
+      <li><span class="ar inl">ج ش ي</span> &mdash; tilning o&#39;rtasi</li>
+      <li><span class="ar inl">ض</span> &mdash; til cheti, oziq tishlar</li>
+      <li><span class="ar inl">ل</span> &mdash; til uchi va atrofi, milk</li>
+      <li><span class="ar inl">ن</span> &mdash; til uchi, milk</li>
+      <li><span class="ar inl">ر</span> &mdash; milkka yengil uriladi</li>
+      <li><span class="ar inl">ط د ت</span> &mdash; tishlar ildizi</li>
+      <li><span class="ar inl">ص ز س</span> &mdash; pastki old tishlar</li>
+      <li><span class="ar inl">ظ ذ ث</span> &mdash; tishlar uchi</li>
+    </ul>
+  </div></div>
+</section>
+
+<!-- 23 -->
+<section class="slide" data-sect="Shafatayn">
+  <div class="wrap"><div class="stack loose fill">
+    <svg class="icon" viewBox="0 0 26 26"><use href="#i-mouth"/></svg>
+    <h2>Shafatayn &mdash; lablar</h2>
+    <div class="figs four">
+      <figure class="fig"><span class="ph"><img decoding="sync" loading="eager" src="rasmlar/20-fa.jpg" alt=""></span>
+        <figcaption><span class="ar inl">ف</span> &mdash; tish pastki labga <b>(qisman)</b></figcaption></figure>
+      <figure class="fig"><span class="ph"><img decoding="sync" loading="eager" src="rasmlar/20-ba.jpg" alt=""></span>
+        <figcaption><span class="ar inl">ب</span> &mdash; ikki lab <b>mahkam</b> yopiladi</figcaption></figure>
+      <figure class="fig"><span class="ph"><img decoding="sync" loading="eager" src="rasmlar/20-mim.jpg" alt=""></span>
+        <figcaption><span class="ar inl">م</span> &mdash; yopiladi, tovush <b>burundan</b></figcaption></figure>
+      <figure class="fig"><span class="ph"><img decoding="sync" loading="eager" src="rasmlar/20-vov.jpg" alt=""></span>
+        <figcaption><span class="ar inl">و</span> &mdash; <b>dumaloqlashadi</b>, tegmaydi</figcaption></figure>
+    </div>
+  </div></div>
+</section>
+
+<!-- 24 -->
+<section class="slide" data-sect="Xayshum">
+  <div class="wrap"><div class="stack loose">
+    <svg class="icon" viewBox="0 0 26 26"><use href="#i-nose"/></svg>
+    <h2>Xayshum &mdash; burun</h2>
+    <div class="split">
+      <div class="shot"><img decoding="sync" loading="eager" src="rasmlar/21-xayshum.jpg" alt=""></div>
+      <div class="sx">
+        <p class="lead">Burundan <strong>harf chiqmaydi</strong> &mdash; faqat tovush.</p>
+        <div class="letters hot">
+          <span class="lt"><span class="g">ن</span><span class="n">nun</span></span>
+          <span class="lt"><span class="g">م</span><span class="n">mim</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="try">
+      <svg class="icon" viewBox="0 0 26 26"><use href="#i-split"/></svg>
+      <div class="tx"><b>Diqqat</b>
+        <span>Maxraji &mdash; til va lab. Tovushi &mdash; burun. Bu <strong>g&#39;unna</strong>.</span></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 25 -->
+<section class="slide" data-sect="Sifat">
+  <div class="wrap"><div class="stack loose">
+    <p class="eyebrow">Mavzu 4</p>
+    <h1>Bitta maxraj, <span class="ask">ikki harf</span></h1>
+    <div class="duo">
+      <div class="col"><h4>Sin</h4><span class="ar big">س</span><p>Ingichka</p></div>
+      <div class="col warm"><h4>Sod</h4><span class="ar big">ص</span><p>Yo&#39;g&#39;on</p></div>
+    </div>
+    <p class="lead">Maxraji bir xil: <strong>til uchi va pastki old tishlar orasi</strong>.</p>
+    <p class="lead">Ajratadigan yagona narsa &mdash; <strong>sifat</strong>.</p>
+  </div></div>
+</section>
+
+<!-- 26 -->
+<section class="slide" data-sect="Sifat">
+  <div class="wrap"><div class="stack loose">
+    <svg class="icon" viewBox="0 0 26 26"><use href="#i-warn"/></svg>
+    <h2>Bitta sifat &mdash; boshqa so&#39;z</h2>
+    <div class="duo">
+      <div class="col"><h4>Ingichka</h4><span class="ar big">سَيْف</span>
+        <p><strong>Qilich</strong></p></div>
+      <div class="col warm"><h4>Yo&#39;g&#39;on</h4><span class="ar big">صَيْف</span>
+        <p><strong>Yoz</strong></p></div>
+    </div>
+    <p class="lead">&laquo;Yoz keldi&raquo; demoqchisiz &mdash; &laquo;<em>qilich</em> keldi&raquo; deb qo&#39;yasiz.</p>
+  </div></div>
+</section>
+
+<!-- 27 -->
+<section class="slide" data-sect="Sifat">
+  <div class="wrap"><div class="stack loose">
+    <svg class="icon" viewBox="0 0 26 26"><use href="#i-check"/></svg>
+    <h2>Sifatning uch vazifasi</h2>
+    <div class="cards vert">
+      <div class="card"><span class="cn">Farqlash</span>
+        <span class="cd">Bir maxrajdagi harflarni ajratadi</span></div>
+      <div class="card"><span class="cn">Talaffuz</span>
+        <span class="cd">Qanday ovoz bilan aytishni ko&#39;rsatadi</span></div>
+      <div class="card hot"><span class="cn">Ma&#39;no</span>
+        <span class="cd">Noto&#39;g&#39;ri sifat &mdash; <b>boshqa so&#39;z</b></span></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 28 -->
+<section class="slide" data-sect="Sifat">
+  <div class="wrap"><div class="stack loose">
+    <blockquote>
+      <p>Maxraj &mdash; manzil. Sifat &mdash; xarakter.</p>
+    </blockquote>
+    <p class="lead">Bitta uyda ikki aka-uka yashaydi &mdash; lekin xarakteridan tanib olasiz.</p>
+  </div></div>
+</section>
+
+<!-- 29 -->
+<section class="slide" data-sect="Sifat turlari">
+  <div class="wrap"><div class="stack loose">
+    <svg class="icon" viewBox="0 0 26 26"><use href="#i-layers"/></svg>
+    <h2>Sifat ikkiga bo&#39;linadi</h2>
+    <div class="duo">
+      <div class="col"><h4>Asliy &mdash; o&#39;zgarmas</h4>
+        <span class="ar big" style="font-size:clamp(2rem,3.8vw,3.2rem)">قَ &nbsp; قِ &nbsp; قُ</span>
+        <p>Uchala holatda ham <strong>yo&#39;g&#39;on</strong>. Harfdan ajralmaydi.</p>
+        <p class="small">Ziddi bor &mdash; 10 ta &middot; ziddi yo&#39;q &mdash; 7&ndash;9 ta</p></div>
+      <div class="col warm"><h4>Oriziy &mdash; o&#39;zgaruvchan</h4>
+        <span class="ar big" style="font-size:clamp(2rem,3.8vw,3.2rem)">رَ &nbsp; رِ &nbsp; رُ</span>
+        <p>Yo&#39;g&#39;on &mdash; <strong>ingichka</strong> &mdash; yo&#39;g&#39;on. Holatga qarab o&#39;zgaradi.</p>
+        <p class="small">Tafxim va tarqiq &mdash; keyingi darslarda</p></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 30 -->
+<section class="slide" data-sect="Sifat turlari">
+  <div class="wrap"><div class="stack loose">
+    <h2>Ziddi bor va ziddi yo&#39;q</h2>
+    <div class="duo">
+      <div class="col"><h4>Ziddi bor</h4>
+        <p><strong>Har bir harfda</strong> bo&#39;ladi. Oraliq yo&#39;q.</p>
+        <p class="small">Uzun&ndash;kalta, baland&ndash;past kabi</p></div>
+      <div class="col warm"><h4>Ziddi yo&#39;q</h4>
+        <p><strong>Faqat ba&#39;zi</strong> harflarda.</p>
+        <p class="small">Qalqala: <span class="ar inl">ب</span> da bor, <span class="ar inl">ت</span> da yo&#39;q</p></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- 31 -->
+<section class="slide" data-sect="Jahr va Hams">
+  <div class="wrap"><div class="stack loose">
+    <p class="eyebrow">Bugungi birinchi sifat</p>
+    <h2>28 harf ikkiga bo&#39;linadi</h2>
+    <div class="cards">
+      <div class="card hot"><span class="cn">Hams</span><span class="ct">10 ta</span>
+        <span class="cd">Havo <b>erkin</b> chiqadi &mdash; ovoz pardasi <b>ochiq</b></span></div>
+      <div class="card"><span class="cn">Jahr</span><span class="ct">18 ta</span>
+        <span class="cd">Havo <b>kamayadi</b> &mdash; pardalar bir-biriga <b>yaqin</b></span></div>
+    </div>
+    <p class="lead">10 tasini yodlang &mdash; <strong>qolgani avtomatik jahr</strong>.</p>
+  </div></div>
+</section>
+
+<!-- 32 -->
+<section class="slide" data-sect="Yodlash">
+  <div class="wrap"><div class="stack loose">
+    <p class="eyebrow">Hams harflari &mdash; bitta ibora</p>
+        <span class="ar big clear">فَحَثَّهُ شَخْصٌ سَكَتْ</span>
+    <span class="translit">Fahassahu shaxsun sakat</span>
+    <div class="letters hot mid">
+      <span class="lt"><span class="g">ف</span><span class="n">F</span></span>
+      <span class="lt"><span class="g">ح</span><span class="n">H̲</span></span>
+      <span class="lt"><span class="g">ث</span><span class="n">S</span></span>
+      <span class="lt"><span class="g">ه</span><span class="n">H</span></span>
+      <span class="lt"><span class="g">ش</span><span class="n">Sh</span></span>
+      <span class="lt"><span class="g">خ</span><span class="n">X</span></span>
+      <span class="lt"><span class="g">ص</span><span class="n">S</span></span>
+      <span class="lt"><span class="g">س</span><span class="n">S</span></span>
+      <span class="lt"><span class="g">ك</span><span class="n">K</span></span>
+      <span class="lt"><span class="g">ت</span><span class="n">T</span></span>
+    </div>
+  </div></div>
+</section>
+
+<!-- 33 -->
+<section class="slide" data-sect="Harflar ko'rinishi">
+  <div class="wrap"><div class="stack loose">
+    <div class="head">
+      <svg class="icon" viewBox="0 0 26 26"><use href="#i-shape"/></svg>
+      <h2>Harflarning ko&#39;rinishi</h2>
+    </div>
+    <div class="duo">
+      <div class="col"><h4>Saxiy &mdash; 4 shakl</h4>
+        <div class="figs short"><figure class="fig"><span class="ph"><img decoding="sync" loading="eager" src="rasmlar/30-saxiy.jpg" alt=""></span>
+          <figcaption>Oshni keyingiga <b>uzatadi</b></figcaption></figure></div>
+        <span class="ar big">لـ ـلـ ـل ل</span></div>
+      <div class="col warm"><h4>Ziqna &mdash; 2 shakl</h4>
+        <div class="figs short"><figure class="fig"><span class="ph"><img decoding="sync" loading="eager" src="rasmlar/30-ziqna.jpg" alt=""></span>
+          <figcaption>Oshni <b>o&#39;ziga olib qoladi</b></figcaption></figure></div>
+        <span class="ar big">ا &nbsp; ـا</span></div>
+    </div>
+    <p class="lead">Ziqna harflar &mdash; atigi <strong>6 ta</strong>:</p>
+    <div class="letters hot">
+      <span class="lt"><span class="g">ا</span></span><span class="lt"><span class="g">د</span></span>
+      <span class="lt"><span class="g">ذ</span></span><span class="lt"><span class="g">ر</span></span>
+      <span class="lt"><span class="g">ز</span></span><span class="lt"><span class="g">و</span></span>
+    </div>
+  </div></div>
+</section>
+
+<!-- 34 -->
+<section class="slide" data-sect="Xulosa">
+  <div class="wrap"><div class="stack loose">
+    <svg class="icon" viewBox="0 0 26 26"><use href="#i-check"/></svg>
+    <h2>Bugun o&#39;rgandik</h2>
+    <ul class="marks num">
+      <li>Yozuv <b>bosqichma-bosqich</b> tartibga solingan</li>
+      <li>Harf = <b>havo + tovush</b></li>
+      <li><b>Maxraj</b> &mdash; harfning chiqish joyi</li>
+      <li><b>Sifat</b> &mdash; harflarni ajratadi, ma&#39;noni saqlaydi</li>
+      <li>Birinchi sifatlar: <b>Jahr</b> va <b>Hams</b>ni ko&#39;rib chiqdik</li>
+      <li>Harflar <b>saxiy</b> va <b>ziqna</b> bo&#39;ladi</li>
+    </ul>
+  </div></div>
+</section>
+
+<!-- 35 -->
+<section class="slide" data-sect="Yakun">
+  <div class="wrap"><div class="stack loose">
+    <p class="eyebrow">Keyingi darslarda</p>
+    <h1>Sifatni <span class="ask">to&#39;liq va chuqur</span> o&#39;rganamiz</h1>
+    <p class="lead">Har bir <strong>asliy</strong> va <strong>oriziy</strong> sifatni to&#39;liq misollar bilan ko&#39;rib chiqamiz.</p>
+  </div></div>
+</section>
+
+<!-- 36 -->
+<section class="slide" data-sect="Yakun">
+  <div class="wrap"><div class="stack loose">
+    <p class="eyebrow">Noon Akademiyasi</p>
+    <h1>Rahmat!</h1>
+  </div></div>
+</section>
+  <div class="hud">
+    <span class="sect" id="sect"></span>
+    <span class="count" id="count"></span>
+  </div>
+  <div class="hint" id="hint">
+    <kbd>&rarr;</kbd> keyingi &nbsp;&middot;&nbsp; <kbd>&larr;</kbd> orqaga &nbsp;&middot;&nbsp; <kbd>F</kbd> to&#39;liq ekran
+  </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var bar=document.getElementById('bar'), sectEl=document.getElementById('sect'),
+      countEl=document.getElementById('count'), hint=document.getElementById('hint');
+
+  // ===== Bosqichlarni avtomatik belgilash =====
+  // Ichidagilari bittadan chiqadigan guruhlar:
+  var EXPAND = 'ul.marks,.cards,.flow,.reads,.duo,.stages,.figs';
+  // Sarlavha guruhi — hammasi birinchi bosqichda:
+  function isLead(el){
+    var t = el.tagName.toLowerCase();
+    return t==='svg' || t==='h1' || t==='h2' || el.classList.contains('eyebrow');
+  }
+  var plan = slides.map(function(sl){
+    var box = sl.querySelector('.stack') || sl;
+    var kids = Array.prototype.slice.call(box.children);
+    var k = 0, anyLead = false;
+    kids.forEach(function(el){
+      if (isLead(el)) { el.setAttribute('data-step','0'); anyLead = true; return; }
+      if (el.matches && el.matches(EXPAND)) {
+        var arrow = null;
+        Array.prototype.forEach.call(el.children, function(c){
+          if (c.classList.contains('arw')) { arrow = c; return; }
+          k++;
+          if (arrow) { arrow.setAttribute('data-step', String(k)); arrow = null; }
+          c.setAttribute('data-step', String(k));
+        });
+      } else { k++; el.setAttribute('data-step', String(k)); }
+    });
+    if (!anyLead) {
+      // Sarlavhasiz slayd — birinchi elementni 0-bosqichga ko'taramiz
+      var first = box.querySelector('[data-step]');
+      if (first) {
+        var f = first.getAttribute('data-step');
+        Array.prototype.forEach.call(sl.querySelectorAll('[data-step="'+f+'"]'),
+          function(e){ e.setAttribute('data-step','0'); });
+      }
+    }
+    var els = Array.prototype.slice.call(sl.querySelectorAll('[data-step]'));
+    var keys = [];
+    els.forEach(function(e){
+      var v = parseInt(e.getAttribute('data-step'),10)||0;
+      if (keys.indexOf(v)<0) keys.push(v);
+    });
+    keys.sort(function(a,b){return a-b;});
+    if (!keys.length) keys=[0];
+    return {el:sl, els:els, keys:keys};
+  });
+
+  var si=0, ki=0, busy=false;
+
+  function paint(upTo){setTimeout(function(){if(window.__notify)window.__notify(si,ki,plan[si].keys.length);},0);
+    var p = plan[si];
+    p.els.forEach(function(e){
+      var v = parseInt(e.getAttribute('data-step'),10)||0;
+      e.classList.toggle('shown', p.keys.indexOf(v) <= upTo);
+    });
+  }
+
+  function hud(){
+    sectEl.textContent = slides[si].getAttribute('data-sect')||'';
+    countEl.textContent = String(si+1).padStart(2,'0')+' / '+slides.length;
+    bar.style.width = ((si+1)/slides.length*100)+'%';
+  }
+  function swap(to,dir){
+    if(busy||to===si||to<0||to>=slides.length||(window.__rng&&(to<window.__rng[0]||to>window.__rng[1]))){if(!busy&&window.__rng&&to>window.__rng[1]&&window.__onEnd)window.__onEnd();return;}
+    busy=true;
+    var oldEl=slides[si];
+    si=to; ki=(dir===1)?0:plan[si].keys.length-1;
+    var newEl=slides[si];
+    oldEl.classList.remove('active');
+    oldEl.classList.add(dir===1?'leaving-up':'leaving-down');
+    newEl.classList.remove('leaving-up','leaving-down');
+    if(dir===-1) newEl.classList.add('from-above');
+    void newEl.offsetWidth;
+    newEl.classList.remove('from-above');
+    newEl.classList.add('active');
+    newEl.scrollTop=0;
+    paint(ki); hud();
+    setTimeout(function(){ oldEl.classList.remove('leaving-up','leaving-down'); busy=false; },340);
+  }
+  function next(){ if(ki<plan[si].keys.length-1){ki++;paint(ki);return;} swap(si+1,1); }
+  function prev(){ if(ki>0){ki--;paint(ki);return;} swap(si-1,-1); }
+  function jump(n){ n=Math.max(0,Math.min(slides.length-1,n)); if(n!==si) swap(n,n>si?1:-1); }
+  window.__deck={next:next,prev:prev,jump:jump,cur:function(){return [si,ki,plan[si].keys.length];}};
+  // ===== To'liq ekran =====
+  function fsEl(){
+    return document.fullscreenElement || document.webkitFullscreenElement ||
+           document.mozFullScreenElement || document.msFullscreenElement || null;
+  }
+  function fs(){
+    var d = document, el = d.documentElement;
+    if(fsEl()){
+      var x = d.exitFullscreen || d.webkitExitFullscreen || d.webkitCancelFullScreen ||
+              d.mozCancelFullScreen || d.msExitFullscreen;
+      if(x) try{ var r=x.call(d); if(r&&r.catch) r.catch(function(){}); }catch(err){}
+      return;
+    }
+    var q = el.requestFullscreen || el.webkitRequestFullscreen ||
+            el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullscreen;
+    if(q) try{ var p2=q.call(el); if(p2&&p2.catch) p2.catch(function(){}); }catch(err){}
+  }
+
+  document.addEventListener('keydown',function(e){
+    if(e.metaKey||e.ctrlKey){
+      if(e.key==='ArrowRight'||e.key==='ArrowDown'){ e.preventDefault(); jump(si+10); hide(); return; }
+      if(e.key==='ArrowLeft'||e.key==='ArrowUp'){ e.preventDefault(); jump(si-10); hide(); return; }
+      return;
+    }
+    if(e.key===' '||e.key==='ArrowRight'||e.key==='ArrowDown'||e.key==='PageDown'){
+      e.preventDefault(); next(); hide();
+    } else if(e.key==='ArrowLeft'||e.key==='ArrowUp'||e.key==='PageUp'||e.key==='Backspace'){
+      e.preventDefault(); prev(); hide();
+    } else if(e.key==='Home'){ e.preventDefault(); jump(0); hide(); }
+      else if(e.key==='End'){ e.preventDefault(); jump(slides.length-1); hide(); }
+      else if(e.key==='f'||e.key==='F'){ e.preventDefault(); fs(); hide(); }
+  });
+
+  document.getElementById('deck').addEventListener('click',function(e){
+    var r=this.getBoundingClientRect();
+    if(e.clientX-r.left < r.width*0.18) prev(); else next();
+    hide();
+  });
+  var x0=null;
+  document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
+  document.addEventListener('touchend',function(e){
+    if(x0===null) return;
+    var dx=e.changedTouches[0].clientX-x0;
+    if(Math.abs(dx)>45){ dx<0?next():prev(); hide(); }
+    x0=null;
+  },{passive:true});
+
+  var hidden=false;
+  function hide(){ if(!hidden){hidden=true;hint.classList.add('gone');} }
+  setTimeout(hide,8000);
+
+  // ===== Rasmlarni oldindan yuklash =====
+  (function(){
+    Array.prototype.slice.call(document.querySelectorAll('.slide img')).forEach(function(im){
+      function ok(){ im.classList.add('rdy'); }
+      if (im.complete && im.naturalWidth) ok();
+      else { im.addEventListener('load', ok); im.addEventListener('error', ok); }
+      var p = new Image(); p.src = im.getAttribute('src');
+    });
+  })();
+
+  slides[0].classList.add('active'); paint(0); hud();
+})();
+</script>
+
+
+<style id="noon-talaba">
+#panel,#vid,#hint,#count,#bar,.rec,#recdot,#rectime,.lprog{display:none!important}
+html,body{overscroll-behavior:none;touch-action:pan-y pinch-zoom}
+html.noon-init *,html.noon-init *::before,html.noon-init *::after{transition:none!important;animation-duration:0s!important}
+</style>
+<script id="noon-talaba-js">
+(function(){
+  var q = new URLSearchParams(location.search);
+  var n = document.querySelectorAll('.slide').length;
+  var from = Math.max(1, Math.min(n, parseInt(q.get('from') || '1', 10) || 1));
+  var to = Math.max(from, Math.min(n, parseInt(q.get('to') || String(n), 10) || n));
+  var start = Math.max(1, parseInt(q.get('start') || '1', 10) || 1);
+  var ready = false;
+  window.__rng = [from - 1, to - 1];
+  function send(m){ try { if (parent !== window) parent.postMessage(m, '*'); } catch (e) {} }
+  window.__onEnd = function(){ if (ready) send({noon: 'end'}); };
+  window.__notify = function(si, ki, steps){
+    if (!ready || si < from - 1 || si > to - 1) return;
+    send({noon: 'slide', n: si - from + 2, total: to - from + 1, step: ki, steps: steps});
+  };
+  function cur(){ var c = window.__deck.cur(); window.__notify(c[0], c[1], c[2]); }
+  window.addEventListener('message', function(e){
+    var d = e.data || {}; if (!window.__deck || !d.noon || !ready) return;
+    if (d.noon === 'next') window.__deck.next();
+    else if (d.noon === 'prev') window.__deck.prev();
+    else if (d.noon === 'goto') window.__deck.jump(from - 2 + Math.max(1, Math.min(to - from + 1, d.n | 0)));
+    else if (d.noon === 'ping') cur();
+  });
+  /* talaba rejimida kamera, yozib olish va to'liq ekran tugmalari ishlamaydi; Home/End darsdan tashqariga chiqarmaydi */
+  window.addEventListener('keydown', function(e){
+    var k = (e.key || '').toLowerCase();
+    if (k === 'v' || k === 'c' || k === 'r' || k === 'f' || k === 'home' || k === 'end' || e.metaKey || e.ctrlKey) e.stopImmediatePropagation();
+  }, true);
+  function go(){
+    var H = document.documentElement, t = Math.min(to - 1, from - 2 + start);
+    H.classList.add('noon-init');
+    if (t > 0) window.__deck.jump(t);
+    setTimeout(function(){ H.classList.remove('noon-init'); ready = true; cur(); }, 380);
+  }
+  if (document.readyState === 'complete') setTimeout(go, 30); else window.addEventListener('load', function(){ setTimeout(go, 30); });
+})();
+</script>
+</body>
+</html>

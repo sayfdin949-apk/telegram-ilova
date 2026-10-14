@@ -1,0 +1,16 @@
+/* NUQTA UI tokenlari (Qum oilasi): 6 manzara x kun/tun "oy nuri". Manba: nuqta-ui skill assets/nuqta-tokens.css
+   (web/app/app.css 1-qism bilan bir xil qiymatlar). Kontrast >= 4,5:1; oq, qora va pushti fon yo'q. Admin panel ulaydi. */
+:root{--t1:#5A4423;--t2:#604A28;--t3:#66502D;--cta:#E6B25C;--on-cta:#5A4423;--line:rgba(90,68,35,.16);--card-b:rgba(90,68,35,.14);--shadow:0 2px 8px rgba(90,68,35,.10);--shadow-lg:0 10px 30px rgba(90,68,35,.16);--ok:#1F6E3F;--ok-bg:#D3E8D2;--ok-bd:#3E8A55;--err:#A3271B;--err-bd:#B5402F;--warn:#8A5A00;--r:12px;--r-lg:20px;--f-h:'Be Vietnam Pro','Segoe UI',sans-serif;--f-b:'Be Vietnam Pro','Segoe UI',sans-serif;--f-ar:'Sakkal Majalla','Noto Naskh Arabic',serif}
+:root,[data-v="sahro"]{--bg:#E8DABA;--card:#F0E5CC;--soft:#DCCB9F;--zebra:#EADFC2;--hero:#E0C590;--a2:#7FA05A;--ink:#80540F;--note:#CFDDB5}
+[data-v="voha"]{--bg:#E3DDB6;--card:#EDE8CB;--soft:#D6CF9E;--zebra:#E8E2C2;--hero:#DCE2BE;--a2:#7E9A52;--ink:#46612A;--note:#CDE3D6}
+[data-v="shahar"]{--bg:#E9DBC0;--card:#F1E7D2;--soft:#DDCCA6;--zebra:#ECE0C8;--hero:#E3D3B0;--a2:#6E9DB3;--ink:#36657A;--note:#D3E2E6}
+[data-v="qahva"]{--bg:#E6D6B9;--card:#EFE4CE;--soft:#D9C6A2;--zebra:#E9DCC3;--hero:#DDC59F;--a2:#C58A45;--ink:#7E5418;--note:#D9E3BE}
+[data-v="xattot"]{--bg:#EDE1C2;--card:#F4EAD3;--soft:#E1D2A8;--zebra:#EFE5CB;--hero:#E6D6A8;--a2:#D9A23A;--ink:#7A5A2E;--note:#F0DDA6}
+[data-v="shom"]{--bg:#EBD6B4;--card:#F2E4CC;--soft:#E0C79E;--zebra:#EEDDC1;--hero:linear-gradient(180deg,#F3D2A0 0%,#EBD6B4 100%);--a2:#EE9A3C;--ink:#8C4A0E;--note:#F5D5A8}
+[data-m="tun"][data-v="sahro"],[data-m="tun"] [data-v="sahro"]{--bg:#B6B1A6;--card:#CBC5B9;--soft:#AEA794;--zebra:#BEB9AE;--hero:#A09789;--a2:#7A985E;--ink:#593E0F;--note:#ADBAA6;--cta:#CFA561;--t1:#392E1C;--t2:#382E1C;--t3:#362E1C;--on-cta:#392E1C}
+[data-m="tun"][data-v="voha"],[data-m="tun"] [data-v="voha"]{--bg:#B3B2A3;--card:#C9C7B9;--soft:#AAA993;--zebra:#BCBBAE;--hero:#A0A9A7;--a2:#799357;--ink:#384823;--note:#ACBEBD;--cta:#CFA561;--t1:#4A3920;--t2:#463821;--t3:#453923;--on-cta:#4A3920}
+[data-m="tun"][data-v="shahar"],[data-m="tun"] [data-v="shahar"]{--bg:#B7B1AA;--card:#CCC7BE;--soft:#AFA798;--zebra:#BFBAB2;--hero:#A3A1A0;--a2:#6B96AD;--ink:#2D454E;--note:#B0BEC9;--cta:#CFA561;--t1:#43331D;--t2:#42341F;--t3:#413521;--on-cta:#43331D}
+[data-m="tun"][data-v="qahva"],[data-m="tun"] [data-v="qahva"]{--bg:#B5AEA5;--card:#CAC4BB;--soft:#ACA396;--zebra:#BDB7AE;--hero:#A09995;--a2:#B8854C;--ink:#553C18;--note:#B4BEAC;--cta:#CFA561;--t1:#3B2F1C;--t2:#3A2F1C;--t3:#39301D;--on-cta:#3B2F1C}
+[data-m="tun"][data-v="xattot"],[data-m="tun"] [data-v="xattot"]{--bg:#BAB5AB;--card:#CEC9BF;--soft:#B2AB9A;--zebra:#C1BDB4;--hero:#A5A39C;--a2:#C99A42;--ink:#554125;--note:#C5BA9B;--cta:#CFA561;--t1:#45351E;--t2:#443620;--t3:#433722;--on-cta:#45351E}
+[data-m="tun"][data-v="shom"],[data-m="tun"] [data-v="shom"]{--bg:#B8AEA2;--card:#CDC4B9;--soft:#B1A493;--zebra:#C0B8AD;--hero:linear-gradient(180deg,#A8A09D 0%,#B8AEA2 100%);--a2:#DC9344;--ink:#61370E;--note:#C8B49C;--cta:#CFA561;--t1:#45351E;--t2:#443620;--t3:#413521;--on-cta:#45351E}
+[data-m="tun"]{--line:rgba(50,40,25,.22);--card-b:rgba(50,40,25,.20);--shadow:0 2px 8px rgba(40,35,45,.18);--shadow-lg:0 10px 30px rgba(40,35,45,.24);--ok-bg:#B8CAC0;--ok:#154F2C;--ok-bd:#2F6E44;--err:#8A1D13;--err-bd:#9C3526;--warn:#6E4700}

@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="uz" data-nuqta="fixed" data-v="voha" data-m="kun">
+<head>
+<meta charset="utf-8">
+<title>Ilova qo'llanmasi va video ssenariysi — loyiha</title>
+<!-- NUQTA:HEAD -->
+<style id="nq-moslik">
+/* NOON -> NUQTA moslik qatlami (NUQTA ko'chirish, 04.10.2026). Faqat nuqta-tokens o'zgaruvchilari. */
+html[data-v] { --g900: var(--t1); --g800: var(--t1); --g700: var(--ink); --lime: var(--a2); --lime-m: var(--a2);
+  --lime-l: var(--cta); --on-lime: var(--on-cta); --tx: var(--t1); --tx2: var(--t2); --tx3: var(--t3);
+  --line2: var(--card-b); --radius: 3.2mm; --mesh-light: var(--bg); --mesh-hero: var(--hero); --gGreen: var(--soft);
+  --gDeep: var(--hero); --gLime: var(--cta); --gLimeH: var(--cta); --sheen: none; --f-lat: var(--f-b); }
+.page .hero .hero-ar { position: relative; z-index: 2; font-family: var(--f-ar); direction: rtl; text-align: left;
+  font-size: 19pt; line-height: 1.55; color: var(--ink); margin: 1mm 0 0; }
+.page .hero .badge-num { position: relative; float: right; margin: 0 0 2mm 4mm; z-index: 3; width: 18mm; height: 18mm; display: grid;
+  place-items: center; font: 700 16pt var(--f-h); color: var(--on-cta); isolation: isolate; font-variant-numeric: lining-nums; }
+.page .hero .badge-num::before { content: ''; position: absolute; inset: 2.8mm; background: var(--cta); transform: rotate(45deg);
+  border-radius: 1.4mm; z-index: -1; box-shadow: var(--shadow); }
+.page .hero .hx > .nq-sig { display: block; }
+/* uzun sarlavha manzaraga tegmasin: matn ustuni torroq, manzara biroz o'ngga */
+.page .hero .hx { max-width: 90mm; }
+html[data-v="voha"] .page .hero > [data-scene], html[data-v="shahar"] .page .hero > [data-scene],
+html[data-v="xattot"] .page .hero > [data-scene], html[data-v="shom"] .page .hero > [data-scene] { left: 16mm; }
+.card-green { position: relative; overflow: hidden; background: var(--soft); border: 1px solid var(--card-b); border-radius: 3.2mm;
+  padding: 4mm 5.5mm; break-inside: avoid; }
+.card-green h3, .card-deep h3 { font-family: var(--f-h); font-size: 12pt; margin: 0 0 1mm; }
+.page h3 { font-family: var(--f-h); }
+.pill.dark { background: var(--soft); color: var(--t1); border-color: var(--card-b); }
+.note.warn { border-left-color: var(--warn); }
+.note.warn svg { color: var(--warn); }
+.cta { display: inline-flex; align-items: center; gap: 1.5mm; background: var(--cta); color: var(--on-cta); font-weight: 700;
+  padding: 2mm 5mm; border-radius: 999px; text-decoration: none; }
+.ar-lg { font-family: var(--f-ar); direction: rtl; font-size: 22pt; line-height: 1.6; }
+.ar-block { font-family: var(--f-ar); direction: rtl; text-align: right; font-size: 16pt; line-height: 1.8; }
+table.nq .rtl-col { text-align: right; }
+table.nq td { vertical-align: middle; }
+.page .card-deep .card-head svg, .page .card-green .card-head svg { color: var(--ink); }
+.grid-2 > *, .grid-3 > * { break-inside: avoid; }
+/* --- Sifat qatlami: tipografiya va ritm (modulli shkala 8.5 / 10.5 / 12 / 16 pt + sarlavha 22–30 pt; bo'shliqlar 2 mm qadam) --- */
+.page p, .page li, .page td, .page .sub, .page .note, .page dd { text-wrap: pretty; hyphens: manual; }
+.page h1, .page h2, .page h3 { text-wrap: balance; }
+.page p, .page li { max-width: 142mm; }
+.page table, .page .stat .v, .page .pno, .page .num, .page .nq-n, .page .qn, .page .tn { font-variant-numeric: tabular-nums lining-nums; }
+.page .hero .sub { font-size: 12pt; line-height: 1.45; }
+.page .hero .kicker, .run-head, .foot { font-size: 8.5pt; }
+.hint, .letter span, .page .card .hint { font-size: 8.5pt; }
+table.nq { font-size: 10.5pt; }
+table.nq th { font-size: 8.5pt; letter-spacing: .06em; text-transform: uppercase; }
+.page-body { gap: 4mm; }
+.page .card, .stat, .card-deep, .card-green, .tbl-wrap, .q { border-radius: 3.2mm; border-width: 1px; }
+.page .card, .card-deep, .card-green { padding: 4mm 6mm; }
+.page .note { border-radius: 2.4mm; padding: 3mm 4mm; }
+.grid-2, .grid-3 { gap: 4mm; }
+.card-head { gap: 2mm; margin-bottom: 2mm; }
+.card-head svg, .page .note svg { stroke-width: 2; }
+</style>
+<style>
+.q{padding:12px 16px;margin:0 0 9px}
+.q h3{margin:0 0 4px;font-size:14px}
+.q p{margin:4px 0;font-size:12.5px;line-height:1.5}
+.lbl{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ok);background:var(--soft);border-radius:999px;padding:2px 8px;margin-right:6px}
+.scene{display:grid;grid-template-columns:34px 1fr;gap:10px;padding:11px 14px;margin:0 0 8px}
+.scene .n{width:30px;height:30px;border-radius:2.4mm;background:linear-gradient(135deg,var(--hero),var(--hero));color:var(--t1);font-weight:800;display:grid;place-items:center;font-size:13px}
+.scene .ek{font-size:11px;color:var(--t2);margin:0 0 4px}
+.scene .ov{font-size:13px;line-height:1.55;color:var(--t1);margin:0}
+.scene .t{font-size:10px;color:var(--t2);margin-top:3px}
+.small{font-size:11px;color:var(--t1)}
+</style>
+</head>
+<body class="nq nq-print">
+
+<section class="page">
+  <div class="pg-band"><div data-scene data-w="794" data-h="196" data-s=".62" data-focus="hero"></div></div>
+  <header class="hero">
+    <div data-scene data-w="794" data-h="302" data-s="1" data-focus="hero"></div>
+    <div class="hx">
+    <div class="kicker">{{book-open}} Telegram ilova · 3-bosqich</div>
+    <h1>Ilova qo'llanmasi va video ssenariysi</h1>
+    <div class="sub">Loyiha: avval siz o'qiysiz va tasdiqlaysiz, keyin matn ovozlashtiriladi va tanishtiruv videosi yasaladi.</div>
+    <span class="nq-sig"><i></i><i></i><i></i></span>
+    <div class="meta"><span class="pill">A. Ilova ichidagi qo'llanma</span><span class="pill">B. Birinchi kirish</span><span class="pill">C. Video ovoz matni</span><span class="pill dark">Tasdiq kutilmoqda</span></div>
+  </div></header>
+  <div class="page-body">
+    <div class="card">
+      <div class="card-head">{{route}}<h3>Zanjir</h3></div>
+      <ol class="steps">
+        <li><b>Siz</b> shu loyihani o'qiysiz. O'zgartirish uchun: «A3: …», «C7: …» deb yozing; ma'qul bo'lsa — «tasdiqlayman».</li>
+        <li><b>A va B</b> ilovaga qo'shiladi: Profil → «Qo'llanma» bo'limi va birinchi kirishdagi 2 ta qo'shimcha ekran.</li>
+        <li><b>C</b> — 13 sahnalik ovoz matni sizning ovozingizda ovozlashtiriladi (har sahna — alohida MP3).</li>
+        <li>Ovoz tayyor bo'lgach, ilova ekranlaridan <b>tanishtiruv videosi</b> yasaladi (1920×1080 va telefon uchun 1080×1920).</li>
+      </ol>
+    </div>
+    <div class="grid-3">
+      <div class="card stat"><div class="v">10</div><div class="l">qo'llanma bo'limi</div></div>
+      <div class="card stat"><div class="v">13</div><div class="l">video sahnasi</div></div>
+      <div class="card stat"><div class="v">~2,5 daq</div><div class="l">video davomiyligi</div></div>
+    </div>
+    <div class="note">{{info}}<div>Raqamlar ilovaning hozirgi qoidalaridan olingan: kunlik maqsad 30 ball; slayd +1, dars +20, video +30, testda har to'g'ri javob +4 (birinchi marta hammasi to'g'ri bo'lsa yana +10); duelda g'olib +15, durrang +5; do'st taklifi +50. Darsni tugatish uchun slaydlarning kamida 80% i ko'riladi. Eslatma — har kuni 19:00.</div></div>
+  </div>
+  <footer class="foot"><span class="brand"><b>NUQTA</b> · Muhammad Amin</span><span class="pno"></span></footer>
+</section>
+
+<section class="page">
+  <div class="pg-band"><div data-scene data-w="794" data-h="196" data-s=".62" data-focus="hero"></div></div>
+  <div class="run-head"><span class="brand">A. Ilova ichidagi qo'llanma</span><span>Profil → Qo'llanma</span></div>
+  <div class="page-body">
+    <div class="sec"><div class="ico">{{book-open}}</div><div><h2><span class="num">A.</span>Ilova ichidagi qo'llanma</h2><span class="nq-sig"><i></i><i></i><i></i></span></div></div>
+
+    <div class="card q"><h3><span class="lbl">A1</span>Ilovani ochish</h3>
+      <p>@FonetikaOquvchilar_bot ga kiring va «Darslarni ochish» tugmasini bosing. Hech narsa yuklab olish shart emas — ilova Telegram ichida ochiladi. Botdagi buyruqlar: /darslar, /video, /yordam.</p></div>
+
+    <div class="card q"><h3><span class="lbl">A2</span>Bosh sahifa</h3>
+      <p>Bu yerda keyingi darsingiz, kunlik maqsad va seriyangiz turadi. Kunlik maqsad — 30 ball. Har kuni kamida bitta ball olsangiz, seriya o'sadi; bir kun o'tkazib yuborsangiz, qaytadan boshlanadi.</p></div>
+
+    <div class="card q"><h3><span class="lbl">A3</span>Darslar — zinapoya</h3>
+      <p>36 dars to'rt qismga bo'lingan. Darslar zinapoyaga o'xshaydi: har pog'onaga avvalgisidan o'tib chiqiladi. Bitta darsni tugatsangiz, keyingisi ochiladi. Qulf belgisi bor dars hali yopiq.</p></div>
+
+    <div class="card q"><h3><span class="lbl">A4</span>Dars ichida</h3>
+      <p>Dars — jonli taqdimot. Keyingi slaydga o'tish uchun ekranni o'ngdan chapga suring yoki o'q tugmasini bosing. Slaydlarning kamida 80 foizini ko'rsangiz, dars tugaydi. Ba'zi darslarda «Kitob betlari» ham bor — darslikning o'sha sahifalari.</p></div>
+
+    <div class="card q"><h3><span class="lbl">A5</span>Mashq — mini test</h3>
+      <p>Har dars tugagach, shu mavzu bo'yicha 5 savollik mashq ochiladi. Javobni tanlab «Tekshirish»ni bosing: to'g'ri javob va qisqa izoh chiqadi. Beshta yurak — besh imkoniyat; yuraklar tugasa, mavzuni yana bir ko'rib, qaytadan urinasiz.</p></div>
+
+    <div class="card q"><h3><span class="lbl">A6</span>Video darslar</h3>
+      <p>Video darslar alohida bo'limda va dars sahifasida turadi. Qayerda to'xtagan bo'lsangiz, keyingi safar o'sha joydan davom etadi. Oxirigacha ko'rilgan video +30 ball beradi.</p></div>
+  </div>
+  <footer class="foot"><span class="brand"><b>NUQTA</b> · Muhammad Amin</span><span class="pno"></span></footer>
+</section>
+
+<section class="page">
+  <div class="pg-band"><div data-scene data-w="794" data-h="196" data-s=".62" data-focus="hero"></div></div>
+  <div class="run-head"><span class="brand">A. Ilova ichidagi qo'llanma</span><span>Profil → Qo'llanma</span></div>
+  <div class="page-body">
+    <div class="card q"><h3><span class="lbl">A7</span>Ball va reyting</h3>
+      <p>Har yangi slayd — 1 ball, tugatilgan dars — 20, oxirigacha ko'rilgan video — 30, testdagi har to'g'ri javob — 4 ball (birinchi marta hammasi to'g'ri bo'lsa yana 10). Reytingda haftalik va umumiy natijalar ko'rinadi; hafta dushanba kuni yangilanadi.</p></div>
+
+    <div class="card q"><h3><span class="lbl">A8</span>Duel</h3>
+      <p>Duel — bilim bellashuvi. Do'stingizni yoki tasodifiy raqibni chaqiring: 5 savol, har biriga 15 soniya. Savollar faqat ikkalangiz ham tugatgan darslardan olinadi. Ko'p to'g'ri javob bergan yutadi, teng bo'lsa — tezroq javob bergan. G'olibga 15 ball, durrangda har biriga 5 ball. Raqib 24 soat ichida javob beradi; natija tayyor bo'lganda bot xabar yuboradi.</p></div>
+
+    <div class="card q"><h3><span class="lbl">A9</span>Do'stlarni taklif qilish</h3>
+      <p>Profil yoki Bosh sahifadagi «Taklif qilish» bo'limida shaxsiy havolangiz bor. Uni do'stingizga yuboring. Do'stingiz birinchi darsni tugatsa, sizga ham, unga ham 50 ball beriladi.</p></div>
+
+    <div class="card q"><h3><span class="lbl">A10</span>Profil va sozlamalar</h3>
+      <p>Profilda ilova ko'rinishini (o'yinli yoki shisha uslub), rejimni (kunduzgi, tungi yoki Telegram bilan bir xil) va arabcha matn o'lchamini o'zgartirasiz. Har kuni soat 19:00 da kichik eslatma keladi — xohlasangiz, shu yerda o'chirib qo'yasiz.</p></div>
+
+    <div class="sec"><div class="ico">{{sparkles}}</div><div><h2><span class="num">B.</span>Birinchi kirishdagi tanishtiruv</h2><span class="nq-sig"><i></i><i></i><i></i></span></div></div>
+    <p class="small">Hozir: 1) Salom, 2) uslub tanlash, 3) rejim tanlash. Taklif: rejimdan keyin yana 2 ta qisqa ekran (har birida rasm-ikon va 3 qator).</p>
+    <div class="grid-2">
+      <div class="card q"><h3><span class="lbl">B1</span>Qanday o'qiladi</h3>
+        <p>1. Darsni oching va slaydlarni ko'ring.<br>2. Dars oxirida 5 savollik mashqni yeching.<br>3. Darslar ketma-ket ochiladi — har kuni bittadan.</p></div>
+      <div class="card q"><h3><span class="lbl">B2</span>Ball, duel va do'stlar</h3>
+        <p>1. Kuniga 30 ball — kunlik maqsad.<br>2. Duelda do'stingiz bilan bellashing.<br>3. Do'st taklif qiling — ikkalangizga 50 ball.</p></div>
+    </div>
+    <p class="small">Ikkala ekranda ham «O'tkazib yuborish» tugmasi bo'ladi. To'liq qo'llanma doim Profil → «Qo'llanma» da turadi.</p>
+  </div>
+  <footer class="foot"><span class="brand"><b>NUQTA</b> · Muhammad Amin</span><span class="pno"></span></footer>
+</section>
+
+<section class="page">
+  <div class="pg-band"><div data-scene data-w="794" data-h="196" data-s=".62" data-focus="hero"></div></div>
+  <div class="run-head"><span class="brand">C. Video ovoz matni</span><span>Tanishtiruv videosi · ~2,5 daqiqa</span></div>
+  <div class="page-body">
+    <div class="sec"><div class="ico">{{clapperboard}}</div><div><h2><span class="num">C.</span>Tanishtiruv videosi — ovoz matni</h2><span class="nq-sig"><i></i><i></i><i></i></span></div></div>
+    <p class="small">Har sahna — alohida ovoz fayli (01.mp3 … 13.mp3). «Ekranda» — videoda nima ko'rinadi; ovozlashtirilmaydi.</p>
+
+    <div class="card scene"><div class="n">1</div><div><p class="ek">Ekranda: logotip, «Muhammadamin · Fonetika kursi», telefon ichida ilova</p>
+      <p class="ov">Arab tili fonetikasini endi telefoningizda o'rganing. Muhammadamin fonetika kursi — to'liq Telegram ichida.</p></div></div>
+
+    <div class="card scene"><div class="n">2</div><div><p class="ek">Ekranda: bot, «Darslarni ochish» tugmasi bosiladi</p>
+      <p class="ov">Botga kiring va «Darslarni ochish» tugmasini bosing. Hech narsa yuklab olish shart emas: ilova shu yerning o'zida ochiladi.</p></div></div>
+
+    <div class="card scene"><div class="n">3</div><div><p class="ek">Ekranda: uslub va rejim tanlash, ikki uslub almashib ko'rinadi</p>
+      <p class="ov">Birinchi kirishda ilovaning ko'rinishini o'zingiz tanlaysiz: o'yinli yoki shisha uslub, kunduzgi yoki tungi rejim. Keyinroq Profilda o'zgartirsa ham bo'ladi.</p></div></div>
+
+    <div class="card scene"><div class="n">4</div><div><p class="ek">Ekranda: Bosh sahifa, kunlik maqsad halqasi to'ladi</p>
+      <p class="ov">Bosh sahifada keyingi darsingiz, kunlik maqsadingiz va seriyangiz turadi. Har kuni o'ttiz ball — va seriya o'sib boradi.</p></div></div>
+
+    <div class="card scene"><div class="n">5</div><div><p class="ek">Ekranda: Darslar ro'yxati, qulflar birin-ketin ochiladi</p>
+      <p class="ov">O'ttiz olti dars — to'rt qism. Darslar zinapoyaga o'xshaydi: har pog'onaga avvalgisidan o'tib chiqiladi. Bitta darsni tugatsangiz, keyingisi ochiladi.</p></div></div>
+
+    <div class="card scene"><div class="n">6</div><div><p class="ek">Ekranda: dars taqdimoti, slaydlar suriladi</p>
+      <p class="ov">Har dars — jonli taqdimot. Slaydlarni birma-bir ko'rib chiqing; ularning kamida sakson foizini ko'rsangiz, dars tugaydi.</p></div></div>
+
+    <div class="card scene"><div class="n">7</div><div><p class="ek">Ekranda: mashq, javob tanlanadi, «To'g'ri javob!» va izoh</p>
+      <p class="ov">Dars oxirida — shu mavzu bo'yicha besh savollik mashq. Har javobdan keyin to'g'ri javob va qisqa izoh chiqadi: xato ham dars bo'ladi.</p></div></div>
+  </div>
+  <footer class="foot"><span class="brand"><b>NUQTA</b> · Muhammad Amin</span><span class="pno"></span></footer>
+</section>
+
+<section class="page">
+  <div class="pg-band"><div data-scene data-w="794" data-h="196" data-s=".62" data-focus="hero"></div></div>
+  <div class="run-head"><span class="brand">C. Video ovoz matni</span><span>Tanishtiruv videosi · ~2,5 daqiqa</span></div>
+  <div class="page-body">
+    <div class="card scene"><div class="n">8</div><div><p class="ek">Ekranda: Video darslar bo'limi, video «davom ettirish» joyidan ochiladi</p>
+      <p class="ov">Video darslar ham shu yerda. Qayerda to'xtagan bo'lsangiz, keyingi safar o'sha joydan davom etadi.</p></div></div>
+
+    <div class="card scene"><div class="n">9</div><div><p class="ek">Ekranda: ball qo'shilishi, Reyting (haftalik / umumiy)</p>
+      <p class="ov">Har slayd, har dars, har to'g'ri javob ball beradi. Reytingda haftaning eng faol o'quvchilarini ko'rasiz — balki keyingi hafta birinchi o'rinda siz bo'larsiz.</p></div></div>
+
+    <div class="card scene"><div class="n">10</div><div><p class="ek">Ekranda: Duel — raqib, 15 soniyalik taymer, «Yutdingiz!»</p>
+      <p class="ov">Duelda do'stingiz yoki tasodifiy raqib bilan bellashing: besh savol, har biriga o'n besh soniya. Savollar faqat ikkalangiz o'tgan darslardan olinadi. G'olibga — o'n besh ball.</p></div></div>
+
+    <div class="card scene"><div class="n">11</div><div><p class="ek">Ekranda: «Do'stlarni taklif qilish», «Ulashish» tugmasi</p>
+      <p class="ov">Do'stlaringizni ham chaqiring. Shaxsiy havolangizni yuboring: do'stingiz birinchi darsni tugatsa, ikkalangizga ellik ball.</p></div></div>
+
+    <div class="card scene"><div class="n">12</div><div><p class="ek">Ekranda: Profil — uslub, rejim, arabcha matn o'lchami, eslatma</p>
+      <p class="ov">Profilda ilovani o'zingizga moslang. Har kuni kechqurun yettida kichik eslatma keladi — o'qishni unutmaysiz.</p></div></div>
+
+    <div class="card scene"><div class="n">13</div><div><p class="ek">Ekranda: logotip, bot nomi, «Darslarni ochish» tugmasi</p>
+      <p class="ov">Har kuni ozgina — lekin har kuni. Birinchi darsni hoziroq boshlang.</p></div></div>
+
+    <div class="card card-deep">
+      <div class="card-head">{{circle-help}}<h3>Qaroringiz kerak</h3></div>
+      <ol class="steps">
+        <li>Video davomiyligi ~2,5 daqiqa ma'qulmi? Ijtimoiy tarmoq uchun qisqa (30–45 soniyalik) variant ham yasaymi — 1, 4, 5, 10, 13-sahnalardan?</li>
+        <li>Bot nomi videoda ko'rinsinmi (@FonetikaOquvchilar_bot)?</li>
+        <li>Videoda sinov ismlari (Aziza K., Jasur va boshqalar) bo'ladi — ma'qulmi yoki ismlarni yashiraymi?</li>
+      </ol>
+    </div>
+  </div>
+  <footer class="foot"><span class="brand"><b>NUQTA</b> · Muhammad Amin</span><span class="pno"></span></footer>
+</section>
+
+</body>
+</html>

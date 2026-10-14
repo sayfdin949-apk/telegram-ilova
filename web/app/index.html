@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="uz" data-v="sahro" data-m="kun" data-arab="m">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#E8DABA">
+<meta name="format-detection" content="telephone=no">
+<title>Muhammadamin · Fonetika</title>
+<script src="https://telegram.org/js/telegram-web-app.js?59"></script>
+<link rel="stylesheet" href="/shared/fonts.css">
+<link rel="stylesheet" href="/app/app.css">
+<script>
+/* NUQTA: birinchi chizishdan oldin manzara va rejim (rang "sakrashi" bo'lmasin).
+   Manzara: tanlangan bo'lsa o'sha, aks holda har ochilganda keyingisi (Sahro, Voha, Shahar, Qahva, Xattot, Shom).
+   Rejim: Kunduzgi / Tungi yoki Avto - 06:00-18:59 kunduzgi, qolgani tungi. */
+(function () {
+  var d = document.documentElement, V = ['sahro', 'voha', 'shahar', 'qahva', 'xattot', 'shom'];
+  try {
+    var w = window.Telegram && window.Telegram.WebApp, u = w && w.initData && w.initDataUnsafe && w.initDataUnsafe.user, id = (u && u.id) || 0;
+    var p = JSON.parse(localStorage.getItem('noon_prefs_' + id) || '{}') || {};
+    var n = JSON.parse(localStorage.getItem('noon_nq_' + id) || '{}') || {};
+    var v = n.v;
+    if (!(n.a === 0 && n.x !== 1 && V.indexOf(v) >= 0)) {
+      var k = V.indexOf(localStorage.getItem('nuqta.manzara'));
+      v = V[k < 0 ? Math.floor(Math.random() * V.length) : (k + 1) % V.length];
+      localStorage.setItem('nuqta.manzara', v);
+    }
+    var h = new Date().getHours();
+    d.setAttribute('data-v', v);
+    d.setAttribute('data-m', p.rejim === 'light' ? 'kun' : p.rejim === 'dark' ? 'tun' : (h >= 6 && h < 19 ? 'kun' : 'tun'));
+    d.setAttribute('data-arab', p.arab === 'l' ? 'l' : 'm');
+  } catch (e) { d.setAttribute('data-v', V[new Date().getDay() % V.length]); }
+})();
+</script>
+</head>
+<body>
+<div id="app"><main id="scr" class="scr"></main></div>
+<nav id="nav" class="nav" aria-label="Asosiy bo'limlar" hidden></nav>
+<div id="ovl"></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<noscript><p style="padding:24px;font:16px/1.5 sans-serif">Ilova ishlashi uchun brauzerda JavaScript yoqilgan bo'lishi kerak.</p></noscript>
+<script src="/shared/nuqta-sahnalar.js"></script>
+<script src="/app/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+ "dars": 30,
+ "nomi": "Bir xil va maxrajdosh harflar — test",
+ "holat": "loyiha",
+ "savollar": [
+  {"q": "Birinchisi sukunli, ikkinchisi harakatli ikki harf yo'liqqanda nechta fonetik qoida bor?", "opts": ["2 ta", "3 ta", "4 ta", "6 ta"], "ok": 2, "izoh": "4 ta: bir xil, maxrajdosh va o'zaro yaqin harflarni kirgazish hamda o'zaro uzoq harflarni bildirish.", "manba": "dars60.json: «Ikki harfning yo'liqishi»; taqdimot 7, 77-slayd"},
+  {"q": "قَدْ دَخَلَ qanday o'qiladi?", "opts": ["Qod daxola — ikkala Daal alohida aytiladi", "Qoddaxola — birinchi Daal ikkinchisiga kirgaziladi", "Qodaxola — bitta Daal tushib qoladi", "Qodu daxola — Daal damma oladi"], "ok": 1, "izoh": "Ikki bir xil harf ketma-ket kelib, birinchisi sukunli bo'lsa, u ikkinchisiga kirgaziladi va tashdid bilan o'qiladi: Qoddaxola.", "manba": "dars60.json: qoida misollari; taqdimot 7, 78-slayd"},
+  {"q": "قَدْ تَكُونُ (Qottakuunu) da qaysi qoida bor?", "opts": ["Maxrajdosh harflarni kirgazish", "Bir xil harflarni kirgazish", "O'zaro yaqin harflarni kirgazish", "O'zaro uzoq harflarni bildirish"], "ok": 0, "izoh": "دْ va ت — har xil harflar, lekin maxraji bir. Shuning uchun sukunli Daal Taaga kirgaziladi.", "manba": "dars61.json: qoida misollari; taqdimot 7, 83-slayd"},
+  {"q": "ٱكْتُبْ مَا qanday o'qiladi?", "opts": ["Uktub maa — Baa aniq aytiladi", "Uktubimaa — Baa kasra oladi", "Uktubmaa — Baa tez aytiladi", "Uktummaa — Baa Miimga kirgaziladi"], "ok": 3, "izoh": "ب va م maxrajdosh harflar: sukunli Baa harakatli Miimga kirgaziladi va Miim tashdid bilan o'qiladi.", "manba": "dars61.json: qoida misollari, yakun; taqdimot 7, 83-slayd"},
+  {"q": "Mashq gaplarida (masalan, كَتَبَت تَّوْصِيفًا) kirgaziladigan birinchi harf qanday yozilgan?", "opts": ["Sukun bilan, keyingi harf oddiy", "Kasra bilan", "Belgisiz, keyingi harf esa tashdidli", "Ikki marta yozilgan"], "ok": 2, "izoh": "Kirgaziladigan harf belgisiz yoziladi, keyingi harfga tashdid qo'yiladi. Belgisiz harf alohida aytilmaydi.", "manba": "dars60.json: mashq «diqqat»; taqdimot 7, 79-slayd"}
+ ]
+}

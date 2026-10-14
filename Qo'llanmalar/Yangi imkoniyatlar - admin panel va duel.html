@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<title>Yangi imkoniyatlar — admin panel va duel</title>
+<!-- NOON:HEAD -->
+<style>
+.shot{display:block;width:100%;border-radius:12px;border:1px solid rgba(13,58,26,.12);box-shadow:0 4px 18px rgba(13,58,26,.10)}
+.cap{font-size:11px;color:#3A6040;margin:6px 2px 0}
+.phones{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.phones img{width:100%;border-radius:14px;border:1px solid rgba(13,58,26,.12);box-shadow:0 4px 14px rgba(13,58,26,.10)}
+.phones .cap{text-align:center}
+table.noon td,table.noon th{font-size:11px}
+.small{font-size:11px;color:#3A6040}
+</style>
+</head>
+<body>
+
+<section class="page">
+  <header class="hero">
+    <div class="kicker">{{sparkles}} Telegram ilova · 04.10.2026</div>
+    <h1>Yangi imkoniyatlar</h1>
+    <div class="sub">Haqiqiy admin panel, o'quvchi yo'lini kuzatish, funksiyalarni boshqarish, duel va do'st taklifi.</div>
+    <div class="tbar"></div>
+    <div class="meta"><span class="pill">1-bosqich tayyor</span><span class="pill">2-bosqich tayyor</span><span class="pill dark">3-bosqich: qo'llanma va video</span></div>
+  </header>
+  <div class="page-body">
+    <div class="grid-3">
+      <div class="card"><div class="card-head">{{layout-dashboard}}<h3>Admin panel</h3></div><p class="small">Demo emas — haqiqiy ma'lumot: o'quvchilar, voronka, tugmalar, qurilmalar, kurs, testlar, duellar, takliflar, xodimlar, jurnal.</p></div>
+      <div class="card"><div class="card-head">{{route}}<h3>O'quvchi yo'li</h3></div><p class="small">Har kirish: qaysi qurilmadan, qaysi ekranlar, qaysi tugmalar, har ekranda qancha vaqt, qachon chiqib ketdi.</p></div>
+      <div class="card"><div class="card-head">{{toggle-right}}<h3>Funksiyalar</h3></div><p class="small">CEO keraksiz funksiyani bir bosishda o'chiradi — o'quvchi ilovasidan darhol yo'qoladi.</p></div>
+      <div class="card"><div class="card-head">{{swords}}<h3>Duel</h3></div><p class="small">Tasodifiy raqib yoki do'st bilan: 5 savol, har biriga 15 soniya. Savollar faqat ikkalasi o'tgan darslardan. G'olib +15, durrang +5.</p></div>
+      <div class="card"><div class="card-head">{{gift}}<h3>Do'st taklifi</h3></div><p class="small">Shaxsiy havola. Do'st 1-darsni tugatsa — ikkalasiga +50 ball, taklif qilganga bot xabar beradi.</p></div>
+      <div class="card"><div class="card-head">{{shield-check}}<h3>Ruxsatlar</h3></div><p class="small">CEO — hammasi. Admin — Funksiyalar va Xodimlardan tashqari. Ustoz — faqat ko'radi. Assistent — kirmaydi.</p></div>
+    </div>
+    <div class="card card-deep">
+      <div class="card-head">{{log-in}}<h3>Admin panelni qanday ochish</h3></div>
+      <ol class="steps">
+        <li><b>Telefonda:</b> @FonetikaXodimlarbot → pastdagi menyu tugmasi. Panel Telegram ichida ochiladi.</li>
+        <li><b>Kompyuterda:</b> xodimlar botiga <b>/kirish</b> deb yozing → "Admin panelni ochish" tugmasi. Havola 10 daqiqa amal qiladi va bir marta ishlaydi; panel 12 soat ochiq turadi.</li>
+      </ol>
+    </div>
+    <div class="note">{{info}}<div>Skrinshotlardagi ismlar va raqamlar — sinov ma'lumotlari. Jonli panelda o'quvchilaringiz ilovani ochgan sari haqiqiy ma'lumot to'planadi.</div></div>
+  </div>
+  <footer class="foot"><span class="brand"><span class="dot"></span>Muhammadamin</span><span class="pno"></span></footer>
+</section>
+
+<section class="page">
+  <div class="run-head"><span class="brand">Admin panel</span><span>Bosh sahifa</span></div>
+  <div class="page-body">
+    <div class="sec"><div class="ico">{{layout-dashboard}}</div><div><h2><span class="num">1.</span>Bosh sahifa</h2><div class="tbar"></div></div></div>
+    <img class="shot" src="rasmlar/owner_1_bosh.jpg" alt="Bosh sahifa">
+    <p class="cap">O'quvchilar soni, hozir ilovada kim borligi (har 30 soniyada yangilanadi), bugungi faollik, kunlik grafik, qurilmalar, uslub va rejim tanlovi.</p>
+  </div>
+  <footer class="foot"><span class="brand"><span class="dot"></span>Muhammadamin</span><span class="pno"></span></footer>
+</section>
+
+<section class="page">
+  <div class="run-head"><span class="brand">Admin panel</span><span>O'quvchi yo'li</span></div>
+  <div class="page-body">
+    <div class="sec"><div class="ico">{{route}}</div><div><h2><span class="num">2.</span>Ilovadagi safar — kirishdan chiqishgacha</h2><div class="tbar"></div></div></div>
+    <img class="shot" src="rasmlar/owner_2_safar.jpg" alt="O'quvchi safari">
+    <p class="cap">Kirgan va chiqqan vaqt, qurilma, eng ko'p vaqt o'tgan ekranlar, yo'l xaritasi va qadamma-qadam vaqt chizig'i: har ekran, har bosilgan tugma, har ekranda o'tgan vaqt.</p>
+  </div>
+  <footer class="foot"><span class="brand"><span class="dot"></span>Muhammadamin</span><span class="pno"></span></footer>
+</section>
+
+<section class="page">
+  <div class="run-head"><span class="brand">Admin panel</span><span>Voronka</span></div>
+  <div class="page-body">
+    <div class="sec"><div class="ico">{{filter}}</div><div><h2><span class="num">3.</span>Voronka — qayerda tushib qolishyapti</h2><div class="tbar"></div></div></div>
+    <img class="shot" src="rasmlar/owner_3_voronka.jpg" alt="Voronka">
+    <p class="cap">Ilovaga kirdi → uslub tanladi → 1-dars → test → 2-dars … 36-dars. Eng katta yo'qotish alohida ko'rsatiladi.</p>
+  </div>
+  <footer class="foot"><span class="brand"><span class="dot"></span>Muhammadamin</span><span class="pno"></span></footer>
+</section>
+
+<section class="page">
+  <div class="run-head"><span class="brand">Admin panel</span><span>Tugmalar</span></div>
+  <div class="page-body">
+    <div class="sec"><div class="ico">{{mouse-pointer-click}}</div><div><h2><span class="num">4.</span>Qaysi tugmalar ko'p bosilyapti</h2><div class="tbar"></div></div></div>
+    <img class="shot" src="rasmlar/owner_4_tugmalar.jpg" alt="Tugmalar">
+    <p class="cap">Tugmalar reytingi (necha marta, nechta o'quvchi), ekranlar bo'yicha ko'rishlar va o'rtacha vaqt, kunlik grafik. Davr: 7 / 30 / 90 kun.</p>
+  </div>
+  <footer class="foot"><span class="brand"><span class="dot"></span>Muhammadamin</span><span class="pno"></span></footer>
+</section>
+
+<section class="page">
+  <div class="run-head"><span class="brand">Admin panel</span><span>Qurilmalar va funksiyalar</span></div>
+  <div class="page-body">
+    <div class="sec"><div class="ico">{{smartphone}}</div><div><h2><span class="num">5.</span>Qaysi telefondan kirishyapti</h2><div class="tbar"></div></div></div>
+    <img class="shot" src="rasmlar/owner_5_qurilmalar.jpg" alt="Qurilmalar">
+    <p class="cap">Android / iPhone / kompyuter / brauzer, operatsion tizim, Telegram versiyasi, ekran o'lchami, kunduzgi yoki tungi mavzu.</p>
+  </div>
+  <footer class="foot"><span class="brand"><span class="dot"></span>Muhammadamin</span><span class="pno"></span></footer>
+</section>
+
+<section class="page">
+  <div class="run-head"><span class="brand">Admin panel</span><span>Funksiyalar</span></div>
+  <div class="page-body">
+    <div class="sec"><div class="ico">{{toggle-right}}</div><div><h2><span class="num">6.</span>Funksiyalarni yoqish va o'chirish (faqat CEO)</h2><div class="tbar"></div></div></div>
+    <img class="shot" src="rasmlar/owner_6_funksiyalar.jpg" alt="Funksiyalar">
+    <p class="cap">O'chirishdan oldin tasdiq so'raladi. O'chirilgan funksiya o'quvchi ilovasidan darhol yo'qoladi, server ham uni yopadi. Har o'zgarish Amallar jurnaliga yoziladi.</p>
+  </div>
+  <footer class="foot"><span class="brand"><span class="dot"></span>Muhammadamin</span><span class="pno"></span></footer>
+</section>
+
+<section class="page">
+  <div class="run-head"><span class="brand">Admin panel</span><span>Testlar va duellar</span></div>
+  <div class="page-body">
+    <div class="sec"><div class="ico">{{list-checks}}</div><div><h2><span class="num">7.</span>Test natijalari — savollar bo'yicha</h2><div class="tbar"></div></div></div>
+    <img class="shot" src="rasmlar/ceo_d_test8.jpg" alt="Test natijalari">
+    <p class="cap">Har savol: qaysi variant necha marta tanlangan, xato foizi, eng qiyin savol. Natijalar 03.10 dan keyingi urinishlardan.</p>
+  </div>
+  <footer class="foot"><span class="brand"><span class="dot"></span>Muhammadamin</span><span class="pno"></span></footer>
+</section>
+
+<section class="page">
+  <div class="run-head"><span class="brand">Admin panel</span><span>Duellar</span></div>
+  <div class="page-body">
+    <div class="sec"><div class="ico">{{swords}}</div><div><h2><span class="num">8.</span>Duellar va do'st takliflari</h2><div class="tbar"></div></div></div>
+    <img class="shot" src="rasmlar/owner_7_duellar.jpg" alt="Duellar">
+    <p class="cap">Jami, tugagan, muddati o'tgan, durrang; tasodifiy va do'st bilan; kunlik grafik; eng faol o'yinchilar; so'nggi duellar.</p>
+  </div>
+  <footer class="foot"><span class="brand"><span class="dot"></span>Muhammadamin</span><span class="pno"></span></footer>
+</section>
+
+<section class="page">
+  <div class="run-head"><span class="brand">O'quvchi ilovasi</span><span>Duel va taklif</span></div>
+  <div class="page-body">
+    <div class="sec"><div class="ico">{{smartphone}}</div><div><h2><span class="num">9.</span>O'quvchi ilovasida</h2><div class="tbar"></div></div></div>
+    <div class="phones">
+      <div><img src="rasmlar/app_game-light-390_bosh.jpg" alt=""><p class="cap">Bosh sahifa: Duel va Taklif kartalari</p></div>
+      <div><img src="rasmlar/app_oqim_duellar.jpg" alt=""><p class="cap">Duellar ro'yxati</p></div>
+      <div><img src="rasmlar/app_game-light-390_savol5_kam_vaqt.jpg" alt=""><p class="cap">Duel: 15 soniyalik taymer</p></div>
+      <div><img src="rasmlar/app_game-dark-390_natija.jpg" alt=""><p class="cap">Natija va javoblar tahlili</p></div>
+      <div><img src="rasmlar/app_glass-dark-390_taklif.jpg" alt=""><p class="cap">Do'stlarni taklif qilish</p></div>
+      <div><img src="rasmlar/app_glass-light-390_bosh.jpg" alt=""><p class="cap">Shisha uslubi, kunduzgi</p></div>
+    </div>
+  </div>
+  <footer class="foot"><span class="brand"><span class="dot"></span>Muhammadamin</span><span class="pno"></span></footer>
+</section>
+
+<section class="page">
+  <div class="run-head"><span class="brand">Holat</span><span>Sinovlar va keyingi qadam</span></div>
+  <div class="page-body">
+    <div class="sec"><div class="ico">{{badge-check}}</div><div><h2><span class="num">10.</span>Sinovlar</h2><div class="tbar"></div></div></div>
+    <div class="tbl-wrap"><table class="noon">
+      <thead><tr><th>Nima sinaldi</th><th>Natija</th></tr></thead>
+      <tbody>
+        <tr><td>Admin panel ekranlari (3 rol × 3 ekran o'lchami, barcha bo'limlar)</td><td>1168 / 1168</td></tr>
+        <tr><td>Admin panel ma'lumotlari (API, rollar, kirish, jurnal)</td><td>548 / 548</td></tr>
+        <tr><td>Duel va taklif — server (hisob, vaqt, ball bir marta, limitlar, bot xabarlari)</td><td>262 / 262</td></tr>
+        <tr><td>Duel va taklif — ilova (2 uslub × 2 rejim × 3 ekran)</td><td>208 / 208</td></tr>
+        <tr><td>O'quvchi yo'lini kuzatish va funksiya tugmalari (ilova)</td><td>1233 / 1234 *</td></tr>
+        <tr><td>Server, botlar, uchdan-uchgacha, eski xodim sahifasi</td><td>544 · 56 · 586 — hammasi o'tdi</td></tr>
+        <tr><td>Tezlik: 10 000 o'quvchi, 1 million yozuv</td><td>hisobotlar 0,1–1,5 soniya</td></tr>
+      </tbody>
+    </table></div>
+    <p class="small">* Bitta eski sinov serverning eski holatini kutadi (ilovada xato emas).</p>
+    <div class="card card-deep">
+      <div class="card-head">{{book-open}}<h3>Keyingi: 3-bosqich</h3></div>
+      <ol class="steps">
+        <li>Ilovadan foydalanish qo'llanmasi (ilova ichida + matn) — avval sizga ko'rsataman.</li>
+        <li>Tasdiqlaganingizdan keyin matn sizning ovozingizda ovozlashtiriladi.</li>
+        <li>Ovoz tayyor bo'lgach — ilova tanishtiruv videosi yasaladi.</li>
+      </ol>
+    </div>
+  </div>
+  <footer class="foot"><span class="brand"><span class="dot"></span>Muhammadamin</span><span class="pno"></span></footer>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+{
+ "dars": 2,
+ "nomi": "Harflarning sifatlari — test",
+ "savollar": [
+  {
+   "q": "Shidda harflarida tovush qanday bo'ladi?",
+   "opts": [
+    "Erkin oqadi — 1 soniya",
+    "Bir qismi o'tadi — 0,5 soniya",
+    "Burundan chiqadi",
+    "Urilib, butunlay to'xtaydi — 0 soniya"
+   ],
+   "ok": 3,
+   "izoh": "Shidda — to'g'on: maxraj to'liq yopiladi, tovush to'xtaydi. 0,5 soniya — Bayniya, 1 soniya — Rixva."
+  },
+  {
+   "q": "Bayniya (oraliq) harflari qaysi qatorda?",
+   "opts": [
+    "ق ط ب ج د",
+    "ل ن ع م ر",
+    "ص ض ط ظ",
+    "ف ر م ن ل ب"
+   ],
+   "ok": 1,
+   "izoh": "Bayniya — 5 ta: ل ن ع م ر. Boshqa qatorlar: Qalqala (ق ط ب ج د), Itboq (ص ض ط ظ), Izlaq (ف ر م ن ل ب)."
+  },
+  {
+   "q": "قَ — «Qo» deb o'qiladi. Fatha bilan aytganda «o» tovushi chiqadigan harf qaysi sifatga ega?",
+   "opts": [
+    "Isti'lo — yo'g'on",
+    "Istifola — ingichka",
+    "Izlaq — yengil",
+    "Hams — jarangsiz"
+   ],
+   "ok": 0,
+   "izoh": "Harfni fatha bilan ayting: «o» chiqsa — Isti'lo (yo'g'on), «a» chiqsa — Istifola (ingichka)."
+  },
+  {
+   "q": "Qalqala (sakrash) qaysi harflarda bor?",
+   "opts": [
+    "أ ج د ق ط ب ك ت",
+    "ص ز س",
+    "ق ط ب ج د",
+    "ن م"
+   ],
+   "ok": 2,
+   "izoh": "Qalqala — 5 ta: ق ط ب ج د. Shidda 8 ta, lekin ت va ك ga qalqala kerak emas. ص ز س — Safir, ن م — G'unna."
+  },
+  {
+   "q": "رِ (kasrali Roo) qanday o'qiladi?",
+   "opts": [
+    "Yo'g'on",
+    "Ingichka",
+    "Har doim yo'g'on — harakatga qaramaydi",
+    "Burundan, g'unna bilan"
+   ],
+   "ok": 1,
+   "izoh": "Roo harakatga ergashadi: fatha va dammada yo'g'on, kasrada ingichka. Sukunda oldingi harfning harakatiga qaraydi."
+  }
+ ]
+}

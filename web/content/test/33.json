@@ -1,0 +1,61 @@
+{
+ "dars": 33,
+ "nomi": "O'qish matnlari 1–8 — test",
+ "savollar": [
+  {
+   "q": "1-matndagi مَرِيضٌۢ بِسَبَبِ birikmasida tanvin ustidagi kichik mim (ۢ) nimani bildiradi?",
+   "opts": [
+    "Kirgazib talaffuz qilish",
+    "Almashtirib talaffuz qilish — tanvin mimga aylanadi",
+    "Yashirib talaffuz qilish",
+    "Bildirib talaffuz qilish"
+   ],
+   "ok": 1,
+   "izoh": "Tanvindan keyin ب kelgani uchun nun م ga almashtiriladi va g'unna bilan o'qiladi. Kitobda bunday joyda kichik mim (ۢ) yoziladi."
+  },
+  {
+   "q": "2-matn sarlavhasidagi ٱلتَّفْكِيرُ so'zi qanday o'qiladi?",
+   "opts": [
+    "Altafkiiru — Laam aniq o'qiladi",
+    "Aatafkiiru — alif cho'ziladi",
+    "Attafkiiru — Laam o'qilmaydi, Taa tashdid bilan",
+    "Alitafkiiru — Laam kasra oladi"
+   ],
+   "ok": 2,
+   "izoh": "ت — shamsiy harf: aniqlik lami o'qilmaydi, keyingi harf tashdid bilan aytiladi. Alomati — ت ustidagi tashdid."
+  },
+  {
+   "q": "7-matndagi فَجْأَةً رَّأَىٰ birikmasida ر nima uchun tashdidli?",
+   "opts": [
+    "Yashirib talaffuz qilish",
+    "Almashtirib talaffuz qilish",
+    "Bildirib talaffuz qilish",
+    "Kirgazib talaffuz qilish — tanvin ر ga g'unnasiz kirgaziladi"
+   ],
+   "ok": 3,
+   "izoh": "Tanvindan keyin ر kelsa, tanvin unga kirgaziladi; ل va ر da kirgazish g'unnasiz bo'ladi."
+  },
+  {
+   "q": "1-matnda gap oxiridagi طَوِيلًا so'zida to'xtalganda qanday o'qiladi?",
+   "opts": [
+    "Toviilan",
+    "Toviil",
+    "Toviilaa",
+    "Toviilah"
+   ],
+   "ok": 2,
+   "izoh": "Fathali tanvinda to'xtalganda nun tushib, alif 2 harakat cho'ziladi: Toviilaa. «-ah» faqat toi marbutaga xos."
+  },
+  {
+   "q": "6-matndagi ٱلصَّحْرَآءِ so'zida qaysi cho'zish bor?",
+   "opts": [
+    "Qo'shilgan cho'zish — 4 harakat (5 harakat afzal)",
+    "Tabiiy cho'zish — 2 harakat",
+    "Ajralgan cho'zish — 4 yoki 5 harakat",
+    "O'zgarmas cho'zish — 6 harakat"
+   ],
+   "ok": 0,
+   "izoh": "Mad harfi (ا) va hamza bir so'zda kelgan — qo'shilgan cho'zish. Ajralgan cho'zishda hamza keyingi so'zda bo'ladi."
+  }
+ ]
+}

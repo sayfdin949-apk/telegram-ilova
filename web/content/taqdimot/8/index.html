@@ -1,0 +1,2116 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>O&#39;qish matnlari — Fonetika</title>
+<link rel="stylesheet" href="fonts/inter.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;700&display=swap">
+<style>
+  :root{
+    --deep:#004a4c; --deeper:#003739; --deepest:#002628; --ink:#001a1c;
+    --mint:#38b49b; --amber:#e7af3b; --sand:#fbdf8d; --white:#fff;
+    --soft:rgba(255,255,255,.82); --faint:rgba(255,255,255,.55);
+    --rule:rgba(56,180,155,.34); --rule-soft:rgba(56,180,155,.16);
+    --font:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    --ar2:"Noto Naskh Arabic","Geeza Pro","Amiri",serif;
+    --ar:"Amiri","Geeza Pro","Noto Naskh Arabic","Traditional Arabic",serif;
+    /* ── XOSHIYA (har bir slayd uchun xavfsiz maydon) ──
+       --pad-x   : yon tomonlar
+       --pad-top : tepa (progress chizig'idan keyin)
+       --pad-bot : past (HUD qatori + zaxira)
+       Slayd konteni hech qachon shu chegaralardan chiqmasligi kerak. */
+    --pad:clamp(1.4rem,2.6vw,3rem);
+    --pad-x:clamp(1.6rem,2.8vw,3.2rem);
+    --pad-top:clamp(1.5rem,2.5vw,2.8rem);
+    --pad-bot:clamp(3rem,4.4vw,4.6rem);
+    --swap:.30s;
+    --iconsz:clamp(34px,3.2vw,52px);
+    --radius:clamp(8px,.8vw,13px);
+    /* Chiqish egri chizig'i: tez boshlanib, yumshoq to'xtaydi */
+    --e-out:cubic-bezier(.16,1,.3,1);
+    /* Video paneli: to'liq balandlikda 9:16 */
+    --vw:min(56.25vh,42vw);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ink);color:var(--white);font-family:var(--font);
+       font-weight:400;-webkit-font-smoothing:antialiased;overflow:hidden;height:100vh}
+
+  /* ═══════════ Webinar sahnasi ═══════════ */
+  .stage{display:grid;grid-template-columns:var(--vw) 1fr;height:100vh;width:100vw}
+
+  /* ── Chap: 9:16 video ── */
+  .vid{position:relative;overflow:hidden;min-width:0;background:#000;
+       border-right:1px solid rgba(255,255,255,.10)}
+  .vid video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+             display:none;transform:scaleX(-1)}
+  .vid.live video{display:block}
+  .vid .ph{position:absolute;inset:0;display:flex;flex-direction:column;
+           align-items:center;justify-content:center;gap:1rem;text-align:center;
+           padding:2rem;
+           background:radial-gradient(85% 60% at 50% 32%,rgba(56,180,155,.16),transparent 62%),
+                      linear-gradient(170deg,var(--deeper),#00171a)}
+  .vid.live .ph{display:none}
+  .vid .ph svg{width:clamp(44px,4.4vw,72px);height:clamp(44px,4.4vw,72px);
+               fill:none;stroke:url(#gold);stroke-width:1.4;
+               stroke-linecap:round;stroke-linejoin:round;opacity:.9}
+  .vid .ph b{font-size:clamp(.72rem,.95vw,.92rem);font-weight:700;letter-spacing:.18em;
+             text-transform:uppercase;color:var(--mint)}
+  .vid .ph span{font-size:clamp(.72rem,.9vw,.86rem);color:var(--faint);
+                line-height:1.6;max-width:22ch}
+  .vid .ph kbd{font-family:inherit;border:1px solid var(--rule);border-radius:4px;
+               padding:.1em .45em;color:var(--sand);font-size:.95em}
+  /* Video ustidagi past yozuv */
+  .vid .plate{position:absolute;left:0;right:0;bottom:0;z-index:3;
+              padding:clamp(.9rem,1.5vw,1.5rem);
+              background:linear-gradient(to top,rgba(0,12,14,.92),rgba(0,12,14,0));
+              display:flex;flex-direction:column;gap:.25rem}
+  .vid .plate b{font-size:clamp(.95rem,1.25vw,1.2rem);font-weight:700;color:var(--white);
+                line-height:1.2}
+  .vid .plate span{font-size:clamp(.7rem,.88vw,.85rem);letter-spacing:.09em;
+                   text-transform:uppercase;color:var(--mint)}
+  .vid .timer{position:absolute;top:0;left:0;right:0;z-index:3;
+              padding:clamp(.7rem,1.2vw,1.1rem);display:flex;justify-content:space-between;
+              align-items:center;gap:.6rem;
+              background:linear-gradient(to bottom,rgba(0,12,14,.8),rgba(0,12,14,0));
+              font-size:clamp(.7rem,.88vw,.85rem);letter-spacing:.1em;color:var(--faint)}
+  .vid .timer b{color:var(--white);font-weight:700;font-variant-numeric:tabular-nums;
+                letter-spacing:.02em;font-size:clamp(.88rem,1.1vw,1.05rem)}
+  .rec{display:inline-flex;align-items:center;gap:.42em;color:var(--amber)}
+  .rec::before{content:"";width:.55em;height:.55em;border-radius:50%;background:var(--amber);
+               animation:pulse 2.2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+  /* ── O'ng: slaydlar ── */
+  .deck{position:relative;overflow:hidden;min-width:0;background:var(--deep)}
+  .deck::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(75% 60% at 92% 6%,rgba(56,180,155,.14),transparent 60%),
+               radial-gradient(60% 70% at 4% 96%,rgba(231,175,59,.09),transparent 62%)}
+  .slide{position:absolute;inset:0;
+    padding:var(--pad-top) var(--pad-x) var(--pad-bot);
+    opacity:0;visibility:hidden;pointer-events:none;transform:translateY(26px);
+    transition:opacity var(--swap) ease,transform var(--swap) cubic-bezier(.22,.61,.36,1),
+               visibility 0s var(--swap);
+    overflow-y:auto;z-index:1}
+  .slide.from-above{transform:translateY(-26px)}
+  .slide.active{opacity:1;visibility:visible;pointer-events:auto;transform:none;
+    transition:opacity var(--swap) ease,transform var(--swap) cubic-bezier(.22,.61,.36,1),visibility 0s}
+  .slide.leaving-up,.slide.leaving-down{visibility:visible;opacity:0;
+    transition:opacity var(--swap) ease,transform var(--swap) cubic-bezier(.22,.61,.36,1),
+               visibility 0s var(--swap)}
+  .slide.leaving-up{transform:translateY(-26px)}
+  .slide.leaving-down{transform:translateY(26px)}
+  .wrap{max-width:1180px;margin:0 auto;width:100%;height:100%;min-height:0;
+        display:flex;flex-direction:column;justify-content:center}
+  .stack{display:flex;flex-direction:column;gap:clamp(.7rem,1.3vw,1.3rem);
+         min-width:0;min-height:0;max-height:100%}
+  /* Bo'sh joyni to'ldiradigan slayd: rasm bloki qolgan balandlikka moslashadi */
+  .stack.fill{height:100%}
+  .stack.loose{gap:clamp(1rem,1.9vw,1.9rem)}
+  .stack.tight{gap:clamp(.4rem,.7vw,.7rem)}
+
+  /* Ketma-ket chiqish */
+  [data-step]{opacity:0;transform:translateY(10px);filter:blur(4px);
+    will-change:opacity,transform,filter;
+    transition:opacity .3s var(--e-out),transform .46s var(--e-out),filter .3s var(--e-out)}
+  [data-step].shown{opacity:1;transform:none;filter:none;will-change:auto}
+  @media (prefers-reduced-motion:reduce){
+    [data-step]{transition-duration:.01ms!important;transform:none!important;
+               filter:none!important}
+  }
+
+  /* ═══════════ Tipografiya ═══════════ */
+  .eyebrow{font-size:clamp(1rem,1.35vw,1.35rem);font-weight:700;letter-spacing:.15em;
+           text-transform:uppercase;color:var(--mint);margin:0}
+  .eyebrow b{color:var(--amber);font-weight:700}
+  h1{font-weight:700;font-size:clamp(2.5rem,4.8vw,4.6rem);line-height:1.06;
+     letter-spacing:-.025em;margin:0 0 0 -.04em;text-wrap:balance}
+  h2{font-weight:700;font-size:clamp(2rem,3.5vw,3.3rem);line-height:1.1;
+     letter-spacing:-.022em;margin:0 0 0 -.035em;text-wrap:balance}
+  h3{font-weight:700;font-size:clamp(1.4rem,2.2vw,2.1rem);line-height:1.18;
+     letter-spacing:-.012em;margin:0}
+  .ask{color:var(--sand)}
+  p{font-size:clamp(1.18rem,1.75vw,1.75rem);line-height:1.45;font-weight:400;
+    color:var(--soft);max-width:38ch;margin:0}
+  p.lead{color:var(--white);font-weight:500;font-size:clamp(1.35rem,2.1vw,2.1rem);max-width:34ch}
+  p.small{font-size:clamp(1rem,1.35vw,1.35rem);color:var(--faint);max-width:46ch}
+  strong{color:var(--sand);font-weight:700}
+  .keyword{font-weight:700;font-size:clamp(2.4rem,5.4vw,4.6rem);line-height:1;
+           letter-spacing:-.035em;color:var(--sand);margin:0;max-width:none}
+
+  /* ═══════════ Arab yozuvi ═══════════ */
+  .ar{font-family:var(--ar);direction:rtl;unicode-bidi:isolate;font-weight:400;
+      color:var(--sand);line-height:1.55}
+  .ar.big{font-size:clamp(3.2rem,7.5vw,6.4rem);line-height:1.25;display:block;
+          text-align:center;margin:.1em 0}
+  .ar.big.ibora{white-space:nowrap;font-size:clamp(2.4rem,5.4vw,4.6rem);
+                line-height:1.9;letter-spacing:.02em}
+  /* Yonma-yon, ustma-ust tushmaydigan ibora */
+  .ar.big.clear{font-family:var(--ar2);font-size:clamp(2.2rem,4.8vw,4.2rem);
+                line-height:2.05;word-spacing:.32em;white-space:nowrap;
+                margin:.2em 0 .1em}
+  .translit{display:block;text-align:center;direction:ltr;
+            font-size:clamp(1.05rem,1.75vw,1.65rem);font-weight:500;
+            letter-spacing:.06em;color:var(--mint);margin-bottom:.5em}
+  .ar.med{font-size:clamp(1.8rem,3.4vw,3rem)}
+  .ar.inl{font-size:1.32em;color:inherit;vertical-align:-.08em}
+  .harf{display:inline-flex;align-items:baseline;gap:.5em}
+  .harf .ar{font-size:1.5em}
+
+  /* Harflar qatori */
+  /* direction:rtl bo'lgani uchun flex-end = chap chekka */
+  .letters{display:flex;flex-wrap:wrap;gap:clamp(.45rem,.9vw,.9rem);direction:rtl;
+           justify-content:flex-end}
+  .letters.mid{justify-content:center}
+  .letters .lt{display:flex;flex-direction:column;align-items:center;gap:clamp(.4rem,.8vw,.7rem);
+       min-width:clamp(3.2rem,5vw,4.6rem);padding:clamp(.5rem,.9vw,.85rem) .4rem;
+       border:1px solid var(--rule-soft);border-radius:var(--radius);
+       background:rgba(56,180,155,.06)}
+  .letters .lt .g{font-family:var(--ar);font-size:clamp(2.1rem,3.6vw,3.3rem);
+                  color:var(--sand);line-height:1.35;padding-bottom:.08em}
+  .letters .lt .n{font-size:clamp(.82rem,1.05vw,1.05rem);color:var(--faint);direction:ltr;
+                  letter-spacing:.04em}
+  /* 28 harf — ixcham jadval */
+  .letters.all{gap:clamp(.25rem,.5vw,.5rem);justify-content:center}
+  .letters.all .lt{min-width:clamp(2.2rem,3.3vw,3.1rem);
+                   padding:clamp(.36rem,.65vw,.6rem) .25rem .32rem;gap:clamp(.3rem,.55vw,.5rem)}
+  .letters.all .lt .g{font-size:clamp(1.5rem,2.5vw,2.3rem)}
+  .letters.all .lt .n{font-size:clamp(.6rem,.82vw,.82rem);letter-spacing:.02em}
+  .letters.hot .lt{border-color:rgba(231,175,59,.42);background:rgba(231,175,59,.08)}
+
+  /* Bosqichlar: nuqtasiz -> nuqtali -> harakatli */
+  .stages{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;
+          gap:clamp(.4rem,1vw,1rem);align-items:stretch}
+  .stg{display:flex;flex-direction:column;align-items:center;justify-content:center;
+       gap:clamp(.4rem,.8vw,.8rem);padding:clamp(.8rem,1.5vw,1.5rem) .6rem;
+       border:1px solid var(--rule-soft);border-radius:var(--radius);
+       background:rgba(56,180,155,.06)}
+  .stg.hot{border-color:rgba(231,175,59,.45);background:rgba(231,175,59,.08)}
+  .stg .g{font-family:var(--ar);direction:rtl;font-size:clamp(2.6rem,5.4vw,5rem);
+          line-height:1.3;color:var(--sand)}
+  .stg .n{font-size:clamp(.85rem,1.1vw,1.1rem);font-weight:700;letter-spacing:.1em;
+          text-transform:uppercase;color:var(--faint);text-align:center;line-height:1.3}
+  .stg.hot .n{color:var(--amber)}
+  .arw{display:flex;align-items:center;color:var(--mint);
+       font-size:clamp(1.3rem,2.2vw,2.2rem)}
+  @media (max-width:820px){ .stages{grid-template-columns:1fr} .arw{transform:rotate(90deg);justify-content:center} }
+
+  /* Bitta skeletdan chiqadigan so'zlar */
+  .reads{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(.5rem,1.1vw,1.1rem)}
+  .rd{display:flex;flex-direction:column;align-items:center;gap:.45rem;
+      padding:clamp(.8rem,1.5vw,1.5rem) .5rem;border:1px solid var(--rule);
+      border-radius:var(--radius);background:rgba(56,180,155,.07)}
+  .rd .g{font-family:var(--ar);direction:rtl;font-size:clamp(2.4rem,5vw,4.6rem);
+         line-height:1.35;color:var(--sand)}
+  .rd .t{font-size:clamp(1rem,1.4vw,1.4rem);color:var(--white);font-weight:700}
+  .rd .m{font-size:clamp(.88rem,1.15vw,1.15rem);color:var(--faint)}
+  @media (max-width:820px){ .reads{grid-template-columns:1fr} }
+
+  /* ═══════════ Ikonka ═══════════ */
+  .icon{width:var(--iconsz);height:var(--iconsz);flex:none;display:block;
+        fill:none;stroke:url(#gold);stroke-width:1.5;
+        stroke-linecap:round;stroke-linejoin:round}
+
+  /* ═══════════ Ro'yxat ═══════════ */
+  ul.marks{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;
+           gap:clamp(.5rem,.95vw,.9rem)}
+  ul.marks li{position:relative;padding-left:clamp(1.6rem,2.3vw,2.3rem);
+              font-size:clamp(1.18rem,1.75vw,1.75rem);line-height:1.38;color:var(--soft)}
+  ul.marks li::before{content:"";position:absolute;left:0;top:.6em;
+                      width:.5rem;height:.5rem;border-radius:50%;background:var(--mint)}
+  ul.marks li b{color:var(--white);font-weight:700}
+  ul.marks.num{counter-reset:m}
+  ul.marks.num li{counter-increment:m;padding-left:clamp(1.9rem,2.6vw,2.6rem)}
+  ul.marks.num li::before{content:counter(m);background:none;width:auto;height:auto;
+    top:0;font-size:.88em;font-weight:700;color:var(--amber);
+    font-variant-numeric:tabular-nums}
+  ul.marks.two{display:grid;grid-template-columns:1fr 1fr;
+               gap:clamp(.5rem,.9vw,.85rem) clamp(1.2rem,2.4vw,2.4rem)}
+
+  /* ═══════════ Kartalar ═══════════ */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));
+         gap:clamp(.6rem,1.1vw,1.1rem)}
+  .card{display:flex;flex-direction:column;gap:clamp(.4rem,.75vw,.7rem);
+        padding:clamp(.85rem,1.5vw,1.45rem);border:1px solid var(--rule);
+        border-radius:var(--radius);background:rgba(56,180,155,.07)}
+  .card .cn{font-size:clamp(.88rem,1.15vw,1.15rem);font-weight:700;letter-spacing:.12em;
+            text-transform:uppercase;color:var(--amber)}
+  .card .ct{font-size:clamp(1.5rem,2.4vw,2.3rem);font-weight:700;line-height:1.14;
+            letter-spacing:-.02em;color:var(--white)}
+  .card .cd{font-size:clamp(1.12rem,1.6vw,1.6rem);line-height:1.36;color:var(--soft)}
+  .card .cd b{color:var(--white);font-weight:700}
+  .cards.vert{grid-template-columns:1fr}
+  .cards.vert .card{flex-direction:row;align-items:baseline;gap:clamp(.8rem,1.6vw,1.6rem)}
+  .cards.vert .card .cn{flex:none;width:clamp(5rem,9vw,9rem)}
+  .card.hot{border-color:rgba(231,175,59,.45);background:rgba(231,175,59,.08)}
+  .card.hot .cn{color:var(--sand)}
+
+  /* Kartalar ichidagi harf misollari */
+  .cards.vert .card:has(.ex){align-items:center}
+  .card .ex{margin-left:auto;flex:none;display:flex;align-items:flex-end;
+            gap:clamp(.55rem,1.1vw,1.1rem)}
+  .exi{display:flex;flex-direction:column;align-items:center;gap:.28rem}
+  .exi .n{font-size:clamp(.68rem,.88vw,.88rem);font-weight:700;letter-spacing:.08em;
+          text-transform:uppercase;color:var(--faint);white-space:nowrap}
+  .exg{font-family:var(--ar);direction:rtl;font-size:clamp(1.9rem,3vw,2.9rem);
+       color:var(--sand);line-height:1.25;display:block}
+  .exa{color:var(--mint);font-size:clamp(1.1rem,1.6vw,1.6rem);padding-bottom:.55em}
+
+  /* Abul Aswad usuli: qizil nuqtali harakat */
+  .rdot{position:relative;display:block;padding:.62em .68em}
+  .rdot i{position:absolute;font-size:clamp(1.9rem,3vw,2.9rem);
+          width:.3em;height:.3em;border-radius:50%;background:#f05a48;
+          box-shadow:0 0 0 .09em rgba(240,90,72,.32)}
+  .rdot i.up{top:.02em;left:50%;transform:translateX(-50%)}
+  .rdot i.dn{bottom:.02em;left:50%;transform:translateX(-50%)}
+  .rdot i.lf{left:.02em;top:48%;transform:translateY(-50%)}
+  @media (max-width:820px){ .card .ex{margin-left:0;flex-wrap:wrap} }
+
+  /* ═══════════ Qadamlar ═══════════ */
+  .flow{display:flex;flex-direction:column;gap:clamp(.4rem,.7vw,.65rem)}
+  .fstep{display:grid;grid-template-columns:auto 1fr;gap:clamp(.7rem,1.3vw,1.2rem);
+         align-items:baseline;padding:clamp(.5rem,.9vw,.8rem) clamp(.75rem,1.2vw,1.1rem);
+         border:1px solid var(--rule-soft);border-radius:var(--radius)}
+  .fstep .fn{font-weight:700;color:var(--amber);font-variant-numeric:tabular-nums;
+             font-size:clamp(1.15rem,1.65vw,1.65rem);min-width:1.5em}
+  .fstep .ft{font-size:clamp(1.15rem,1.7vw,1.7rem);line-height:1.36;color:var(--soft)}
+  .fstep .ft b{color:var(--white);font-weight:700}
+
+  /* Arabcha + lotincha juftlik */
+  .pr{display:inline-flex;align-items:baseline;gap:.4em;white-space:nowrap;
+      margin-inline-end:clamp(.9rem,1.8vw,1.8rem)}
+  .pr .ar{color:var(--sand)}
+  .pr b{color:var(--white);font-weight:700}
+
+
+  /* ═══════════ Rasmlar ═══════════ */
+  .figs{display:grid;gap:clamp(.5rem,1vw,1rem);min-height:0;margin:0}
+  .figs.two{grid-template-columns:1fr 1fr}
+  /* 4 ta rasm — 2x2. Qolgan bo'sh balandlikni egallaydi, oshib ketmaydi. */
+  .figs.four{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;
+             gap:clamp(.6rem,1.2vw,1.2rem);
+             flex:1 1 auto;min-height:0;width:min(100%,72vh);margin-inline:auto}
+  .figs.four .fig{min-height:0}
+  .fig{display:flex;flex-direction:column;gap:.45rem;min-width:0;margin:0}
+  .fig .ph{overflow:hidden;border-radius:var(--radius);
+           border:1px solid var(--rule-soft);background:#00343a}
+  .fig .ph img{display:block;width:100%;height:100%;object-fit:cover}
+  .figs.two .ph{aspect-ratio:1/1}
+  /* Katak balandlikdan kvadrat bo'ladi -> rasm chetida bo'sh joy qolmaydi */
+  .figs.four .ph{flex:1 1 auto;min-height:0;height:auto;width:auto;
+                 aspect-ratio:1/1;margin-inline:auto;max-width:100%}
+  .figs.four .ph img{width:100%;height:100%;object-fit:cover}
+  .figs.four figcaption{text-align:center}
+  .figs.wide .ph{aspect-ratio:4/3}
+  .fig figcaption{font-size:clamp(.92rem,1.2vw,1.2rem);color:var(--soft);line-height:1.3}
+  .fig figcaption b{color:var(--white);font-weight:700}
+  .col .figs{margin-bottom:.15rem}
+  .col .fig figcaption{font-size:clamp(.82rem,1.02vw,1.02rem)}
+
+  /* katta yakka rasm */
+  .hero-pic{border-radius:var(--radius);border:1px solid var(--rule-soft);
+            overflow:hidden;background:#00343a;min-height:0;margin:0}
+  .hero-pic img{display:block;width:100%;height:auto;max-height:36vh;object-fit:contain}
+  .hero-pic.short img{max-height:27vh}
+
+  /* rasm va matn yonma-yon */
+  .split{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1fr);
+         gap:clamp(.9rem,1.8vw,1.8rem);align-items:center;min-height:0}
+  .split .shot{border-radius:var(--radius);border:1px solid var(--rule-soft);
+               overflow:hidden;background:#00343a;min-width:0;align-self:center;
+               max-width:100%;margin-inline:auto}
+  .split .shot img{display:block;width:100%;height:auto}
+  .split .sx{display:flex;flex-direction:column;gap:clamp(.65rem,1.2vw,1.2rem);min-width:0}
+  /* matn chapda, rasm o'ngda */
+  .split.pic-right{grid-template-columns:minmax(0,1fr) minmax(0,.92fr)}
+  /* ostida yana kontent bo'lsa rasm pastroq bo'ladi */
+  .split.slim .shot{max-width:min(100%,54vh)}
+  .split .sx h2{margin:0}
+  /* Icon va sarlavha bitta qatorda — balandlikdan yutamiz */
+  .head{display:flex;align-items:center;gap:clamp(.7rem,1.4vw,1.4rem);min-width:0}
+  .head h1,.head h2{margin:0}
+  .head .icon{flex:none}
+  /* Pastroq rasm kataklari */
+  /* Kvadrat rasm kesilmasin: katak ham kvadrat, o'lchami balandlikdan cheklanadi */
+  .figs.short .ph{aspect-ratio:1/1;max-width:min(100%,31vh);margin-inline:auto}
+  .figs.short figcaption{text-align:center}
+  /* Past ekranlarda rasm va oraliqlar qisqaradi */
+  /* Past ekranlarda harf kartasi ixchamlashadi */
+  @media (max-height:800px){
+    .lhead .g{font-size:clamp(2rem,4vw,2.9rem);line-height:1.12}
+    .lhead .nm{font-size:clamp(1.1rem,2vw,1.6rem)}
+    .stack.card{gap:.26rem}
+    .stack.card .try{padding:.42rem .6rem}
+    .lbl{margin-top:.05rem}
+    .forms.oq .fm{padding:.22rem .55rem}
+    .forms.oq .fm .g{font-size:clamp(1.25rem,2vw,1.8rem);line-height:1.22}
+    .forms.oq .fm .n{font-size:clamp(.66rem,.84vw,.82rem)}
+    .slide .eyebrow{font-size:clamp(.68rem,.84vw,.82rem)}
+    .stack.card .sifats .sf{padding:.26rem .5rem}
+    .stack.card .forms .fm{padding:.26rem .55rem;gap:.12rem}
+    .stack.card .forms .fm .g{font-size:clamp(1.3rem,2.1vw,1.9rem);line-height:1.22}
+    .stack.card .small{font-size:clamp(.74rem,.94vw,.94rem);line-height:1.3}
+    .sifats{gap:.4rem}
+    .sifats .sf{padding:.34rem .6rem;gap:0}
+    .sifats .sf b{font-size:clamp(.9rem,1.2vw,1.15rem)}
+    .sifats .sf span{font-size:clamp(.7rem,.9vw,.86rem)}
+    .forms{gap:.4rem}
+    .forms .fm{padding:.34rem .7rem;gap:.15rem;min-width:clamp(3.4rem,5.5vw,4.6rem)}
+    .forms .fm .g{font-size:clamp(1.5rem,2.5vw,2.2rem);line-height:1.3}
+    .forms .fm .n{font-size:clamp(.64rem,.82vw,.8rem)}
+    /* O'qilishi: fatha / kasra / damma */
+  .forms.oq .fm{border-color:var(--rule);background:rgba(56,180,155,.09);
+                padding:.3rem clamp(.6rem,1.1vw,1rem);gap:.1rem}
+  .forms.oq .fm .g{font-size:clamp(1.5rem,2.4vw,2.2rem);line-height:1.35}
+  .forms.oq .fm .n{color:var(--soft);font-weight:700;letter-spacing:.04em}
+  .lbl{font-size:clamp(.7rem,.86vw,.86rem)}
+    .try{padding:.55rem .75rem}
+    .try .tx span{font-size:clamp(.95rem,1.3vw,1.3rem);line-height:1.32}
+    .stack{gap:.42rem}
+    .slide .small{font-size:clamp(.78rem,1vw,1rem);line-height:1.35}
+  }
+
+  @media (max-height:830px){
+    .figs.short .ph{max-width:min(100%,24vh)}
+    .col .ar.big{font-size:clamp(1.8rem,3.4vw,2.6rem)}
+    .letters .lt{padding:clamp(.35rem,.6vw,.6rem) .35rem}
+    .letters .lt .g{font-size:clamp(1.6rem,2.6vw,2.4rem)}
+    .stack.loose{gap:clamp(.6rem,1.1vw,1.1rem)}
+    .split.slim .shot{max-width:min(100%,46vh)}
+  }
+  .split:has(.sx > h2:only-child){align-items:center}
+
+  /* ═══════════ Ikki ustun ═══════════ */
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(.7rem,1.4vw,1.4rem)}
+  .col{display:flex;flex-direction:column;gap:clamp(.55rem,1vw,.95rem);
+       padding:clamp(.85rem,1.5vw,1.5rem);border:1px solid var(--rule);
+       border-radius:var(--radius)}
+  .col.warm{border-color:rgba(231,175,59,.45)}
+  .col.warm ul.marks li::before{background:var(--amber)}
+  .col h4{margin:0;font-size:clamp(1rem,1.3vw,1.3rem);font-weight:700;
+          letter-spacing:.13em;text-transform:uppercase;color:var(--mint)}
+  .col.warm h4{color:var(--amber)}
+  .col .ar.big{font-size:clamp(2.4rem,5vw,4rem)}
+
+  /* ═══════════ Amaliy sinov ═══════════ */
+  .try{display:flex;gap:clamp(.7rem,1.3vw,1.2rem);align-items:flex-start;
+       padding:clamp(.85rem,1.5vw,1.4rem);border-radius:var(--radius);
+       border:1px dashed rgba(231,175,59,.5);background:rgba(231,175,59,.07)}
+  .try .icon{--iconsz:clamp(26px,2.4vw,38px)}
+  .try .tx{display:flex;flex-direction:column;gap:.3rem}
+  .try .tx b{font-size:clamp(.92rem,1.18vw,1.18rem);font-weight:700;letter-spacing:.13em;
+             text-transform:uppercase;color:var(--sand)}
+  .try .tx span{font-size:clamp(1.12rem,1.6vw,1.6rem);line-height:1.38;color:var(--soft)}
+
+  /* ═══════════ Iqtibos ═══════════ */
+  blockquote{margin:0;padding-left:clamp(.9rem,1.7vw,1.6rem);border-left:3px solid var(--amber)}
+  blockquote p{font-weight:700;font-size:clamp(1.9rem,3.6vw,3.3rem);line-height:1.14;
+               letter-spacing:-.028em;color:var(--white);max-width:20ch}
+
+  /* ═══════════ HUD ═══════════ */
+
+  /* ═══════════ Kamera tanlash va yozib olish ═══════════ */
+  .panel{position:absolute;top:0;left:0;right:0;bottom:0;z-index:9;display:none;
+         align-items:center;justify-content:center;padding:2rem;
+         background:rgba(0,12,14,.86);backdrop-filter:blur(6px)}
+  .panel.on{display:flex}
+  .panel .box{width:min(560px,100%);max-height:100%;overflow:auto;
+              background:var(--deeper);border:1px solid var(--rule);
+              border-radius:var(--radius);padding:clamp(1.1rem,2vw,1.8rem);
+              display:flex;flex-direction:column;gap:.9rem}
+  .panel h3{margin:0;font-size:clamp(1rem,1.3vw,1.25rem);font-weight:700;
+            letter-spacing:.1em;text-transform:uppercase;color:var(--mint)}
+  .panel .row{display:flex;flex-direction:column;gap:.3rem}
+  .panel label{font-size:.82rem;letter-spacing:.09em;text-transform:uppercase;color:var(--faint)}
+  .panel select{width:100%;padding:.6rem .7rem;border-radius:8px;
+                border:1px solid var(--rule);background:var(--deepest);color:var(--white);
+                font-family:inherit;font-size:.95rem}
+  .panel .btns{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.3rem}
+  .panel button{flex:1;min-width:8rem;padding:.65rem .9rem;border-radius:8px;cursor:pointer;
+                border:1px solid var(--rule);background:rgba(56,180,155,.12);
+                color:var(--white);font-family:inherit;font-size:.95rem;font-weight:700}
+  .panel button.go{border-color:rgba(231,175,59,.6);background:rgba(231,175,59,.16)}
+  .panel .note{font-size:.84rem;line-height:1.45;color:var(--faint)}
+  .panel .note b{color:var(--soft)}
+  /* Yozuv indikatori */
+  .recdot{position:absolute;top:0;right:0;z-index:6;display:none;align-items:center;gap:.45em;
+          margin:clamp(.7rem,1.2vw,1.1rem);padding:.34em .7em;border-radius:999px;
+          background:rgba(200,40,30,.9);color:#fff;font-size:clamp(.66rem,.82vw,.8rem);
+          font-weight:700;letter-spacing:.11em;text-transform:uppercase;
+          font-variant-numeric:tabular-nums}
+  .recdot.on{display:inline-flex}
+  .recdot::before{content:"";width:.6em;height:.6em;border-radius:50%;background:#fff;
+                  animation:pulse 1.4s ease-in-out infinite}
+
+
+  /* ═══════════ Harf kartasi (3-dars) ═══════════ */
+  .lhead{display:flex;align-items:center;gap:clamp(.8rem,1.6vw,1.6rem);margin:0}
+  .lhead .g{font-family:var(--ar);font-size:clamp(2.6rem,5.2vw,4.4rem);
+            color:var(--sand);line-height:1.2;font-weight:400}
+  .lhead .nm{font-size:clamp(1.5rem,2.7vw,2.4rem);font-weight:700;color:var(--white);
+             letter-spacing:-.01em}
+  .sifats{display:flex;flex-wrap:wrap;gap:clamp(.45rem,.9vw,.9rem)}
+  .sifats .sf{display:flex;flex-direction:column;gap:.1rem;min-width:0;
+              padding:clamp(.36rem,.7vw,.65rem) clamp(.6rem,1.05vw,.95rem);
+              border:1px solid var(--rule);border-radius:var(--radius);
+              background:rgba(56,180,155,.08)}
+  .sifats .sf b{font-size:clamp(1rem,1.4vw,1.4rem);color:var(--white);font-weight:700}
+  .sifats .sf span{font-size:clamp(.78rem,1vw,1rem);color:var(--faint)}
+  .forms{display:flex;direction:rtl;gap:clamp(.45rem,.9vw,.9rem);justify-content:flex-end;
+         flex-wrap:wrap}
+  .forms .fm{display:flex;flex-direction:column;align-items:center;gap:.22rem;
+             padding:clamp(.36rem,.7vw,.65rem) clamp(.65rem,1.2vw,1.1rem);
+             border:1px solid rgba(231,175,59,.4);border-radius:var(--radius);
+             background:rgba(231,175,59,.08);min-width:clamp(4rem,6.5vw,5.6rem)}
+  .forms .fm .g{font-family:var(--ar);font-size:clamp(1.8rem,3vw,2.8rem);
+                color:var(--sand);line-height:1.4}
+  .forms .fm .n{font-size:clamp(.7rem,.92vw,.92rem);color:var(--faint);
+                direction:ltr;text-align:center;letter-spacing:.02em}
+  /* O'qilishi: fatha / kasra / damma */
+  .forms.oq .fm{border-color:var(--rule);background:rgba(56,180,155,.09);
+                padding:.3rem clamp(.6rem,1.1vw,1rem);gap:.1rem}
+  .forms.oq .fm .g{font-size:clamp(1.5rem,2.4vw,2.2rem);line-height:1.35}
+  .forms.oq .fm .n{color:var(--soft);font-weight:700;letter-spacing:.04em}
+  /* Maxraj qatori: matn bloki chapda, rasm blokdan tashqarida, o'ngda */
+  /* ── Harf slaydi ──
+     Karta butun maydonni egallaydi. Rasm o'ng tepada, qat'iy joyda.
+     Matn yuqoridan boshlanadi va rasmning yuqori qirrasi bilan bir chiziqda turadi. */
+  .slide.letter .wrap{position:relative;max-width:1500px;
+                      --mxw:min(40%,56vh);
+                      --mxpad:clamp(1rem,1.9vw,1.9rem);
+                      --grp:clamp(.7rem,1.35vw,1.35rem)}
+  .slide.letter .stack.card{height:100%;justify-content:flex-start;
+                            gap:clamp(.22rem,.4vw,.4rem);
+                            padding:var(--mxpad);
+                            padding-right:calc(var(--mxw) + var(--mxpad) + var(--mxgap));
+                            padding-bottom:calc(var(--mxpad) + clamp(2.3rem,calc(var(--u)*5),5rem))}
+  /* Flex qatorlari siqilib, matn o'z qutisidan chiqib ketmasin */
+  .slide.letter .stack.card{align-items:center;text-align:center}
+  .slide.letter .stack.card > *{flex:0 0 auto}
+  /* Rasm uchun ajratilgan joy hisobga olinsin — markaz chap chet bilan rasm orasida */
+  .slide.letter .stack.card > *:not(.try){margin-right:calc(var(--mxgap) * -1)}
+  .slide.letter .sifats,
+  .slide.letter .forms{justify-content:center}
+  .slide.letter .small{max-width:64ch}
+  .slide.letter .try{text-align:left}
+
+  /* Maxraj izohi rasm bilan birga o'ng ustunda — chap ustun bo'shaydi */
+  .slide.letter .try{position:absolute;right:var(--mxpad);width:var(--mxw);
+                     top:auto;bottom:var(--mxpad);margin-top:0}
+  .slide.letter .mxpic{position:absolute;display:block;line-height:0;
+                       top:var(--mxpad);right:var(--mxpad);width:var(--mxw)}
+  .slide.letter .mxpic img{display:block;width:100%;height:auto;
+                           border:1px solid var(--rule);border-radius:var(--radius);
+                           background:#fff;
+                           opacity:0;transition:opacity .25s var(--e-out)}
+  .slide.letter .mxpic img.rdy{opacity:1}
+
+  /* Harf — slaydning qahramoni */
+  .slide.letter .lhead{align-items:baseline;gap:clamp(.7rem,1.4vw,1.4rem);
+                       margin-bottom:clamp(.15rem,.4vw,.4rem)}
+  .slide.letter .lhead .g{font-size:clamp(3.2rem,6.4vw,5.6rem);line-height:1.5;
+                          transform:translateY(.07em)}
+  .slide.letter .lhead .nm{font-size:clamp(1.7rem,3.1vw,2.9rem);letter-spacing:-.02em}
+
+  /* Bo'shliq ritmi: yorliq o'z blokiga yopishadi, bloklar orasi ochiq */
+  .slide.letter .lbl{margin-top:var(--grp)}
+  .slide.letter .try{margin-top:var(--grp)}
+  .slide.letter .small{margin-top:auto;padding-top:var(--grp);
+                       border-top:1px solid var(--rule-soft);max-width:72ch}
+
+  /* Tubidagi progress: nechanchi harf ekani va qancha qolgani */
+  /* O'qilishi: uchta kvadrat katak, matn ustuni o'rtasida */
+  /* Harakatli (رَ رِ رُ) + sukunli (أَرْ إِرْ أُرْ) — bitta qatorda, ixcham */
+  .slide.letter .forms.oq{justify-content:center;direction:ltr;flex-wrap:nowrap;align-items:stretch;
+                          align-self:stretch;
+                          gap:clamp(.25rem,calc(var(--u)*.8),.8rem)}
+  .slide.letter .forms.oq .fm{flex:0 1 clamp(3rem,calc(var(--u)*8.4),8.4rem);width:auto;min-width:0;
+                              aspect-ratio:auto;padding:clamp(.2rem,calc(var(--u)*.5),.5rem) .15rem;
+                              justify-content:center;align-items:center;gap:0;
+                              border-radius:var(--radius)}
+  .slide.letter .forms.oq .fm .g{font-size:clamp(1.2rem,calc(var(--u)*3.4),3.2rem);line-height:1.6;
+                                 transform:none;margin-bottom:0}
+  .slide.letter .forms.oq .fm .n{font-size:clamp(.62rem,calc(var(--u)*1.6),1.6rem);max-width:none}
+  .slide.letter .forms.oq .fm.suk{border-color:rgba(231,175,59,.4);background:rgba(231,175,59,.08)}
+  .slide.letter .forms.oq .sep{flex:none;width:1px;background:var(--rule);
+                               margin:0 clamp(.1rem,calc(var(--u)*.5),.5rem)}
+  /* Maxraj rasmi ham bosqich bilan chiqadi — lekin joyi siljimaydi */
+  .slide.letter .mxpic[data-step]{transform:none}
+
+  /* ═══════════ Ligaturalar va shakli o'xshash harflar (harf slaydi) ═══════════ */
+  .slide.letter .ligs,.slide.letter .oxs{display:flex;flex-wrap:wrap;justify-content:center;
+                                         gap:clamp(.28rem,calc(var(--u)*.9),.9rem)}
+  .slide.letter .ligs .lg{display:flex;flex-direction:column;align-items:center;gap:0;
+                          min-width:clamp(3.4rem,calc(var(--u)*8.4),8.4rem);
+                          padding:clamp(.15rem,calc(var(--u)*.35),.35rem) clamp(.4rem,calc(var(--u)*.9),.9rem);
+                          border:1px solid var(--rule);border-radius:var(--radius);background:rgba(56,180,155,.08)}
+  .slide.letter .ligs .lg .g{font-family:var(--ar);direction:rtl;color:var(--sand);
+                             font-size:clamp(1.5rem,calc(var(--u)*5.2),5rem);line-height:1.55}
+  .slide.letter .ligs .lg .n{font-family:var(--ar);direction:rtl;color:var(--faint);white-space:nowrap;
+                             font-size:clamp(.78rem,calc(var(--u)*1.9),1.8rem);line-height:1.3}
+  .slide.letter .oxs .ox{display:flex;align-items:center;gap:clamp(.35rem,calc(var(--u)*.8),.8rem);text-align:left;
+                         padding:clamp(.2rem,calc(var(--u)*.45),.45rem) clamp(.5rem,calc(var(--u)*1),1rem);
+                         border:1px solid var(--rule-soft);border-radius:var(--radius);background:rgba(56,180,155,.05)}
+  .slide.letter .oxs .ox.cur{border-color:rgba(231,175,59,.45);background:rgba(231,175,59,.08)}
+  .slide.letter .oxs .ox .g{font-family:var(--ar);color:var(--sand);line-height:1.45;
+                            font-size:clamp(1.5rem,calc(var(--u)*4.8),4.6rem)}
+  .slide.letter .oxs .ox .t{display:flex;flex-direction:column}
+  .slide.letter .oxs .ox .t b{font-size:clamp(.8rem,calc(var(--u)*2.1),2rem);color:var(--white);
+                              font-weight:700;line-height:1.2}
+  .slide.letter .oxs .ox .t span{font-size:clamp(.7rem,calc(var(--u)*1.7),1.6rem);color:var(--faint);line-height:1.25}
+
+  /* ═══════════ O'qish matni slaydi (kitobdan) ═══════════
+     Harf slaydidan keyin keladi: harakatli bo'g'inlar, kitobdagi o'qish qatorlari, diqqat.
+     --rs — sig'dirish koeffitsienti: matn ko'p bo'lsa JS uni kichraytiradi. */
+  .slide.reading .wrap{position:relative;max-width:1500px;--u:min(1vw,1.01vh);--rs:1;
+                       --mxpad:clamp(.8rem,calc(var(--u)*1.9),1.9rem);
+                       --grp:clamp(.38rem,calc(var(--u)*1.35),1.35rem)}
+  .slide.reading .stack.card{height:100%;justify-content:flex-start;align-items:center;
+                             text-align:center;gap:calc(var(--grp)*var(--rs));padding:var(--mxpad);
+                             padding-bottom:calc(var(--mxpad) + clamp(2.3rem,calc(var(--u)*5),5rem))}
+  .slide.reading .stack.card > *{flex:0 0 auto}
+  .slide.reading .rhead{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;
+                        column-gap:clamp(1rem,calc(var(--u)*3.2),3.2rem);row-gap:.2rem}
+  .slide.reading .lhead{align-items:baseline;gap:clamp(.7rem,1.4vw,1.4rem);margin:0}
+  .slide.reading .lhead .g{font-size:clamp(1.9rem,calc(var(--u)*5.6),5rem);line-height:1.5;
+                           transform:translateY(.07em)}
+  .slide.reading .lhead .nm{font-size:clamp(1.1rem,calc(var(--u)*2.8),2.6rem);
+                            letter-spacing:-.02em}
+  .slide.reading .lhead .tg{font-size:clamp(.66rem,calc(var(--u)*1.35),1.35rem);font-weight:700;
+                            letter-spacing:.13em;text-transform:uppercase;color:var(--mint)}
+  .slide.reading .forms.oq{justify-content:center;direction:ltr;flex-wrap:nowrap;
+                           gap:clamp(.4rem,calc(var(--u)*1.2),1.2rem)}
+  .slide.reading .forms.oq .fm{min-width:0;width:clamp(3.2rem,calc(var(--u)*7.4),7rem);
+                               padding:clamp(.2rem,calc(var(--u)*.5),.5rem) .2rem;gap:0;
+                               border-radius:var(--radius)}
+  .slide.reading .forms.oq .fm .g{font-size:clamp(1.3rem,calc(var(--u)*3.5),3.3rem);
+                                  line-height:1.6;margin:0}
+  .slide.reading .forms.oq .fm .n{font-size:clamp(.62rem,calc(var(--u)*1.45),1.45rem);
+                                  max-width:none}
+  .slide.reading .rlines{display:flex;flex-direction:column;align-items:center;align-self:stretch;min-width:0;
+                         margin-block:auto}
+  .slide.reading .rlines + .small{margin-top:0}
+  .slide.reading .rl{margin:0;max-width:none;font-family:var(--ar);direction:rtl;unicode-bidi:isolate;
+                     color:var(--white);white-space:nowrap;word-spacing:.24em;
+                     font-size:calc(clamp(1.3rem,calc(var(--u)*4.2),4rem)*var(--rs));line-height:1.8}
+  /* Kitobdagidek: asosiy harf qizil, taqqoslanadigan harf yashil */
+  .slide.reading .rl .t{color:#ff8a78}
+  .slide.reading .rl .c{color:#7fe3a8}
+  .slide.reading .small{margin-top:auto;padding-top:var(--grp);border-top:1px solid var(--rule-soft);
+                        max-width:72ch;font-size:clamp(.74rem,calc(var(--u)*2.2),2.2rem);line-height:1.38}
+  .slide.reading .lprog{position:absolute;left:var(--mxpad);right:var(--mxpad);
+                        bottom:calc(var(--mxpad) - .1rem);display:flex;align-items:center;
+                        gap:clamp(.6rem,1.2vw,1.2rem)}
+  .slide.reading .lprog .pb{flex:1;height:2px;min-width:0;border-radius:2px;background:var(--rule);overflow:hidden}
+  .slide.reading .lprog .pb i{display:block;height:100%;background:var(--amber);border-radius:2px}
+  .slide.reading .lprog .pn{flex:none;font-size:clamp(.72rem,.88vw,.86rem);font-weight:500;
+                            letter-spacing:.14em;color:var(--faint);font-variant-numeric:tabular-nums}
+  .slide.reading .lprog .pn b{color:var(--mint);font-weight:700}
+
+
+  .slide.letter .lprog{position:absolute;left:var(--mxpad);
+                       bottom:calc(var(--mxpad) - .1rem);
+                       width:calc(100% - var(--mxw) - var(--mxpad)*2 - clamp(.7rem,1.3vw,1.3rem));
+                       display:flex;align-items:center;gap:clamp(.6rem,1.2vw,1.2rem)}
+  .slide.letter .lprog .pb{flex:1;height:2px;min-width:0;border-radius:2px;
+                           background:var(--rule);overflow:hidden}
+  .slide.letter .lprog .pb i{display:block;height:100%;background:var(--amber);
+                             border-radius:2px}
+  .slide.letter .lprog .pn{flex:none;font-size:clamp(.72rem,.88vw,.86rem);
+                           font-weight:500;letter-spacing:.14em;color:var(--faint);
+                           font-variant-numeric:tabular-nums}
+  .slide.letter .lprog .pn b{color:var(--mint);font-weight:700}
+
+  /* Harf slaydining o'lchov birligi.
+     Faqat kenglikka bog'lansa, keng-past ekranlarda matn balandlikka sig'may qoladi —
+     shuning uchun birlik kenglik va balandlikning kichigidan olinadi. */
+  /* Past ekranlarda o'lchov birligi qisqaradi, matn sig'maydigan bo'lib qolmaydi */
+  .slide.letter .wrap{--k:1;--u:calc(min(1vw,1.01vh)*var(--k));
+                      --mxpad:clamp(.8rem,calc(var(--u)*1.9),1.9rem);
+                      --grp:clamp(.38rem,calc(var(--u)*1.35),1.35rem);
+                      --mxgap:clamp(.7rem,1.3vw,1.3rem)}
+  .slide.letter .lhead .g{font-size:clamp(1.9rem,calc(var(--u)*6.4),5.6rem);line-height:1.5;
+                          transform:translateY(.07em)}
+  .slide.letter .lhead .nm{font-size:clamp(1.1rem,calc(var(--u)*3.1),2.9rem)}
+  .slide.letter .lbl{font-size:clamp(.66rem,calc(var(--u)*1.35),1.35rem)}
+  .slide.letter .try{padding:clamp(.42rem,calc(var(--u)*1.5),1.4rem)}
+  .slide.letter .try .tx b{font-size:clamp(.76rem,calc(var(--u)*1.8),1.8rem)}
+  .slide.letter .try .tx span{font-size:clamp(.8rem,calc(var(--u)*2.2),2.2rem);line-height:1.34}
+  .slide.letter .sifats{gap:clamp(.28rem,calc(var(--u)*.9),.9rem)}
+  .slide.letter .sifats .sf{padding:clamp(.3rem,calc(var(--u)*.62),.62rem)
+                                    clamp(.55rem,calc(var(--u)*1.2),1.2rem);gap:.05rem}
+  .slide.letter .sifats .sf b{font-size:clamp(.76rem,calc(var(--u)*2.3),2.3rem)}
+  .slide.letter .sifats .sf span{font-size:clamp(.62rem,calc(var(--u)*1.75),1.75rem)}
+  .slide.letter .forms{gap:clamp(.28rem,calc(var(--u)*.9),.9rem)}
+  .slide.letter .forms .fm{padding:clamp(.3rem,calc(var(--u)*.7),.75rem)
+                                   clamp(.55rem,calc(var(--u)*1.3),1.35rem);
+                           gap:.15rem;min-width:clamp(3.4rem,calc(var(--u)*6),6rem)}
+  .slide.letter .forms .fm .g{font-size:clamp(1.15rem,calc(var(--u)*3.5),3.2rem);line-height:1.5;
+                              margin-bottom:.3em}
+  .slide.letter .forms .fm .n{font-size:clamp(.58rem,calc(var(--u)*1.6),1.6rem);
+                              white-space:normal;text-align:center;max-width:14ch;line-height:1.25}
+  .slide.letter .small{font-size:clamp(.74rem,calc(var(--u)*2.4),2.4rem);line-height:1.38}
+
+  .lbl{font-size:clamp(.74rem,.9vw,.9rem);font-weight:700;letter-spacing:.13em;
+       text-transform:uppercase;color:var(--mint);margin:0;margin-top:.15rem}
+  /* Harf slaydi: qatorlar zich */
+  .stack.card{gap:clamp(.32rem,.62vw,.62rem)}
+  .stack.card .try{padding:clamp(.5rem,.95vw,.9rem)}
+
+  .hud{position:absolute;left:0;right:0;bottom:0;z-index:4;display:flex;align-items:center;
+       gap:1rem;padding:clamp(.5rem,.9vw,.8rem) var(--pad);
+       font-size:clamp(.66rem,.82vw,.8rem);font-weight:500;letter-spacing:.11em;
+       color:var(--mint);pointer-events:none;text-transform:uppercase}
+  .hud .sect{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .hud .count{font-variant-numeric:tabular-nums;color:var(--faint)}
+  .bar{position:absolute;top:0;left:0;height:3px;background:var(--amber);width:0;
+       transition:width var(--swap) ease;z-index:5}
+  .hint{position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);z-index:4;
+        font-size:clamp(.68rem,.86vw,.82rem);font-weight:500;letter-spacing:.07em;
+        color:var(--faint);opacity:1;transition:opacity .6s ease;pointer-events:none;
+        white-space:nowrap}
+  .hint.gone{opacity:0}
+  .hint kbd{font-family:inherit;border:1px solid var(--rule);border-radius:4px;
+            padding:.12rem .42rem;color:var(--mint)}
+
+  @media (max-width:820px){
+    :root{--vw:0px}
+    .stage{grid-template-columns:1fr}
+    .vid{display:none}
+    ul.marks.two,.duo{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:reduce){
+    :root{--swap:.01ms}
+    .slide,.bar{transition-duration:.01ms!important}
+    .slide,.slide.from-above,.slide.leaving-up,.slide.leaving-down{transform:none!important}
+    .rec::before{animation:none}
+  }
+
+
+  @media (max-height:800px){ .slide.letter .wrap{--u:calc(min(1vw,.74vh)*var(--k))} }
+  @media (max-height:680px){ .slide.letter .wrap{--u:calc(min(1vw,.68vh)*var(--k))} }
+  @media (max-height:640px){ .slide.letter .wrap{--u:calc(min(1vw,.60vh)*var(--k))} }
+
+  /* ═══════════ Video panelsiz: slaydlar butun ekranda ═══════════ */
+  :root{--vw:0px}
+  .stage{grid-template-columns:1fr}
+  .vid,.panel{display:none!important}
+  /* ═══════════ Mavzu darslari ═══════════ */
+  .slide.reading .lhead .g.sm{font-size:clamp(1.5rem,calc(var(--u)*4.2),3.8rem)}
+  .slide.reading .lhead .nm{text-align:left}
+  /* Qoida bandlari */
+  .slide.reading .rlines.qb{align-items:stretch;align-self:center;width:100%;max-width:min(100%,64ch);
+       gap:calc(clamp(.3rem,calc(var(--u)*1),1rem)*var(--rs))}
+  .slide.reading .qt{margin:0;max-width:none;text-align:left;position:relative;color:var(--soft);
+       padding-left:calc(clamp(1.1rem,calc(var(--u)*2.2),2.2rem)*var(--rs));
+       font-size:calc(clamp(.95rem,calc(var(--u)*2.5),2.5rem)*var(--rs));line-height:1.42}
+  .slide.reading .qt::before{content:"";position:absolute;left:0;top:.62em;width:.42em;height:.42em;
+       border-radius:50%;background:var(--mint)}
+  .slide.reading .qt b{color:var(--white);font-weight:700}
+  .slide.reading .qt .ar.inl{color:var(--sand);font-size:1.3em;line-height:1}
+  .slide.reading .qt .t,.slide.reading .qx .t,.slide.reading .jr .t{color:#ff8a78}
+  .slide.reading .qt .c,.slide.reading .qx .c,.slide.reading .jr .c{color:#7fe3a8}
+  /* Misollar — chiplar */
+  .slide.reading .qx{display:flex;flex-wrap:wrap;justify-content:center;direction:rtl;
+       gap:calc(clamp(.3rem,calc(var(--u)*.9),.9rem)*var(--rs))}
+  .slide.reading .qx .qe{display:flex;flex-direction:column;align-items:center;
+       padding:calc(clamp(.15rem,calc(var(--u)*.4),.4rem)*var(--rs)) calc(clamp(.5rem,calc(var(--u)*1.1),1.1rem)*var(--rs));
+       border:1px solid var(--rule);border-radius:var(--radius);background:rgba(56,180,155,.08)}
+  .slide.reading .qx .qe .g{font-family:var(--ar);direction:rtl;color:var(--white);white-space:nowrap;
+       font-size:calc(clamp(1.2rem,calc(var(--u)*3.4),3.4rem)*var(--rs));line-height:1.6}
+  .slide.reading .qx .qe .n{direction:ltr;color:var(--faint);white-space:nowrap;
+       font-size:calc(clamp(.6rem,calc(var(--u)*1.5),1.5rem)*var(--rs));line-height:1.2;padding-bottom:.2em}
+  /* Jadval — bitta grid: ustunlar hamma qatorda bir xil kenglikda */
+  .slide.reading .tbl{display:grid;direction:rtl;align-self:center;max-width:100%;margin-block:auto;
+       border:1px solid var(--rule);border-radius:var(--radius);overflow:hidden}
+  .slide.reading .tbl > span{padding:0 calc(clamp(.6rem,calc(var(--u)*1.8),1.8rem)*var(--rs));text-align:center;
+       font-family:var(--ar);white-space:nowrap;color:var(--white);
+       border-top:1px solid var(--rule-soft);border-left:1px solid var(--rule-soft);
+       font-size:calc(clamp(1.2rem,calc(var(--u)*3.4),3.4rem)*var(--rs));line-height:1.75}
+  .slide.reading .tbl > span.e{border-left:0}
+  .slide.reading .tbl > span.h{font-family:var(--font);direction:ltr;font-weight:700;letter-spacing:.1em;border-top:0;
+       text-transform:uppercase;color:var(--mint);background:rgba(56,180,155,.12);
+       font-size:calc(clamp(.6rem,calc(var(--u)*1.4),1.4rem)*var(--rs));line-height:2.4}
+  .slide.reading .tbl > span.f{border-top:0}
+  .slide.reading .tbl .t{color:#ff8a78}
+  .slide.reading .tbl .c{color:#7fe3a8}
+  .slide.reading .tbl .tr{display:block;font-family:var(--font);direction:ltr;color:var(--faint);
+       font-size:.42em;line-height:1;padding-bottom:.5em}
+  /* Matn (hikoya) */
+  .slide.reading .mtn{align-self:stretch;margin-block:auto;font-family:var(--ar);direction:rtl;text-align:justify;
+       text-align-last:right;color:var(--white);
+       font-size:calc(clamp(1.1rem,calc(var(--u)*3.1),3.1rem)*var(--rs));line-height:2.05}
+  .slide.reading .mtn p{margin:0;font:inherit;line-height:inherit;max-width:none;color:inherit;text-align:inherit;text-align-last:inherit}
+  /* Qoida slaydidagi rasm (kitobdan kesilgan) — o'ng tomonda */
+  .slide.reading.haspic .wrap{--pw:min(30%,46vh)}
+  .slide.reading.haspic .stack.card{padding-right:calc(var(--pw) + var(--mxpad)*2)}
+  .slide.reading .qpic{position:absolute;right:var(--mxpad);top:0;bottom:0;margin-block:auto;height:max-content;
+       width:var(--pw);line-height:0}
+  .slide.reading .qpic img{display:block;width:100%;height:auto;max-height:calc(100vh - 12rem);object-fit:contain;
+       border:1px solid var(--rule);border-radius:var(--radius);background:#fff}
+  .slide.reading.mashq .lhead .nm,.slide.reading.qoida .lhead .nm,.slide.reading.jadval .lhead .nm{font-size:clamp(1.2rem,calc(var(--u)*3.3),3rem)}
+  .slide.mund ol.mund{list-style:none;margin:0;padding:0;columns:3;column-gap:clamp(1rem,2.5vw,3rem);direction:rtl}
+  .slide.mund ol.mund li{break-inside:avoid;display:flex;gap:.5em;align-items:baseline;direction:rtl;
+       padding:clamp(.1rem,.45vh,.4rem) 0;border-bottom:1px solid var(--rule-soft);
+       font-size:clamp(1rem,min(2.1vw,3.2vh),2.2rem);color:var(--white)}
+  .slide.mund ol.mund li b{font-family:var(--font);font-weight:700;color:var(--amber);font-size:.8em;min-width:1.8em;direction:ltr;text-align:left}
+  .slide.mund ol.mund li .ar{font-size:1.25em;line-height:1.5;color:var(--sand)}
+  .slide.reading .lhead .g.ttl{font-size:clamp(1.5rem,calc(var(--u)*4.4),4rem)}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="gold" gradientUnits="userSpaceOnUse" x1="2" y1="2" x2="24" y2="24">
+    <stop offset="0" stop-color="#fbdf8d"/><stop offset="1" stop-color="#e7af3b"/>
+  </linearGradient>
+  <g id="i-cam"><rect x="2.5" y="6.5" width="14" height="13" rx="2"/>
+    <path d="M16.5 11l7-3.5v11l-7-3.5z" class="hot"/></g>
+  <g id="i-book"><path d="M3.5 5.5A2 2 0 0 1 5.5 3.5H12v17H5.5a2 2 0 0 0-2 2z"/>
+    <path d="M22.5 5.5a2 2 0 0 0-2-2H14v17h6.5a2 2 0 0 1 2 2z"/><path d="M12 3.5v17"/></g>
+  <g id="i-pen"><path d="M6 20.5l1.6-4.4L18.2 5.5a1.9 1.9 0 0 1 2.7 2.7L10.4 18.9z"/>
+    <path d="M16.6 7.1l2.7 2.7"/><path d="M7.6 16.1l2.8 2.8"/></g>
+  <g id="i-wave"><path d="M2 13h3l2.5-7 3.5 14 3-11 2.5 6H24"/></g>
+  <g id="i-mouth"><ellipse cx="13" cy="13" rx="10" ry="5.6"/>
+    <path d="M3.4 13c3-2.6 16.2-2.6 19.2 0" class="hot"/>
+    <path d="M9 9.2v7.6M17 9.2v7.6"/></g>
+  <g id="i-throat"><path d="M13 2.5a5 5 0 0 0-5 5v3.2c0 1.6-.7 2.6-1.6 3.6A5.6 5.6 0 0 0 5 18.2c0 2.6 2.4 5 5.6 5"/>
+    <path d="M13 2.5a5 5 0 0 1 5 5v3.2c0 1.6.7 2.6 1.6 3.6A5.6 5.6 0 0 1 21 18.2c0 2.6-2.4 5-5.6 5" class="hot"/>
+    <circle cx="13" cy="12" r="1.5" class="fillhot" fill="#e7af3b" stroke="none"/></g>
+  <g id="i-nose"><path d="M14.5 3.5l-1.8 9.6c-.2 1 .3 1.6 1.2 1.6h1.6"/>
+    <path d="M15.5 14.7c0 2.6-1.4 4.2-4 4.2s-4.4-1.6-4.4-4.2" class="hot"/>
+    <path d="M8 22.5h9"/></g>
+  <g id="i-tongue"><path d="M4.5 8.5C4.5 5.2 8.3 3 13 3s8.5 2.2 8.5 5.5c0 4.4-3.2 6-3.2 9.2A4.3 4.3 0 0 1 13 22a4.3 4.3 0 0 1-5.3-4.3c0-3.2-3.2-4.8-3.2-9.2z" class="hot"/>
+    <path d="M13 12.5v8"/></g>
+  <g id="i-layers"><path d="M13 2.8L23 8l-10 5.2L3 8z"/><path d="M3 13l10 5.2L23 13" class="hot"/>
+    <path d="M3 17.8L13 23l10-5.2"/></g>
+  <g id="i-split"><path d="M3 13h5"/><path d="M8 13l5-6h10M8 13l5 6h10" class="hot"/>
+    <circle cx="3" cy="13" r="1.6" class="fillhot" fill="#e7af3b" stroke="none"/></g>
+  <g id="i-shape"><rect x="3" y="3.5" width="8" height="8" rx="1.5"/>
+    <circle cx="19" cy="7.5" r="4.2" class="hot"/>
+    <path d="M7 14.5l4.5 8h-9z"/><rect x="15" y="14.5" width="8" height="8" rx="1.5" class="hot"/></g>
+  <g id="i-check"><circle cx="13" cy="13" r="9.8"/><path d="M8.6 13.2l3 3 6-6.4" class="hot"/></g>
+  <g id="i-hist"><circle cx="13" cy="13" r="9.8"/><path d="M13 7.2V13l4.2 2.6" class="hot"/>
+    <path d="M3.6 9.6l3.4 1.2" /></g>
+  <g id="i-dots"><circle cx="7" cy="8" r="1.7" class="fillhot" fill="#e7af3b" stroke="none"/>
+    <circle cx="13" cy="8" r="1.7" class="fillhot" fill="#e7af3b" stroke="none"/>
+    <circle cx="19" cy="8" r="1.7" class="fillhot" fill="#e7af3b" stroke="none"/>
+    <path d="M3.5 14.5h19M3.5 19.5h13"/></g>
+  <g id="i-warn"><path d="M13 3.4L23.4 21.4H2.6z"/><path d="M13 10v5" class="hot"/>
+    <circle cx="13" cy="18.2" r=".95" class="fillhot" fill="#e7af3b" stroke="none"/></g>
+  <g id="i-globe"><circle cx="13" cy="13" r="9.6"/><ellipse cx="13" cy="13" rx="4.2" ry="9.6"/>
+    <path d="M3.6 10h18.8M3.6 16h18.8"/></g>
+  <g id="i-target"><circle cx="13" cy="13" r="9.6"/><circle cx="13" cy="13" r="5.4"/>
+    <circle cx="13" cy="13" r="1.6" class="fillhot" fill="#e7af3b" stroke="none"/></g>
+</defs></svg>
+
+<div class="stage">
+
+  <!-- ── Chap panel: 9:16 video ── -->
+  <aside class="vid" id="vid">
+    <video id="cam" playsinline muted></video>
+    <div class="ph">
+      <svg viewBox="0 0 26 26"><use href="#i-cam"/></svg>
+      <b>Video</b>
+      <span>Bu joy 9&times;16 video uchun ajratilgan.<br>Kamerani yoqish: <kbd>V</kbd></span>
+    </div>
+    <div class="timer">
+      <span class="rec">Jonli dars</span>
+    </div>
+    <div class="plate">
+      <span>Noon Akademiyasi</span>
+      <b>Fonetika &mdash; O&#39;qish matnlari</b>
+    </div>
+  </aside>
+
+  <!-- ── O'ng panel: slaydlar ── -->
+  <main class="deck" id="deck">
+  <div class="bar" id="bar"></div>
+<!-- 01 -->
+<section class="slide" data-sect="Ochilish">
+  <div class="wrap"><div class="stack loose">
+    <svg class="icon" viewBox="0 0 26 26"><use href="#i-book"/></svg>
+    <p class="eyebrow">Noon Akademiyasi &middot; <b>Fonetika</b></p>
+    <h1>O&#39;qish matnlari</h1>
+    <p class="lead">30 ta hikoya — o&#39;tilgan barcha qoidalarni amalda qo&#39;llash (kitob: 122–151-betlar)</p>
+  </div></div>
+</section>
+
+<!-- 02 -->
+<section class="slide mund" data-src="66" data-sect="Mundarija">
+  <div class="wrap"><div class="stack">
+    <h2>Mundarija</h2>
+    <ol class="mund">
+      <li><b>1.</b> <span class="ar">ٱللَّعِبُ ٱلْكَثِيرُ</span></li>
+      <li><b>2.</b> <span class="ar">ٱلتَّفْكِيرُ قَبْلَ ٱلْمُسَاعَدَةِ</span></li>
+      <li><b>3.</b> <span class="ar">ٱلنَّظَافَةُ</span></li>
+      <li><b>4.</b> <span class="ar">ٱلْإِنسَانُ يَسْتَمْتِعُ بِمَا عِندَهُۥ</span></li>
+      <li><b>5.</b> <span class="ar">لَا تَقْطَعِ ٱلْأَشْجَارَ</span></li>
+      <li><b>6.</b> <span class="ar">ٱلْإِبِلُ</span></li>
+      <li><b>7.</b> <span class="ar">كُنْ صَالِحًا</span></li>
+      <li><b>8.</b> <span class="ar">ٱلتَّفْكِيرُ فِى ٱلْكَلَامِ</span></li>
+      <li><b>9.</b> <span class="ar">ٱلْغُرَابُ</span></li>
+      <li><b>10.</b> <span class="ar">ٱلذِّئْبُ</span></li>
+      <li><b>11.</b> <span class="ar">ٱلصَّدَاقَةُ</span></li>
+      <li><b>12.</b> <span class="ar">ٱلسَّمَكُ</span></li>
+      <li><b>13.</b> <span class="ar">ٱلْأَمَانَةُ</span></li>
+      <li><b>14.</b> <span class="ar">ٱلِٱسْتِمْرَارُ مِفْتَاحُ ٱلنَّجَاحِ</span></li>
+      <li><b>15.</b> <span class="ar">ٱطْلُبِ ٱلْجَارَ قَبْلَ ٱلدَّارِ</span></li>
+      <li><b>16.</b> <span class="ar">ٱلْأُمُّ</span></li>
+      <li><b>17.</b> <span class="ar">مِفْتَاحُ ٱلْمُشْكِلَةِ</span></li>
+      <li><b>18.</b> <span class="ar">ٱلرِّشْوَةُ</span></li>
+      <li><b>19.</b> <span class="ar">لَا تَتَغَيَّرْ</span></li>
+      <li><b>20.</b> <span class="ar">بِرُّ ٱلْوَالِدَيْنِ</span></li>
+      <li><b>21.</b> <span class="ar">عِلْمُ ٱلْمَنطِقِ</span></li>
+      <li><b>22.</b> <span class="ar">ٱلْمُسَاعَدَةُ</span></li>
+      <li><b>23.</b> <span class="ar">ٱلشَّاعِرُ</span></li>
+      <li><b>24.</b> <span class="ar">ٱلطَّبِيبُ وَمَحْمُودٌ</span></li>
+      <li><b>25.</b> <span class="ar">هَارُونُ وَجَابِرٌ</span></li>
+      <li><b>26.</b> <span class="ar">شُرَيْكٌ</span></li>
+      <li><b>27.</b> <span class="ar">ٱلصَّدِيقُ</span></li>
+      <li><b>28.</b> <span class="ar">حُرَّاسُ ٱلسِّجْنِ</span></li>
+      <li><b>29.</b> <span class="ar">لَا تَكْذِبْ</span></li>
+      <li><b>30.</b> <span class="ar">ٱلْمُرُوٓءَةُ</span></li>
+    </ol>
+  </div></div>
+</section>
+
+<!-- 03 -->
+<section class="slide reading matn" data-src="66" data-sect="1-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱللَّعِبُ ٱلْكَثِيرُ</span><span class="nm">1-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>هَمْزَةُ وَلَدٌ صَغِيرٌ يُحِبُّ ٱللَّعِبَ كَثِيرًا. وَكُلَّ يَوْمٍ يَلْعَبُ سَاعَاتٍ طَوِيلَةً دُونَ تَوَقُّفٍ. يَلْعَبُ دَآئِمًۢا بِٱلْكُرَةِ حَتَّىٰ لَا يَشْعُرُ بِٱلْمَلَلِ. لَٰكِن يَوْمًۢا بَدَأَ هَمْزَةُ يَشْعُرُ بِأَلَمٍ فِى يَدِهِۦ وَقَدَمِهِۦ. وَعِندَمَا ذَهَبَ إِلَى ٱلطَّبِيبِ قَالَ لَهُ ٱلطَّبِيبُ إِنَّكَ مَرِيضٌۢ بِسَبَبِ ٱللَّعِبِ ٱلْكَثِيرِ. فَعَلِمَ هَمْزَةُ أَنَّ ٱللَّعِبَ ٱلْكَثِيرَ يَكُونُ خَطِيرًا لِّجِسْمِهِۦ. وَعَلِمَ هَمْزَةُ أَيْضًا أَنَّهُۥ يَجِبُ عَلَيْهِ ٱلِٱسْتِرَاحَةُ بَيْنَ ٱللَّعِبِ وَيَجِبُ أَن لَّا يَلْعَبَ وَقْتًا طَوِيلًا. أَخِيرًا تَعَلَّمَ هَمْزَةُ أَنَّ ٱللَّعِبَ ٱلْكَثِيرَ قَدْ يَكُونُ خَطِيرًا لِّجِسْمِهِۦ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:1.4%"></i></span><span class="pn"><b>1</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 04 -->
+<section class="slide reading matn" data-src="67" data-sect="2-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلتَّفْكِيرُ قَبْلَ ٱلْمُسَاعَدَةِ</span><span class="nm">2-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>كَانَ هُنَاكَ وَلَدٌ صَغِيرٌ ٱسْمُهُۥ سَلِيمٌ. وَهُوَ يُحِبُّ ٱلْحَيَوَانَاتِ جِدًّا. وَيَوْمًا رَّأَىٰ سَلِيمٌ قِطَّةً تُحَاوِلُ ٱلصَّعُودَ عَلَىٰ شَجَرَةٍ وَلَٰكِنَّهَا لَمْ تَسْتَطِعِ ٱلصَّعُودَ عَلَى ٱلشَّجَرَةِ. ظَنَّ سَلِيمٌ أَنَّ ٱلْقِطَّةَ تُرِيدُ أَن تَأْكُلَ ٱلْفَاكِهَةَ فَوْقَ ٱلشَّجَرَةِ. فَسَاعَدَ سَلِيمٌ تِلْكَ ٱلْقِطَّةَ. وَلَٰكِنۢ بَعْدَ ٱلصَّعُودِ عَلَى ٱلشَّجَرَةِ هَجَمَتِ ٱلْقِطَّةُ عَلَىٰ وَكْرِ عُصْفُورٍ وَكَانَ فِى ٱلْوَكْرِ وَلَدٌ صَغِيرٌ لِّلْعُصْفُورِ. أَكَلَتِ ٱلْقِطَّةُ وَلَدَ ٱلْعُصْفُورِ. فَحَزِنَ سَلِيمٌ مِّمَّا فَعَلَ حُزْنًا شَدِيدًا وَقَالَ كَانَ يَجِبُ عَلَىَّ أَوَّلًا أَنْ أُفَكِّرَ فِى هَٰذَا ٱلْأَمْرِ ثُمَّ أُسَاعِدَ تِلْكَ ٱلْقِطَّةَ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:2.9%"></i></span><span class="pn"><b>2</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section class="slide reading matn" data-src="67" data-sect="2-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلتَّفْكِيرُ قَبْلَ ٱلْمُسَاعَدَةِ</span><span class="nm">2-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>فَلَنْ أُسَاعِدَ أَحَدًا إِلَّا بَعْدَ ٱلتَّفْكِيرِ جَيِّدًا.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:4.3%"></i></span><span class="pn"><b>3</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 06 -->
+<section class="slide reading matn" data-src="68" data-sect="3-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلنَّظَافَةُ</span><span class="nm">3-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>كَانَ عَمْرٌو يُحِبُّ ٱللَّعِبَ وَلَٰكِن لَّا يُحِبُّ ٱلِٱسْتِحْمَامَ وَٱلنَّظَافَةَ. كَانَ يَتْرُكُ ٱلثِّيَابَ ٱلْقَذِرَةَ فِى كُلِّ مَكَانٍ. وَعِندَمَا يَأْتِى ٱلْوَقْتُ لِأَكْلِ ٱلطَّعَامِ يَأْكُلُ بِيَدِهِ ٱلْقَذِرَةِ. وَلَٰكِنَّ هَٰذَا ٱلْأَمْرَ كَانَ سَبَبًا لِّمُشْكِلَةٍ. لِأَنَّهُۥ تَخْرُجُ مِن جِسْمِهِۦ رَآئِحَةٌ كَرِيهَةٌ. وَعِندَمَا ٱسْتَيْقَظَ لَيْلًا عَلِمَ أَنَّهُۥ مَرِيضٌ. فَذَهَبُوا۟ بِهِۦٓ إِلَى ٱلطَّبِيبِ. فَعَلِمَ ٱلطَّبِيبُ أَنَّ كُلَّ هَٰذَا بِسَبَبِ عَدَمِ ٱلنَّظَافَةِ. فَقَالَ لَهُ ٱلطَّبِيبُ يَجِبُ عَلَيْكَ دَآئِمًا أَن تَكُونَ نَظِيفًا فَتَسْتَحِمَّ كُلَّ يَوْمٍ وَلَا تَلْبَسَ ٱلثِّيَابَ ٱلْقَذِرَةَ. لِأَنَّ ٱلنَّظَافَةَ هِىَ مِفْتَاحُ صِحَّةِ ٱلْجِسْمِ وَٱلْعَقْلِ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:5.7%"></i></span><span class="pn"><b>4</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 07 -->
+<section class="slide reading matn" data-src="69" data-sect="4-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلْإِنسَانُ يَسْتَمْتِعُ بِمَا عِندَهُۥ</span><span class="nm">4-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>كَانَ فِىٓ إِحْدَى ٱلْقُرَىٰ وَلَدٌ صَغِيرٌ ٱسْمُهُۥ زَيْدٌ. كَانَ زَيْدٌ يُحِبُّ ٱللَّعِبَ وَٱلِٱسْتِمْتَاعَ. كُلَّ يَوْمٍ يَلْعَبُ مَعَ كَثِيرٍ مِّنَ ٱلْأَوْلَادِ وَيَشْعُرُ بِٱلسَّعَادَةِ. لَٰكِن يَوْمًا شَعَرَ زَيْدٌۢ بِٱلْمَلَلِ لِأَنَّهُۥ لَمْ تَبْقَ عِندَهُۥ لُعْبَةٌ جَدِيدَةٌ لِّيَلْعَبَ بِهَا. فَذَهَبَ مَعَ أَبِيهِ إِلَى ٱلسُّوقِ وَرَأَىٰ هُنَاكَ لُعْبَةً جَدِيدَةً. لَٰكِن لَّمْ يَبْقَ عِندَ أَبِيهِ مَالٌ لِّيَأْخُذَ تِلْكَ ٱللُّعْبَةَ. عِندَ ذَٰلِكَ أَرَادَ زَيْدٌ أَن يَصْنَعَ لِنَفْسِهِۦ لُعْبَةً جَدِيدَةً مِّنَ ٱلْكُتُبِ. أَخَذَ زَيْدٌ كَثِيرًا مِّنَ ٱلْكُتُبِ وَصَنَعَ مِنْهَا بَيْتًا صَغِيرًا وَجَمِيلًا.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:7.1%"></i></span><span class="pn"><b>5</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 08 -->
+<section class="slide reading matn" data-src="69" data-sect="4-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلْإِنسَانُ يَسْتَمْتِعُ بِمَا عِندَهُۥ</span><span class="nm">4-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>أَخِيرًا أَصْبَحَتْ عِندَهُۥ لُعْبَةٌ جَدِيدَةٌ وَعَلِمَ زَيْدٌ أَنَّ ٱلْإِنسَانَ يَسْتَمْتِعُ بِمَا عِندَهُۥ وَلَمْ يَكُنْ عِندَهُۥ مَالٌ لِّيَأْخُذَ لُعْبَةً جَدِيدَةً.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:8.6%"></i></span><span class="pn"><b>6</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 09 -->
+<section class="slide reading matn" data-src="70" data-sect="5-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">لَا تَقْطَعِ ٱلْأَشْجَارَ</span><span class="nm">5-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>فِى يَوْمٍ مِّنَ ٱلْأَيَّامِ كَانَ أَحْمَدُ يَمْشِى مَعَ أَوْلَادِهِۦ فِى ٱلْغَابَةِ ٱلْقَرِيبَةِ مِنَ ٱلْمَدِينَةِ. وَكَانَ ٱلطَّقْسُ جَمِيلًا. وَعِندَمَا وَصَلُوٓا۟ إِلَىٰ مَكَانٍ طَوِيلِ ٱلْأَشْجَارِ رَأَى ٱلْأَوْلَادُ بَعْضَ ٱلْأَشْجَارِ ٱلْكَبِيرَةِ وَٱلْقَوِيَّةِ. ثُمَّ قَطَعَ ٱلْأَوْلَادُ ٱلْأَشْجَارَ ٱلْكَبِيرَةَ بِٱلْمِنشَارِ مَسْرُورِينَ بِفِعْلِهِمُ ٱلْجَدِيدِ. لَٰكِنَّهُمْ لَمْ يَعْرِفُوٓا۟ أَنَّ قَطْعَ ٱلْأَشْجَارِ يَكُونُ سَبَبًا لِّقِلَّةِ ٱلْمَآءِ لِلْحَيَوَانَاتِ ٱلصَّغِيرَةِ وَٱلْكَبِيرَةِ فِى ٱلْغَابَةِ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:10.0%"></i></span><span class="pn"><b>7</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="slide reading matn" data-src="70" data-sect="5-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">لَا تَقْطَعِ ٱلْأَشْجَارَ</span><span class="nm">5-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>وَبَعْدَ قَلِيلٍ مِّنَ ٱلْأَيَّامِ كَثُرَتِ ٱلْعَاصِفَةُ وَٱلْمَطَرُ وَٱلْبَرْدُ ٱلشَّدِيدُ فِى ٱلشِّتَآءِ وَٱلْحَرُّ ٱلشَّدِيدُ فِى ٱلصَّيْفِ بِسَبَبِ قِلَّةِ ٱلْأَشْجَارِ. وَعِندَمَا فَهِمَ ٱلْأَوْلَادُ مَا فَعَلُوا۟ حَزَنُوا۟ عَلَىٰ ذَٰلِكَ حُزْنًا شَدِيدًا وَوَعَدُوا۟ بِعَدَمِ قَطْعِ ٱلْأَشْجَارِ. ثُمَّ ذَهَبُوٓا۟ إِلَىٰ تِلْكَ ٱلْغَابَةِ وَغَرَسُوا۟ ثَلَاثَةَ أَشْجَارٍ مَّكَانَ كُلِّ شَجَرَةٍ قُطِعَتْ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:11.4%"></i></span><span class="pn"><b>8</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 11 -->
+<section class="slide reading matn" data-src="71" data-sect="6-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلْإِبِلُ</span><span class="nm">6-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>ٱلْإِبِلُ مِنَ ٱلْحَيَوَانَاتِ ٱلرَّآئِعَةِ وَٱلْمُفِيدَةِ. تَعِيشُ فِى ٱلصَّحْرَآءِ وَتَتَحَمَّلُ ٱلْحَرَارَةَ ٱلْعَالِيَةَ وَٱلشَّمْسَ ٱلْحَارِقَةَ. لَدَيْهَا وَجْهٌ طَوِيلٌ وَعُيُونٌ كَبِيرَةٌ تُسَاعِدُهَا عَلَىٰ رُؤْيَةِ ٱلْأَشْيَآءِ مِنۢ بَعِيدٍ. وَشَعْرُهَا ٱلْكَثِيفُ يَحْمِى جِسْمَهَا مِنَ ٱلْحَرَارَةِ وَيُسَاعِدُهَا عَلَى ٱلْبَقَآءِ بَارِدَةً. لِلْإِبِلِ سَاقَانِ طَوِيلَتَانِ وَقَدَمَانِ كَبِيرَتَانِ وَهِىَ تُسَاعِدُهَا عَلَى ٱلرَّكْضِ وَٱلْمَشْىِ فِى ٱلرِّمَالِ. ٱلْإِبِلُ مِنَ ٱلْحَيَوَانَاتِ ٱلْمُفِيدَةِ لِلْإِنسَانِ. فَهِىَ تُعْطِينَا ٱللَّبَنَ وَٱللَّحْمَ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:12.9%"></i></span><span class="pn"><b>9</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 12 -->
+<section class="slide reading matn" data-src="71" data-sect="6-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلْإِبِلُ</span><span class="nm">6-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>وَيُمْكِنُ لَنَا أَن نَّسْتَخْدِمَ ٱلْإِبِلَ لِلْعَمَلِ وَلِنَقْلِ ٱلْأَشْيَآءِ مِن مَّكَانٍ إِلَىٰٓ ءَاخَرَ فِى بَعْدِ ٱلْبِلَادِ ٱلصَّحْرَوِيَّةِ. وَفِى ٱلنِّهَايَةِ يُمْكِنُ أَن نَّقُولَ أَنَّ ٱلْإِبِلَ مِنَ ٱلْحَيَوَانَاتِ ٱلرَّآئِعَةِ ٱلَّتِى تَعِيشُ فِى ٱلصَّحْرَآءِ وَتُسَاعِدُ ٱلْإِنسَانَ بِطُرُقٍ كَثِيرَةٍ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:14.3%"></i></span><span class="pn"><b>10</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 13 -->
+<section class="slide reading matn" data-src="72" data-sect="7-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">كُنْ صَالِحًا</span><span class="nm">7-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>كَانَ هُنَاكَ رَجُلٌ فَقِيرٌ ٱسْمُهُۥ خَالِدٌ. وَكَانَ يَمْشِى فِى ٱلطَّرِيقِ. فَجْأَةً رَّأَىٰ كِيسًا فِيهِ أَلْفُ دِينَارٍ مِّنَ ٱلذَّهَبِ. فَكَانَ مَسْرُورًۢا بِهِۦ وَأَخَذَهُۥ ثُمَّ رَجَعَ إِلَىٰ بَيْتِهِۦ. وَلَٰكِنۢ بَدَأَ خَالِدٌ يَشْعُرُ بِٱلْحُزْنِ. لِأَنَّ هَٰذَا ٱلْمَالَ ٱلْكَثِيرَ لَمْ يَكُن مُّلْكَهُۥ. ثُمَّ ذَهَبَ إِلَى ٱلسُّوقِ وَبَحَثَ عَنِ ٱلرَّجُلِ ٱلَّذِى فَقَدَ كِيسَهُۥ. فَسَمِعَ هُنَاكَ رَجُلًا يَقُولُ فَقَدتُّ كِيسِى. سَأَلَ مِنْهُ خَالِدٌ عَن مِّقْدَارِ ٱلْمَالِ ٱلْمَوْجُودِ فِى ٱلْكِيسِ. عِندَمَآ أَخْبَرَهُ ٱلرَّجُلُ بِمِقْدَارِ ٱلْمَالِ رَدَّ خَالِدٌ ٱلْكِيسَ لِلرَّجُلِ. أَخَذَ ٱلرَّجُلُ كِيسَهُۥ وَأَعْطَاهُ لِخَالِدٍ مَّعَ أَلْفِ دِينَارٍ ءَاخَرَ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:15.7%"></i></span><span class="pn"><b>11</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 14 -->
+<section class="slide reading matn" data-src="72" data-sect="7-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">كُنْ صَالِحًا</span><span class="nm">7-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>فَقَالَ إِنَّ أَبِىٓ أَعْطَانِىٓ أَلْفَيْنِ مِنَ ٱلذَّهَبِ يُرِيدُ ٱلْإِنفَاقَ عَلَىٰ رَجُلٍ صَالِحٍ. وَأَمَرَنِىٓ أَنْ أَرْمِىَ ٱلْكِيسَ عَلَى ٱلطَّرِيقِ مَعَ أَلْفِ دِينَارٍ. ثُمَّ قَالَ لِى مَن رَّدَّ ٱلْكِيسَ فَأَعْطِهِ ٱلْمَالَ كُلَّهُۥ فَهُوَ أَحَقُّ بِهِۦ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:17.1%"></i></span><span class="pn"><b>12</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 15 -->
+<section class="slide reading matn" data-src="73" data-sect="8-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلتَّفْكِيرُ فِى ٱلْكَلَامِ</span><span class="nm">8-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>كَانَ فِى قَدِيمِ ٱلزَّمَانِ رَجُلٌ عَالِمٌ فِى ٱلْمَنطِقِ. فَقَالَ يَوْمًا لِّٱبْنِهِۦٓ إِذَآ أَرَدتَّ أَن تَتَكَلَّمَ بِشَىْءٍ فَفَكِّرْ فِيهِ أَوَّلًا. وَلَا تَتَكَلَّمْ حَتَّىٰ تُقَوِّمَهُۥ. ذَاتَ يَوْمٍ وَهُمَا جَالِسَانِ حَوْلَ ٱلنَّارِ وَقَعَتْ شَرَارَةٌ عَلَىٰ ثَوْبِ ٱلْأَبِ وَهُوَ لَا يَعْلَمُ وَٱلِٱبْنُ يَرَاهُ. لَمْ يَتَكَلَّمْ ٱلِٱبْنُ سَاعَةً يُفَكِّرُ ثُمَّ قَالَ يَآ أَبِىٓ أُرِيدُ أَنْ أَقُولَ شَيْئًا. قَالَ أَبُوهُ إِن كَانَ حَقًّا فَتَكَلَّمْ. قَالَ ٱلِٱبْنُ أَرَاهُ حَقًّا. قَالَ ٱلْأَبُ تَكَلَّمْ. قَالَ ٱلِٱبْنُ إِنِّىٓ أَرَىٰ شَيْئًا أَحْمَرَ. قَالَ ٱلْأَبُ وَمَا هُوَ. قَالَ ٱلِٱبْنُ شَرَارَةٌ عَلَىٰ ثَوْبِكَ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:18.6%"></i></span><span class="pn"><b>13</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 16 -->
+<section class="slide reading matn" data-src="73" data-sect="8-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلتَّفْكِيرُ فِى ٱلْكَلَامِ</span><span class="nm">8-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>فَنَظَرَ ٱلْأَبُ عَلَىٰ ثَوْبِهِۦ وَقَدْ أَحْرَقَتِ ٱلشَّرَارَةُ مِنْهَا قِطْعَةً. فَقَالَ ٱلْأَبُ لِمَا لَمْ تَتَكَلَّمْ سَرِيعًا. قَالَ ٱلِٱبْنُ فَكَّرْتُ فِيهِ كَمَآ أَمَرْتَنِى. ثُمَّ قَوَّمْتُ ٱلْكَلَامَ وَتَكَلَّمْتُ فِيهِ. فَوَعَدَ ٱلْأَبُ عَلَىٰ نَفْسِهِۦ أَن لَّا يُعَلِّمَ أَحَدًا عِلْمَ ٱلْمَنطِقِ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:20.0%"></i></span><span class="pn"><b>14</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 17 -->
+<section class="slide reading matn" data-src="74" data-sect="9-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلْغُرَابُ</span><span class="nm">9-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>ٱلْغُرَابُ هُوَ طَآئِرٌ صَغِيرٌ يَعِيشُ عَلَى ٱلْأَشْجَارِ عَادَةً. وَيُعْتَبَرُ مِنْ أَزْكَى ٱلطُّيُورِ عَلَىٰ وَجْهِ ٱلْأَرْضِ. يَتَمَيَّزُ بِجِسْمِهِ ٱلْأَسْوَدِ وَذَيْلِهِ ٱلْقَصِيرِ. وَلَدَيْهِ مِنقَارٌ قَوِىٌّ وَحَآدٌّ. وَيُمْكِنُ رُؤْيَةُ ٱلْغُرَابِ فِى جَمِيعِ أَنْحَآءِ ٱلْعَالَمِ. يَعِيشُ ٱلْغُرَابُ فِى مَجْمُوعَتِهِۦ. وَعِندَمَا يَجِدُ أَحَدُ أَفْرَادِ ٱلْمَجْمُوعَةِ طَعَامًا يُخْبِرُهُ ٱلْآخَرِينَ بِصَوْتِهِ ٱلْعَالِى وَحَرَكَاتِهِۦ. وَهَٰذَا ٱلنَّوْعُ مِنَ ٱلتَّعَاوُنِ وَيُعْتَبَرُ مِن ذَكَآءِ ٱلْغُرَابِ. وَلِلْغُرَابِ ذَاكِرَةٌ قَوِيَّةٌ أَيْضًا. إِنَّهُۥ يَتَذَكَّرُ مَكَانَ ٱلطَّعَامِ وَيَعُودُ إِلَيْهِ بَعْدَ وَقْتٍ طَوِيلٍ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:21.4%"></i></span><span class="pn"><b>15</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 18 -->
+<section class="slide reading matn" data-src="74" data-sect="9-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلْغُرَابُ</span><span class="nm">9-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>كَمَا يُمْكِنُهُۥ حَلُّ مُشْكِلَاتٍۢ بِشَكْلٍۢ بَسِيطٍ. يَبْنِى ٱلْغُرَابُ عُشَّهُ ٱلْخَآصَّ وَيَحْمِيهِ مِن كُلِّ شَىْءٍ. وَيَسْتَخْدِمُ ٱلْغُرَابُ أَغْصَانَ ٱلْأَشْجَارِ فِى بِنَآءِ عُشِّهِۦ. يُسَاعِدُ ٱلْغُرَابُ فِى نَشْرِ بُذُورِ نَبَاتَاتٍ حَوْلَ ٱلْعَالَمِ. بِٱلْإِضَافَةِ إِلَىٰ ذَٰلِكَ يَأْكُلُ ٱلْغُرَابُ ٱلْحَشَرَاتِ ٱلضَّآرَّةَ. فِى ٱلنِّهَايَةِ يُمْكِنُ أَن نَّقُولَ أَنَّ ٱلْغُرَابَ طَآئِرٌ فَرِيدٌ مِّن نَّوْعِهِۦ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:22.9%"></i></span><span class="pn"><b>16</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 19 -->
+<section class="slide reading matn" data-src="75" data-sect="10-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلذِّئْبُ</span><span class="nm">10-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>هَلْ تَعْرِفُ عَنِ ٱلذِّئْبِ. ٱلذِّئْبُ حَيَوَانٌ مُّفْتَرِسٌ يَعِيشُ فِى ٱلْغَابَةِ. وَهُوَ يُشْبِهُ ٱلْكَلْبَ ٱلْكَبِيرَ. وَلَهُۥ جِسْمٌ قَوِىٌّ وَعَيْنٌ حَآدَّةٌ وَشَعْرٌ كَثِيفٌ. لَوْنُ ٱلذِّئْبِ رَمَادِىٌّ. يَعِيشُ ٱلذِّئْبُ مَعَ قَطِيعَتِهِۦ وَلَا يَفْتَرِقُ مِنْهَا. عِندَمَا يَكُونُ ٱلذِّئْبُ صَغِيرًا يَعِيشُ مَعَ عَآئِلَتِهِۦ فِى مَكَانٍ صَغِيرٍ تَحْتَ ٱلْأَرْضِ وَيَتَعَلَّمُ ٱلصَّيْدَ وَٱلْبَقَآءَ فِى مَكَانٍ ءَامِنٍ تَحْتَ حِمَايَةِ وَالِدَيْهِ. ٱلذِّئَابُ تَحْتَاجُ إِلَى ٱلصَّيْدِ لِلْبَقَآءِ عَلَىٰ قَيْدِ ٱلْحَيَوٰةِ. يَسْتَخْدِمُ ٱلذِّئْبُ أَسْنَانَهُ ٱلْحَآدَّةَ لِلْقَبْضِ عَلَىٰ فَرِيسَتِهِۦ وَيَأْكُلُهَا. لَدَيْهَا لِسَانٌ طَوِيلٌ وَفَمٌ قَادِرٌ عَلَىٰ تَمْزِيقِ ٱللَّحْمِ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:24.3%"></i></span><span class="pn"><b>17</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 20 -->
+<section class="slide reading matn" data-src="75" data-sect="10-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلذِّئْبُ</span><span class="nm">10-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>وَعَادَةً تَفْتَرِسُ ٱلْغِزْلَانَ وَٱلْأَرَانِبَ وَٱلْأَغْنَامَ. إِنَّ ٱلذِّئَابَ تَعْتَبِرُ مِنَ ٱلْحَيَوَانَاتِ ٱلْمُفْتَرِسَةِ. وَلَٰكِنَّهَا لَا تُهَاجِمُ ٱلْإِنسَانَ إِلَّا فِى حَالَاتٍ قَلِيلَةٍ تَشْعُرُ فِيهَا بِٱلتَّهْدِيدِ. إِذَا كُنتَ تَرَىٰ ذِئْبًا يَجِبُ أَن لَّا تَخَافَ مِنْهُ. وَلَٰكِن لَّا تَقْتَرِب مِّنْهُ كَثِيرًا.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:25.7%"></i></span><span class="pn"><b>18</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 21 -->
+<section class="slide reading matn" data-src="76" data-sect="11-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلصَّدَاقَةُ</span><span class="nm">11-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>كَانَتْ جَمِيعُ ٱلْحَيَوَانَاتِ تَعِيشُ بِسَلَامٍ فِى ٱلْغَابَةِ. وَكَانَ ٱلْأَسَدُ مَلِكَ ٱلْحَيَوَانَاتِ. وَكَانَ ٱلْأَسَدُ يَزْعُمُ أَنَّهُۥ قَوِىٌّ جِدًّا وَلَا يَحْتَاجُ إِلَىٰ مُسَاعَدَةِ ٱلْآخَرِينَ. وَإِذَا طَلَبَ أَىُّ حَيَوَانٍ ٱلْمُسَاعَدَةَ فَلَن يُسَاعِدَهُ ٱلْأَسَدُ. يَوْمًا نَّامَ ٱلْأَسَدُ فِى نَوْمٍ عَمِيقٍ. فَرَكَضَ ٱلْفَأْرُ فَوْقَهُۥ وَأَيْقَظَهُۥ. غَضِبَ ٱلْأَسَدُ غَضْبًا شَدِيدًا وَأَرَادَ قَتْلَ ٱلْفَأْرِ. تَوَسَّلَ ٱلْفَأْرُ إِلَى ٱلْأَسَدِ أَن لَّا يَقْتُلَهُۥ وَأَن يَعْفُوَ عَنْهُ. وَقَالَ لِلْأَسَدِ قَدْ أُسَاعِدُكَ يَوْمًا يَا سَيِّدَ ٱلْحَيَوَانَاتِ. ضَحِكَ ٱلْأَسَدُ وَقَالَ لَهُۥ فِيمَ سَتُسَاعِدُنِىٓ أَيُّهَا ٱلصَّغِيرُ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:27.1%"></i></span><span class="pn"><b>19</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 22 -->
+<section class="slide reading matn" data-src="76" data-sect="11-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلصَّدَاقَةُ</span><span class="nm">11-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>تَرَكَ ٱلْأَسَدُ ٱلْفَأْرَ وَلَمْ يَقْتُلْهُ. بَعْدَ قَلِيلٍ وَقَعَ ٱلْأَسَدُ فِى شَبَكَةِ ٱلصَّيَّادِ. فَرَءَاهُ ٱلْفَأْرُ وَجَآءَ إِلَيْهِ سَرِيعًا وَمَزَّقَ ٱلشَّبَكَةَ بِأَسْنَانِهِۦ وَأَنقَذَ ٱلْأَسَدَ. فَقَالَ ٱلْأَسَدُ لِلْفَأْرِ شُكْرًا لَّكَ. لَقَدْ أَنقَذْتَنِى مِنَ ٱلصَّيَّادِينَ. وَأَعْتَذِرُ لَكَ عَلَىٰ مَا ضَحِكْتُ عَلَيْكَ. بَعْدَ ذَٰلِكَ أَصْبَحَ ٱلْأَسَدُ وَٱلْفَأْرُ صَدِيقَيْنِ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:28.6%"></i></span><span class="pn"><b>20</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 23 -->
+<section class="slide reading matn" data-src="77" data-sect="12-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلسَّمَكُ</span><span class="nm">12-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>ٱلسَّمَكُ مِنَ ٱلْحَيَوَانَاتِ ٱلَّتِى تَعِيشُ فِى ٱلْمَآءِ. هُنَاكَ أَنْوَاعٌ كَثِيرَةٌ مِّنَ ٱلسَّمَكِ. وَلِكُلِّ نَوْعٍ مِّنَ ٱلسَّمَكِ لَوْنٌ وَشَكْلٌ مُّمَيِّزٌ. ٱلْأَسْمَاكُ لَدَيْهَا زَعَانِفُ تُسْتَخْدَمُ لِلسِّبَاحَةِ وَذَيْلٌ لِّلْحَرَكَةِ فِى ٱلْمَآءِ. وَعِندَمَا تَشْعُرُ بِٱلْخَطَرِ تَسْتَخْدِمُ زَعْنِفَتَهَا لِلسِّبَاحَةِ بِسُرْعَةٍ وَلِلْهُرُوبِ إِلَىٰ مَكَانٍ ءَامِنٍ. ٱلْأَسْمَاكُ تَأْكُلُ طَعَامًا مُّخْتَلِفًا مِّثْلَ ٱلْحَشَرَاتِ وَٱلصِّغَارِ ٱلْأُخْرَىٰ. تُحِبُّ ٱلْأَسْمَاكُ ٱلْبَقَآءَ فِى ٱلْمَآءِ ٱلْعَذْبِ. لِذَٰلِكَ يُمْكِنُنَا أَن نَّجِدَهَا فِى ٱلْبُحَيْرَاتِ وَٱلْأَنْهَارِ وَٱلْمُحِيطَاتِ. ٱلْبَعْضُ مِنْهَا يَكُونُ لَهُۥ قُرُونٌ وَخُيُوطٌ وَزَعَانِفُ طَوِيلَةٌ جِدًّا.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:30.0%"></i></span><span class="pn"><b>21</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 24 -->
+<section class="slide reading matn" data-src="77" data-sect="12-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلسَّمَكُ</span><span class="nm">12-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>يُمْكِنُ أَن تَتَنَوَّعَ أَحْجَامُهَا مِن صَغِيرَةٍ جِدًّا إِلَىٰ كَبِيرَةٍ. هُنَاكَ ٱلْعَدِيدُ مِنَ ٱلْأَشْكَالِ لِلتَّعَرُّفِ عَلَى ٱلسَّمَكِ مِثْلَ ٱلذَّهَابِ إِلَىٰ حَدِيقَةِ ٱلْحَيَوَانِ وَمُشَاهَدَةِ ٱلْأَسْمَاكِ فِى ٱلْأَحْوَاضِ. بَعْضُ ٱلْأَسْمَاكِ قَد تَّحْتَاجُ إِلَى ٱهْتِمَامٍ خَاصٍّ. فِى ٱلنِّهَايَةِ ٱلسَّمَكُ مِنَ ٱلْحَيَوَانَاتِ ٱلرَّآئِعَةِ ٱلَّتِى تُحِبُّ ٱلْعَيْشَ فِى ٱلْمَآءِ وَتَجْلِبُ ٱلْفَرَحَ لِكَثِيرٍ مِّنَ ٱلنَّاسِ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:31.4%"></i></span><span class="pn"><b>22</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 25 -->
+<section class="slide reading matn" data-src="78" data-sect="13-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلْأَمَانَةُ</span><span class="nm">13-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>جَآءَ إِلَى ٱلْبَآئِعِ قَاصِمٍ رَّجُلٌ مُّسَافِرٌ فَقَالَ سَمِعْتُ أَنَّكَ رَجُلٌ صَالِحٌ وَأَنَاْ أُرِيدُ أَن يَبْقَىٰ خَاتَمِى هَٰذَآ أَمَانَةً عِندَكَ حَتَّىٰٓ أَرْجِعَ. فَوَافَقَ قَاصِمٌ عَلَىٰ ذَٰلِكَ. ثُمَّ بَعْدَ أَيَّامٍ قَلِيلَةٍ رَّجَعَ ٱلْمُسَافِرُ وَسَأَلَ ٱلْخَاتَمَ. قَالَ قَاصِمٌ مَّنْ أَنتَ. إِنِّى لَآ أَعْرِفُ مَا ٱلَّذِى تَقُولُ. فَلَمْ يَرُدَّ لَهُ ٱلْخَاتَمَ. ذَهَبَ ٱلْمُسَافِرُ إِلَى ٱلْوَزِيرِ قَالَ لَهُۥ كُلَّ شَىْءٍ. قَالَ لَهُ ٱلْوَزِيرُ ٱرْجِعْ إِلَى ٱلْبَآئِعِ وَٱجْلِسْ أَمَامَهُۥ وَلَا تَقُل لَّهُۥ شَيْئًا. وَأَنَاْ أَمُرُّ عَلَيْكَ وَأَتَكَلَّمُ مَعَكَ وَلَا تَقُولُ لِىٓ أَكْثَرَ مِمَّا سَأَلْتُهُۥ مِنكَ. فَفَعَلَ ٱلْمُسَافِرُ مَآ أَمَرَهُ ٱلْوَزِيرُ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:32.9%"></i></span><span class="pn"><b>23</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 26 -->
+<section class="slide reading matn" data-src="78" data-sect="13-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلْأَمَانَةُ</span><span class="nm">13-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>وَبَعْدَ قَلِيلٍ مَّرَّ عَلَيْهِ ٱلْوَزِيرُ مَعَ خُدَّامِهِۦ رَاكِبًا عَلَى ٱلْفَرَسِ. قَالَ ٱلْوَزِيرُ لِلْمُسَافِرِ يَآ أَخِى تَجِىٓءُ إِلَىٰ مَدِينَتِنَا وَلَا تُخْبِرُنَا شَيْئًا وَهَلْ تُرِيدُ مِنَّا شَيْئًا يَآ أَخِى. فَقَالَ لَهُ ٱلْمُسَافِرُ أَتَكَلَّمُ مَعَكَ عِندَ ٱلذَّهَابِ إِلَىٰ بَيْتِكَ. قَالَ ٱلْوَزِيرُ مُوَافِقٌ مَّعَ ٱلسَّلَامِ. ثُمَّ ذَهَبَ إِلَى ٱلْبَعِيدِ. شَعَرَ ٱلْبَآئِعُ بِٱلْخَوْفِ فَقَالَ لِلْمُسَافِرِ يَا سَيِّدِى لَقَدْ نَسِيتُ خَاتَمَكَ. هَٰذَا خَاتَمُكَ فَخُذْهُ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:34.3%"></i></span><span class="pn"><b>24</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 27 -->
+<section class="slide reading matn" data-src="79" data-sect="14-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلِٱسْتِمْرَارُ مِفْتَاحُ ٱلنَّجَاحِ</span><span class="nm">14-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>كَانَتْ فِى ٱلْغَابَةِ سُلَحْفَاةٌ صَغِيرَةٌ تَمْشِى بِبُطْءٍ وَكَانَ هُنَاكَ أَرْنَبٌ يَرْكُضُ بِسُرْعَةٍ. كَانَ ٱلْأَرْنَبُ يَظُنُّ أَنَّهُۥٓ أَسْرَعُ حَيَوَانٍ وَأَرَادَ أَن يُثْبِتَ ذَٰلِكَ لِلْجَمِيعِ. فِى يَوْمٍ مِّنَ ٱلْأَيَّامِ قَرَّرَ ٱلْأَرْنَبُ وَٱلسُّلَحْفَاةُ أَن يَتَنَافَسَا فِى مُسَابَقَةٍ. جَآءَتِ ٱلْحَيَوَانَاتُ لِمُشَاهَدَةِ هَٰذِهِ ٱلْمُسَابَقَةِ. وَلَمَّا بُدِأَتِ ٱلْمُسَابَقَةُ أَخَذَ ٱلْأَرْنَبُ يَرْكُضُ بِسُرْعَةٍ كَبِيرَةٍ. وَفِى نَفْسِ ٱلْوَقْتِ تَحَرَّكَتِ ٱلسُّلَحْفَاةُ بِبُطْءٍ. ظَنَّ ٱلْجَمِيعُ أَنَّ ٱلْأَرْنَبَ سَيَفُوزُ. بَعْدَ قَلِيلٍ مِّنَ ٱلْوَقْتِ شَعَرَ ٱلْأَرْنَبُ بِٱلْمَلَلِ مِن سُرْعَتِهِۦ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:35.7%"></i></span><span class="pn"><b>25</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 28 -->
+<section class="slide reading matn" data-src="79" data-sect="14-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلِٱسْتِمْرَارُ مِفْتَاحُ ٱلنَّجَاحِ</span><span class="nm">14-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>فَقَرَّرَ أَن يَتَوَقَّفَ قَلِيلًا وَيَسْتَمْتِعَ تَحْتَ ظِلِّ شَجَرَةٍ فَنَامَ. وَٱلسُّلَحْفَاةُ لَمْ تَتَوَقَّفْ عَنِ ٱلتَّحَرُّكِ. كَانَتْ تَتَحَرَّكُ بِبُطْءٍ وَلَٰكِن لَّمْ تَفْقِدِ ٱلْأَمَلَ وَٱسْتَمَرَّتْ فِى ٱلتَّحَرُّكِ. فَجْأَةً رَّأَتِ ٱلسُّلَحْفَاةُ أَنَّ ٱلْأَرْنَبَ قَدْ نَامَ. وَصَلَتِ ٱلسُّلَحْفَاةُ إِلَىٰ خَطِّ ٱلنِّهَايَةِ قَبْلَ ٱلْأَرْنَبِ. وَعِندَمَا ٱسْتَيْقَظَ ٱلْأَرْنَبُ عَلِمَ أَنَّ ٱلسُّلَحْفَاةَ وَصَلَتْ إِلَىٰ خَطِّ ٱلنِّهَايَةِ أَوَّلًا. تَعَلَّمَ ٱلْجَمِيعُ أَنَّ ٱلِٱسْتِمْرَارَ فِى ٱلْعَمَلِ مِفْتَاحُ ٱلنَّجَاحِ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:37.1%"></i></span><span class="pn"><b>26</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 29 -->
+<section class="slide reading matn" data-src="80" data-sect="15-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱطْلُبِ ٱلْجَارَ قَبْلَ ٱلدَّارِ</span><span class="nm">15-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>كَانَ سُلَيْمَانُ رَجُلًا كَرِيمًا طَيِّبَ ٱلْقَلْبِ. وَكَانَ لَهُۥ جَارٌ فَقِيرٌ ٱسْمُهُۥ مَحْمُودٌ. وَفِى يَوْمٍ مِّنَ ٱلْأَيَّامِ ٱحْتَاجَ مَحْمُودٌ لِّلْمَالِ ٱلْكَثِيرِ. وَلَمَّا لَمْ يَجِدْ مَن يُعْطِيهِ ٱلْمَالَ قَرَّرَ أَن يَبِيعَ دَارَهُۥ. قَالَ أَحَدٌ مِّنَ ٱلْمُشْتَرِينَ كَمْ تُرِيدُ لِلدَّارِ يَا مَحْمُودُ. قَالَ مَحْمُودٌ أُرِيدُ أَلْفَيْنِ مِنَ ٱلذَّهَبِ. قَالَ ٱلْمُشْتَرِى وَلَٰكِنَّهَا لَا تُسَاوِى هَٰذَا ٱلْمَبْلَغَ ٱلْكَبِيرَ. إِنَّهَا تُسَاوِىٓ أَلْفًا فَقَطْ. قَالَ مَحْمُودٌ هَٰذَا صَحِيحٌ. إِنَّهَا لَا تُسَاوِى هَٰذَا ٱلْمَبْلَغَ. وَلَٰكِن لِّهَٰذِهِ ٱلدَّارِ جَارٌ طَيِّبٌ ٱسْمُهُۥ سُلَيْمَانُ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:38.6%"></i></span><span class="pn"><b>27</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 30 -->
+<section class="slide reading matn" data-src="80" data-sect="15-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱطْلُبِ ٱلْجَارَ قَبْلَ ٱلدَّارِ</span><span class="nm">15-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>يَزُورُنِىٓ إِذَا مَرِضْتُ وَيُشَارِكُنِى فِى ٱلْحُزْنِ وَٱلْفَرَحِ. لَمْ أَسْمَعْ مِنْهُ كَلِمَةً سَيِّئَةً طَوَالَ حَيَوٰتِى. قَالَ ٱلْمُشْتَرِىٓ إِنَّ مَن لَّهُۥ جَارٌ كَسُلَيْمَانَ عَلَيْهِ أَن لَّا يَبِيعَ دَارَهُۥ. سَمِعَ سُلَيْمَانُ مَا حَدَثَ بَيْنَ جَارِهِۦ مَحْمُودٍ وَٱلْمُشْتَرِى فَحَزِنَ. فَجَآءَ إِلَىٰ مَحْمُودٍ سَرِيعًا وَقَالَ لَهُۥ لَا تَبِعْ دَارَكَ يَآ أَخِى. وَخُذْ مَآ أَنتَ بِحَاجَةٍ إِلَيْهِ مِنَ ٱلْمَالِ. فَإِنِّىٓ أُرِيدُ أَن تَبْقَىٰ جَارًا لِّى.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:40.0%"></i></span><span class="pn"><b>28</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 31 -->
+<section class="slide reading matn" data-src="81" data-sect="16-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلْأُمُّ</span><span class="nm">16-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>فِى قَدِيمِ ٱلزَّمَانِ كَانَ هُنَاكَ رَجُلٌ صَالِحٌ. وَكَانَ لَهُۥ ثَلَاثَةُ أَوْلَادٍ وَٱمْرَأَةٌ صَالِحَةٌ. فِى يَوْمٍ مِّنَ ٱلْأَيَّامِ أُصِيبَ هَٰذَا ٱلرَّجُلُ بِمَرَضٍ خَطِيرٍ. عِندَمَا جَآءَ ٱلطَّبِيبُ وَفَحَصَهُۥ قَالَ أَنَّهُۥ لَا يَسْتَطِيعُ عِلَاجَهُۥ. بَعْدَ أَيَّامٍ قَلِيلَةٍ مَّاتَ ذَٰلِكَ ٱلرَّجُلُ. فَكَانَ أَوْلَادُهُۥ صِغَارًا جِدًّا فَأَصْبَحُواْ يَتَامَىٰ. ذَاتَ يَوْمٍ أَمَرَتِ ٱلْمَرْأَةُ ٱبْنَتَهَا بِإِحْضَارِ عَصًا. عِندَمَآ أَحْضَرَتْ ٱلِٱبْنَةُ ٱلْعَصَا بَدَأَتِ ٱلْأُمُّ تَضْرِبُ أَطْفَالَهَا بِلَا رَحْمَةٍ. فِى ٱلْيَوْمِ ٱلتَّالِى ضَرَبَتِ ٱلْمَرْأَةُ أَطْفَالَهَا مَرَّةً أُخْرَىٰ. ٱسْتَمَرَّتْ هَٰذِهِ ٱلْحَالَةُ لِمُدَّةِ أُسْبُوعٍ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:41.4%"></i></span><span class="pn"><b>29</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 32 -->
+<section class="slide reading matn" data-src="81" data-sect="16-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلْأُمُّ</span><span class="nm">16-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>بَدَأَ ٱلْأَطْفَالُ يَتَمَنَّوْنَ مَوْتَ أُمِّهِمْ. وَفَجْأَةً مَّاتَتِ ٱلْمَرْأَةُ. نَشَأَ ٱلْأَطْفَالُ فِى مَنزِلِ عَمَّتِهِمْ. عِندَمَا كَبُرُوٓاْ أَحْضَرَ رَجُلٌ رِّسَالَةً لَّهُمْ. كُتِبَ فِيهَآ أَوْلَادِى ٱلْأَعِزَّآءَ أَنَاْ أُحِبُّكُمْ كَثِيرًا. فِىٓ أَحَدِ ٱلْأَيَّامِ جَآءَ ٱلطَّبِيبُ وَأَخْبَرَنِىٓ أَنِّىٓ أَعَانِى مِن مَّرَضٍ خَطِيرٍ وَلَا يُمْكِنُهُۥ عِلَاجُهُۥ. فِى ذَٰلِكَ ٱلْوَقْتِ كَانَ وَالِدُكُمْ قَدْ مَاتَ. عَلِمْتُ أَيْضًا أَنَّنِى سَأَمُوتُ قَرِيبًا. كَانَ عَلَىَّ أَنْ أَضْرِبَكُمْ حَتَّىٰ لَا تَبْكُواْ لِأَنَّكُمْ تَفْتَقِدُونَنَا. سَامِحُونِى.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:42.9%"></i></span><span class="pn"><b>30</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 33 -->
+<section class="slide reading matn" data-src="82" data-sect="17-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">مِفْتَاحُ ٱلْمُشْكِلَةِ</span><span class="nm">17-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>أَرَادَ ٱلْمَلِكُ ٱلسَّفَرَ إِلَىٰ مَكَانٍۢ بَعِيدٍ. فَخَرَجَ مَعَ حُرَّاسِهِۦ لِهَٰذَا ٱلسَّفَرِ. عِندَمَا وَصَلُوٓاْ إِلَىٰ نَهْرٍ ٱقْتَرَبَ رَجُلٌ مِّنَ ٱلْمَلِكِ وَحَاوَلَ قَتْلَهُۥ. لَٰكِنَّهُۥ لَمْ يَنجَحْ. فَأَخَذُوهُ إِلَى ٱلْقَاضِى. حَكَمَ عَلَيْهِ ٱلْقَاضِى بِٱلسِّجْنِ حَتَّىٰ يَأْتِىَ ٱلْمَلِكُ. بَعْدَمَا رَجَعَ ٱلْمَلِكُ مِنَ ٱلسَّفَرِ جَآءَ إِلَى ٱلسَّجِينِ وَقَالَ لَهُۥ يُوجَدُ مَخْرَجٌ فِى ٱلْغُرْفَةِ ٱلَّتِى أَنتَ فِيهَا. إِذَا هَرَبْتَ مِنَ ٱلْمَخْرَجِ قَبْلَ ٱلْغَدِ سَتَتَخَلَّصُ مِنَ ٱلْمَوْتِ. لَن يَكُونَ هُنَاكَ حُرَّاسٌ أَيْضًا. بَحَثَ ٱلرَّجُلُ عَن ذَٰلِكَ ٱلْمَكَانِ طَوَالَ ٱللَّيْلِ. وَلَٰكِنَّهُۥ لَمْ يَجِدْهُ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:44.3%"></i></span><span class="pn"><b>31</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 34 -->
+<section class="slide reading matn" data-src="82" data-sect="17-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">مِفْتَاحُ ٱلْمُشْكِلَةِ</span><span class="nm">17-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>وَفِى ٱلْغَدِ جَآءَهُ ٱلْمَلِكُ وَقَالَ لَهُۥٓ أَرَىٰٓ أَنَّكَ لَمْ تَجِدِ ٱلْمَكَانَ. قَالَ ٱلرَّجُلُ لَقَدْ كَذَبْتَ عَلَىَّ. بَحَثْتُ عَنِ ٱلْمَخْرَجِ فِى ٱلْغُرْفَةِ طَوَالَ ٱللَّيْلِ وَلَٰكِنِّى لَمْ أَجِدْهُ. قَالَ لَهُ ٱلْمَلِكُ كَانَتْ أَبْوَابُ ٱلسِّجْنِ مَفْتُوحَةً حَتَّى ٱلْآنِ. وَكَانَ بَابُ غُرْفَتِكَ مَفْتُوحًا أَيْضًا. يَجِبُ أَن نَّتَعَلَّمَ مِنْ هَٰذِهِ ٱلْقِصَّةِ أَنَّ حَلَّ ٱلْمُشْكِلَاتِ فِى حَيَوٰةِ ٱلْإِنسَانِ لَيْسَ صَعْبًا كَمَا يَظُنُّهُۥٓ أَكْثَرُ ٱلنَّاسِ. بَلْ يُمْكِنُ أَن يَكُونَ مِفْتَاحُ ٱلْمُشْكِلَةِ فِى ٱلْأَشْيَآءِ ٱلَّتِى نَظُنُّهَا بَسِيطَةً.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:45.7%"></i></span><span class="pn"><b>32</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 35 -->
+<section class="slide reading matn" data-src="83" data-sect="18-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلرِّشْوَةُ</span><span class="nm">18-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>كَانَ فِى مَا وَرَآءَ ٱلنَّهْرِ رَجُلٌ عَالِمٌ ٱسْمُهُۥ يَزِيدُ. وَلَهُۥ كَثِيرٌ مِّنَ ٱلطُّلَّابِ. كُلَّ يَوْمٍ كَانَ يُدَرِّسُ فِى ٱلْعُلُومِ ٱلْمُخْتَلِفَةِ. وَيَجِىٓءُ كَثِيرٌ مِّنَ ٱلنَّاسِ لِدُرُوسِهِۦ. وَذَاتَ يَوْمٍ دَعَاهُ ٱلْمَلِكُ إِلَىٰ قَصْرِهِۦ. وَعِندَمَا دَخَلَ عَلَيْهِ يَزِيدُ قَالَ لَهُ ٱلْمَلِكُ أَتُرِيدُ أَن تَكُونَ قَاضِيًا. أَنتَ عَالِمٌ كَبِيرٌ. إِذَا كُنتَ قَاضِيًا فَأَنتَ تَحْكُمُ بِٱلْعَدْلِ. فَرَفَضَهُۥ يَزِيدُ وَعَادَ إِلَىٰ بَيْتِهِۦ. بَعْدَ أُسْبُوعٍ دَعَاهُ ٱلْمَلِكُ إِلَىٰ قَصْرِهِۦ مَرَّةً أُخْرَىٰ. قَالَ لَهُ ٱلْمَلِكُ هَلْ تُحِبُّ أَن تَكُونَ أُسْتَاذًا لِّأَوْلَادِى. أُرِيدُ أَن يَكُونَ كُلُّ أَوْلَادِى عَالِمًا مِّثْلَكَ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:47.1%"></i></span><span class="pn"><b>33</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 36 -->
+<section class="slide reading matn" data-src="83" data-sect="18-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلرِّشْوَةُ</span><span class="nm">18-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>رَفَضَ يَزِيدُ هَٰذَا وَعَادَ إِلَىٰ بَيْتِهِۦ. بَعْدَ قَلِيلٍ مِّنَ ٱلْوَقْتِ دَعَاهُ ٱلْمَلِكُ مَرَّةً أُخْرَىٰ. وَعِندَمَا دَخَلَ ٱلْقَصْرَ قَالَ لَهُ ٱلْمَلِكُ يَجِبُ عَلَيْكَ أَن تَقْبَلَ وَاحِدًا مِّنَ ٱلثَّلَاثَةِ. قَالَ يَزِيدُ وَمَا هِىَ. قَالَ ٱلْمَلِكُ إِمَّآ أَن تَكُونَ قَاضِيًا وَإِمَّا تَعَلَّمَ أَوْلَادِىٓ أَوْ تَأْكُلَ عِندِىٓ أَكْلَةً. قَالَ يَزِيدُ ٱلْأَكْلَةُ أَخَفُّهَا عَلَىٰ نَفْسِى. وَعِندَمَا فَرَغَ ٱلْمَلِكُ وَيَزِيدُ مِنَ ٱلْأَكْلِ قَالَ ٱلطَّبَّاخُ أَيُّهَا ٱلْمَلِكُ لَن يَرْفُضَ يَزِيدُ أَمْرَكَ بَعْدَ هَٰذَا. وَبِٱلْفِعْلِ كَانَ أَن قَبِلَ يَزِيدُ بَعْدَ ذَٰلِكَ أَن يَكُونَ قَاضِيًا وَيُعَلِّمَ أَوْلَادَ ٱلْمَلِكِ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:48.6%"></i></span><span class="pn"><b>34</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 37 -->
+<section class="slide reading matn" data-src="84" data-sect="19-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">لَا تَتَغَيَّرْ</span><span class="nm">19-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>فِىٓ أَحَدِ ٱلْأَيَّامِ كَانَ مُحَمَّدٌ يَمْشِى فِى ٱلطَّرِيقِ بِجَانِبِ ٱلنَّهْرِ. فَرَأَىٰ قِطَّةً سَقَطَتْ فِى ٱلنَّهْرِ وَأَسْرَعَ لِإِنقَاذِهَا مِنَ ٱلنَّهْرِ. وَلَٰكِنْ عِندَمَآ أَخَذَ ٱلْقِطَّةَ لِإِخْرَاجِهَا مِنَ ٱلنَّهْرِ هَاجَمَتْهُ وَخَدَشَتْهُ بِمِخْلَبِهَا. تَأَلَّمَ مُحَمَّدٌ وَشَعَرَ بِٱلْغَضَبِ وَأَلْقَى ٱلْقِطَّةَ فِى ٱلْمَآءِ. ثُمَّ حَاوَلَ مُحَمَّدٌ مَّرَّةً أُخْرَىٰ لِإِنقَاذِ ٱلْقِطَّةِ مِنَ ٱلنَّهْرِ. وَلَٰكِنْ خَدَشَتْهُ ٱلْقِطَّةُ بِأَكْثَرَ مِنَ ٱلْمَرَّةِ ٱلْأُولَىٰ فَأَلْقَاهَا مُحَمَّدٌ فِى ٱلْمَآءِ. ثُمَّ حَاوَلَ مَرَّةً ثَالِثَةً وَلَٰكِنْ أُصِيبَ بِمَآ أُصِيبَ بِهِۦ مِن قَبْلُ. ٱسْتَمَرَّتْ هَٰذِهِ ٱلْحَالَةُ عِدَّةَ مَرَّاتٍ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:50.0%"></i></span><span class="pn"><b>35</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 38 -->
+<section class="slide reading matn" data-src="84" data-sect="19-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">لَا تَتَغَيَّرْ</span><span class="nm">19-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>وَفِى كُلِّ مَرَّةٍ تَخْدِشُهُ ٱلْقِطَّةُ فَأَلْقَاهَا مُحَمَّدٌ فِى ٱلْمَآءِ. وَلَٰكِن لَّمْ يَتْرُكْ مُحَمَّدٌ تِلْكَ ٱلْقِطَّةَ بَلْ يُحَاوِلُ لِإِنقَاذِهَا مِنَ ٱلنَّهْرِ. وَفِى ٱلنِّهَايَةِ تَوَقَّفَتِ ٱلْقِطَّةُ وَلَمْ تَتَحَرَّكْ إِلَّا قَلِيلًا. فَأَنقَذَهَا مُحَمَّدٌ مِّنَ ٱلنَّهْرِ. فَجْأَةً ٱقْتَرَبَ مِن مُّحَمَّدٍ رَّجُلٌ كَبِيرُ ٱلسِّنِّ. وَكَانَ يُشَاهِدُ كُلَّ مَا يَحْدُثُ. فَسَأَلَ مِن مُّحَمَّدٍ لِّمَاذَا لَمْ تَتْرُكِ ٱلْقِطَّةَ وَقَدْ خَدَشَتْكَ كَثِيرًا. فَقَالَ مُحَمَّدٌ لِّأَنَّنِىٓ أَعْلَمُ أَنَّهُۥ مِن طَبْعِ ٱلْقِطَّةِ أَن تَخْدِشَ بِمِخْلَبِهَا كُلَّ مَن يَأْخُذُهَا. وَلَٰكِن مِّن طَبْعِىٓ أَنْ أُسَاعِدَ كُلَّ إِنسَانٍ أَوْ حَيَوَانٍ يَحْتَاجُ لِلْمُسَاعَدَةِ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:51.4%"></i></span><span class="pn"><b>36</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 39 -->
+<section class="slide reading matn" data-src="84" data-sect="19-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">لَا تَتَغَيَّرْ</span><span class="nm">19-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>وَلَنْ أَدْعَ طَبْعَهَا يَغْلِبُ طَبْعِى.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:52.9%"></i></span><span class="pn"><b>37</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 40 -->
+<section class="slide reading matn" data-src="85" data-sect="20-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">بِرُّ ٱلْوَالِدَيْنِ</span><span class="nm">20-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>فِى قَدِيمِ ٱلزَّمَانِ كَانَ هُنَاكَ رَجُلٌ كَبِيرُ ٱلسِّنِّ. وَكَانَ لَهُۥ أَرْبَعَةُ أَبْنَآءٍ. ذَاتَ يَوْمٍ أُصِيبَ ٱلْأَبُ بِمَرَضٍ خَطِيرٍ وَظَنَّ ٱلْأَبْنَآءُ أَنَّهُۥ سَيَمُوتُ. بَعْدَ ذَٰلِكَ طَلَبَ ٱلِٱبْنُ ٱلْأَصْغَرُ مِنْ إِخْوَتِهِۦٓ أَن يَأْذَنُواْ لَهُۥ بِأَخْذِ أَبِيهِ إِلَىٰ بَيْتِهِۦ. رَفَضَ ٱلْأَبْنَآءُ أَوَّلًا. وَلَٰكِنَّهُمْ وَافَقُواْ عَلَىٰ ذَٰلِكَ عِندَمَا قَالَ ٱلِٱبْنُ ٱلْأَصْغَرُ أَنَّهُۥ لَا يَأْخُذُ مِنَ ٱلْمِيرٰثِ شَيْئًا. وَأَخَذَ ٱلِٱبْنُ ٱلْأَصْغَرُ يَهْتَمُّ بِأَبِيهِ حَتَّىٰ مَاتَ ٱلْأَبُ. أَخَذَ ٱلْإِخْوَةُ نَصِيبَهُم مِّنَ ٱلْمِيرٰثِ وَلَمْ يُعْطُواْ لِأَخِيهِمُ ٱلْأَصْغَرِ شَيْئًا.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:54.3%"></i></span><span class="pn"><b>38</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 41 -->
+<section class="slide reading matn" data-src="85" data-sect="20-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">بِرُّ ٱلْوَالِدَيْنِ</span><span class="nm">20-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>وَفِى ذَاتَ لَيْلَةٍ رَّأَىٰ ٱلِٱبْنُ ٱلْأَصْغَرُ فِى ٱلْمَنَامِ أَبَاهُ يُخْبِرُهُۥٓ أَنَّهُۥ وَضَعَ فِى جَرَّةِ مَآءٍ دِينَارًا وَاحِدًا. فَذَهَبَ ٱلِٱبْنُ إِلَىٰٓ إِخْوَتِهِۦ وَأَخْبَرَهُم بِمَا رَأَىٰ. فَضَحِكَ ٱلْإِخْوَةُ عَلَيْهِ وَقَالُواْ لَهُۥ دِينَارٌ وَاحِدٌ. خُذْهُ أَنتَ. أَخَذَ ٱلِٱبْنُ مِن تِلْكَ ٱلْجَرَّةِ ٱلدِّينَارَ. وَعِندَمَا يَرْجِعُ إِلَىٰ بَيْتِهِۦ رَأَىٰ صَيَّادًا يَبِيعُ سَمَكَةً. ٱشْتَرَىٰ مِنَ ٱلصَّيَّادِ ٱلسَّمَكَةَ بِٱلدِّينَارِ وَجَآءَ إِلَىٰ بَيْتِهِۦ. وَلَمَّا شَقَّتِ ٱمْرَأَتُهُ ٱلسَّمَكَةَ وَجَدتِّ مِنْهَا خَاتَمًا غَالِيًا. ٱنتَشَرَ خَبَرُ هَٰذَا ٱلْخَاتَمِ ٱلْغَالِى بَيْنَ ٱلنَّاسِ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:55.7%"></i></span><span class="pn"><b>39</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 42 -->
+<section class="slide reading matn" data-src="85" data-sect="20-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">بِرُّ ٱلْوَالِدَيْنِ</span><span class="nm">20-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>فَلَمَّا عَلِمَ ٱلْمَلِكُ هَٰذَآ أَمَرَ بِإِحْضَارِ ٱلْخَاتَمِ وَأَعْطَىٰ ٱلِٱبْنَ مَالًا كَثِيرًا. لِأَنَّ ٱلْمَلِكَ كَانَ يَبْحَثُ عَنِ ٱلْخَاتَمِ مُنذُ سَنَوَاتٍ كَثِيرَةٍ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:57.1%"></i></span><span class="pn"><b>40</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 43 -->
+<section class="slide reading matn" data-src="86" data-sect="21-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">عِلْمُ ٱلْمَنطِقِ</span><span class="nm">21-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>كَانَتْ هُنَاكَ قَرْيَةٌ صَغِيرَةٌ. يَعِيشُ فِيهَا وَلَدٌ صَغِيرٌ ٱسْمُهُۥ عَبْدُ ٱلرَّحْمَٰنِ. كَانَ عَبْدُ ٱلرَّحْمَٰنِ ذَكِيًّا فِى ٱلْمَدْرَسَةِ. وَلَٰكِنَّهُۥ لَا يَفْهَمُ ٱلْمَنطِقَ وَيَقُولُ لِمَاذَا يَجِبُ تَعَلُّمُ عِلْمِ ٱلْمَنطِقِ. فِىٓ أَحَدٍ مِّنَ ٱلْأَيَّامِ قَرَّرَ عَبْدُ ٱلرَّحْمَٰنِ ٱلذَّهَابَ إِلَى ٱلْجَبَلِ مَعَ أَصْدِقَآءٍ. وَبَدَأُواْ ٱلسَّفَرَ بِفَرَحٍ لِأَنَّ ٱلصُّعُودَ عَلَى ٱلْجَبَلِ كَانَ سَهْلًا لِّلْأَوْلَادِ. وَعِندَمَا يَرْجِعُ ٱلْأَوْلَادُ مِنَ ٱلْجَبَلِ أَخَذَ عَبْدُ ٱلرَّحْمَٰنِ يُفَكِّرُ فِى ٱلْجَبَلِ نَاظِرًا إِلَى ٱلطَّرِيقِ. فَوَجَدَ عَبْدُ ٱلرَّحْمَٰنِ نَفْسَهُۥ وَاحِدًا لَّا يَعْرِفُ كَيْفَ يَرْجِعُ إِلَى ٱلْبَيْتِ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:58.6%"></i></span><span class="pn"><b>41</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 44 -->
+<section class="slide reading matn" data-src="86" data-sect="21-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">عِلْمُ ٱلْمَنطِقِ</span><span class="nm">21-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>فَذَكَرَ فِى عَقْلِهِۦ دَرْسًا قَد تَّعَلَّمَهُۥ فِى ٱلْمَدْرَسَةِ عَنِ ٱلْمَنطِقِ فِى ٱلْعَكْسِ. فَفَهِمَ عَبْدُ ٱلرَّحْمَٰنِ سَرِيعًا أَنَّهُۥٓ إِذَا رَجَعَ عَلَىٰ نَفْسِ ٱلطَّرِيقِ سَيَرْجِعُ إِلَىٰ بَيْتِهِۦ. قَرَّرَ عَبْدُ ٱلرَّحْمَٰنِ فِعْلَ ذَٰلِكَ ٱلْأَمْرِ. فَرَجَعَ عَلَىٰ نَفْسِ ٱلطَّرِيقِ ٱلَّذِى جَآءَ فِيهِ مِن قَبْلُ. فَرَجَعَ عَبْدُ ٱلرَّحْمَٰنِ إِلَىٰ بَيْتِهِۦ. لَقَدْ فَهِمَ عَبْدُ ٱلرَّحْمَٰنِ بَعْدَ ذَٰلِكَ أَنَّهُۥ يَجِبُ تَعَلُّمُ عِلْمِ ٱلْمَنطِقِ. لِأَنَّهُۥ يَجِدُ طَرِيقًا فِى حَلِّ ٱلْمُشْكِلَاتِ بِهِۦ. وَمُنذُ ذَٰلِكَ ٱلْيَوْمِ أَصْبَحَ عَبْدُ ٱلرَّحْمَٰنِ وَلَدًا ذَكِيًّا يُفَكِّرُ فِى كُلِّ شَىْءٍۢ بِعَقْلِهِۦ وَٱلْمَنطِقِ. فَهُمَآ أَفْضَلُ أَصْدِقَآئِهِۦ فِى ٱلْعَالَمِ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:60.0%"></i></span><span class="pn"><b>42</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 45 -->
+<section class="slide reading matn" data-src="87" data-sect="22-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلْمُسَاعَدَةُ</span><span class="nm">22-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>كَانَ فِىٓ إِحْدَ ٱلْمَدِينَةِ وَلَدٌ صَغِيرٌ ٱسْمُهُۥ سَالِمٌ. وَكَانَ يَعِيشُ فِى مَنزِلٍ جَمِيلٍ مَّعَ أُسْرَتِهِۦ. كَانَ سَالِمٌ دَآئِمًا يَلْعَبُ فِى حَدِيقَةِ ٱلْمَنزِلِ وَيَسْتَمْتِعُ بِٱلْأَلْعَابِ وَٱلْأَصْدِقَآءِ. فِى يَوْمٍ مِّنَ ٱلْأَيَّامِ ذَهَبَ سَالِمٌ لِّلَّعْبِ فِى ٱلْحَدِيقَةِ. وَرَأَىٰ جَارَهُ ٱلسَّيِّدَ أَحْمَدَ يُحَاوِلُ رَفْعَ سُندُوقٍ ثَقِيلٍ. قَرَّرَ سَالِمٌ أَن يُسَاعِدَ ٱلسَّيِّدَ أَحْمَدَ. فَجَآءَ وَقَالَ لَهُ ٱلسَّلَامُ عَلَيْكُمْ هَلْ تَحْتَاجُ إِلَىٰ مُسَاعَدَةٍ. فَرِحَ ٱلسَّيِّدُ أَحْمَدُ بِهَٰذَا ٱلْكَلَامِ وَقَالَ وَعَلَيْكُمُ ٱلسَّلَامُ نَعَمْ شُكْرًا لَّكَ. يُمْكِنُكَ مُسَاعَدَتِى فِى حَمْلِ هَٰذَا ٱلسُّندُوقِ ٱلثَّقِيلِ إِلَىٰ مَنزِلِى.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:61.4%"></i></span><span class="pn"><b>43</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 46 -->
+<section class="slide reading matn" data-src="87" data-sect="22-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلْمُسَاعَدَةُ</span><span class="nm">22-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>بَدَأَ سَالِمٌ وَٱلسَّيِّدُ أَحْمَدُ فِى حَمْلِ ٱلسُّندُوقِ مَعًا. وَبِٱلْفِعْلِ كَانَ ٱلسُّندُوقُ ثَقِيلًا جِدًّا. لَٰكِن لَّمْ يَتَوَقَّفْ سَالِمٌۢ بَلِ ٱجْتَهَدَ فِى ٱلْمُسَاعَدَةِ حَتَّىٰ وَصَلَآ إِلَىٰ مَنزِلِ ٱلسَّيِّدِ أَحْمَدَ. شَكَرَ ٱلسَّيِّدُ أَحْمَدُ سَالِمًا عَلَىٰ مُسَاعَدَتِهِۦ وَقَالَ لَهُۥ أَنتَ وَلَدٌ طَيِّبُ ٱلْقَلْبِ. شُكْرًا لَّكَ عَلَىٰ مُسَاعَدَتِى. يَجِبُ أَن نَّكُونَ مُسَاعِدِينَ لِبَعْضِنَا ٱلْبَعْضِ. سَالِمٌ كَانَ سَعِيدًا جِدًّۢا بِأَنَّهُۥ سَاعَدَ ٱلسَّيِّدَ أَحْمَدَ. وَعَلِمَ أَنَّهُۥ يَجِبُ عَلَيْنَآ أَن نُّسَاعِدَ ٱلنَّاسَ مِنْ حَوْلِنَا. مُنذُ ذَٰلِكَ ٱلْوَقْتِ بَدَأَ سَالِمٌ يَزُورُ ٱلسَّيِّدَ أَحْمَدَ. وَبَدَأَ يُسَاعِدُهُۥ فِىٓ أَىِّ شَىْءٍ يَحْتَاجُهُۥ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:62.9%"></i></span><span class="pn"><b>44</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 47 -->
+<section class="slide reading matn" data-src="88" data-sect="23-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلشَّاعِرُ</span><span class="nm">23-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>فِى قَدِيمِ ٱلزَّمَانِ كَانَ هُنَاكَ رَجُلٌ غَنِىٌّ ٱسْمُهُۥ فُضَيْلٌ. وَكَانَ فُضَيْلٌ يَرْتَدِى ثِيَابًا غَالِيَةَ ٱلثَّمَنِ وَجَمِيلَةً. وَكَانَ يُوجَدُ دَآئِمًا أُنَاسٌ أَغْنِيَآءُ حَوْلَهُۥ. وَٱلطَّعَامُ ٱلَّذِى يَأْكُلُهُۥ كَانَ أَلَذَّ وَأَطْيَبَ فِى ٱلْمَدِينَةِ. وَٱلْبَيْتُ ٱلَّذِى يَسْكُنُ فِيهِ فُضَيْلٌ كَانَ مِنْ أَحْسَنِ ٱلْمَنَازِلِ. وَلَهُۥ جَارٌ فَقِيرٌ ٱسْمُهُۥ هَاشِمٌ. كَانَ هَاشِمٌ يَرْتَدِى ثِيَابًا رَّخِيصَةً وَيَأْكُلُ طَعَامًۢا بَسِيطًا. وَكَانَ مَنزِلُهُۥ أَيْضًۢا بَسِيطًا وَصَغِيرًا. كَانَ هَاشِمٌ شَاعِرًا كَتَبَ كَثِيرًا مِّنَ ٱلْأَشْعَارِ وَٱلْقَصَصِ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:64.3%"></i></span><span class="pn"><b>45</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 48 -->
+<section class="slide reading matn" data-src="88" data-sect="23-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلشَّاعِرُ</span><span class="nm">23-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>وَإِنَّ ٱلشَّخْصَ ٱلَّذِى مَدَحَهُۥ هَاشِمٌ سَيُصْبِحُ شَهِيرًۢا بَيْنَ ٱلنَّاسِ وَٱلشَّخْصِ ٱلَّذِى نَقَّدَهُۥ سَيَضْحِكُ ٱلنَّاسُ عَلَيْهِ. كَانَ فُضَيْلٌ لَّا يُحِبُّ جَارَهُۥ هَاشِمًا لِّأَنَّهُۥ فَقِيرٌ وَكَانَ فُضَيْلٌ يَظُنُّ أَنَّ ٱلْفُقَرَآءَ هُمُ ٱلْجَاهِلُونَ فَقَطْ. لِهَٰذَا ٱلسَّبَبِ لَا يُحِبُّ أَن يَكُونَ جَارًا مَّعَ هَاشِمٍ. عِندَمَا حَاوَلَ فُضَيْلٌ شِرَآءَ مَنزِلِ هَاشِمٍ رَّفَضَهُۥ وَلَمْ يَبِعْ بَيْتَهُۥ. فَغَضِبَ فُضَيْلٌ مِّنْهُ شَدِيدًا. ذَاتَ يَوْمٍ عِندَمَا كَانَ فُضَيْلٌ جَالِسًا مَّعَ ٱلنَّاسِ فِى ٱلشَّارِعِ جَآءَ إِلَيْهِ هَاشِمٌ وَجَلَسَ بِجَانِبِهِۦ. وَكَانَ بَيْنَهُۥ وَبَيْنَ فُضَيْلٍ شِبْرٌ وَاحِدٌ فَقَطْ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:65.7%"></i></span><span class="pn"><b>46</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 49 -->
+<section class="slide reading matn" data-src="88" data-sect="23-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلشَّاعِرُ</span><span class="nm">23-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>فَغَضِبَ فُضَيْلٌ مِّنْ هَٰذَا وَقَالَ لَهُۥ مَا ٱلْفَرْقُ بَيْنَكَ وَبَيْنَ ٱلْحِمَارِ أَيُّهَا ٱلْأَحْمَقُ. قَالَ هَاشِمٌ إِنَّ ٱلْفَرْقَ بَيْنِى وَبَيْنَ ٱلْحِمَارِ شِبْرٌ وَاحِدٌ فَقَطْ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:67.1%"></i></span><span class="pn"><b>47</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 50 -->
+<section class="slide reading matn" data-src="89" data-sect="24-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلطَّبِيبُ وَمَحْمُودٌ</span><span class="nm">24-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>ذَاتَ يَوْمٍ كَانَ فَرِيدٌ ذَاهِبًا إِلَى ٱلطَّبِيبِ. فِى ٱلطَّرِيقِ رَءَاهُ صَدِيقُهُۥ وَسَأَلَهُۥٓ إِلَىٰٓ أَيْنَ أَنتَ ذَاهِبٌ. قَالَ فَرِيدٌ أَنَاْ ذَاهِبٌ إِلَى ٱلطَّبِيبِ فَأَنَاْ أَشْعُرُ بِأَلَمٍ فِى جِسْمِى. قَالَ مَحْمُودٌ ٱلْأَطِبَّآءُ يَكْذِبُونَ دَآئِمًا يَصِفُونَ ٱلنَّاسَ ٱلدَّوَآءَ أَوْ يَمْنَعُونَهُمْ عَن شَىْءٍ. لَٰكِنَّهُمْ لَا يَسْتَطِيعُونَ بَيَانَ مَا قَالُوهُ. إِذَا كُنتَ تُرِيدُ أَنْ أَذْهَبَ مَعَكَ أَثْبَتُ لَكَ ذَٰلِكَ. كِلَاهُمَا ذَهَبَآ إِلَى ٱلطَّبِيبِ. مَنَعَ ٱلطَّبِيبُ فَرِيدًا عَن تَنَاوُلِ ٱلسُّكَّرِ. فَقَالَ مَحْمُودٌ لَّوْ سَمَحْتَنِىٓ أَيُّهَا ٱلطَّبِيبُ أَسْأَلُكَ سُؤَالًا. قَالَ ٱلطَّبِيبُ نَعَمْ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:68.6%"></i></span><span class="pn"><b>48</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 51 -->
+<section class="slide reading matn" data-src="89" data-sect="24-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلطَّبِيبُ وَمَحْمُودٌ</span><span class="nm">24-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>قَالَ مَحْمُودٌ هَلْ تَرَىٰ عَلَىٰ فَرِيدٍ مِّنۢ بَأْسٍ إِنْ أَكَلَ تَمْرًا. قَالَ ٱلطَّبِيبُ لَا. قَالَ مَحْمُودٌ فَهَلْ تَرَىٰ عَلَيْهِ مِنۢ بَأْسٍ إِنْ أَكَلَ مَعَهُۥ حَشِيشًا. قَالَ لَا. قَالَ مَحْمُودٌ فَإِن شَرِبَ عَلَيْهِ مَآءً. قَالَ ٱلطَّبِيبُ لَا بَأْسَ. قَالَ مَحْمُودٌ فَلِمَا تَمْنَعُهُۥ عَنِ ٱلسُّكَّرِ وَإِنَّمَا هُوَ مَا ذَكَرْتُهُۥ لَكَ. قَالَ ٱلطَّبِيبُ لَوْ صَبَبْتُ عَلَيْكَ مَآءً هَلْ كَانَ يَضُرُّكَ. قَالَ مَحْمُودٌ لَّا. قَالَ ٱلطَّبِيبُ فَلَوْ نَثَرْتُ عَلَيْكَ تُرَابًا هَلْ كَانَ يُؤْذِيكَ. قَالَ لَا. قَالَ ٱلطَّبِيبُ فَإِنْ أَخَذْتُ تِلْكَ ٱلْأَشْيَآءَ وَخَلَطتُهَا وَعَجَنتُهَا وَجَعَلْتُ مِنْهَا حِجَارَةً فَضَرَبْتُ بِهَا رَأْسَكَ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:70.0%"></i></span><span class="pn"><b>49</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 52 -->
+<section class="slide reading matn" data-src="89" data-sect="24-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلطَّبِيبُ وَمَحْمُودٌ</span><span class="nm">24-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>هَلْ تَقْدِرُ عَلَى ٱلْبَقَآءِ. قَالَ مَحْمُودٌ كُنتَ تَقْتُلُنِى. فَقَالَ ٱلطَّبِيبُ فَهَٰذَا مِثْلُ ذَٰلِكَ. فَنَدِمَ مَحْمُودٌ عَلَىٰ مَا قَالَهُۥ وَٱعْتَذَرَ لِلطَّبِيبِ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:71.4%"></i></span><span class="pn"><b>50</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 53 -->
+<section class="slide reading matn" data-src="90" data-sect="25-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">هَارُونُ وَجَابِرٌ</span><span class="nm">25-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>كَانَ هَارُونُ وَلَدًا طَيِّبَ ٱلْقَلْبِ يَعِيشُ فِى قَرْيَةٍ صَغِيرَةٍ. وَكَانَ يُحِبُّ مُسَاعَدَةَ ٱلنَّاسِ. وَكَانَ فِى ٱلْقَرْيَةِ وَلَدٌ ءَاخَرُ ٱسْمُهُۥ جَابِرٌ. وَكَانَ جَابِرٌ وَلَدًا جَاهِلًا وَكَانَ لَا يُحِبُّ أَن يُسَاعِدَ ٱلنَّاسَ. فِى يَوْمٍ مِّنَ ٱلْأَيَّامِ قَرَّرَ هَارُونُ أَن يُعَلِّمَ جَابِرًا دَرْسًا فِى حُسْنِ ٱلْخُلْقِ. قَالَ لِنَفْسِهِۦ سَأَقُولُ لِجَابِرٍ أَنَّ ٱلِٱحْتِرَامَ سَيَجْعَلُهُۥ مَحْبُوبًا عِندَ ٱلنَّاسِ. فِى ٱلْمَدْرَسَةِ عِندَمَا يَضْحَكُ جَابِرٌ عَلَى ٱلْأَوْلَادِ ٱقْتَرَبَ مِنْهُ هَارُونُ. وَقَالَ لَهُۥ هَلْ تَعْلَمُ أَنَّ ٱلِٱحْتِرَامَ يَأْتِى لَنَا بِٱلسَّعَادَةِ وَٱلْفَرَحِ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:72.9%"></i></span><span class="pn"><b>51</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 54 -->
+<section class="slide reading matn" data-src="90" data-sect="25-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">هَارُونُ وَجَابِرٌ</span><span class="nm">25-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>لَمْ يُرِدْ جَابِرٌ أَن يَسْمَعَ كَلَامَ هَارُونَ وَذَهَبَ إِلَى ٱلْبَعِيدِ. وَبَعْدَ يَوْمٍ ذَهَبَ ٱلْأَوْلَادُ إِلَىٰ حَدِيقَةٍ جَمِيلَةٍ. وَكَانَ فِيهِمْ هَارُونُ وَجَابِرٌ أَيْضًا. وَكَانَتْ فِى ٱلْحَدِيقَةِ شَجَرَةٌ كَبِيرَةٌ وَكَانَ فِى ٱلشَّجَرَةِ كَثِيرٌ مِّنَ ٱلتُّفَّاحِ. شَعَرَ هَارُونُ بِمُسَاعَدَةِ ٱلْأَوْلَادِ وَأَعْطَىٰ لِكُلٍّ مِّنْهُمْ تُفَّاحَةً. عِندَمَا رَأَىٰ ذَٰلِكَ جَابِرٌ أَرَادَ أَن يَكُونَ ٱلتُّفَّاحُ كُلُّهُۥ لِنَفْسِهِۦ. فَقَالَ لِهَارُونَ غَاضِبًا أَعْطِنِى كُلَّ شَىْءٍ فِى يَدِكَ فَإِنَّهُۥ لِى. عِندَ ذَٰلِكَ ٱقْتَرَبَ ٱلْأَوْلَادُ كُلُّهُم مِّن جَابِرٍ وَقَالُوٓاْ أَنَّهُۥ وَلَدٌ سَيِّئٌ يَجِبُ أَن يَخْرُجَ مِنَ ٱلْحَدِيقَةِ سَرِيعًا.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:74.3%"></i></span><span class="pn"><b>52</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 55 -->
+<section class="slide reading matn" data-src="90" data-sect="25-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">هَارُونُ وَجَابِرٌ</span><span class="nm">25-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>شَعَرَ جَابِرٌۢ بِٱلْحُزْنِ مِمَّا فَعَلَ حُزْنًا شَدِيدًا. وَمُنذُ ذَٰلِكَ ٱلْيَوْمِ تَعَلَّمَ جَابِرٌ دَرْسًا كَبِيرًا فِى حُسْنِ ٱلْخُلْقِ. وَأَصْبَحَ وَلَدًا طَيِّبًا يُسَاعِدُ ٱلنَّاسَ دَآئِمًا.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:75.7%"></i></span><span class="pn"><b>53</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 56 -->
+<section class="slide reading matn" data-src="91" data-sect="26-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">شُرَيْكٌ</span><span class="nm">26-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>كَانَ هُنَاكَ وَلَدٌ صَغِيرٌ ٱسْمُهُۥ شُرَيْكٌ. كَانَ شُرَيْكٌ طَيِّبَ ٱلْقَلْبِ. وَيُرِيدُ أَن يَكُونَ شُرْطِيًّا عِندَمَا يَكْبُرُ. كَانَ يُتَابِعُ أَخْبَارَ ٱلشُّرْطَةِ وَيَقْرَأُ عَنْ أَفْضَلِ ٱلشُّرْطِيِّينَ فِى ٱلْبِلَادِ. فِى يَوْمٍ مِّنَ ٱلْأَيَّامِ قَرَّرَ شُرَيْكٌ ٱلذَّهَابَ إِلَىٰ مَرْكَزِ ٱلشُّرْطَةِ. وَصَلَ إِلَى ٱلْمَرْكَزِ وَكَانَ يَعْرِفُ مَا يَحْدِثُ هُنَاكَ. وَفَجْأَةً شَاهَدَ رَجُلًا غَنِيًّا يُعْطِى مَالًا لِّأَحَدِ رِجَالِ ٱلشُّرْطَةِ وَهُوَ يَضْحَكُ. أَصْبَحَ شُرَيْكٌ يُفَكِّرُ وَيَسْأَلُ لِمَاذَا يَأْخُذُ ٱلشُّرْطِىُّ هَٰذَا ٱلْمَالَ. جَآءَ شُرَيْكٌ إِلَى ٱلرَّجُلِ ٱلْغَنِىِّ وَسَأَلَ مِنْهُ مَاذَا كُنتَ تُعْطِى رَجُلَ ٱلشُّرْطَةِ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:77.1%"></i></span><span class="pn"><b>54</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 57 -->
+<section class="slide reading matn" data-src="91" data-sect="26-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">شُرَيْكٌ</span><span class="nm">26-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>فَقَالَ ٱلرَّجُلُ ضَاحِكًا هَٰذَا يُسَمَّىٰ بِٱلرِّشْوَةِ. عِندَمَا تُعْطِى ٱلْمَالَ لِشَخْصٍ مَّا يُسَاعِدُكَ فِى كُلِّ شَىْءٍ. يُفَكِّرُ شُرَيْكٌ فِى هَٰذِهِ ٱلْمَعْلُومَةِ ٱلْجَدِيدَةِ. وَلَٰكِن شَعَرَ بِأَنَّ هُنَاكَ شَيْئًا غَيْرَ صَحِيحٍ فِى ذَٰلِكَ. بِسُرْعَةٍ قَرَّرَ أَن يَذْهَبَ إِلَىٰ مُدِيرِ ٱلشُّرْطَةِ ٱلْكَبِيرِ وَيُخْبِرَهُۥ عَن مَّا حَدَثَ. كَانَ شُرَيْكٌ خَآئِفًا مِّن سُوٓءِ ٱلرَّجُلِ ٱلْغَنِىِّ. وَلَٰكِنَّهُۥ تَذَكَّرَ حُلْمَهُۥ بِأَن يُصْبِحَ شُرْطِيًّا. أَخْبَرَ شُرَيْكٌ ٱلْمُدِيرَ كُلَّمَا حَدَثَ. تَعَجَّبَ ٱلْمُدِيرُ مِنْ هَٰذَا وَقَرَّرَ أَن يَعْرِفَ ٱلْحَقِيقَةَ. وَبَعْدَ قَلِيلٍ عَلِمَ أَنَّ ٱلشُّرْطِىَّ قَدْ أَخَذَ مِنَ ٱلرَّجُلِ ٱلْغَنِىِّ رِشْوَةً.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:78.6%"></i></span><span class="pn"><b>55</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 58 -->
+<section class="slide reading matn" data-src="91" data-sect="26-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">شُرَيْكٌ</span><span class="nm">26-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>بَعْدَ سَنَوَاتٍ كَثِيرَةٍ جَآءَ شُرَيْكٌ لِّيُصْبِحَ شُرْطِيًّا. دَعَا ٱلْمُدِيرُ شُرَيْكًا وَشَكَرَهُۥ عَلَىٰ مَا فَعَلَهُۥ مِن قَبْلُ. فَأَصْبَحَ شُرَيْكٌ شُرْطِيًّا شَهِيرًۢا بِٱلْعَدَالَةِ وَٱلْمُرُوٓءَةِ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:80.0%"></i></span><span class="pn"><b>56</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 59 -->
+<section class="slide reading matn" data-src="92" data-sect="27-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلصَّدِيقُ</span><span class="nm">27-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>قَالَ أَحَدٌ مِّنَ ٱلطُّلَّابِ أَلَا نَخْرُجُ فِى ٱلصَّيْفِ لِسَفَرٍۢ بَعِيدٍ أَيُّهَا ٱلطُّلَّابُ. فَقَالُواْ نَعَمْ يَا لَهُۥ مِن كَلَامٍ جَمِيلٍ. مَآ أَجْمَلَ هَٰذَا ٱلسَّفَرَ. وَعِندَمَا جَآءَ فَصْلُ ٱلصَّيْفِ أَخَذَ ٱلطُّلَّابُ يَذْهَبُونَ لِلسَّفَرِ إِلَى ٱلْجَبَلِ. وَكَانَ فَرِيدٌ طَالِبًا أَيْضًا وَلَٰكِنَّهُۥ مَا خَرَجَ لِلسَّفَرِ. لِأَنَّهُۥ كَانَ طَالِبًا فَقِيرًا وَلَيْسَ لَهُۥ أَبٌ يُسَاعِدُهُۥ. جَآءَ إِلَيْهِ صَدِيقُهُۥ حَمْزَةُ فَقَالَ لَهُۥ هَلْ تَخْرُجُ لِلسَّفَرِ يَا صَدِيقِى. قَالَ لَهُۥ فَرِيدٌ لَّا لَآ أُرِيدُ ٱلسَّفَرَ. كَانَ حَمْزَةُ يَعْلَمُ ٱلشَّىْءَ ٱلَّذِى يَمْنَعُ صَدِيقَهُۥ مِنَ ٱلسَّفَرِ. فَقَالَ إِذَن نَّخْرُجَ مَعًا إِلَى ٱلنَّهْرِ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:81.4%"></i></span><span class="pn"><b>57</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 60 -->
+<section class="slide reading matn" data-src="92" data-sect="27-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلصَّدِيقُ</span><span class="nm">27-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>فَذَهَبَ ٱلصَّدِيقَانِ فِى ٱلصَّبَاحِ إِلَى ٱلنَّهْرِ. وَبَعْدَ قَلِيلٍ جَلَسَ فَرِيدٌ قَرِيبًا مِّنَ ٱلنَّهْرِ وَأَخَذَ يُفَكِّرُ. فَٱقْتَرَبَ مِنْهُ صَدِيقُهُۥ فَقَالَ فِىٓ أَىِّ شَىْءٍ تُفَكِّرُ يَا صَدِيقِى. قَالَ فَرِيدٌ أُفَكِّرُ فِىٓ أَنْ أَكُونَ غَنِيًّا أُرِيدُ أَن يَكُونَ لِى مَالٌ كَثِيرٌ. سَأَلَ مِنْهُ حَمْزَةُ وَمَا تَفْعَلُ بَعْدَ ذَٰلِكَ. قَالَ فَرِيدٌ ءَاخُذُ بَيْتًا كَبِيرًا وَجَمِيلًا. ثُمَّ تَكُونُ لِى حَدِيقَةٌ جَمِيلَةٌ وَيَكُونُ لِى أَوْلَادٌ أَيْضًا. أَذْهَبُ كُلَّ يَوْمٍ فِى ٱلصَّبَاحِ إِلَى ٱلْعَمَلِ. ثُمَّ أَرْجِعُ عِندَ ٱللَّيْلِ إِلَىٰ بَيْتِى. ثُمَّ أَذْهَبُ إِلَى ٱلسُّوقِ وَءَاخُذُ مَآ أُرِيدُ. فَقَالَ حَمْزَةُ وَمَا تَفْعَلُ بَعْدَ ذَٰلِكَ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:82.9%"></i></span><span class="pn"><b>58</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 61 -->
+<section class="slide reading matn" data-src="92" data-sect="27-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلصَّدِيقُ</span><span class="nm">27-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>قَالَ فَرِيدٌ ثُمَّ أَخْرُجُ لِلسَّفَرِ إِلَى ٱلْجَبَلِ أَوْ إِلَى ٱلنَّهْرِ وَأَجْلِسُ قَرِيبًا مِّنَ ٱلنَّهْرِ وَأَرَى ٱلنَّهْرَ. فَقَالَ لَهُۥ حَمْزَةُ يَا صَدِيقِىٓ أَنتَ ٱلْآنَ تَجْلِسُ قَرِيبًا مِّنَ ٱلنَّهْرِ وَتَرَىٰ كُلَّ شَىْءٍ جَانِبَ ٱلنَّهْرِ. يَا صَدِيقِى يَجِبُ عَلَيْكَ أَن تَسُرَّ ٱلْآنَ بِمَا عِندَكَ. وَلَا تَرُدْ مَا لَيْسَ عِندَكَ. لِأَنَّ ٱلْحُزْنَ أَن يُرِيدَ ٱلْإِنسَانُ مَا لَيْسَ عِندَهُۥ. وَإِنَّ ٱلْخَيْرَ مَا كَانَ مَوْجُودًا عِندَكَ وَتَسُرُّ بِهِۦ. فَسُرَّ فَرِيدٌ مِّن كَلَامِ صَدِيقِهِۦ. ثُمَّ رَجَعَ ٱلصَّدِيقَانِ مِنَ ٱلسَّفَرِ إِلَى ٱلْبَيْتِ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:84.3%"></i></span><span class="pn"><b>59</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 62 -->
+<section class="slide reading matn" data-src="93" data-sect="28-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">حُرَّاسُ ٱلسِّجْنِ</span><span class="nm">28-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>فِىٓ أَحَدٍ مِّنَ ٱلسُّجُونِ كَانَ ٱلسُّجَنَآءُ يُعَانُونَ مِن سُوٓءِ مُعَامَلَةِ ٱلْحُرَّاسِ. وَكَانَ فِى ٱلسِّجْنِ رَجُلٌ ٱسْمُهُۥ قَاصِمٌ. وَكَانَ قَاصِمٌ مَّحْكُومًا عَلَيْهِ لِوَقْتٍ طَوِيلٍ. وَكَانَ قَاصِمٌ هُوَ ٱلسَّجِينَ ٱلْوَحِيدَ ٱلَّذِى لَا يُعَامِلُ مَعَهُ ٱلْحُرَّاسُ بِٱلسُّوٓءِ. بَلْ يُعَامِلُونَ مَعَهُۥ مُعَامَلَةً جَيِّدَةً. وَيَظُنُّ أَكْثَرُ ٱلسُّجَنَآءِ أَنَّ قَاصِمًا يُعْطِى دَآئِمًا لِّلْحُرَّاسِ مَالًا. وَلَٰكِن كَانَ قَاصِمٌ يَقُولُ دَآئِمًا أَنَّهُۥ لَمْ يُعْطِ لِلْحُرَّاسِ شَيْئًا وَلَمْ يُصَدِّقْهُ أَحَدٌ. فَكَانَ دَآئِمًا يَسْأَلُونَ مِنْهُ عَن سَبَبِ ذَٰلِكَ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:85.7%"></i></span><span class="pn"><b>60</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 63 -->
+<section class="slide reading matn" data-src="93" data-sect="28-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">حُرَّاسُ ٱلسِّجْنِ</span><span class="nm">28-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>يَوْمًا قَالَ قَاصِمٌ حَسَنًا أُرِيدُ أَوَّلًا أَنْ أَعْرِفَ مَاذَا تَكْتُبُونَ فِى رِسَالَاتِكُمُ ٱلْأُسْبُوعِيَّةِ ٱلَّتِى تُرْسِلُونَ إِلَىٰٓ أُسْرَتِكُمْ أَوْ أَصْدِقَآئِكُمْ. فَقَالَ ٱلْجَمِيعُ نَقُولُ لَهُمْ عَن سُوٓءِ مُعَامَلَةِ ٱلْحُرَّاسِ فِى ٱلسِّجْنِ وَنَقُولُ أَيْضًا عَنِ ٱلظُّلْمِ ٱلَّذِى نَشْعُرُ بِهِۦ كُلَّ يَوْمٍ. ٱبْتَسَمَ قَاصِمٌ وَقَالَ لَهُمْ أَمَّآ أَنَاْ فَأَكْتُبُ فِى رِسَالَتِى لِٱمْرَأَتِى وَأَصْدِقَآئِى عَنْ حُسْنِ مُعَامَلَتِهِمْ لِى. وَٱلْأَشْيَآءِ ٱلْجَيِّدَةِ ٱلَّتِىٓ أَتَعَلَّمُهَا فِى هَٰذَا ٱلْمَكَانِ. وَأَكْتُبُ أَسْمَآءَ بَعْضِ ٱلْحُرَّاسِ وَأَمْدَحُهُمْ كَثِيرًا.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:87.1%"></i></span><span class="pn"><b>61</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 64 -->
+<section class="slide reading matn" data-src="93" data-sect="28-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">حُرَّاسُ ٱلسِّجْنِ</span><span class="nm">28-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>فَقَالَ أَحَدٌ مِّنَ ٱلسُّجَنَآءِ لِمَاذَا تَكْتُبُ أَسْمَآءَ بَعْضِ ٱلْحُرَّاسِ وَتَمْدَحُهُمْ كَثِيرًا. قَالَ قَاصِمٌ لِّأَنَّ جَمِيعَ رِسَالَاتِنَا يَقْرَأُهَا ٱلْحُرَّاسُ. فَهُمْ يَقْرَؤُونَ كُلَّ صَغِيرَةٍ وَكَبِيرَةٍ فِى هَٰذِهِ ٱلرِّسَالَةِ. فَيَجِبُ عَلَيْكُمْ أَن تَكْتُبُواْ ٱلرِّسَالَاتِ بِهَٰذِهِ ٱلطَّرِيقَةِ. بَعْدَ أُسْبُوعٍ وَاحِدٍ فَجْأَةً أَخَذَ حُرَّاسُ ٱلسِّجْنِ يُعَامِلُونَ مَعَ ٱلسُّجَنَآءِ بِٱلسُّوٓءِ أَكْثَرَ مِمَّا كَانَ قَبْلَ ذَٰلِكَ وَحَتَّىٰ مَعَ قَاصِمٍ أَيْضًا. فَقَالَ قَاصِمٌ غَاضِبًا لِّلسُّجَنَآءِ مَاذَا كَتَبْتُمْ فِى رِسَالَاتِكُمُ ٱلْأُسْبُوعِيَّةِ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:88.6%"></i></span><span class="pn"><b>62</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 65 -->
+<section class="slide reading matn" data-src="93" data-sect="28-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">حُرَّاسُ ٱلسِّجْنِ</span><span class="nm">28-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>فَقَالَ ٱلْجَمِيعُ كَتَبْنَآ أَنَّكَ كَيْفَ تَكْذِبُ عَلَى ٱلْحُرَّاسِ كُلَّ أُسْبُوعٍۢ بِرِسَالَتِكَ وَكَيْفَ تَعِيشُ فِى ٱلسِّجْنِ سَعِيدًا.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:90.0%"></i></span><span class="pn"><b>63</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 66 -->
+<section class="slide reading matn" data-src="94" data-sect="29-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">لَا تَكْذِبْ</span><span class="nm">29-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>سَالِمٌ يُحِبُّ كَثِيرًا ٱلْحَلْوى ٱلَّتِى تَصْنَعُهَا لَهُۥٓ أُمُّهُۥ بِيَدَيْهَا. وَدَآئِمًا يَطْلُبُ سَالِمٌ مِّنْ أُمِّهِۦٓ أَن تَصْنَعَ لَهُۥ نَوْعًا جَدِيدًا مِّنَ ٱلْحَلْوَىٰ. وَذَاتَ مَسَآءٍ طَلَبَ سَالِمٌ مِّنْ أُمِّهِۦٓ أَن تَصْنَعَ لَهُۥ بَعْضَ ٱلْحَلْوَىٰ. طَلَبَتِ ٱلْأُمُّ مِن صَغِيرِهَا سَالِمٍ ٱلذَّهَابَ إِلَى ٱلسُّوقِ لِشِرَآءِ بَعْضِ ٱلْبَيْضِ لِتَصْنَعَ لَهُۥ تِلْكَ ٱلْحَلْوَىٰ. وَفِى ٱلطَّرِيقِ رَءَاهُ جَارُهُۥ سَعِيدٌ. قَالَ لَهُۥ سَعِيدٌ إِلَىٰٓ أَيْنَ أَنتَ ذَاهِبٌ يَا سَالِمُ. فَأَخْبَرَهُۥ سَالِمٌ أَنَّهُۥ ذَاهِبٌ إِلَى ٱلسُّوقِ لِشِرَآءِ بَعْضِ ٱلْبَيْضِ. فَقَالَ لَهُۥ سَعِيدٌ أَنَّهُۥ ذَاهِبٌ إِلَىٰ نَفْسِ ٱلسُّوقِ لِشِرَآءِ بَعْضِ ٱلْأَشْيَآءِ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:91.4%"></i></span><span class="pn"><b>64</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 67 -->
+<section class="slide reading matn" data-src="94" data-sect="29-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">لَا تَكْذِبْ</span><span class="nm">29-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>ذَهَبَا مَعًا حَتَّىٰ وَصَلَآ إِلَى ٱلسُّوقِ وَٱشْتَرَىٰ كُلٌّ مِّنْهُمَا حَاجَتَهُۥ. دَفَعَ كُلٌّ مِّنْهُمَا ثَمَنَ مَا ٱشْتَرَاهُ. ثُمَّ أَخَذَا يَرْجِعَانِ مَعًا. وَفِى ٱلطَّرِيقِ لَمْ يَرَ سَالِمٌ حَجَرًا صَغِيرًا عَلَى ٱلطَّرِيقِ فَسَقَطَ عَلَى ٱلْأَرْضِ وَٱنكَسَرَ ٱلْبَيْضُ كُلُّهُۥ. أَخَذَ سَالِمٌ يَبْكِى كَثِيرًا. سَتَغْضَبُ مِنْهُ أُمُّهُۥ كَثِيرًا وَيُمْكِنُ أَن تَضْرِبَهُۥ. مَاذَا سَيَقُولُ لَهَا عِندَمَا يَرْجِعُ إِلَى ٱلْبَيْتِ بِدُونِ ٱلْبَيْضِ. قَالَ سَعِيدٌ لِّسَالِمٍ أَخْبِرْ أُمَّكَ أَنَّ ٱلنُّقُودَ سَقَطَتْ مِنكَ وَأَنَّكَ بَحَثْتَ عَنْهَا فَلَمْ تَجِدْهَا. قَالَ سَالِمٌ لَّآ أُرِيدُ أَنْ أَكْذِبَ عَلَىٰٓ أُمِّى.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:92.9%"></i></span><span class="pn"><b>65</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 68 -->
+<section class="slide reading matn" data-src="94" data-sect="29-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">لَا تَكْذِبْ</span><span class="nm">29-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>قَالَ سَعِيدٌ إِنَّ ٱلْبَيْضَ شَىْءٌ صَغِيرٌ فَلَا تَضْرِبُكَ أُمُّكَ لِهَٰذَا. ثُمَّ ذَهَبَ كُلٌّ مِّنْهُمَآ إِلَىٰ بَيْتِهِۦ. وَعِندَمَا وَصَلَ سَالِمٌ إِلَىٰ بَيْتِهِۦ فَتَحَتْ أُمُّهُ ٱلْبَابَ وَسَأَلَتْهُ عَنِ ٱلْبَيْضِ. لَمْ يَتَكَلَّمْ سَالِمٌ قَلِيلًا. مَاذَا سَيَقُولُ لِأُمِّهِۦ هَلْ يَكْذِبُ عَلَىٰٓ أُمِّهِۦٓ أَمْ يَقُولُ لَهَا عَن كُلِّ شَىْءٍ. وَفَجْأَةً أَخَذَ سَالِمٌ يَبْكِى وَيُخْبِرُهَا بِكُلِّ شَىْءٍ. وَهُنَا ٱحْتَظَنَتْهُ أُمُّهُۥ شَدِيدًا وَكَانَت تَّقُولُ شُكْرًا لَّكَ لِمَا لَمْ تَكْذِبْ عَلَىَّ. وَأَنَاْ أُحِبُّكَ يَا صَغِيرِى وَسَأَعْطَيْكَ نُقُودًا أُخْرَىٰ لِشِرَآءِ بَعْضِ ٱلْبَيْضِ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:94.3%"></i></span><span class="pn"><b>66</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 69 -->
+<section class="slide reading matn" data-src="95" data-sect="30-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلْمُرُوٓءَةُ</span><span class="nm">30-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>كَانَ فِىٓ إِحْدَى ٱلْقُرَىٰ رَجُلٌ فَقِيرٌ. كَانَ يَبِيعُ فِى ٱلسُّوقِ بَعْضَ ٱلْخَضْرَوَاتِ. يَوْمًا مَّرَّتْ فِى ٱلسُّوقِ ٱمْرَأَةٌ تَحْمِلُ أَشْيَآءَ ثَقِيلَةً وَكَادَت تَّسْقُطُ لِثِقْلِ هَٰذِهِ ٱلْأَشْيَآءِ. فَلَمَّا رَءَاهَا ٱلرَّجُلُ سَأَلَهَا قَآئِلًا مِّنْ أَيْنَ أَنتِ قَادِمَةٌ يَآ أُخْتِى. فَرَدَّتْ بِصَوْتٍ ضَعِيفٍ مِّن مَّمْلَكَةٍۢ بَعِيدَةٍ تُسَمَّىٰ مَمْلَكَةَ بَاغَانَ. فَأَخَذَ ٱلرَّجُلُ مِنْهَآ أَشْيَآءَهَا وَسَأَلَهَآ إِلَىٰٓ أَيْنَ أَنتِ ذَاهِبَةٌ يَآ أُخْتِى. فَقَالَتْ لَيْسَ لِى مَكَانٌ أَسْكُنُ فِيهِ. وَأَنَاْ ٱمْرَأَةٌ فَقِيرَةٌ لَّا تَمْلِكُ مَالًا وَلَا مَنزِلًا. وَأَنَاْ هُنَآ أَنتَظِرُ أَخِى حَتَّىٰ يَأْخُذَنِى وَلَآ أَعْلَمُ مَتَىٰ سَيَرْجِعُ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:95.7%"></i></span><span class="pn"><b>67</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 70 -->
+<section class="slide reading matn" data-src="95" data-sect="30-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلْمُرُوٓءَةُ</span><span class="nm">30-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>فَقَالَ ٱلرَّجُلُ إِذًا ٱذْهَبِى مَعِىٓ إِلَىٰ مَنزِلِى. سَأُعَرِّفُكِ بِزَوْجَتِى حَتَّىٰ رُجُوعِ أَخِيكِ. فَوَافَقَتِ ٱلْمَرْأَةُ وَشَكَرَتِ ٱلرَّجُلَ عَلَىٰ مُرُوٓءَتِهِۦ. وَأَخَذَهَا ٱلرَّجُلُ مَعَهُۥ وَعَرَّفَهَا عَلَىٰ زَوْجَتِهِۦ. فَأَحَبَّتْ زَوْجَتُهُۥ تِلْكَ ٱلْمَرْأَةَ وَتَعَلَّقَتْ بِهَا وَكَانَت تُّكْرِمُهَا كَثِيرًا. وَبَعْدَ أُسْبُوعٍ طَرَقَ بَابَ ٱلرَّجُلِ زَآئِرٌ وَكَانَ هُوَ أَخَا ٱلْمَرْأَةِ. فَقَالَ لِلرَّجُلِ يَآ أَخِى لَوْ كَانَ مَعِى مَالٌ لَّأَعْطَيْتُكَ إِيَّاهُ كُلَّهُۥ وَلَٰكِنِ ٱلْآنَ لَيْسَ عِندِى شَىْءٌ إِلَّا شُكْرِى. فَقَالَ ٱلرَّجُلُ لَا بَأْسَ فَأُخْتُكَ مِثْلُ أُخْتِى. وَكَانَ وَاجِبًا عَلَىَّ إِكْرَامُهَا.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:97.1%"></i></span><span class="pn"><b>68</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 71 -->
+<section class="slide reading matn" data-src="95" data-sect="30-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلْمُرُوٓءَةُ</span><span class="nm">30-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>وَأَخْرَجَ مِن كِيسِهِۦ بَعْضَ ٱلْمَالِ وَأَعْطَاهُ لِأَخِى ٱلْمَرْأَةِ. وَلَٰكِنَّهُۥ رَفَضَهُۥ وَشَكَرَ ٱلرَّجُلَ. ثُمَّ ذَهَبَ هُوَ وَأُخْتُهُۥ. وَقَبْلَ ذَهَابِهِۦ سَأَلَهُۥ عَنِ ٱسْمِهِۦ. وَبَعْدَ سَنَةٍ جَآءَ لِلرَّجُلِ سَفِيرٌ مِّن مَّمْلَكَةِ بَاغَانَ يَحْمِلُ لَهُۥ رِسَالَةً. كُتِبَ فِى ٱلرِّسَالَةِ أَنَّ ٱلْمَلِكَ يَدْعُوهُ إِلَى ٱلْقَصْرِ بَعْدَ أُسْبُوعٍ عِندَ غُرُوبِ ٱلشَّمْسِ. فَتَعَجَّبَ ٱلرَّجُلُ مِن ذَٰلِكَ لِأَنَّهُۥ لَيْسَ بَيْنَهُۥ وَبَيْنَ ٱلْمَلِكِ أَىُّ شَىْءٍ يَرْبِطُهُۥ بِٱلْمَلِكِ. فَخَرَجَ ٱلرَّجُلُ مِنۢ بَيْتِهِۦٓ إِلَىٰ مَمْلَكَةِ بَاغَانَ. وَعِندَمَا وَصَلَ إِلَى ٱلْمَمْلَكَةِ رَأَىٰ تِلْكَ ٱلْمَرْأَةَ وَأَخَاهَا جَالِسَيْنِ عَلَى ٱلْعَرْشِ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:98.6%"></i></span><span class="pn"><b>69</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 72 -->
+<section class="slide reading matn" data-src="95" data-sect="30-matn">
+  <div class="wrap"><div class="stack card">
+    <div class="rhead"><h2 class="lhead"><span class="g ttl">ٱلْمُرُوٓءَةُ</span><span class="nm">30-matn</span><span class="tg">Matn</span></h2></div>
+    <div class="mtn"><p>وَأَمَامَهُمَا كَثِيرٌ مِّنَ ٱلذَّهَبِ وَٱلْفِضَّةِ. فَهِمَ ٱلرَّجُلُ أَنَّهُمَا مَلِكًا مَّمْلَكَةِ بَاغَانَ. وَكَانَا يَبْحَثَانِ عَن رَّجُلٍ ذِى مُرُوٓءَةٍ. وَكَانَ هُوَ هَٰذَا ٱلرَّجُلَ. فَقَالَا لِلرَّجُلِ خُذْ كُلَّ هَٰذَا ٱلذَّهَبِ وَٱلْفِضَّةِ وَبَلِّغْ سَلَامَنَا لِزَوْجَتِكَ.</p></div>
+  </div>
+    <div class="lprog" aria-hidden="true"><span class="pb"><i style="width:100.0%"></i></span><span class="pn"><b>70</b> / 70</span></div>
+  </div>
+</section>
+
+<!-- 73 -->
+<section class="slide" data-sect="Yakun">
+  <div class="wrap"><div class="stack loose">
+    <p class="eyebrow">Noon Akademiyasi</p>
+    <h1>Rahmat!</h1>
+  </div></div>
+</section>
+  <div class="hud">
+    <span class="sect" id="sect"></span>
+    <span class="count" id="count"></span>
+  </div>
+  <div class="hint" id="hint">
+    <kbd>&rarr;</kbd> keyingi &nbsp;&middot;&nbsp; <kbd>&larr;</kbd> orqaga &nbsp;&middot;&nbsp;
+    <kbd>F</kbd> to'liq ekran
+  </div>
+  <span class="recdot" id="recdot">YOZILMOQDA <b id="rectime">00:00</b></span>
+  <div class="panel" id="panel">
+    <div class="box">
+      <h3>Kamera va yozib olish</h3>
+      <div class="row">
+        <label for="selcam">Kamera</label>
+        <select id="selcam"><option>Ruxsat so&#39;ralmoqda&hellip;</option></select>
+      </div>
+      <div class="row">
+        <label for="selmic">Mikrofon</label>
+        <select id="selmic"><option>Ruxsat so&#39;ralmoqda&hellip;</option></select>
+      </div>
+      <div class="btns">
+        <button id="bcam">Kamerani yoqish</button>
+        <button id="brec" class="go">Yozishni boshlash</button>
+      </div>
+      <p class="note">
+        <b>Professional kamera:</b> HDMI chiqishini <b>USB capture</b> qurilmasiga ulang
+        (Elgato Cam Link, yoki shunga o&#39;xshash) &mdash; kamera oddiy veb-kamera kabi
+        ro&#39;yxatda chiqadi. Telefon uchun <b>Camo</b>, OBS uchun <b>Virtual Camera</b> ishlaydi.<br><br>
+        <b>Yozib olish:</b> &laquo;Yozishni boshlash&raquo; bosilganda brauzer nimani yozishni
+        so&#39;raydi &mdash; <b>shu yorliqni (tab)</b> tanlang va
+        <b>&laquo;Tovushni ham ulashish&raquo;</b> katagiga belgi qo&#39;ying.
+        Slayd, kamera va ovoz bitta <b>.webm</b> faylga yoziladi va tugatganda yuklab olinadi.
+      </p>
+      <div class="btns"><button id="bclose">Yopish</button></div>
+    </div>
+  </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var bar=document.getElementById('bar'), sectEl=document.getElementById('sect'),
+      countEl=document.getElementById('count'), hint=document.getElementById('hint');
+
+  // ===== Bosqichlarni avtomatik belgilash =====
+  // Ichidagilari bittadan chiqadigan guruhlar:
+  var EXPAND = 'ul.marks,.cards,.flow,.reads,.duo,.stages,.figs,.sifats,.rlines';
+  // Sarlavha guruhi — hammasi birinchi bosqichda:
+  function isLead(el){
+    var t = el.tagName.toLowerCase();
+    return t==='svg' || t==='h1' || t==='h2' || el.classList.contains('eyebrow');
+  }
+  var plan = slides.map(function(sl){
+    var box = sl.querySelector('.stack') || sl;
+    var kids = Array.prototype.slice.call(box.children);
+    var k = 0, anyLead = false;
+    // Harf slaydi: nomi -> rasm -> maxraj -> sifatlari -> ko'rinishlari -> o'qilishi -> diqqat
+    var pic = sl.classList.contains('letter') && sl.querySelector('.mxpic');
+    if (pic) { k = 1; pic.setAttribute('data-step', '1'); }
+    kids.forEach(function(el){
+      if (isLead(el)) { el.setAttribute('data-step','0'); anyLead = true; return; }
+      if (el.matches && el.matches(EXPAND)) {
+        var arrow = null;
+        Array.prototype.forEach.call(el.children, function(c){
+          if (c.classList.contains('arw')) { arrow = c; return; }
+          k++;
+          if (arrow) { arrow.setAttribute('data-step', String(k)); arrow = null; }
+          c.setAttribute('data-step', String(k));
+        });
+      } else { k++; el.setAttribute('data-step', String(k)); }
+    });
+    if (!anyLead) {
+      // Sarlavhasiz slayd — birinchi elementni 0-bosqichga ko'taramiz
+      var first = box.querySelector('[data-step]');
+      if (first) {
+        var f = first.getAttribute('data-step');
+        Array.prototype.forEach.call(sl.querySelectorAll('[data-step="'+f+'"]'),
+          function(e){ e.setAttribute('data-step','0'); });
+      }
+    }
+    var els = Array.prototype.slice.call(sl.querySelectorAll('[data-step]'));
+    var keys = [];
+    els.forEach(function(e){
+      var v = parseInt(e.getAttribute('data-step'),10)||0;
+      if (keys.indexOf(v)<0) keys.push(v);
+    });
+    keys.sort(function(a,b){return a-b;});
+    if (!keys.length) keys=[0];
+    return {el:sl, els:els, keys:keys};
+  });
+
+  var si=0, ki=0, busy=false;
+
+  function paint(upTo){setTimeout(function(){if(window.__notify)window.__notify(si,ki,plan[si].keys.length);},0);
+    var p = plan[si];
+    p.els.forEach(function(e){
+      var v = parseInt(e.getAttribute('data-step'),10)||0;
+      e.classList.toggle('shown', p.keys.indexOf(v) <= upTo);
+    });
+  }
+
+  function hud(){
+    sectEl.textContent = slides[si].getAttribute('data-sect')||'';
+    countEl.textContent = String(si+1).padStart(2,'0')+' / '+slides.length;
+    bar.style.width = ((si+1)/slides.length*100)+'%';
+  }
+  function swap(to,dir){
+    if(busy||to===si||to<0||to>=slides.length||(window.__rng&&(to<window.__rng[0]||to>window.__rng[1]))){if(!busy&&window.__rng&&to>window.__rng[1]&&window.__onEnd)window.__onEnd();return;}
+    busy=true;
+    var oldEl=slides[si];
+    si=to; ki=(dir===1)?0:plan[si].keys.length-1;
+    var newEl=slides[si];
+    oldEl.classList.remove('active');
+    oldEl.classList.add(dir===1?'leaving-up':'leaving-down');
+    newEl.classList.remove('leaving-up','leaving-down');
+    if(dir===-1) newEl.classList.add('from-above');
+    void newEl.offsetWidth;
+    newEl.classList.remove('from-above');
+    newEl.classList.add('active');
+    newEl.scrollTop=0;
+    paint(ki); hud();
+    setTimeout(function(){ oldEl.classList.remove('leaving-up','leaving-down'); busy=false; },340);
+  }
+  function next(){ if(ki<plan[si].keys.length-1){ki++;paint(ki);return;} swap(si+1,1); }
+  function prev(){ if(ki>0){ki--;paint(ki);return;} swap(si-1,-1); }
+  function jump(n){ n=Math.max(0,Math.min(slides.length-1,n)); if(n!==si) swap(n,n>si?1:-1); }
+  window.__deck={next:next,prev:prev,jump:jump,cur:function(){return [si,ki,plan[si].keys.length];}};
+
+  // ===== Kamera =====
+  var vidBox=document.getElementById('vid'), cam=document.getElementById('cam'), stream=null;
+  var panel=document.getElementById('panel'), selCam=document.getElementById('selcam'),
+      selMic=document.getElementById('selmic'), bCam=document.getElementById('bcam'),
+      bRec=document.getElementById('brec'), bClose=document.getElementById('bclose'),
+      recDot=document.getElementById('recdot'), recTime=document.getElementById('rectime');
+  var LS_CAM='fonetika.cam', LS_MIC='fonetika.mic';
+  function saved(k){ try{ return localStorage.getItem(k)||''; }catch(e){ return ''; } }
+  function save(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+
+  function md(){ return navigator.mediaDevices; }
+
+  function camOn(){
+    if(!md()||!md().getUserMedia) return Promise.reject();
+    var id=selCam.value||saved(LS_CAM);
+    var v={width:{ideal:1920},height:{ideal:1080},frameRate:{ideal:30}};
+    if(id) v.deviceId={exact:id};
+    return md().getUserMedia({video:v,audio:false}).then(function(s){
+      if(stream) stream.getTracks().forEach(function(t){t.stop();});
+      stream=s; cam.srcObject=s; vidBox.classList.add('live');
+      cam.play().catch(function(){});
+      if(id) save(LS_CAM,id);
+      bCam.textContent='Kamerani o\'chirish';
+      return listDevices();
+    }).catch(function(){});
+  }
+  function camOff(){
+    if(stream){ stream.getTracks().forEach(function(t){t.stop();}); }
+    stream=null; cam.srcObject=null; vidBox.classList.remove('live');
+    bCam.textContent='Kamerani yoqish';
+  }
+  function toggleCam(){ if(stream) camOff(); else camOn(); }
+
+  function fill(sel,list,cur,word){
+    sel.innerHTML='';
+    if(!list.length){
+      var o=document.createElement('option'); o.textContent=word+' topilmadi'; sel.appendChild(o); return;
+    }
+    list.forEach(function(d,i){
+      var o=document.createElement('option');
+      o.value=d.deviceId; o.textContent=d.label||(word+' '+(i+1));
+      if(d.deviceId===cur) o.selected=true;
+      sel.appendChild(o);
+    });
+  }
+  function listDevices(){
+    if(!md()||!md().enumerateDevices) return Promise.resolve();
+    return md().enumerateDevices().then(function(ds){
+      fill(selCam,ds.filter(function(d){return d.kind==='videoinput';}),
+           saved(LS_CAM)||(stream&&stream.getVideoTracks()[0]?stream.getVideoTracks()[0].getSettings().deviceId:''),'Kamera');
+      fill(selMic,ds.filter(function(d){return d.kind==='audioinput';}),saved(LS_MIC),'Mikrofon');
+    }).catch(function(){});
+  }
+
+  function openPanel(){
+    panel.classList.add('on');
+    // Nomlarni ko'rish uchun avval ruxsat kerak
+    if(!stream && md() && md().getUserMedia){
+      md().getUserMedia({video:true,audio:true}).then(function(s){
+        s.getTracks().forEach(function(t){t.stop();}); listDevices();
+      }).catch(function(){ listDevices(); });
+    } else listDevices();
+  }
+  function closePanel(){ panel.classList.remove('on'); }
+
+  selCam.addEventListener('change',function(){ save(LS_CAM,selCam.value); if(stream) camOn(); });
+  selMic.addEventListener('change',function(){ save(LS_MIC,selMic.value); });
+  bCam.addEventListener('click',toggleCam);
+  bClose.addEventListener('click',closePanel);
+  panel.addEventListener('click',function(e){ if(e.target===panel) closePanel(); });
+
+  // ===== Yozib olish =====
+  var rec=null, chunks=[], recT0=0, recTimer=null, recStreams=[], recCtx=null;
+  function twoD(n){ return String(n).padStart(2,'0'); }
+  function tick(){
+    var s=Math.floor((Date.now()-recT0)/1000);
+    recTime.textContent=twoD(Math.floor(s/60))+':'+twoD(s%60);
+  }
+  function pickType(){
+    var c=['video/webm;codecs=vp9,opus','video/webm;codecs=vp8,opus','video/webm','video/mp4'];
+    for(var i=0;i<c.length;i++){
+      if(window.MediaRecorder && MediaRecorder.isTypeSupported(c[i])) return c[i];
+    }
+    return '';
+  }
+  function stopRec(){
+    if(rec && rec.state!=='inactive') rec.stop();
+  }
+  function startRec(){
+    if(!navigator.mediaDevices||!navigator.mediaDevices.getDisplayMedia||!window.MediaRecorder){
+      alert('Bu brauzer ekranni yozib olishni qo\'llab-quvvatlamaydi. Chrome yoki Edge ishlating.');
+      return;
+    }
+    var disp=null;
+    navigator.mediaDevices.getDisplayMedia({
+      video:{frameRate:{ideal:30}}, audio:true
+    }).then(function(d){
+      disp=d; recStreams.push(d);
+      var mic={audio:true};
+      var mid=selMic.value||saved(LS_MIC);
+      if(mid) mic={audio:{deviceId:{exact:mid}}};
+      return navigator.mediaDevices.getUserMedia(mic).catch(function(){ return null; });
+    }).then(function(micStream){
+      var tracks=disp.getVideoTracks().slice();
+      var aTracks=disp.getAudioTracks();
+      if(micStream){
+        recStreams.push(micStream);
+        // Ekran ovozi + mikrofonni aralashtiramiz
+        var AC=window.AudioContext||window.webkitAudioContext;
+        if(AC && aTracks.length){
+          recCtx=new AC();
+          var dest=recCtx.createMediaStreamDestination();
+          recCtx.createMediaStreamSource(disp).connect(dest);
+          recCtx.createMediaStreamSource(micStream).connect(dest);
+          tracks=tracks.concat(dest.stream.getAudioTracks());
+        } else {
+          tracks=tracks.concat(micStream.getAudioTracks());
+        }
+      } else {
+        tracks=tracks.concat(aTracks);
+      }
+      var mix=new MediaStream(tracks);
+      var type=pickType();
+      rec=new MediaRecorder(mix, type?{mimeType:type,videoBitsPerSecond:8000000}:undefined);
+      chunks=[];
+      rec.ondataavailable=function(e){ if(e.data&&e.data.size) chunks.push(e.data); };
+      rec.onstop=function(){
+        var blob=new Blob(chunks,{type:(type||'video/webm')});
+        var a=document.createElement('a');
+        var d=new Date(), nm='fonetika-3dars_'+d.getFullYear()+twoD(d.getMonth()+1)+twoD(d.getDate())
+              +'_'+twoD(d.getHours())+twoD(d.getMinutes())+(type.indexOf('mp4')>-1?'.mp4':'.webm');
+        a.href=URL.createObjectURL(blob); a.download=nm;
+        document.body.appendChild(a); a.click();
+        setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); },1500);
+        cleanupRec();
+      };
+      // Foydalanuvchi brauzer panelidan "to'xtatish" bossa ham tugasin
+      disp.getVideoTracks()[0].addEventListener('ended',stopRec);
+      rec.start(1000);
+      recT0=Date.now(); tick(); recTimer=setInterval(tick,500);
+      recDot.classList.add('on'); bRec.textContent='Yozishni to\'xtatish';
+      closePanel();
+    }).catch(function(){ cleanupRec(); });
+  }
+  function cleanupRec(){
+    if(recTimer){ clearInterval(recTimer); recTimer=null; }
+    recStreams.forEach(function(s){ s.getTracks().forEach(function(t){t.stop();}); });
+    recStreams=[];
+    if(recCtx){ try{recCtx.close();}catch(e){} recCtx=null; }
+    rec=null; recDot.classList.remove('on'); bRec.textContent='Yozishni boshlash';
+  }
+  function toggleRec(){ if(rec && rec.state!=='inactive') stopRec(); else startRec(); }
+  bRec.addEventListener('click',toggleRec);
+
+  // ===== To'liq ekran =====
+  function fsEl(){
+    return document.fullscreenElement || document.webkitFullscreenElement ||
+           document.mozFullScreenElement || document.msFullscreenElement || null;
+  }
+  function fs(){
+    var d = document, el = d.documentElement;
+    if(fsEl()){
+      var x = d.exitFullscreen || d.webkitExitFullscreen || d.webkitCancelFullScreen ||
+              d.mozCancelFullScreen || d.msExitFullscreen;
+      if(x) try{ var r=x.call(d); if(r&&r.catch) r.catch(function(){}); }catch(err){}
+      return;
+    }
+    var q = el.requestFullscreen || el.webkitRequestFullscreen ||
+            el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullscreen;
+    if(q) try{ var p2=q.call(el); if(p2&&p2.catch) p2.catch(function(){}); }catch(err){}
+  }
+
+  document.addEventListener('keydown',function(e){
+    // Panel ochiq bo'lsa faqat Escape ishlaydi
+    if(panel.classList.contains('on')){
+      if(e.key==='Escape'){ e.preventDefault(); closePanel(); }
+      return;
+    }
+    if(e.metaKey||e.ctrlKey){
+      if(e.key==='ArrowRight'||e.key==='ArrowDown'){ e.preventDefault(); jump(si+10); hide(); return; }
+      if(e.key==='ArrowLeft'||e.key==='ArrowUp'){ e.preventDefault(); jump(si-10); hide(); return; }
+      return;
+    }
+    if(e.key===' '||e.key==='ArrowRight'||e.key==='ArrowDown'||e.key==='PageDown'){
+      e.preventDefault(); next(); hide();
+    } else if(e.key==='ArrowLeft'||e.key==='ArrowUp'||e.key==='PageUp'||e.key==='Backspace'){
+      e.preventDefault(); prev(); hide();
+    } else if(e.key==='Home'){ e.preventDefault(); jump(0); hide(); }
+      else if(e.key==='End'){ e.preventDefault(); jump(slides.length-1); hide(); }
+      else if(e.key==='v'||e.key==='V'){ e.preventDefault(); toggleCam(); hide(); }
+      else if(e.key==='c'||e.key==='C'){ e.preventDefault();
+        if(panel.classList.contains('on')) closePanel(); else openPanel(); hide(); }
+      else if(e.key==='r'||e.key==='R'){ e.preventDefault(); toggleRec(); hide(); }
+      else if(e.key==='Escape'){ closePanel(); }
+      else if(e.key==='f'||e.key==='F'){ e.preventDefault(); fs(); hide(); }
+  });
+
+  document.getElementById('deck').addEventListener('click',function(e){
+    var r=this.getBoundingClientRect();
+    if(e.clientX-r.left < r.width*0.18) prev(); else next();
+    hide();
+  });
+  var x0=null;
+  document.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
+  document.addEventListener('touchend',function(e){
+    if(x0===null) return;
+    var dx=e.changedTouches[0].clientX-x0;
+    if(Math.abs(dx)>45){ dx<0?next():prev(); hide(); }
+    x0=null;
+  },{passive:true});
+
+  var hidden=false;
+  function hide(){ if(!hidden){hidden=true;hint.classList.add('gone');} }
+  setTimeout(hide,8000);
+
+  // ===== Maxraj izohi rasmning bevosita tagida tursin =====
+  function maxrajJoylash(){
+    var ls = document.querySelectorAll('.slide.letter');
+    Array.prototype.forEach.call(ls, function(s){
+      var pic = s.querySelector('.mxpic'), ty = s.querySelector('.try'),
+          wr  = s.querySelector('.wrap'),  cd = s.querySelector('.stack.card');
+      if(!pic || !ty || !wr || !cd) return;
+      var img = pic.querySelector('img');
+      if(img && !img.naturalWidth) return;               // rasm hali yuklanmagan
+      var wrr = wr.getBoundingClientRect(), pr = pic.getBoundingClientRect(),
+          cr  = cd.getBoundingClientRect();
+      if(!pr.height) return;
+      var pad = parseFloat(getComputedStyle(wr).paddingTop) ||
+                parseFloat(getComputedStyle(cd).paddingTop) || 16;
+      ty.style.bottom = 'auto';
+      ty.style.top = Math.round(pr.bottom - wrr.top + pad * 0.75) + 'px';
+      // agar izoh kartadan chiqib ketsa — pastga yopishtiramiz
+      var tr = ty.getBoundingClientRect();
+      if(tr.bottom > cr.bottom - pad * 0.5){ ty.style.top = 'auto'; ty.style.bottom = ''; }
+    });
+  }
+
+  // ===== Qatorlar (sifatlar, ko'rinishlar, ligaturalar, o'xshash harflar): ikkinchi qatorga yolg'iz element tushmasin =====
+  var QATORLAR = '.sifats, .forms:not(.oq), .ligs, .oxs';
+  function qatorTenglash(el){
+    el.style.display=''; el.style.gridTemplateColumns=''; el.style.justifyContent='';
+    var it = el.children, n = it.length;
+    if(n < 3) return;
+    // tabiiy holatda nechta qatorga bo'linadi? (offsetTop — ochilmagan bosqichlar siljishi xalaqit bermaydi)
+    var rows = 1, y = it[0].offsetTop;
+    for(var i=1; i<n; i++){
+      var ty = it[i].offsetTop;
+      if(ty > y + 2){ rows++; y = ty; }
+    }
+    if(rows < 2) return;                       // bitta qator — tegmaymiz
+    el.style.display = 'grid';
+    el.style.justifyContent = 'center';
+    while(rows <= n){
+      var per = Math.ceil(n / rows);
+      el.style.gridTemplateColumns = 'repeat(' + per + ',minmax(0,max-content))';
+      if(el.scrollWidth <= el.clientWidth + 1) break;
+      rows++;
+    }
+  }
+  function sifatlarniTenglash(){
+    Array.prototype.forEach.call(document.querySelectorAll('.slide.letter .stack.card'), function(cd){
+      Array.prototype.forEach.call(cd.querySelectorAll(QATORLAR), qatorTenglash);
+    });
+  }
+
+  // ===== Harf slaydi: o'lchov birligini (--k) joyga moslaymiz — sig'masa kichraytiramiz, joy bo'lsa kattalashtiramiz =====
+  function harfSigdir(){
+    Array.prototype.forEach.call(document.querySelectorAll('.slide.letter'), function(s){
+      var wr = s.querySelector('.wrap'), cd = s.querySelector('.stack.card');
+      if(!wr || !cd) return;
+      function sigadi(){
+        Array.prototype.forEach.call(cd.querySelectorAll(QATORLAR), qatorTenglash);
+        var cs = getComputedStyle(cd), lim = cd.offsetTop + cd.offsetHeight - parseFloat(cs.paddingBottom);
+        for(var j=0; j<cd.children.length; j++){
+          var e = cd.children[j];
+          if(e.classList.contains('try')) continue;       // maxraj izohi o'ng ustunda, alohida joylanadi
+          if(e.offsetTop + e.offsetHeight > lim - 4) return false;   // 4px zaxira (offset* yaxlitlanadi)
+        }
+        // maxraj izohi rasm tagiga sig'ishi kerak
+        var pic = s.querySelector('.mxpic'), ty = s.querySelector('.try');
+        if(pic && ty && pic.offsetHeight &&
+           pic.offsetTop + pic.offsetHeight + ty.offsetHeight + 12 > cd.offsetTop + cd.offsetHeight - 8) return false;
+        return true;
+      }
+      wr.style.setProperty('--k', '1');
+      var lo, hi;
+      if(sigadi()){ lo = 1; hi = 1.3; } else { lo = .5; hi = 1; }
+      for(var i=0; i<8; i++){
+        var mid = (lo + hi) / 2;
+        wr.style.setProperty('--k', mid.toFixed(3));
+        if(sigadi()) lo = mid; else hi = mid;
+      }
+      wr.style.setProperty('--k', lo.toFixed(3)); sigadi();
+    });
+  }
+
+  // ===== Rasmlarni oldindan yuklash =====
+  (function(){
+    var imgs = Array.prototype.slice.call(document.querySelectorAll('.slide img'));
+    imgs.forEach(function(im){
+      function ok(){ im.classList.add('rdy'); if(window.__mxTimer) clearTimeout(window.__mxTimer);
+                      window.__mxTimer = setTimeout(maxrajJoylash, 60); }
+      if (im.complete && im.naturalWidth) ok();
+      else { im.addEventListener('load', ok); im.addEventListener('error', ok); }
+      var p = new Image(); p.src = im.getAttribute('src');
+    });
+  })();
+
+  // ===== O'qish matni slaydi: shriftni (--rs) joyga moslaymiz — sig'masa kichraytiramiz, joy bo'lsa kattalashtiramiz =====
+  function oqishSigdir(){
+    var ls = document.querySelectorAll('.slide.reading');
+    Array.prototype.forEach.call(ls, function(s){
+      var wr = s.querySelector('.wrap'), cd = s.querySelector('.stack.card');
+      if(!wr || !cd) return;
+      function sigadi(){
+        // o'lchovlar transformsiz (offset*) — ochilmagan bosqichlarning siljishi xalaqit bermaydi
+        var cs  = getComputedStyle(cd),
+            w   = cd.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight),
+            lim = cd.offsetTop + cd.offsetHeight - parseFloat(cs.paddingBottom);   // progress chizig'i ustidagi chegara
+        for(var j=0; j<cd.children.length; j++){
+          var e = cd.children[j];
+          if(e.offsetTop + e.offsetHeight > lim + 1) return false;
+        }
+        // qatorlar atrofida kamida 4px bo'sh joy qolsin (auto marginlar; offset* yaxlitlanishidan zaxira)
+        var fl = cd.querySelector('.rlines') || cd.querySelector('.small');
+        if(fl && parseFloat(getComputedStyle(fl).marginTop) < 4) return false;
+        var rows = cd.querySelectorAll('.rl, .rhead, .tbl, .qx .qe');
+        for(var i=0; i<rows.length; i++){
+          if(rows[i].offsetWidth > w + 1 || rows[i].scrollWidth > w + 1) return false;
+        }
+        return true;
+      }
+      wr.style.setProperty('--rs', '1');
+      var lo, hi;
+      if(sigadi()){ lo = 1; hi = 3.2; } else { lo = .4; hi = 1; }
+      for(var k=0; k<9; k++){
+        var mid = (lo + hi) / 2;
+        wr.style.setProperty('--rs', mid.toFixed(3));
+        if(sigadi()) lo = mid; else hi = mid;
+      }
+      wr.style.setProperty('--rs', lo.toFixed(3));
+    });
+  }
+
+  function joylash(){ sifatlarniTenglash(); harfSigdir(); maxrajJoylash(); oqishSigdir(); }
+  joylash();
+  // shriftlar yuklangach o'lchamlar o'zgaradi — qaytadan tenglaymiz
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(joylash);
+  setTimeout(joylash, 400);
+  setTimeout(maxrajJoylash, 1200);
+  window.addEventListener('resize', joylash);
+  document.addEventListener('fullscreenchange', joylash);
+  document.addEventListener('webkitfullscreenchange', joylash);
+
+  slides[0].classList.add('active'); paint(0); hud();
+})();
+</script>
+
+
+<style id="noon-talaba">
+#panel,#vid,#hint,#count,#bar,.rec,#recdot,#rectime,.lprog{display:none!important}
+html,body{overscroll-behavior:none;touch-action:pan-y pinch-zoom}
+html.noon-init *,html.noon-init *::before,html.noon-init *::after{transition:none!important;animation-duration:0s!important}
+</style>
+<script id="noon-talaba-js">
+(function(){
+  var q = new URLSearchParams(location.search);
+  var n = document.querySelectorAll('.slide').length;
+  var from = Math.max(1, Math.min(n, parseInt(q.get('from') || '1', 10) || 1));
+  var to = Math.max(from, Math.min(n, parseInt(q.get('to') || String(n), 10) || n));
+  var start = Math.max(1, parseInt(q.get('start') || '1', 10) || 1);
+  var ready = false;
+  window.__rng = [from - 1, to - 1];
+  function send(m){ try { if (parent !== window) parent.postMessage(m, '*'); } catch (e) {} }
+  window.__onEnd = function(){ if (ready) send({noon: 'end'}); };
+  window.__notify = function(si, ki, steps){
+    if (!ready || si < from - 1 || si > to - 1) return;
+    send({noon: 'slide', n: si - from + 2, total: to - from + 1, step: ki, steps: steps});
+  };
+  function cur(){ var c = window.__deck.cur(); window.__notify(c[0], c[1], c[2]); }
+  window.addEventListener('message', function(e){
+    var d = e.data || {}; if (!window.__deck || !d.noon || !ready) return;
+    if (d.noon === 'next') window.__deck.next();
+    else if (d.noon === 'prev') window.__deck.prev();
+    else if (d.noon === 'goto') window.__deck.jump(from - 2 + Math.max(1, Math.min(to - from + 1, d.n | 0)));
+    else if (d.noon === 'ping') cur();
+  });
+  /* talaba rejimida kamera, yozib olish va to'liq ekran tugmalari ishlamaydi; Home/End darsdan tashqariga chiqarmaydi */
+  window.addEventListener('keydown', function(e){
+    var k = (e.key || '').toLowerCase();
+    if (k === 'v' || k === 'c' || k === 'r' || k === 'f' || k === 'home' || k === 'end' || e.metaKey || e.ctrlKey) e.stopImmediatePropagation();
+  }, true);
+  function go(){
+    var H = document.documentElement, t = Math.min(to - 1, from - 2 + start);
+    H.classList.add('noon-init');
+    if (t > 0) window.__deck.jump(t);
+    setTimeout(function(){ H.classList.remove('noon-init'); ready = true; cur(); }, 380);
+  }
+  if (document.readyState === 'complete') setTimeout(go, 30); else window.addEventListener('load', function(){ setTimeout(go, 30); });
+})();
+</script>
+</body>
+</html>

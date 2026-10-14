@@ -1,0 +1,12 @@
+{
+ "dars": 31,
+ "nomi": "O'zaro yaqin va o'zaro uzoq harflar — test",
+ "holat": "loyiha",
+ "savollar": [
+  {"q": "قُلْ رَأْيَكَ qanday o'qiladi?", "opts": ["Qul ro'yaka — Laam aniq aytiladi", "Qurro'yaka — Laam Rooga kirgaziladi", "Qulro'yaka — Laam tez aytiladi", "Qulu ro'yaka — Laam damma oladi"], "ok": 1, "izoh": "ل va ر — o'zaro yaqin harflar. Sukunli Laam Rooga kirgaziladi, Roo tashdid bilan o'qiladi.", "manba": "dars62.json: qoida misollari; taqdimot 7, 88-slayd"},
+  {"q": "مِنْ مَالٍ (Mimmaalin) da qaysi qoida bor?", "opts": ["O'zaro uzoq harflarni bildirish", "Bir xil harflarni kirgazish", "Maxrajdosh harflarni kirgazish", "O'zaro yaqin harflarni kirgazish"], "ok": 3, "izoh": "ن va م — o'zaro yaqin harflar, bir xil ham, maxrajdosh ham emas. Shuning uchun sukunli Nuun Miimga kirgaziladi.", "manba": "dars62.json: qoida misollari, yakun; taqdimot 7, 88-slayd"},
+  {"q": "Maxraj yoki sifatda o'zaro uzoq ikki harf yo'liqsa, sukunli birinchi harf qanday o'qiladi?", "opts": ["Bildirib — aniq aytiladi", "Keyingi harfga kirgaziladi", "Tushib qoladi", "Kasra bilan harakatlanadi"], "ok": 0, "izoh": "O'zaro uzoq harflarda birinchi harf bildirib o'qiladi, keyingi harfga kirgazilmaydi.", "manba": "dars63.json: qoida; taqdimot 7, 93-slayd"},
+  {"q": "Qaysi misolda sukunli harf bildirib o'qiladi?", "opts": ["قُلْ رَأْيَكَ", "مِنْ مَالٍ", "بَلْ قَالَ", "ٱلتَّاجِرُ"], "ok": 2, "izoh": "بَلْ قَالَ (Bal qoola): ل va ق — o'zaro uzoq harflar. Qolgan misollarda o'zaro yaqin harflar kirgaziladi.", "manba": "dars62.json, dars63.json: qoida misollari; taqdimot 7, 88- va 93-slayd"},
+  {"q": "أَمْ حَذَرٌ qanday o'qiladi?", "opts": ["Ahhazarun — Miim Haaga kirgaziladi", "Am hazarun — Miim aniq aytiladi", "A hazarun — Miim tushib qoladi", "Ami hazarun — Miim kasra oladi"], "ok": 1, "izoh": "م va ح — o'zaro uzoq harflar, shuning uchun sukunli Miim bildirib o'qiladi: Am hazarun.", "manba": "dars63.json: qoida misollari; taqdimot 7, 93-slayd"}
+ ]
+}

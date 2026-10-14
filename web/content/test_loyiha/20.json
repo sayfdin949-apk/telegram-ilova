@@ -1,0 +1,12 @@
+{
+ "dars": 20,
+ "nomi": "Kirgazib talaffuz — test",
+ "holat": "loyiha",
+ "savollar": [
+  {"q": "Kirgazish harflari qaysilar?", "opts": ["ب ت ث ج", "ف ق ك ش", "ء ه ع ح غ خ", "ي ر م ل و ن"], "ok": 3, "izoh": "Kirgazish harflari 6 ta: ي ر م ل و ن. ء ه ع ح غ خ esa bildirish harflari.", "manba": "dars42.json: slaydlar[0] «2. Kirgazib talaffuz qilish»"},
+  {"q": "Kirgazishda qaysi ikki harf g'unnasiz o'qiladi?", "opts": ["ل ر", "ن و", "ي و", "م ن"], "ok": 0, "izoh": "ل va ر ga kirgazishda g'unna qilinmaydi. ي م ن و esa dimog' (g'unna) bilan o'qiladi.", "manba": "dars42.json: slaydlar[1] «G'unna bilan va g'unnasiz»"},
+  {"q": "مِنْ وَرَاءِ qanday o'qiladi?", "opts": ["مِوْوَرَاءِ — g'unnasiz", "مِوَرَاءِ — nun tushib, و ikkilanmaydi", "مِوْوَرَاءِ — g'unna bilan", "مِنْ وَرَاءِ — nun aniq bildiriladi"], "ok": 2, "izoh": "Nun و ga kirib, و ikkilanadi va g'unna bilan o'qiladi. و — g'unnali kirgazish harflaridan.", "manba": "dars42.json: slaydlar[2] «Kirgazish g'unna bilan», و qatori"},
+  {"q": "Qaysi so'zda nun kirgazilmaydi, bildirib o'qiladi?", "opts": ["مَنْ رَجُلٌ", "دُنْيَا", "مَنْ يَكْتُبُ", "عَنْ مَا"], "ok": 1, "izoh": "Bitta so'z ichida nun kirgazilmaydi, aks holda so'zning o'zagi yo'qolib, ma'nosi buziladi. Qolganlarida nun va keyingi harf ikki so'zda.", "manba": "dars42.json: slaydlar[4] «So'z ichida — bildiriladi»"},
+  {"q": "إِنْ لَمْ birikmasida nima bo'ladi?", "opts": ["Nun bildirib o'qiladi", "Nun ل ga kiradi, g'unna bilan", "Nun ل ga kiradi, g'unnasiz: إِلَّمْ", "Nun tushib, ل cho'ziladi"], "ok": 2, "izoh": "Nun ل ga kirgazilib, ل ikkilanadi: إِلَّمْ. ل — g'unnasiz kirgazish harfi.", "manba": "dars42.json: slaydlar[3] «Kirgazish g'unnasiz», ل qatori"}
+ ]
+}

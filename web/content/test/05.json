@@ -1,0 +1,61 @@
+{
+ "dars": 5,
+ "nomi": "Faa, Qoof, Shiin, Siin, Caa, Sood — test",
+ "savollar": [
+  {
+   "q": "Bu harflardan qaysi birida Itboq (yopiq, bosimli) sifati bor?",
+   "opts": [
+    "س — Siin",
+    "ص — Sood",
+    "ث — Caa",
+    "ش — Shiin"
+   ],
+   "ok": 1,
+   "izoh": "Sood — Isti'lo va Itboq harfi (yo'g'on). Siin, Caa va Shiin — Istifola va Infitah (ingichka)."
+  },
+  {
+   "q": "Tafashshiy (havo og'iz bo'ylab yoyiladi) qaysi harfga xos?",
+   "opts": [
+    "س",
+    "ف",
+    "ق",
+    "ش"
+   ],
+   "ok": 3,
+   "izoh": "Tafashshiy — Shiin sifati. Siin — Safir, Faa — Izlaq, Qoof — Qalqala sifatiga ega."
+  },
+  {
+   "q": "Caa (ث) qanday aytiladi?",
+   "opts": [
+    "Til uchi yuqori tishlar uchiga tegib, tishlar orasidan biroz chiqadi",
+    "Siin kabi — til uchi pastki tishlar ichida",
+    "Til orqasi ko'tarilib, yo'g'on",
+    "Pastki lab yuqori tishlarga tegadi"
+   ],
+   "ok": 0,
+   "izoh": "Caa — til uchi yuqori kurak tishlar uchida, tishlar orasidan biroz chiqadi. Siin kabi o'qilmaydi."
+  },
+  {
+   "q": "سَيْفُ va صَيْفُ so'zlari bir-biridan nima bilan farq qiladi?",
+   "opts": [
+    "Maxraji butunlay boshqa",
+    "Biri jarangli, biri jarangsiz",
+    "س ingichka (Istifola), ص yo'g'on (Isti'lo, Itboq)",
+    "Hech qanday farqi yo'q"
+   ],
+   "ok": 2,
+   "izoh": "Siin va Soodning maxraji bir xil, ikkalasi ham Hams. Ularni sifat ajratadi: س ingichka, ص yo'g'on — so'z ma'nosi ham o'zgaradi."
+  },
+  {
+   "q": "قَمَرْ qanday o'qiladi?",
+   "opts": [
+    "«Kamar»",
+    "«Qumar»",
+    "«Qomir»",
+    "«Qomar»"
+   ],
+   "ok": 3,
+   "izoh": "Qoof — yo'g'on harf, fathasi «o» bo'lib eshitiladi: «Qomar». «Kamar» — كَمَرْ, boshqa so'z."
+  }
+ ]
+}

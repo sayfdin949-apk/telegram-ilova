@@ -1,0 +1,12 @@
+{
+ "dars": 16,
+ "nomi": "Vasl (qo'shib o'qish) — test",
+ "holat": "loyiha",
+ "savollar": [
+  {"q": "Vasl nima?", "opts": ["Harfni ikkilantirib o'qish", "So'zlarni birga qo'shib o'qish", "Harfni 2 harakat cho'zish", "So'z oxiriga sukunli nuun qo'shish"], "ok": 1, "izoh": "Vasl — bir necha so'zni birga qo'shib o'qish. Ikkilantirish — tashdid, cho'zish — mad, nuun qo'shish — tanvin.", "manba": "dars37.json: slaydlar[0].bandlar[0]; taqdimot 6, 80-slayd"},
+  {"q": "Vaslda talaffuzdan tushib qoladigan harflar necha xil?", "opts": ["1 xil: faqat vasliy hamza", "2 xil: vasliy hamza va qat'iy hamza", "3 xil: vasliy hamza (ٱ), mad harflari (ا و ي), nolsimon belgili alif (ا۟)", "4 xil: ٱ، ا، و، ة"], "ok": 2, "izoh": "Vaslda 3 xil harf tushib qoladi: vasliy hamza, undan oldingi mad harfi va nolsimon belgili alif. Qat'iy hamza doim o'qiladi.", "manba": "dars37.json: slaydlar[0].bandlar[2]; taqdimot 6, 80-slayd"},
+  {"q": "فِى ٱلسَّبْتِ qanday qo'shib o'qiladi?", "opts": ["«fii as-sabti»", "«fil-sabti»", "«fiis-sabti»", "«fis-sabti»"], "ok": 3, "izoh": "Vasliy hamza va undan oldingi mad harfi (ى) tushadi, س shamsiy — lam ham o'qilmaydi: «fis-sabti».", "manba": "dars37.json: slaydlar[2].misollar[1]; taqdimot 6, 82-slayd"},
+  {"q": "Ketidan vasliy hamza kelgan mad harfi vaslda nima bo'ladi?", "opts": ["Talaffuzdan tushib qoladi", "2 harakat cho'ziladi", "Hamzaga aylanadi", "Ikkilantiriladi"], "ok": 0, "izoh": "Ketidan vasliy hamza kelgan mad harfi (ا و ي) vaslda o'qilmaydi: مَا ٱلْعَمَلُ — «mal-'amalu».", "manba": "dars37.json: slaydlar[2].bandlar[0], misollar[0]; taqdimot 6, 82-slayd"},
+  {"q": "رَجَعَ ٱبْنُ qanday qo'shib o'qiladi?", "opts": ["«roja'a ibnu»", "«roja'abnu»", "«roja'a abnu»", "«roja'ubnu»"], "ok": 1, "izoh": "So'zlar orasidagi vasliy hamza (ٱ) talaffuzdan tushib qoladi, oldingi harakat keyingi sukunli harfga ulanadi: «roja'abnu».", "manba": "dars37.json: slaydlar[1].misollar[0]; taqdimot 6, 81-slayd"}
+ ]
+}

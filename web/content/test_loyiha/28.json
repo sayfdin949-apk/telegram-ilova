@@ -1,0 +1,12 @@
+{
+ "dars": 28,
+ "nomi": "O'zgaruvchan va yumshoq cho'zishlar — test",
+ "holat": "loyiha",
+ "savollar": [
+  {"q": "Mad harfidan keyingi harf vaqf (to'xtash) sababli sukunli bo'lib qolsa, bu qaysi cho'zish?", "opts": ["Tabiiy cho'zish", "Qo'shilgan cho'zish", "O'zgaruvchan cho'zish", "O'zgarmas cho'zish"], "ok": 2, "izoh": "O'zgaruvchan cho'zish: harf vaqf sababli sukunga o'zgaradi. O'zgarmas cho'zishda sukun doim turadi, tabiiyda sukun ham, hamza ham kelmaydi.", "manba": "dars56.json: qoida; taqdimot 4, 43-slayd"},
+  {"q": "O'zgaruvchan cho'zish necha harakat miqdorida cho'ziladi?", "opts": ["Faqat 2 harakat", "4 yoki 5 harakat", "Faqat 6 harakat", "2, 4 yoki 6 harakat"], "ok": 3, "izoh": "O'zgaruvchan cho'zishni 2, 4 yoki 6 harakat cho'zish mumkin. 4–5 harakat qo'shilgan va ajralgan cho'zishga, faqat 6 harakat o'zgarmas cho'zishga tegishli.", "manba": "dars56.json: qoida, yakun; taqdimot 4, 43-slayd"},
+  {"q": "عٓ harfining nomi (عَيٓنْ — Ayn) qanday cho'ziladi?", "opts": ["O'zgarmas yumshoq cho'zish — 6 harakat", "O'zgaruvchan yumshoq cho'zish — 2, 4 yoki 6 harakat", "Tabiiy cho'zish — 2 harakat", "Qo'shilgan cho'zish — 4 harakat"], "ok": 0, "izoh": "Bir harf nomida yumshoq yaadan keyin o'zgarmas sukunli nuun keladi — bu o'zgarmas yumshoq cho'zish, 6 harakat. غٓ (G'oyn) ham shunday.", "manba": "dars57.json: qoida misollari; taqdimot 4, 47-slayd"},
+  {"q": "Gap oxirida to'xtab o'qilganda خَيْرٌ (Xoyr) so'zida qaysi cho'zish bo'ladi?", "opts": ["O'zgaruvchan cho'zish", "O'zgaruvchan yumshoq cho'zish", "O'zgarmas yumshoq cho'zish", "Ajralgan cho'zish"], "ok": 1, "izoh": "يْ — yumshoq harf, undan keyingi ر to'xtaganda sukunli bo'lib qoladi. Shuning uchun o'zgaruvchan yumshoq cho'zish: 2, 4 yoki 6 harakat.", "manba": "dars58.json: qoida misollari; taqdimot 4, 51-slayd"},
+  {"q": "Qaysi so'zda yumshoq harf bor?", "opts": ["كِتَابٌ", "نُورٌ", "خَوْفٌ", "جَمِيلٌ"], "ok": 2, "izoh": "خَوْفٌ (Xovf) dagi وْ — yumshoq harf. كِتَابٌ، نُورٌ، جَمِيلٌ da esa ا، و، ي — mad harflari.", "manba": "dars56.json va dars58.json: qoida misollari; taqdimot 4, 43- va 51-slayd"}
+ ]
+}

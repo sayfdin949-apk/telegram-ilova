@@ -1,0 +1,61 @@
+{
+ "dars": 1,
+ "nomi": "Arab tiliga kirish — test",
+ "savollar": [
+  {
+   "q": "Arab alifbosidagi 28 harf haqida qaysi gap to'g'ri?",
+   "opts": [
+    "Uchtasi unli, qolganlari undosh",
+    "Hammasi undosh; unli tovushni harakat bildiradi",
+    "Yarmi unli, yarmi undosh",
+    "Unlilar alohida harflar bilan yoziladi"
+   ],
+   "ok": 1,
+   "izoh": "Arabchada unli harf yo'q — 28 harfning hammasi undosh. Shuning uchun unlini harf ostiga yoki ustiga qo'yiladigan harakat bildiradi."
+  },
+  {
+   "q": "بِ bo'g'inidagi harf ostidagi belgi bilan qanday o'qiladi?",
+   "opts": [
+    "«ba»",
+    "«bu»",
+    "«bi»",
+    "«b» — unlisiz"
+   ],
+   "ok": 2,
+   "izoh": "Kasra harf ostida turadi va «i» deb o'qiladi: بِ — «bi». Fatha (ustida) — «a», damma (ustida) — «u», sukun — unli yo'q."
+  },
+  {
+   "q": "Maxraj nima?",
+   "opts": [
+    "Harfning xarakteri — qanday ovoz bilan aytilishi",
+    "Harf ustiga qo'yiladigan belgi",
+    "Harfning so'zdagi yozilish shakli",
+    "Harfning chiqish joyi"
+   ],
+   "ok": 3,
+   "izoh": "Maxraj — harfning chiqish joyi (manzili). Harfning xarakteri esa sifat deyiladi."
+  },
+  {
+   "q": "Halq (tomoq)ning eng tubidan qaysi ikki harf chiqadi?",
+   "opts": [
+    "ع ح",
+    "غ خ",
+    "ء ه",
+    "ق ك"
+   ],
+   "ok": 2,
+   "izoh": "Halq uch qismga bo'linadi: eng tubi — ء ه, o'rtasi — ع ح, yuqorisi — غ خ. ق ك esa tildan (lisan) chiqadi."
+  },
+  {
+   "q": "أَزْ ni aytib, bir qo'lni bo'g'izga qo'ydik — parda tebranyapti. Demak ز qaysi sifatda?",
+   "opts": [
+    "Jahr — jarangli",
+    "Hams — jarangsiz",
+    "Hech qaysi — bu maxraj",
+    "Ham Jahr, ham Hams"
+   ],
+   "ok": 0,
+   "izoh": "Parda tebransa — Jahr (jarangli), tebranmasa va havo erkin chiqsa — Hams. ز — Jahr, س — Hams."
+  }
+ ]
+}

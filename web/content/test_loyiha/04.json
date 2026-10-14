@@ -1,0 +1,12 @@
+{
+ "dars": 4,
+ "nomi": "Yaa, Baa, Kaaf, Laam, Vaav, Haa — test",
+ "holat": "loyiha",
+ "savollar": [
+  {"q": "Vaav (و) aytilganda lablar qanday holatda bo'ladi?", "opts": ["Pastki lab yuqori tishlarga tegadi", "Doira shaklida yumaloqlanib, oldinga cho'ziladi", "Ikki lab mahkam yopiladi", "Lablar ishtirok etmaydi"], "ok": 1, "izoh": "Vaav — lablar yumaloqlanib oldinga chiqadi, til oxiri ko'tariladi. O'zbekcha «v» kabi (tish labga tegib) o'qilmaydi.", "manba": "kurs04.json: slaydlar[8], slaydlar[9]; taqdimot 3, 23–24-slayd"},
+  {"q": "Kaaf (ك) ning sifatlari qaysi qatorda to'g'ri?", "opts": ["Jahr, Shidda, Istifola, Infitah, Izlaq, Qalqala", "Jahr, Bayniya, Istifola, Infitah, Izlaq, Inhirof", "Hams, Rixva, Istifola, Infitah, Ismat", "Hams, Shidda, Istifola, Infitah, Ismat"], "ok": 3, "izoh": "Kaaf — Hams, Shidda, Istifola, Infitah, Ismat (5 ta). Boshqa qatorlar — Baa, Laam va Haa (ه) sifatlari.", "manba": "kurs04.json: slaydlar[4]; taqdimot 3, 19-slayd"},
+  {"q": "Liin (yumshoq) sifati qaysi harflarda bor?", "opts": ["و ي", "ب م", "ل ر", "ك ه"], "ok": 0, "izoh": "Liin — Vaav va Yaa sifati: fathadan keyin sukunli kelganda yumshoq aytiladi, masalan بَيْتُ — «baytu».", "manba": "kurs04.json: slaydlar[0], slaydlar[8]; kurs02.json: slaydlar[19]; taqdimot 3, 15 va 23-slayd"},
+  {"q": "Haa (ه) qayerdan chiqadi?", "opts": ["Halqumning o'rta qismidan", "Tilning orqa qismi va tanglaydan", "Halqumning eng ostidan — aqsal-halq", "Ikki labdan"], "ok": 2, "izoh": "Haa (ه) — halqumning eng ostidan, Hamza bilan maxrajdosh. O'zbekcha «h» kabi emas, halqum tubidan aytiladi.", "manba": "kurs04.json: slaydlar[10], slaydlar[11]; taqdimot 3, 25–26-slayd"},
+  {"q": "اَبْ — sukunli Baa qanday aytiladi?", "opts": ["O'zbekcha «p» kabi", "G'unna bilan, burundan", "Qalqala bilan — maxrajda kichik titrash", "Umuman aytilmaydi"], "ok": 2, "izoh": "Baa — Qalqala harfi: sukunli bo'lsa, maxrajda kichik titrash bilan aytiladi. O'zbekcha «p» kabi o'qilmaydi.", "manba": "kurs04.json: slaydlar[2], slaydlar[3]; taqdimot 3, 17–18-slayd"}
+ ]
+}

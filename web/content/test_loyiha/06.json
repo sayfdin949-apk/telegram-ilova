@@ -1,0 +1,12 @@
+{
+ "dars": 6,
+ "nomi": "Too, Jiim, Xoo, Haa, G'oyn — test",
+ "holat": "loyiha",
+ "savollar": [
+  {"q": "Too (ط) ning sifatlari qaysi qatorda to'g'ri?", "opts": ["Hams, Shidda, Istifola, Infitah, Ismat", "Jahr, Shidda, Isti'lo, Itboq, Ismat, Qalqala", "Jahr, Shidda, Istifola, Infitah, Ismat, Qalqala", "Hams, Rixva, Isti'lo, Infitah, Ismat"], "ok": 1, "izoh": "Too — Jahr, Shidda, Isti'lo, Itboq, Ismat, Qalqala. Boshqa qatorlar — Taa, Jiim va Xoo sifatlari.", "manba": "kurs06.json: slaydlar[0]; taqdimot 3, 39-slayd"},
+  {"q": "Jiim (ج) haqida qaysi gap to'g'ri?", "opts": ["Jarangsiz, o'zbekcha «ch» kabi aytiladi", "Yo'g'on harf — fathasi «o» bo'ladi", "G'unna sifatiga ega", "Jarangli; sukunli kelsa, qalqala qilinadi"], "ok": 3, "izoh": "Jiim — Jahr, Shidda, Istifola, Qalqala. O'zbekcha «ch» kabi o'qilmaydi, sukunlida qalqala qilinadi.", "manba": "kurs06.json: slaydlar[2], slaydlar[3]; taqdimot 3, 41–42-slayd"},
+  {"q": "Xoo (خ) va G'oyn (غ) qayerdan chiqadi?", "opts": ["Halqumning yuqori qismidan — adnal-halq", "Halqumning o'rta qismidan", "Halqumning eng ostidan", "Tilning o'rtasidan"], "ok": 0, "izoh": "Xoo va G'oyn maxrajdosh: halqumning og'izga eng yaqin, yuqori qismidan chiqadi.", "manba": "kurs06.json: slaydlar[4], slaydlar[8]; taqdimot 3, 43 va 47-slayd"},
+  {"q": "خَلْقُ va حَلْقُ — qaysi birining birinchi harfi yo'g'on o'qiladi?", "opts": ["حَلْقُ", "خَلْقُ", "Ikkalasining ham", "Hech birining"], "ok": 1, "izoh": "خ — Isti'lo (yo'g'on), ح — Istifola (ingichka). Haa (ح) halqum o'rtasidan, Xoo (خ) halqum yuqorisidan chiqadi.", "manba": "kurs06.json: slaydlar[7] (5-qator); taqdimot 3, 46-slayd"},
+  {"q": "غَيْرُ qanday o'qiladi?", "opts": ["«G'ayru»", "«Gayru»", "«G'oyru»", "«Xoyru»"], "ok": 2, "izoh": "G'oyn — yo'g'on harf, fathasi «o» bo'lib eshitiladi: «G'oyru». O'zbekcha «g'» kabi ingichka o'qilmaydi.", "manba": "kurs06.json: slaydlar[9] (1-qator); taqdimot 3, 48-slayd"}
+ ]
+}

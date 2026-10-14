@@ -1,0 +1,61 @@
+{
+ "dars": 34,
+ "nomi": "O'qish matnlari 9–15 — test",
+ "savollar": [
+  {
+   "q": "9-matndagi حَآدٌّ so'zida qaysi cho'zish bor?",
+   "opts": [
+    "Tabiiy cho'zish — 2 harakat",
+    "Qo'shilgan cho'zish — 4–5 harakat",
+    "O'zgarmas cho'zish — 6 harakat",
+    "Ajralgan cho'zish — 4–5 harakat"
+   ],
+   "ok": 2,
+   "izoh": "Mad harfidan keyin so'z ichida tashdidli (birinchisi o'zgarmas sukunli) harf keladi: حَآدْدٌ. Bu o'zgarmas cho'zish — 6 harakat."
+  },
+  {
+   "q": "14-matndagi gap oxiridagi بِسُرْعَةٍ so'zida to'xtalganda qanday o'qiladi?",
+   "opts": [
+    "Bisur'atin",
+    "Bisur'ah",
+    "Bisur'ataa",
+    "Bisur'at"
+   ],
+   "ok": 1,
+   "izoh": "Toi marbuta to'xtalganda sukunli Haa (هْ) ga aylanadi: Bisur'ah."
+  },
+  {
+   "q": "11-matndagi يَوْمًا نَّامَ birikmasida tanvin qanday o'qiladi?",
+   "opts": [
+    "Bildirib — aniq aytiladi",
+    "Yashirib, g'unna bilan",
+    "Almashtirib — mimga aylanadi",
+    "Kirgazib — ن ga g'unna bilan kirgaziladi"
+   ],
+   "ok": 3,
+   "izoh": "Tanvindan keyin ن keldi: kirgazish harflaridan biri, ي م ن و da kirgazish g'unna bilan bo'ladi."
+  },
+  {
+   "q": "Qaysi matn sarlavhasida aniqlik lami o'qiladi (qamariy harf)?",
+   "opts": [
+    "ٱلْغُرَابُ",
+    "ٱلسَّمَكُ",
+    "ٱلذِّئْبُ",
+    "ٱلصَّدَاقَةُ"
+   ],
+   "ok": 0,
+   "izoh": "غ — qamariy harf: lamda sukun bor, lam o'qiladi. س ذ ص — shamsiy, ularda lam o'qilmaydi va keyingi harf tashdidli."
+  },
+  {
+   "q": "13-matndagi مَّنْ أَنتَ birikmasida مَنْ ning nuuni qanday o'qiladi?",
+   "opts": [
+    "Kirgazib",
+    "Yashirib",
+    "Bildirib — aniq aytiladi",
+    "Almashtirib"
+   ],
+   "ok": 2,
+   "izoh": "Sukunli nuundan keyin hamza (halqum harfi) keldi — nun bildirib o'qiladi. ن va hamza o'zaro uzoq harflar ham."
+  }
+ ]
+}

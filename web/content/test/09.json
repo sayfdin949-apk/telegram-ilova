@@ -1,0 +1,61 @@
+{
+ "dars": 9,
+ "nomi": "Mad harflari (3–6-qism) — test",
+ "savollar": [
+  {
+   "q": "يَقُولُونَ so'zidagi mad harflari qanday cho'ziladi?",
+   "opts": [
+    "Bitta mad bor — 2 harakat",
+    "Ikkita mad — birinchisi uzunroq, ikkinchisi qisqaroq",
+    "Ikkita mad — ikkalasi ham bir xil, 2 harakatdan",
+    "Mad yo'q — oddiy o'qiladi"
+   ],
+   "ok": 2,
+   "izoh": "يَقُولُونَ da ikkita vaav mad harfi bor (قُو va لُو). Bir so'zdagi madlar bir xil — 2 harakatdan cho'ziladi."
+  },
+  {
+   "q": "مِيلْ qanday o'qiladi?",
+   "opts": [
+    "«Miil»",
+    "«Meel»",
+    "«Mil»",
+    "«Mayl»"
+   ],
+   "ok": 0,
+   "izoh": "Kasra + harakatsiz yaa — «ii», 2 harakat. O'zbekcha «e» ga o'xshatilmaydi, cho'zmasdan «Mil» ham xato."
+  },
+  {
+   "q": "تَكُونُونَ qanday o'qiladi?",
+   "opts": [
+    "«Tako'no'na»",
+    "«Takununa»",
+    "«Takoonoona»",
+    "«Takuunuuna»"
+   ],
+   "ok": 3,
+   "izoh": "Damma + harakatsiz vaav — «uu». Vaavni o'zbekcha «o'» ga o'xshatmaslik va cho'zmay qoldirmaslik kerak."
+  },
+  {
+   "q": "مُخْلِصَانِ qanday o'qiladi?",
+   "opts": [
+    "«Muxlisaani»",
+    "«Muxlisooni»",
+    "«Muxlisani»",
+    "«Muxlisuuni»"
+   ],
+   "ok": 1,
+   "izoh": "ص — yo'g'on harf, undan keyingi alif «oo» deb o'qiladi: «Muxlisooni». «Muxlisani» — cho'zilmagan."
+  },
+  {
+   "q": "Qaysi so'zda yaa mad harfi bor?",
+   "opts": [
+    "يَقُولُ",
+    "بَيْتُ",
+    "كَرِيمْ",
+    "يَعْلَمُونَ"
+   ],
+   "ok": 2,
+   "izoh": "كَرِيمْ — kasradan keyin harakatsiz yaa: «Kariim». بَيْتُ da yaa fathadan keyin — bu mad emas, Liin; qolganlarida vaav mad."
+  }
+ ]
+}

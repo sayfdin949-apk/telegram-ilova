@@ -1,0 +1,12 @@
+{
+ "dars": 7,
+ "nomi": "Ayn, Daal, Dood, Zaal, Zoo — test",
+ "holat": "loyiha",
+ "savollar": [
+  {"q": "Tovushning davomiyligi bo'yicha Ayn (ع) qaysi guruhga kiradi?", "opts": ["Shidda", "Bayniya", "Rixva", "Safir"], "ok": 1, "izoh": "Ayn — Bayniya (oraliq): tomoq devoriga yaqinlashadi, lekin to'liq yopilmaydi. Sifatlari: Jahr, Bayniya, Istifola, Infitah, Ismat.", "manba": "kurs07.json: slaydlar[0]; kurs02.json: slaydlar[3]; taqdimot 3, 49-slayd"},
+  {"q": "Istitola (til yon tomoni bo'ylab cho'ziladi) qaysi harfga xos?", "opts": ["ظ", "د", "ذ", "ض"], "ok": 3, "izoh": "Istitola — faqat Dood (ض) sifati. Zoo — Itboq, Daal — Qalqala sifatiga ega, Zaal — ingichka harf.", "manba": "kurs07.json: slaydlar[4]; kurs02.json: slaydlar[20]; taqdimot 3, 53-slayd"},
+  {"q": "زِدْ — sukunli Daal qanday aytiladi?", "opts": ["Qalqala bilan — maxrajda kichik titrash", "G'unna bilan, burundan", "Taa kabi jarangsiz", "Yo'g'on, Dood kabi"], "ok": 0, "izoh": "Daal — Qalqala harfi: sukunli kelsa, qalqala qilinadi. Taa kabi jarangsiz o'qilmaydi.", "manba": "kurs07.json: slaydlar[2], slaydlar[3]; taqdimot 3, 51–52-slayd"},
+  {"q": "دَرْسُ va ضَرْسُ juftligida ض qanday aytiladi?", "opts": ["Daal kabi ingichka", "Qalqala bilan", "Yo'g'on (Isti'lo, Itboq), qalqalasiz", "Jarangsiz"], "ok": 2, "izoh": "Dood — yo'g'on va qalqalasiz harf. Daal kabi ingichka o'qilsa, boshqa so'z chiqadi.", "manba": "kurs07.json: slaydlar[5] (5-qator); taqdimot 3, 54-slayd"},
+  {"q": "Zaal (ذ) va Zoo (ظ) qanday farqlanadi?", "opts": ["ذ jarangsiz, ظ jarangli", "ذ ingichka (Istifola, Infitah), ظ yo'g'on (Isti'lo, Itboq)", "ذ so'zda 4 xil, ظ 2 xil ko'rinishda yoziladi", "Maxraji butunlay boshqa"], "ok": 1, "izoh": "Ikkalasi maxrajdosh va Jahr. Farqi — sifatda: Zaal ingichka, Zoo yo'g'on. Ko'rinishi esa aksincha: ذ — 2 xil, ظ — 4 xil.", "manba": "kurs07.json: slaydlar[6], slaydlar[8]; taqdimot 3, 55 va 57-slayd"}
+ ]
+}

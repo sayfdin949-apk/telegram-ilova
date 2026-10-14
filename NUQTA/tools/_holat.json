@@ -1,0 +1,344 @@
+{
+ "video": {
+  "d05": {
+   "fayl": [
+    "Fonetika 5-dars - Harflar - Faa, Qoof, Shiin, Siin, Caa, Sood (motion).mp4",
+    79441417,
+    1791192541613175300
+   ],
+   "w": 1280,
+   "h": 720
+  },
+  "n05": {
+   "fayl": [
+    "Fonetika 5-dars - Harflar - Faa, Qoof, Shiin, Siin, Caa, Sood (motion).mp4",
+    79441417,
+    1791192541613175300
+   ],
+   "w": 1280,
+   "h": 720
+  }
+ },
+ "dars": {
+  "01": {
+   "pdf": [
+    "01-dars (Arab tiliga kirish).pdf",
+    3033934,
+    1791186256974844800
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 34
+  },
+  "02": {
+   "pdf": [
+    "02-dars (Harflarning sifatlari).pdf",
+    2171787,
+    1791186287208709500
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 28
+  },
+  "03": {
+   "pdf": [
+    "03-dars (Harflar - Hamza, Roo, Zaa, Miim, Taa, Nuun).pdf",
+    7998970,
+    1791186327280397800
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 20,
+   "skaner": "skaner-v1"
+  },
+  "04": {
+   "pdf": [
+    "04-dars (Harflar - Yaa, Baa, Kaaf, Laam, Vaav, Haa).pdf",
+    7805373,
+    1791186351403213800
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 18,
+   "skaner": "skaner-v1"
+  },
+  "05": {
+   "pdf": [
+    "05-dars (Harflar - Faa, Qoof, Shiin, Siin, Caa, Sood).pdf",
+    7533361,
+    1791186375783629700
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 18,
+   "skaner": "skaner-v1"
+  },
+  "06": {
+   "pdf": [
+    "06-dars (Harflar - Too, Jiim, Xoo, Haa, G'oyn).pdf",
+    6020117,
+    1791186398776273800
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 15,
+   "skaner": "skaner-v1"
+  },
+  "07": {
+   "pdf": [
+    "07-dars (Harflar - Ayn, Daal, Dood, Zaal, Zoo va harf shakllari).pdf",
+    8899522,
+    1791186468775507800
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 20,
+   "skaner": "skaner-v1"
+  },
+  "08": {
+   "pdf": [
+    "08-dars (Mad harflari 1-2-qism).pdf",
+    2074904,
+    1791186500815476700
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 15
+  },
+  "09": {
+   "pdf": [
+    "09-dars (Mad harflari 3-6-qism).pdf",
+    1331192,
+    1791186515410726400
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 9
+  },
+  "10": {
+   "pdf": [
+    "10-dars (Tashdidli harflar).pdf",
+    1829795,
+    1791186536875784800
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 15
+  },
+  "11": {
+   "pdf": [
+    "11-dars (Tanvinli harflar va tanvinli tashdid).pdf",
+    3059013,
+    1791186565225696100
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 26
+  },
+  "12": {
+   "pdf": [
+    "12-dars (Hamza - qat'iy va vasliy hamza).pdf",
+    2922644,
+    1791186613775223500
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 24
+  },
+  "13": {
+   "pdf": [
+    "13-dars (Toi marbuta va yozilmasa-da o'qiladigan harflar).pdf",
+    3323034,
+    1791186648671854500
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 25
+  },
+  "14": {
+   "pdf": [
+    "14-dars (Yozilsa-da o'qilmaydigan harflar).pdf",
+    1656488,
+    1791186680388211300
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 12
+  },
+  "15": {
+   "pdf": [
+    "15-dars (Aniqlik lomi - qamariy va shamsiy harflar).pdf",
+    2219238,
+    1791186707591913500
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 17
+  },
+  "16": {
+   "pdf": [
+    "16-dars (Vasl - qo'shib o'qish).pdf",
+    1657056,
+    1791186729792042400
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 13
+  },
+  "17": {
+   "pdf": [
+    "17-dars (Vaqf - to'xtash).pdf",
+    2363279,
+    1791186756745904900
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 18
+  },
+  "19": {
+   "pdf": [
+    "19-dars (Sukunli nun va tanvin - bildirib talaffuz).pdf",
+    1774529,
+    1791186826243621100
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 14
+  },
+  "20": {
+   "pdf": [
+    "20-dars (Kirgazib talaffuz).pdf",
+    1357104,
+    1791186844740073500
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 9
+  },
+  "21": {
+   "pdf": [
+    "21-dars (Almashtirib va yashirib talaffuz).pdf",
+    1865065,
+    1791186868366081300
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 13
+  },
+  "22": {
+   "pdf": [
+    "22-dars (Yashirib talaffuz - 2-3-mashq).pdf",
+    1153351,
+    1791186887750091500
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 8
+  },
+  "23": {
+   "pdf": [
+    "23-dars (Yashirib talaffuz - 4-5-mashq).pdf",
+    1155814,
+    1791186905359916300
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 8
+  },
+  "24": {
+   "pdf": [
+    "24-dars (Sukunli mim qoidalari).pdf",
+    1396420,
+    1791186925192284100
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 10
+  },
+  "25": {
+   "pdf": [
+    "25-dars (Roo harfi qoidalari).pdf",
+    1773256,
+    1791186949105881400
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 13
+  },
+  "26": {
+   "pdf": [
+    "26-dars (Tabiiy va qo'shilgan cho'zish).pdf",
+    1387583,
+    1791186974537024000
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 10
+  },
+  "27": {
+   "pdf": [
+    "27-dars (Ajralgan va o'zgarmas cho'zish).pdf",
+    1227029,
+    1791189818357486100
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 8
+  },
+  "28": {
+   "pdf": [
+    "28-dars (O'zgaruvchan va yumshoq cho'zishlar).pdf",
+    1858947,
+    1791189829694787200
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 12
+  },
+  "29": {
+   "pdf": [
+    "29-dars (Cho'zishlar va harflarning nomlari).pdf",
+    1724416,
+    1791189841569017300
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 14
+  },
+  "30": {
+   "pdf": [
+    "30-dars (Bir xil va maxrajdosh harflar).pdf",
+    1879245,
+    1791189855626379500
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 12
+  },
+  "31": {
+   "pdf": [
+    "31-dars (O'zaro yaqin va o'zaro uzoq harflar).pdf",
+    1537661,
+    1791189864965915500
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 10
+  },
+  "32": {
+   "pdf": [
+    "32-dars (Ikki sukunli harf va urg'u).pdf",
+    3474992,
+    1791189885011388500
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 25
+  },
+  "33": {
+   "pdf": [
+    "33-dars (O'qish matnlari 1-8).pdf",
+    2893980,
+    1791189911771641500
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 16
+  },
+  "34": {
+   "pdf": [
+    "34-dars (O'qish matnlari 9-15).pdf",
+    2809219,
+    1791189923321426100
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 14
+  },
+  "35": {
+   "pdf": [
+    "35-dars (O'qish matnlari 16-22).pdf",
+    3223813,
+    1791189936432263900
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 16
+  },
+  "36": {
+   "pdf": [
+    "36-dars (O'qish matnlari 23-30).pdf",
+    5172400,
+    1791189958024828100
+   ],
+   "imzo": "v1;ss2-lanczos;q80m6;1280/1000/480",
+   "sahifalar": 27
+  }
+ }
+}

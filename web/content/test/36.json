@@ -1,0 +1,61 @@
+{
+ "dars": 36,
+ "nomi": "O'qish matnlari 23–30 — test",
+ "savollar": [
+  {
+   "q": "26-matndagi شُرْطِيًّا so'zini o'qishda nimaga e'tibor beriladi?",
+   "opts": [
+    "Yaa o'qilmaydi",
+    "Yaa 6 harakat cho'ziladi",
+    "Tashdidli yaaga urg'u beriladi, aks holda mad harfiga o'xshab qoladi",
+    "Tanvin tushib qoladi"
+   ],
+   "ok": 2,
+   "izoh": "Tashdidli vaav va yaa urg'usiz aytilsa, birinchi sukunli harf mad harfiga o'xshab qoladi. Shuning uchun tashdid aniq bilinsin."
+  },
+  {
+   "q": "29-matndagi gap oxiridagi بَيْتِهِۦ so'zida to'xtalganda qanday o'qiladi?",
+   "opts": [
+    "Baytihii",
+    "Baytih",
+    "Baytihi",
+    "Baytihaa"
+   ],
+   "ok": 1,
+   "izoh": "Vaqfda harakat va muqaddaralar o'rniga sukun qo'yiladi: بَيْتِهْ — Baytih."
+  },
+  {
+   "q": "28-matndagi رِسَالَاتِكُمُ ٱلْأُسْبُوعِيَّةِ birikmasida كُمْ ning miimi nega dammali?",
+   "opts": [
+    "Kirgazib talaffuz qilish uchun",
+    "Vaqf qilingani uchun",
+    "Bu tanvin",
+    "Ikki sukun yo'liqqani uchun birinchisi harakatlantirilgan (bu yerda damma bilan)"
+   ],
+   "ok": 3,
+   "izoh": "كُمْ ning sukunli miimi ٱلْ ning sukunli laamiga yo'liqadi. Asl qoida kasra, ba'zi istisno holatlarda esa fatha yoki damma beriladi."
+  },
+  {
+   "q": "30-matndagi فِى ٱلسُّوقِ birikmasi qanday o'qiladi?",
+   "opts": [
+    "Fissuuqi",
+    "Fii as-suuqi",
+    "Fiissuuqi",
+    "Filsuuqi"
+   ],
+   "ok": 0,
+   "izoh": "ى vasliy hamzaga yo'liqib tushib qoladi (hazf), س — shamsiy harf, lam o'qilmaydi: Fissuuqi."
+  },
+  {
+   "q": "30-matn sarlavhasidagi ٱلْمُرُوٓءَةُ so'zida وٓ qancha cho'ziladi?",
+   "opts": [
+    "2 harakat — tabiiy cho'zish",
+    "6 harakat — o'zgarmas cho'zish",
+    "4 harakat shart, 5 harakat afzal — qo'shilgan cho'zish",
+    "Cho'zilmaydi"
+   ],
+   "ok": 2,
+   "izoh": "Mad harfi (و) va hamza bir so'zda — qo'shilgan cho'zish. 6 harakat o'zgarmas cho'zishga tegishli."
+  }
+ ]
+}

@@ -1,0 +1,639 @@
+<!doctype html>
+<!-- Muhammadamin talaba ilovasi (Telegram Mini App) — NUQTA UI demo. Jonli ilovaga tegilmagan.
+     Yig'ish: python _manba\yasash.py  (arabcha matn manbadan aynan joylanadi, keyin build.py --html) -->
+<html lang="uz" data-nuqta="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Muhammadamin ilovasi — NUQTA UI demo</title>
+<!-- NUQTA:HEAD -->
+<style>
+/* ================= Demo qobig'i (ilovaning o'zi emas) ================= */
+:root { --frame: #A6957A; }
+[data-m="tun"] { --frame: #8E897E; }
+body.demo { min-height: 100vh; background: color-mix(in srgb, var(--soft) 55%, var(--bg)); }
+.dm-bar { position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, var(--bg) 94%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.dm-bar .in { max-width: 1800px; margin: 0 auto; padding: 10px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 22px; }
+.dm-brand { display: flex; align-items: center; gap: 10px; margin-right: auto; }
+.dm-brand b { display: block; font: 700 19px var(--f-h); }
+.dm-brand small { display: block; font-size: 12.5px; color: var(--t2); font-weight: 700; }
+.dm-g { display: flex; align-items: center; gap: 6px; }
+.dm-g > .l { font-size: 11.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--t2); margin-right: 4px; white-space: nowrap; }
+.dm-b { min-height: 44px; padding: 0 13px; border-radius: 12px; border: 1.5px solid var(--line); background: var(--card); color: var(--t1); font: 700 14px var(--f-b); display: inline-flex; align-items: center; gap: 7px; cursor: pointer; white-space: nowrap; }
+.dm-b:hover { border-color: var(--ink); }
+.dm-b[aria-pressed="true"] { background: var(--cta); color: var(--on-cta); border-color: transparent; }
+.dm-b .dot { width: 10px; height: 10px; transform: rotate(45deg); background: var(--a2); border-radius: 2px; flex: 0 0 auto; }
+.dm-b svg { color: inherit; }
+.dm-cap { display: none; }
+body.chiz .dm-bar { display: none; }
+body.chiz .dm-cap { display: flex; align-items: center; gap: 14px; padding: 26px 34px 6px; }
+.dm-cap b { font: 700 26px var(--f-h); }
+.dm-cap span { font-size: 16px; font-weight: 700; color: var(--t2); }
+.dm-cap .nq-pill { font-size: 14px; }
+.dm-stage { max-width: 1800px; margin: 0 auto; padding: 28px 24px 48px; display: flex; flex-wrap: wrap; justify-content: center; gap: 30px 28px; }
+body.chiz .dm-stage { flex-wrap: nowrap; max-width: none; justify-content: flex-start; padding: 12px 34px 36px; }
+.dm-ph { margin: 0; display: grid; justify-items: center; gap: 10px; }
+.dm-ph figcaption { display: flex; align-items: center; gap: 2px; font: 700 16px var(--f-h); color: var(--t1); }
+.dm-ph figcaption .nq-n { font-size: 14px; }
+.dm-ph.flash .ph { box-shadow: 0 0 0 4px var(--cta), var(--shadow-lg); }
+body[data-kor="bitta"] .dm-ph:not(.on) { display: none; }
+.ph { width: 410px; padding: 10px; border-radius: 48px; background: var(--frame); box-shadow: var(--shadow-lg); transition: box-shadow .3s; }
+.ph-in { position: relative; width: 390px; height: 844px; border-radius: 38px; overflow: hidden; background: var(--bg); display: flex; flex-direction: column; color: var(--t1); }
+body.pdf .dm-bar, body.pdf .dm-cap, body.pdf figcaption { display: none !important; }
+body.pdf { background: var(--bg); }
+body.pdf .dm-stage { display: block; padding: 0; max-width: none; }
+body.pdf .dm-ph { display: block; break-after: page; page-break-after: always; }
+body.pdf .ph { width: 390px; padding: 0; border-radius: 0; background: none; box-shadow: none; }
+body.pdf .ph-in { border-radius: 0; }
+@media (max-width: 600px) {
+  html { scrollbar-width: none; }
+  html::-webkit-scrollbar { display: none; }
+  .dm-bar { position: static; }
+  .dm-bar .in { padding: 8px 12px; gap: 8px; }
+  .dm-g { width: 100%; overflow-x: auto; scrollbar-width: none; }
+  .dm-g.kor { display: none; }
+  .dm-stage { padding: 0; }
+  .dm-ph:not(.on) { display: none; }
+  .dm-ph { width: 100%; }
+  .dm-ph figcaption { display: none; }
+  .ph { width: 100%; padding: 0; border-radius: 0; background: none; box-shadow: none; }
+  .ph-in { width: 100%; border-radius: 0; }
+}
+
+/* ================= Ilova (Mini App) ================= */
+.ph-in button { font-family: inherit; }
+.ph-in svg.lucide { width: 20px; height: 20px; vertical-align: middle; }
+.ib { width: 44px; height: 44px; display: inline-grid; place-items: center; border: 0; border-radius: 12px; background: transparent; color: var(--t1); cursor: pointer; flex: 0 0 auto; }
+.ib svg.lucide { width: 24px; height: 24px; }
+.tg { flex: 0 0 48px; display: flex; align-items: center; justify-content: space-between; padding: 0 4px; background: var(--bg); border-bottom: 1px solid var(--line); }
+.tg-x { min-height: 44px; display: inline-flex; align-items: center; gap: 4px; padding: 0 10px; border: 0; background: none; color: var(--ink); font: 700 15px var(--f-b); cursor: pointer; }
+.tg-t { text-align: center; line-height: 1.2; }
+.tg-t b { display: block; font-size: 15px; }
+.tg-t small { display: block; font-size: 12px; color: var(--t2); font-weight: 600; }
+.scr { position: relative; flex: 1 1 auto; min-height: 0; overflow-y: auto; scrollbar-width: none; padding: 14px 18px 18px; display: flex; flex-direction: column; gap: 12px; }
+.scr::-webkit-scrollbar { display: none; }
+.ap-nav { flex: 0 0 auto; display: grid; grid-template-columns: repeat(5, 1fr); padding: 6px 6px 12px; border-top: 1px solid var(--line); background: var(--card); }
+.ap-nav button { display: grid; justify-items: center; align-content: start; gap: 2px; min-height: 54px; padding: 4px 0 0; border: 0; background: none; color: var(--t2); font: 700 12px var(--f-b); cursor: pointer; }
+.ap-nav .i { width: 54px; height: 30px; border-radius: 15px; display: grid; place-items: center; }
+.ap-nav svg.lucide { width: 22px; height: 22px; }
+.ap-nav button.on { color: var(--t1); }
+.ap-nav button.on .i { background: var(--soft); color: var(--ink); }
+.toast { position: absolute; left: 18px; right: 18px; bottom: 86px; z-index: 9; padding: 12px 16px; border-radius: 14px; background: var(--note); border: 1px solid var(--line); box-shadow: var(--shadow-lg); font-weight: 700; font-size: 14px; color: var(--t1); opacity: 0; transform: translateY(8px); transition: opacity .25s, transform .25s; pointer-events: none; }
+.toast.on { opacity: 1; transform: none; }
+
+/* Umumiy bloklar */
+.dia { position: relative; isolation: isolate; width: 44px; height: 44px; display: grid; place-items: center; color: var(--ink); flex: 0 0 auto; }
+.dia::before { content: ''; position: absolute; inset: 7px; background: var(--note); transform: rotate(45deg); border-radius: 7px; z-index: -1; }
+.dia.cta::before { background: var(--cta); }
+.dia.cta { color: var(--on-cta); }
+.ph-in .nq-btn { min-height: 48px; justify-content: center; font-size: 16px; border-radius: 14px; }
+.ph-in .nq-btn.pri { box-shadow: 0 3px 0 color-mix(in srgb, var(--cta) 60%, var(--t1)); }
+.ph-in .nq-btn.wide { width: 100%; }
+.ph-in .nq-btn { white-space: nowrap; }
+.ph-in .nq-kick { font-size: 11.5px; color: var(--t2); }
+.sec-h { font: 700 17px var(--f-h); margin: 4px 2px -2px; }
+.bar { flex: 1; height: 12px; border-radius: 6px; background: var(--soft); overflow: hidden; }
+.bar i { display: block; height: 100%; border-radius: 6px; background: linear-gradient(90deg, var(--a2), var(--cta)); }
+.ap-row { display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 8px 14px 8px 8px; color: var(--t1); text-decoration: none; cursor: pointer; text-align: left; width: 100%; font: inherit; }
+.ap-row .rt { flex: 1; min-width: 0; }
+.ap-row .rt b { display: block; font-size: 15px; }
+.ap-row .rt small { display: block; font-size: 13px; color: var(--t2); }
+.ap-row > svg.lucide:last-child { color: var(--t2); }
+
+/* 1. Bosh */
+.ap-top { display: flex; align-items: center; justify-content: space-between; min-height: 44px; }
+.ap-brand { display: flex; align-items: center; gap: 6px; }
+.ap-wm.nq-wm { font-size: 20px; letter-spacing: .03em; }
+.ap-wm.nq-wm::after { display: none; }
+.nw { white-space: nowrap; }
+.ava { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--cta); color: var(--on-cta); font: 700 18px var(--f-h); border: 0; cursor: pointer; flex: 0 0 auto; }
+.ap-hero { position: relative; overflow: hidden; background: var(--hero); min-height: 232px; border-radius: var(--r-lg); border: 1px solid var(--card-b); box-shadow: var(--shadow); }
+.ap-hero > [data-scene] { left: 42%; }
+.qism > [data-scene], .du-hero > [data-scene] { left: 34%; }
+.ap-hero > [data-scene], .qism > [data-scene], .du-hero > [data-scene] { -webkit-mask-image: linear-gradient(90deg, transparent 0, #5A4423 40%); mask-image: linear-gradient(90deg, transparent 0, #5A4423 40%); }
+.ap-hero .hx { position: relative; z-index: 1; padding: 16px 18px 18px; max-width: 60%; display: grid; gap: 3px; justify-items: start; }
+.ap-hero .hi { font-weight: 700; font-size: 14px; }
+.ap-hero h2 { font-size: 25px; line-height: 1.12; margin: 2px 0 2px; }
+.ap-hero .ark bdi { font-size: 26px; line-height: 1.5; color: var(--t1); }
+.ap-hero .pr { display: flex; align-items: center; gap: 8px; width: 100%; font-size: 13px; font-weight: 700; margin: 2px 0 10px; }
+.ap-hero .pr .nq-prog { flex: 1; background: color-mix(in srgb, var(--card) 70%, transparent); }
+.ap-stats { display: grid; grid-template-columns: repeat(3, 1fr); padding: 10px 4px; }
+.ap-stats > div { display: grid; grid-template-columns: auto 1fr; column-gap: 8px; align-items: center; padding: 0 10px; border-left: 1px solid var(--line); }
+.ap-stats > div:first-child { border-left: 0; }
+.ap-stats .ic { grid-row: span 2; color: var(--ink); }
+.ap-stats .ic svg.lucide { width: 22px; height: 22px; }
+.ap-stats b { font: 700 19px var(--f-h); line-height: 1.15; }
+.ap-stats small { font-size: 12px; color: var(--t2); font-weight: 600; line-height: 1.2; }
+.ap-goal { display: flex; align-items: center; gap: 10px; padding: 10px 14px 12px 8px; }
+.ap-goal .b { flex: 1; }
+.ap-goal .h { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 7px; }
+.ap-goal .h b { font-size: 15px; }
+.ap-goal .h span { font-size: 13px; font-weight: 700; color: var(--t2); }
+.ap-two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.ap-tile { display: grid; justify-items: start; gap: 2px; padding: 8px 14px 14px 8px; text-align: left; cursor: pointer; color: var(--t1); font: inherit; }
+.ap-tile b { font: 700 18px var(--f-h); padding-left: 6px; margin-top: 2px; }
+.ap-tile small { font-size: 13px; color: var(--t2); padding-left: 6px; }
+
+/* 2. Darslar */
+.ap-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.ap-head h1 { font-size: 28px; }
+.ap-head .nq-pill { min-height: 32px; }
+.ap-sub { font-size: 14px; color: var(--t2); margin-top: -8px; }
+.qrow { display: flex; align-items: center; gap: 10px; min-height: 56px; padding: 6px 14px 6px 6px; }
+.qrow .rt { flex: 1; }
+.qrow .rt small { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--t2); }
+.qrow .rt b { display: block; font-size: 15px; }
+.qrow .cnt { font-size: 13px; font-weight: 700; color: var(--t2); }
+.qrow.ok .dia::before { background: var(--ok-bg); }
+.qrow.ok .dia { color: var(--ok); }
+.qrow.ok .cnt { color: var(--ok); }
+.qrow.lk .dia::before { background: var(--soft); }
+.qrow.lk .dia { color: var(--t2); }
+.qism { position: relative; overflow: hidden; background: var(--hero); min-height: 104px; border-radius: var(--r-lg); border: 1px solid var(--card-b); box-shadow: var(--shadow); }
+.qism .hx { position: relative; z-index: 1; padding: 14px 16px; max-width: 64%; display: grid; gap: 2px; }
+.qism h2 { font-size: 21px; line-height: 1.15; }
+.qism .pr { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; margin-top: 6px; }
+.qism .pr .nq-prog { flex: 1; background: color-mix(in srgb, var(--card) 70%, transparent); }
+.path { position: relative; display: grid; gap: 2px; margin: -2px 0; }
+.path::before { content: ''; position: absolute; left: 25px; top: 26px; bottom: 26px; width: 3px; background: repeating-linear-gradient(var(--card-b) 0 6px, transparent 6px 12px); }
+.ls { position: relative; display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 4px 6px 4px 0; border: 1px solid transparent; border-radius: 16px; }
+.ls .nd { position: relative; z-index: 1; isolation: isolate; width: 52px; height: 52px; flex: 0 0 auto; display: grid; place-items: center; color: var(--t2); }
+.ls .nd::before { content: ''; position: absolute; inset: 8px; transform: rotate(45deg); border-radius: 9px; z-index: -1; background: var(--soft); box-shadow: 0 3px 0 var(--line); }
+.ls .tx { flex: 1; min-width: 0; }
+.ls .tx small { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--t2); }
+.ls .tx b { display: block; font-size: 15px; line-height: 1.3; }
+.ls .tx .m { display: block; font-size: 12.5px; color: var(--t2); }
+.ls.cur { background: var(--card); border-color: var(--card-b); box-shadow: var(--shadow); padding-right: 10px; }
+.ls.cur .nd { color: var(--on-cta); }
+.ls.cur .nd::before { background: var(--cta); }
+.ls.cur .nq-btn { min-height: 44px; padding: 0 14px; font-size: 14px; }
+.ap-more { text-align: center; font-size: 13px; font-weight: 700; color: var(--t2); margin-top: -4px; }
+
+/* 3. Dars */
+.ap-tb { display: flex; align-items: center; gap: 6px; margin: -6px -6px 0; }
+.ap-tb .t { flex: 1; min-width: 0; line-height: 1.25; }
+.ap-tb .t small { display: block; font-size: 13px; color: var(--t2); font-weight: 700; }
+.ap-tb .t b { display: block; font: 700 18px var(--f-h); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ap-tb .nq-pill { min-height: 32px; font-size: 14px; }
+.dk-sl { position: relative; overflow: hidden; flex: 1 1 auto; min-height: 0; border-radius: 18px; background: var(--card); border: 1px solid var(--card-b); box-shadow: var(--shadow); padding: 16px 18px 12px; display: flex; flex-direction: column; gap: 12px; }
+.sl-h { display: flex; align-items: center; gap: 10px; }
+.sl-h bdi[dir="rtl"] { font-size: 30px; line-height: 1.5; color: var(--ink); background: var(--bg); border: 1px solid var(--card-b); border-radius: 10px; padding: 0 14px; }
+.sl-h b { font: 700 21px var(--f-h); }
+.sl-h .tag { margin-left: auto; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--t2); border: 1px solid var(--line); border-radius: 999px; padding: 3px 9px; }
+.sl-p { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.sl-p li { position: relative; padding-left: 20px; font-size: 16px; line-height: 1.5; }
+.sl-p li::before { content: ''; position: absolute; left: 2px; top: .55em; width: 8px; height: 8px; background: var(--a2); transform: rotate(45deg); border-radius: 1.5px; }
+.sl-p bdi.inl { display: inline-block; font-size: 1.5em; line-height: 1.5; vertical-align: -.12em; color: var(--ink); }
+.sl-x { display: flex; direction: rtl; justify-content: center; gap: 8px; }
+.sl-x .qe { direction: ltr; display: grid; justify-items: center; min-width: 64px; padding: 0 8px 6px; border-radius: 12px; background: var(--bg); border: 1px solid var(--card-b); }
+.sl-x .g { font-family: var(--f-ar); font-size: 36px; line-height: 1.75; color: var(--t1); }
+.sl-x .g .t { color: var(--ink); }
+.sl-x .n { font-size: 13px; font-weight: 700; color: var(--t2); margin-top: -6px; }
+.sl-pic { align-self: center; width: 58%; border-radius: 12px; overflow: hidden; border: 1px solid var(--card-b); background: var(--card); }
+.sl-pic img { display: block; width: 100%; mix-blend-mode: multiply; }
+.sl-f { margin-top: auto; display: flex; justify-content: space-between; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--t2); }
+.ap-tools { display: flex; gap: 8px; }
+.ap-tools .nq-pill { min-height: 44px; padding: 0 16px; font-size: 14px; cursor: pointer; background: var(--card); }
+.ap-nav2 { display: grid; grid-template-columns: 1fr 1.6fr; gap: 10px; }
+
+/* 4. Mashq va 5. Duel */
+.qz-top { display: flex; align-items: center; gap: 8px; margin: -6px -6px 0; }
+.hearts { display: inline-flex; align-items: center; gap: 4px; padding-right: 6px; color: var(--t1); font: 800 18px var(--f-b); }
+.hearts svg.lucide { width: 24px; height: 24px; fill: currentColor; color: var(--err); }
+.qz-q { font-size: 23px; line-height: 1.2; margin-top: -6px; }
+.qz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.qz-o { position: relative; min-height: 104px; border-radius: 16px; border: 1.5px solid var(--line); background: var(--card); box-shadow: 0 3px 0 var(--line); display: grid; place-items: center; padding: 22px 8px 6px; cursor: pointer; color: var(--t1); }
+.qz-o .k { position: absolute; left: 10px; top: 10px; width: 26px; height: 26px; border-radius: 8px; background: var(--soft); font: 800 13px var(--f-b); display: grid; place-items: center; color: var(--t1); }
+.qz-o bdi[dir="rtl"] { font-size: 34px; line-height: 1.75; }
+[data-arab="l"] .qz-o bdi[dir="rtl"] { font-size: 42px; }
+.qz-o.good { background: var(--ok-bg); border: 2px solid var(--ok-bd); box-shadow: 0 3px 0 var(--ok-bd); }
+.qz-o.good .k { background: var(--card); color: var(--ok); box-shadow: inset 0 0 0 1.5px var(--ok-bd); }
+.qz-o .mk { position: absolute; right: 8px; top: 8px; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; background: var(--ok-bd); color: var(--ok-bg); }
+.qz-o .mk svg.lucide { width: 18px; height: 18px; }
+.qz-o.dim bdi { color: var(--t3); }
+.qz-sheet { margin: auto -18px -18px; padding: 18px 18px 20px; background: var(--ok-bg); border-top: 3px solid var(--ok-bd); border-radius: 24px 24px 0 0; display: grid; gap: 8px; }
+.qz-sheet .h { display: flex; align-items: center; gap: 10px; font: 700 23px var(--f-h); color: var(--ok); }
+.qz-sheet .h .c { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--ok-bd); color: var(--ok-bg); }
+.qz-sheet p { font-size: 15.5px; line-height: 1.55; }
+.qz-sheet p bdi[dir="rtl"] { font-size: 1.5em; line-height: 1; }
+.qz-sheet .nq-btn { margin-top: 6px; }
+.tmr { position: relative; width: 52px; height: 52px; flex: 0 0 auto; display: grid; place-items: center; }
+.tmr svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+.tmr .rt { stroke: var(--soft); }
+.tmr .rf { stroke: var(--ink); }
+.tmr b { font: 700 19px var(--f-h); color: var(--t1); }
+.du-who { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: var(--t2); margin-top: -4px; }
+.du-who svg.lucide { color: var(--ink); }
+.qz-list { display: grid; gap: 10px; }
+.qz-li { display: flex; align-items: center; gap: 12px; min-height: 62px; padding: 6px 14px 6px 10px; border: 1.5px solid var(--line); border-radius: 16px; background: var(--card); box-shadow: 0 3px 0 var(--line); font: 600 16px var(--f-b); color: var(--t1); text-align: left; cursor: pointer; }
+.qz-li .k { width: 30px; height: 30px; border-radius: 9px; background: var(--soft); font: 800 13px var(--f-b); display: grid; place-items: center; flex: 0 0 auto; }
+.qz-li bdi[dir="rtl"] { font-size: 28px; line-height: 1.6; }
+[data-arab="l"] .qz-li bdi[dir="rtl"] { font-size: 34px; }
+.band { position: absolute; left: 0; right: 0; bottom: 0; height: 170px; opacity: .55; pointer-events: none; }
+.du-note { position: relative; z-index: 1; display: flex; gap: 10px; align-items: flex-start; background: var(--note); border-left: 4px solid var(--a2); border-radius: 10px; padding: 10px 12px; font-size: 14px; }
+.du-note svg.lucide { color: var(--ink); margin-top: 1px; }
+.du-note b { display: block; }
+.du-natija { display: none; }
+body[data-duel="natija"] .du-savol { display: none; }
+body[data-duel="natija"] .du-natija { display: flex; }
+.du-hero { position: relative; overflow: hidden; background: var(--hero); min-height: 176px; border-radius: var(--r-lg); border: 1px solid var(--card-b); box-shadow: var(--shadow); }
+.du-hero .hx { position: relative; z-index: 1; padding: 14px 16px 16px; max-width: 66%; display: grid; gap: 2px; justify-items: start; }
+.du-hero .dia { width: 64px; height: 64px; margin: -4px 0 0 -8px; }
+.du-hero .dia::before { inset: 10px; }
+.du-hero .dia svg.lucide { width: 26px; height: 26px; }
+.du-hero h2 { font-size: 30px; }
+.du-hero p { font-size: 14px; font-weight: 600; color: var(--t2); }
+.du-vs { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 10px; gap: 6px; }
+.du-p { display: grid; justify-items: center; gap: 0; padding: 10px 6px; border-radius: 14px; }
+.du-p.win { background: var(--ok-bg); }
+.du-p .ava { width: 48px; height: 48px; cursor: default; }
+.du-p .ava.op { background: var(--soft); color: var(--t1); }
+.du-p b { margin-top: 4px; font-size: 15px; }
+.du-p .sc { font: 700 30px var(--f-h); line-height: 1.1; }
+.du-p .sc small { font-size: 16px; color: var(--t2); }
+.du-p.win .sc { color: var(--ok); }
+.du-p .tm { font-size: 13px; font-weight: 600; color: var(--t2); }
+.du-p.win .tm, .du-p.win b { color: var(--ok); }
+.du-vs > .vs { color: var(--t2); }
+.du-gain { align-self: center; min-height: 40px; padding: 0 18px; font-size: 16px; background: var(--note); }
+.du-ans { padding: 12px 14px; display: grid; gap: 8px; }
+.du-ans h3 { font-size: 17px; display: flex; gap: 8px; align-items: center; }
+.du-ans h3 svg.lucide { color: var(--ink); }
+.du-a { border-top: 1px solid var(--line); padding-top: 8px; display: grid; gap: 2px; font-size: 14px; }
+.du-a .mt { font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--t2); }
+.du-a .mt .ok { color: var(--ok); }
+.du-a b { font-size: 15px; }
+.du-a .yj { color: var(--ok); font-weight: 700; }
+.du-a bdi[dir="rtl"] { font-size: 1.5em; line-height: 1; }
+
+/* 6. Profil */
+.pf-head { display: flex; align-items: center; gap: 14px; }
+.pf-head .ava { width: 56px; height: 56px; font-size: 26px; cursor: default; }
+.scr.pf, .scr.dl { gap: 10px; }
+.scr.pf .ap-stats { padding: 8px 4px; }
+.pf-head h1 { font-size: 24px; }
+.pf-head small { display: block; font-size: 13px; color: var(--t2); font-weight: 600; }
+.set { display: grid; }
+.set-r { display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 4px 12px 4px 6px; }
+.set-r .st { flex: 1; min-width: 0; }
+.set-r .st b { display: block; font-size: 15px; }
+.set-r .st small { display: block; font-size: 12.5px; color: var(--t2); line-height: 1.35; }
+.set-sep { height: 1px; background: var(--line); margin: 2px 12px; }
+.set .seg { margin: 0 12px 10px; }
+.seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 4px; padding: 4px; background: var(--soft); border-radius: 13px; }
+.seg button { min-height: 44px; border: 0; border-radius: 10px; background: transparent; color: var(--t1); font: 700 14px var(--f-b); display: inline-flex; gap: 6px; align-items: center; justify-content: center; cursor: pointer; }
+.seg button svg.lucide { width: 18px; height: 18px; }
+.seg button[aria-pressed="true"] { background: var(--card); box-shadow: var(--shadow); color: var(--t1); }
+.seg button[aria-pressed="true"] svg { color: var(--ink); }
+.ar-s bdi[dir="rtl"] { font-size: 26px; line-height: 1.6; color: var(--t1); }
+.mz { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; padding: 0 12px 12px; }
+.mz button { display: grid; justify-items: center; gap: 3px; padding: 0; border: 0; background: none; color: var(--t1); font: 700 12px var(--f-b); cursor: pointer; min-height: 58px; }
+.mz .th { position: relative; width: 100%; height: 44px; border-radius: 11px; overflow: hidden; background: var(--hero); border: 2px solid var(--card-b); }
+.mz button[aria-pressed="true"] .th { border-color: var(--ink); box-shadow: 0 0 0 2px var(--card), 0 0 0 4px var(--ink); }
+.sw { width: 56px; height: 44px; border: 0; background: none; padding: 0; display: grid; place-items: center; cursor: pointer; flex: 0 0 auto; }
+.sw span { position: relative; width: 52px; height: 30px; border-radius: 15px; background: var(--soft); border: 1px solid var(--card-b); transition: background .2s; }
+.sw span::after { content: ''; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; background: var(--card); box-shadow: var(--shadow); transition: left .2s; }
+.sw[aria-checked="true"] span { background: var(--a2); border-color: var(--a2); }
+.sw[aria-checked="true"] span::after { left: 25px; background: var(--card); }
+</style>
+</head>
+<body class="nq demo" data-kor="hammasi" data-duel="savol">
+
+<header class="dm-bar">
+  <div class="in">
+    <div class="dm-brand"><span class="nq-sig"><i></i><i></i><i></i></span><div><b>Muhammadamin ilovasi — NUQTA UI demo</b><small>Talaba Mini App · jonli ilova o'zgarmagan, bu faqat ko'rinish namunasi</small></div></div>
+    <div class="dm-g" role="group" aria-label="Manzara"><span class="l">Manzara</span>
+      <button class="dm-b" data-v="sahro" data-set-v="sahro" type="button"><span class="dot"></span>Sahro</button>
+      <button class="dm-b" data-v="voha" data-set-v="voha" type="button"><span class="dot"></span>Voha</button>
+      <button class="dm-b" data-v="shahar" data-set-v="shahar" type="button"><span class="dot"></span>Shahar</button>
+      <button class="dm-b" data-v="qahva" data-set-v="qahva" type="button"><span class="dot"></span>Qahva</button>
+      <button class="dm-b" data-v="xattot" data-set-v="xattot" type="button"><span class="dot"></span>Xattot</button>
+      <button class="dm-b" data-v="shom" data-set-v="shom" type="button"><span class="dot"></span>Shom</button>
+    </div>
+    <div class="dm-g" role="group" aria-label="Rejim"><span class="l">Rejim</span>
+      <button class="dm-b" data-set-m="kun" type="button">{{sun}}Kunduzgi</button>
+      <button class="dm-b" data-set-m="tun" type="button">{{moon}}Tungi</button>
+      <button class="dm-b" data-set-m="avto" type="button">{{clock}}Vaqtga qarab</button>
+    </div>
+    <div class="dm-g kor" role="group" aria-label="Ko'rinish"><span class="l">Ko'rinish</span>
+      <button class="dm-b" data-set-kor="hammasi" type="button">{{layout-grid}}Hammasi</button>
+      <button class="dm-b" data-set-kor="bitta" type="button">{{smartphone}}Bitta</button>
+    </div>
+    <div class="dm-g" role="group" aria-label="Ekran"><span class="l">Ekran</span>
+      <button class="dm-b" data-go="bosh" type="button">Bosh</button>
+      <button class="dm-b" data-go="darslar" type="button">Darslar</button>
+      <button class="dm-b" data-go="dars" type="button">Dars</button>
+      <button class="dm-b" data-go="mashq" type="button">Mashq</button>
+      <button class="dm-b" data-go="duel" type="button">Duel</button>
+      <button class="dm-b" data-go="profil" type="button">Profil</button>
+    </div>
+    <div class="dm-g" role="group" aria-label="Duel holati"><span class="l">Duel</span>
+      <button class="dm-b" data-set-duel="savol" type="button">{{timer}}Savol</button>
+      <button class="dm-b" data-set-duel="natija" type="button">{{trophy}}Natija</button>
+    </div>
+  </div>
+</header>
+
+<div class="dm-cap"><span class="nq-sig"><i></i><i></i><i></i></span><b>Muhammadamin ilovasi — NUQTA UI demo</b>
+  <span class="nq-pill">{{image}}Manzara: <span data-nq="manzara">Sahro</span></span>
+  <span class="nq-pill"><span data-ic="kun">{{sun}}</span><span data-ic="tun">{{moon}}</span><span data-nq="rejim">Kunduzgi</span></span>
+  <span>Telegram Mini App · 390 × 844</span></div>
+
+<main class="dm-stage">
+
+<!-- ============ 1. BOSH ============ -->
+<figure class="dm-ph on" data-scr="bosh">
+  <figcaption><span class="nq-n">1</span>Bosh</figcaption>
+  <div class="ph"><div class="ph-in">
+    <div class="tg"><button class="tg-x" type="button">{{x}}Yopish</button><div class="tg-t"><b>Muhammadamin</b><small>mini ilova</small></div><button class="ib" type="button" aria-label="Menyu">{{ellipsis-vertical}}</button></div>
+    <div class="scr">
+      <div class="ap-top">
+        <span class="ap-brand"><span class="nq-sig"><i></i><i></i><i></i></span><span class="nq-wm ap-wm">Muhammadamin</span></span>
+        <button class="ava" type="button" data-go="profil" aria-label="Profil">A</button>
+      </div>
+      <section class="ap-hero">
+        <div data-scene data-focus="card"></div>
+        <div class="hx">
+          <div class="hi"><span data-salom>Xayrli kun</span>, Aziz</div>
+          <div class="nq-kick">2-qism · 8-dars</div>
+          <h2>Mad harflari <span class="nw">1-2-qism</span></h2>
+          <div class="ark">[[a:q1.o1]]</div>
+          <div class="pr"><div class="nq-prog"><i style="width:33%"></i></div><span>5 / 15</span></div>
+          <button class="nq-btn pri" type="button" data-go="dars">{{play}}Davom etish</button>
+        </div>
+      </section>
+      <div class="ap-stats nq-card">
+        <div><span class="ic">{{flame}}</span><b>3</b><small>kun seriya</small></div>
+        <div><span class="ic">{{gem}}</span><b>186</b><small>ball</small></div>
+        <div><span class="ic">{{book-check}}</span><b>7/36</b><small>darslar</small></div>
+      </div>
+      <div class="ap-goal nq-card"><span class="dia">{{zap}}</span><div class="b"><div class="h"><b>Kunlik maqsad</b><span>24 / 30 ball</span></div><div class="nq-prog"><i style="width:80%"></i></div></div></div>
+      <div class="ap-two">
+        <button class="ap-tile nq-card" type="button" data-go="duel"><span class="dia">{{swords}}</span><b>Duel</b><small>Do'st bilan bellashuv</small></button>
+        <button class="ap-tile nq-card" type="button" data-toast="Taklif qilish"><span class="dia">{{gift}}</span><b>Taklif qilish</b><small>+50 ball bonus</small></button>
+      </div>
+      <button class="ap-row nq-card" type="button" data-toast="Qo'llanma"><span class="dia">{{book-open}}</span><span class="rt"><b>Qo'llanma</b><small>Ilovadan foydalanish qo'llanmasi</small></span>{{chevron-right}}</button>
+    </div>
+    <nav class="ap-nav" aria-label="Asosiy bo'limlar">
+      <button class="on" type="button" data-go="bosh"><span class="i">{{house}}</span>Bosh</button>
+      <button type="button" data-go="darslar"><span class="i">{{book-open}}</span>Darslar</button>
+      <button type="button" data-toast="Video"><span class="i">{{circle-play}}</span>Video</button>
+      <button type="button" data-toast="Reyting"><span class="i">{{trophy}}</span>Reyting</button>
+      <button type="button" data-go="profil"><span class="i">{{user}}</span>Profil</button>
+    </nav>
+    <div class="toast" role="status"></div>
+  </div></div>
+</figure>
+
+<!-- ============ 2. DARSLAR ============ -->
+<figure class="dm-ph" data-scr="darslar">
+  <figcaption><span class="nq-n">2</span>Darslar</figcaption>
+  <div class="ph"><div class="ph-in">
+    <div class="tg"><button class="tg-x" type="button">{{x}}Yopish</button><div class="tg-t"><b>Muhammadamin</b><small>mini ilova</small></div><button class="ib" type="button" aria-label="Menyu">{{ellipsis-vertical}}</button></div>
+    <div class="scr dl">
+      <div class="ap-head"><h1>Darslar</h1><span class="nq-pill">{{book-check}}7 / 36</span></div>
+      <p class="ap-sub">Fonetika kursi · 36 dars · 4 qism</p>
+      <div class="qrow ok nq-card"><span class="dia">{{circle-check}}</span><span class="rt"><small>1-qism · 7 dars</small><b>Kirish va harflar</b></span><span class="cnt">7 / 7</span></div>
+      <section class="qism">
+        <div data-scene data-focus="card"></div>
+        <div class="hx"><div class="nq-kick">2-qism · 11 dars</div><h2>Harakatlar va yozuv</h2>
+          <div class="pr"><div class="nq-prog"><i style="width:0%"></i></div><span>0 / 11</span></div></div>
+      </section>
+      <div class="path">
+        <div class="ls cur"><span class="nd">{{play}}</span><span class="tx"><small>8-dars</small><b>Mad harflari 1-2-qism</b><span class="m">15 slayd · mashq 5 savol</span></span><button class="nq-btn pri" type="button" data-go="dars">Davom</button></div>
+        <div class="ls"><span class="nd">{{lock}}</span><span class="tx"><small>9-dars</small><b>Mad harflari 3-6-qism</b><span class="m">Avvalgi darsni tugating</span></span></div>
+        <div class="ls"><span class="nd">{{lock}}</span><span class="tx"><small>10-dars</small><b>Tashdidli harflar</b><span class="m">Avvalgi darsni tugating</span></span></div>
+        <div class="ls"><span class="nd">{{lock}}</span><span class="tx"><small>11-dars</small><b>Tanvinli harflar va tanvinli tashdid</b><span class="m">Avvalgi darsni tugating</span></span></div>
+      </div>
+      <p class="ap-more">yana 7 dars · 12–18</p>
+      <div class="qrow lk nq-card"><span class="dia">{{lock}}</span><span class="rt"><small>3-qism · 14 dars</small><b>Fonetika qoidalari</b></span><span class="cnt">0 / 14</span></div>
+      <div class="qrow lk nq-card"><span class="dia">{{lock}}</span><span class="rt"><small>4-qism · 4 dars</small><b>O'qish matnlari</b></span><span class="cnt">0 / 4</span></div>
+    </div>
+    <nav class="ap-nav" aria-label="Asosiy bo'limlar">
+      <button type="button" data-go="bosh"><span class="i">{{house}}</span>Bosh</button>
+      <button class="on" type="button" data-go="darslar"><span class="i">{{book-open}}</span>Darslar</button>
+      <button type="button" data-toast="Video"><span class="i">{{circle-play}}</span>Video</button>
+      <button type="button" data-toast="Reyting"><span class="i">{{trophy}}</span>Reyting</button>
+      <button type="button" data-go="profil"><span class="i">{{user}}</span>Profil</button>
+    </nav>
+    <div class="toast" role="status"></div>
+  </div></div>
+</figure>
+
+<!-- ============ 3. DARS (jonli taqdimot) ============ -->
+<figure class="dm-ph" data-scr="dars">
+  <figcaption><span class="nq-n">3</span>Dars</figcaption>
+  <div class="ph"><div class="ph-in">
+    <div class="tg"><button class="tg-x" type="button">{{x}}Yopish</button><div class="tg-t"><b>Muhammadamin</b><small>mini ilova</small></div><button class="ib" type="button" aria-label="Menyu">{{ellipsis-vertical}}</button></div>
+    <div class="scr">
+      <div class="ap-tb"><button class="ib" type="button" data-go="darslar" aria-label="Orqaga">{{arrow-left}}</button><div class="t"><small>8-dars</small><b>Mad harflari 1-2-qism</b></div><span class="nq-pill">5 / 15</span></div>
+      <div class="bar" style="flex:0 0 12px"><i style="width:33%"></i></div>
+      <article class="dk-sl">
+        <div class="sl-h">[[deck:g]]<b>[[deck:nom]]</b><span class="tag">[[deck:teg]]</span></div>
+        <ul class="sl-p"><li>[[deck:p1]]</li><li>[[deck:p2]]</li></ul>
+        <div class="sl-x">[[deck:tiles]]</div>
+        <div class="sl-pic"><img alt="" src="[[rasm:slayd05]]"></div>
+        <div class="sl-f"><span>[[deck:sect]]</span><span>Jonli taqdimot</span></div>
+      </article>
+      <div class="ap-tools"><button class="nq-pill" type="button">{{maximize}}To'liq ekran</button></div>
+      <div class="ap-nav2"><button class="nq-btn sec" type="button">{{chevron-left}}Oldingi</button><button class="nq-btn pri" type="button" data-go="mashq">Keyingi{{chevron-right}}</button></div>
+    </div>
+    <div class="toast" role="status"></div>
+  </div></div>
+</figure>
+
+<!-- ============ 4. MASHQ ============ -->
+<figure class="dm-ph" data-scr="mashq">
+  <figcaption><span class="nq-n">4</span>Mashq</figcaption>
+  <div class="ph"><div class="ph-in">
+    <div class="tg"><button class="tg-x" type="button">{{x}}Yopish</button><div class="tg-t"><b>Muhammadamin</b><small>mini ilova</small></div><button class="ib" type="button" aria-label="Menyu">{{ellipsis-vertical}}</button></div>
+    <div class="scr">
+      <div class="qz-top"><button class="ib" type="button" data-go="darslar" aria-label="Chiqish">{{x}}</button><div class="bar"><i style="width:80%"></i></div><span class="hearts" aria-label="5 yurak">{{heart}}5</span></div>
+      <div class="nq-kick">4-savol · 5 tadan · 8-dars</div>
+      <h2 class="qz-q">[[m:q4.q]]</h2>
+      <div class="qz-grid" role="group" aria-label="Javob variantlari">
+        <button class="qz-o dim" type="button"><span class="k">A</span>[[a:q4.o0]]</button>
+        <button class="qz-o dim" type="button"><span class="k">B</span>[[a:q4.o1]]</button>
+        <button class="qz-o good" type="button"><span class="k">C</span><span class="mk">{{check}}</span>[[a:q4.o2]]</button>
+        <button class="qz-o dim" type="button"><span class="k">D</span>[[a:q4.o3]]</button>
+      </div>
+      <div class="qz-sheet" role="status">
+        <div class="h"><span class="c">{{check}}</span>To'g'ri javob!</div>
+        <p>[[m:q4.izoh]]</p>
+        <button class="nq-btn pri wide" type="button" data-go="duel">Davom etish</button>
+      </div>
+    </div>
+    <div class="toast" role="status"></div>
+  </div></div>
+</figure>
+
+<!-- ============ 5. DUEL ============ -->
+<figure class="dm-ph" data-scr="duel">
+  <figcaption><span class="nq-n">5</span>Duel</figcaption>
+  <div class="ph"><div class="ph-in">
+    <div class="tg"><button class="tg-x" type="button">{{x}}Yopish</button><div class="tg-t"><b>Muhammadamin</b><small>mini ilova</small></div><button class="ib" type="button" aria-label="Menyu">{{ellipsis-vertical}}</button></div>
+    <div class="scr du-savol">
+      <div class="qz-top"><button class="ib" type="button" data-go="bosh" aria-label="Dueldan chiqish">{{x}}</button><div class="bar"><i style="width:40%"></i></div>
+        <span class="tmr" role="timer" aria-label="Qolgan vaqt: 12 soniya"><svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true"><circle class="rt" cx="26" cy="26" r="22" fill="none" stroke-width="5"/><circle class="rf" cx="26" cy="26" r="22" fill="none" stroke-width="5" stroke-linecap="round" stroke-dasharray="138.2" stroke-dashoffset="27.6"/></svg><b>12</b></span></div>
+      <div class="du-who">{{swords}}Aziza K. bilan · tasodifiy duel</div>
+      <div class="nq-kick">3-savol · 5 tadan · 8-dars</div>
+      <h2 class="qz-q">[[m:q5.q]]</h2>
+      <div class="qz-list" role="group" aria-label="Javob variantlari">
+        <button class="qz-li" type="button" data-set-duel="natija"><span class="k">A</span><span>[[m:q5.o0]]</span></button>
+        <button class="qz-li" type="button" data-set-duel="natija"><span class="k">B</span><span>[[m:q5.o1]]</span></button>
+        <button class="qz-li" type="button" data-set-duel="natija"><span class="k">C</span><span>[[m:q5.o2]]</span></button>
+        <button class="qz-li" type="button" data-set-duel="natija"><span class="k">D</span><span>[[m:q5.o3]]</span></button>
+      </div>
+      <div class="du-note">{{timer}}<span><b>Har biriga 15 soniya</b>Javobni bossangiz, keyingi savolga o'tadi</span></div>
+      <div class="band"><div data-scene data-focus="card"></div></div>
+    </div>
+    <div class="scr du-natija">
+      <section class="du-hero">
+        <div data-scene data-focus="card"></div>
+        <div class="hx"><span class="dia cta">{{trophy}}</span><h2>Yutdingiz!</h2><p>Aziza K. bilan · tasodifiy duel</p></div>
+      </section>
+      <div class="du-vs nq-card">
+        <div class="du-p win"><span class="ava">A</span><b>Siz</b><span class="sc">5<small>/5</small></span><span class="tm">14,8 s</span></div>
+        <span class="vs">{{swords}}</span>
+        <div class="du-p"><span class="ava op">AK</span><b>Aziza K.</b><span class="sc">3<small>/5</small></span><span class="tm">41,0 s</span></div>
+      </div>
+      <span class="nq-pill du-gain">{{gem}}+15 ball</span>
+      <div class="du-ans nq-card">
+        <h3>{{list-checks}}Javoblaringiz</h3>
+        <div class="du-a"><span class="mt">1-savol · <span class="ok">To'g'ri</span> · 8-dars · 3,3 s</span><b>[[m:q1.q]]</b><span class="yj">Sizning javobingiz: [[a:q1.o1]]</span></div>
+        <div class="du-a"><span class="mt">2-savol · <span class="ok">To'g'ri</span> · 8-dars · 2,1 s</span><b>[[m:q2.q]]</b><span class="yj">Sizning javobingiz: [[a:q2.o2]]</span></div>
+      </div>
+      <div class="ap-nav2"><button class="nq-btn sec" type="button" data-go="bosh">{{house}}Bosh</button><button class="nq-btn pri" type="button" data-set-duel="savol">{{swords}}Yangi duel</button></div>
+    </div>
+    <div class="toast" role="status"></div>
+  </div></div>
+</figure>
+
+<!-- ============ 6. PROFIL ============ -->
+<figure class="dm-ph" data-scr="profil">
+  <figcaption><span class="nq-n">6</span>Profil</figcaption>
+  <div class="ph"><div class="ph-in">
+    <div class="tg"><button class="tg-x" type="button">{{x}}Yopish</button><div class="tg-t"><b>Muhammadamin</b><small>mini ilova</small></div><button class="ib" type="button" aria-label="Menyu">{{ellipsis-vertical}}</button></div>
+    <div class="scr pf">
+      <div class="pf-head"><span class="ava">A</span><div><h1>Aziz</h1><small>Telegram foydalanuvchisi</small></div></div>
+      <div class="ap-stats nq-card">
+        <div><span class="ic">{{gem}}</span><b>186</b><small>ball</small></div>
+        <div><span class="ic">{{flame}}</span><b>3</b><small>kun seriya</small></div>
+        <div><span class="ic">{{book-check}}</span><b>7/36</b><small>darslar</small></div>
+      </div>
+      <h3 class="sec-h">Ko'rinish</h3>
+      <div class="set nq-card">
+        <div class="set-r"><span class="dia">{{image}}</span><span class="st"><b>Manzara</b><small>Har ochilganda keyingisi; yoqtirganingizni tanlang</small></span><button class="sw" type="button" role="switch" aria-checked="true" aria-label="Manzara har ochilganda almashsin"><span></span></button></div>
+        <div class="mz" role="group" aria-label="Manzara">
+          <button type="button" data-set-v="sahro"><span class="th" data-v="sahro"><span data-scene data-focus="thumb"></span></span>Sahro</button>
+          <button type="button" data-set-v="voha"><span class="th" data-v="voha"><span data-scene data-focus="thumb"></span></span>Voha</button>
+          <button type="button" data-set-v="shahar"><span class="th" data-v="shahar"><span data-scene data-focus="thumb"></span></span>Shahar</button>
+          <button type="button" data-set-v="qahva"><span class="th" data-v="qahva"><span data-scene data-focus="thumb"></span></span>Qahva</button>
+          <button type="button" data-set-v="xattot"><span class="th" data-v="xattot"><span data-scene data-focus="thumb"></span></span>Xattot</button>
+          <button type="button" data-set-v="shom"><span class="th" data-v="shom"><span data-scene data-focus="thumb"></span></span>Shom</button>
+        </div>
+        <div class="set-sep"></div>
+        <div class="set-r"><span class="dia">{{sun-moon}}</span><span class="st"><b>Rejim</b><small>Avto: 06:00–18:59 kunduzgi, qolgani tungi</small></span></div>
+        <div class="seg" role="group" aria-label="Rejim"><button type="button" data-set-m="kun">{{sun}}Kunduzgi</button><button type="button" data-set-m="tun">{{moon}}Tungi</button><button type="button" data-set-m="avto">{{clock}}Avto</button></div>
+        <div class="set-sep"></div>
+        <div class="set-r"><span class="dia">{{type}}</span><span class="st"><b>Arabcha matn</b><small>Mashq va izohlardagi arabcha yozuv o'lchami</small></span><span class="ar-s">[[app:namuna]]</span></div>
+        <div class="seg" role="group" aria-label="Arabcha matn o'lchami"><button type="button" data-set-arab="m">O'rta</button><button type="button" data-set-arab="l">Katta</button></div>
+      </div>
+      <div class="set nq-card"><div class="set-r"><span class="dia">{{bell}}</span><span class="st"><b>Kunlik eslatma</b><small>Har kuni 19:00 da bot eslatadi</small></span><button class="sw" type="button" role="switch" aria-checked="true" aria-label="Kunlik eslatma" data-sw><span></span></button></div></div>
+      <button class="ap-row nq-card" type="button" data-toast="Qo'llanma"><span class="dia">{{book-open}}</span><span class="rt"><b>Qo'llanma</b><small>Ilovadan foydalanish qo'llanmasi</small></span>{{chevron-right}}</button>
+    </div>
+    <nav class="ap-nav" aria-label="Asosiy bo'limlar">
+      <button type="button" data-go="bosh"><span class="i">{{house}}</span>Bosh</button>
+      <button type="button" data-go="darslar"><span class="i">{{book-open}}</span>Darslar</button>
+      <button type="button" data-toast="Video"><span class="i">{{circle-play}}</span>Video</button>
+      <button type="button" data-toast="Reyting"><span class="i">{{trophy}}</span>Reyting</button>
+      <button class="on" type="button" data-go="profil"><span class="i">{{user}}</span>Profil</button>
+    </nav>
+    <div class="toast" role="status"></div>
+  </div></div>
+</figure>
+
+</main>
+
+<script>
+(function () {
+  const R = document.documentElement, B = document.body;
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const P = new URLSearchParams(location.search);
+  const mobile = () => matchMedia('(max-width: 600px)').matches;
+
+  /* Holatni tugmalarga yozish */
+  function sync() {
+    $$('[data-set-v]').forEach(b => b.setAttribute('aria-pressed', b.dataset.setV === R.dataset.v));
+    $$('[data-set-m]').forEach(b => b.setAttribute('aria-pressed', b.dataset.setM === 'avto' ? !R.dataset.qolda : (!!R.dataset.qolda && b.dataset.setM === R.dataset.m)));
+    $$('[data-set-kor]').forEach(b => b.setAttribute('aria-pressed', b.dataset.setKor === B.dataset.kor));
+    $$('[data-set-duel]').forEach(b => { if (b.classList.contains('dm-b')) b.setAttribute('aria-pressed', b.dataset.setDuel === B.dataset.duel); });
+    $$('[data-set-arab]').forEach(b => b.setAttribute('aria-pressed', b.dataset.setArab === (R.dataset.arab || 'm')));
+    const on = ($('.dm-ph.on') || {}).dataset || {};
+    $$('.dm-bar [data-go]').forEach(b => b.setAttribute('aria-pressed', b.dataset.go === on.scr));
+    $$('[data-ic]').forEach(e => { e.style.display = e.dataset.ic === R.dataset.m ? '' : 'none'; });
+  }
+  /* Salom: qo'lda rejim tanlansa rejimga mos, aks holda soatga qarab */
+  document.addEventListener('nuqta:render', () => {
+    const g = R.dataset.qolda ? (R.dataset.m === 'tun' ? 'Xayrli kech' : 'Xayrli kun') : NUQTA.greet();
+    $$('[data-salom]').forEach(e => { e.textContent = g; });
+    sync();
+  });
+
+  function show(scr, scroll) {
+    const f = $(`.dm-ph[data-scr="${scr}"]`);
+    if (!f) return;
+    $$('.dm-ph').forEach(x => x.classList.toggle('on', x === f));
+    if (B.dataset.kor === 'bitta' || mobile()) { NUQTA.render(f); window.scrollTo({ top: 0 }); }
+    else if (scroll !== false) {
+      f.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      f.classList.add('flash'); setTimeout(() => f.classList.remove('flash'), 900);
+    }
+    sync();
+  }
+  function toast(btn, name) {
+    const t = $('.toast', btn.closest('.ph-in'));
+    if (!t) return;
+    t.textContent = `«${name}» bo'limi demo'da ko'rsatilmagan — ko'rinishi shu uslubda bo'ladi.`;
+    t.classList.add('on'); clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove('on'), 2200);
+  }
+
+  document.addEventListener('click', e => {
+    const b = e.target.closest('button');
+    if (!b) return;
+    const d = b.dataset;
+    if (d.setV) { NUQTA.apply(d.setV); }
+    else if (d.setM) {
+      if (d.setM === 'avto') { delete R.dataset.qolda; NUQTA.apply(null, NUQTA.modeAt()); }
+      else { R.dataset.qolda = '1'; NUQTA.apply(null, d.setM); }
+    }
+    else if (d.setKor) { B.dataset.kor = d.setKor; NUQTA.render(); sync(); }
+    else if (d.setDuel) { B.dataset.duel = d.setDuel; NUQTA.render($('.dm-ph[data-scr="duel"]')); sync(); }
+    else if (d.setArab) { R.dataset.arab = d.setArab; sync(); }
+    else if (d.go) { show(d.go); }
+    else if (d.toast) { toast(b, d.toast); }
+    else if (b.getAttribute('role') === 'switch') { b.setAttribute('aria-checked', b.getAttribute('aria-checked') !== 'true'); }
+  });
+
+  /* URL: ?v=sahro&m=kun&duel=natija&kor=bitta&ekran=dars&chiz=1&pdf=1 (rasm va PDF uchun) */
+  if (P.get('kor')) B.dataset.kor = P.get('kor');
+  if (P.get('duel')) B.dataset.duel = P.get('duel');
+  if (P.get('chiz')) B.classList.add('chiz');
+  if (P.get('pdf')) {
+    B.classList.add('pdf');
+    const st = document.createElement('style'); st.textContent = '@page { size: 390px 844px; margin: 0; }';
+    document.head.appendChild(st);
+  }
+  if (P.get('m')) R.dataset.qolda = '1';
+  const pv = P.get('v'), pm = P.get('m');
+  if (P.get('ekran')) show(P.get('ekran'), false);
+  if (pv || pm) {
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', () => NUQTA.apply(pv, pm));
+    else NUQTA.apply(pv, pm);
+  }
+  sync();
+  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => NUQTA.render(), 200); });
+})();
+</script>
+</body>
+</html>

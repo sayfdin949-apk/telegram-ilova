@@ -1,0 +1,12 @@
+{
+ "dars": 23,
+ "nomi": "Yashirib talaffuz: 4–5-mashq — test",
+ "holat": "loyiha",
+ "savollar": [
+  {"q": "أَنجَى so'zida nun qanday o'qiladi?", "opts": ["Bildirib, aniq", "Yashirib, dimog' bilan", "ج ga kirgazilib", "Mimga almashtirilib"], "ok": 1, "izoh": "Nundan keyin ج keldi — u yashirish harfi. So'z ichida ham nun yashirib, dimog' bilan o'qiladi.", "manba": "dars47.json: slaydlar[0] «Yashirib talaffuz: 4-mashq», 1-jumla; diqqat"},
+  {"q": "Quyidagilarning qaysi birida yashirish yo'q?", "opts": ["يُنفِقُ", "عِندَ", "مِن مَّالِهِۦ", "كُتُبٌ كَثِيرَةٌ"], "ok": 2, "izoh": "مِن مَّالِهِۦ — nundan keyin م keldi, bu kirgazish (g'unna bilan). Qolganlarida nundan keyin ف د ك — yashirish harflari.", "manba": "dars48.json: slaydlar[0] «Yashirib talaffuz: 5-mashq», 1-jumla; yakun[0], yakun[2]"},
+  {"q": "Quyidagi harflardan qaysi biri yashirish harfi emas?", "opts": ["ف", "ق", "ك", "ل"], "ok": 3, "izoh": "ل — kirgazish harfi (g'unnasiz). ف ق ك — yashirish harflari.", "manba": "dars44.json: slaydlar[0] «4. Yashirib talaffuz qilish»; dars42.json: slaydlar[0]"},
+  {"q": "صَوْتًا شَدِيدًا birikmasida tanvindan keyingi ش qaysi guruhga kiradi?", "opts": ["Bildirish harflari", "Kirgazish harflari", "Yashirish harflari", "Almashtirish harfi"], "ok": 2, "izoh": "ش — 15 ta yashirish harfidan biri. Shuning uchun tanvin yashirilib, dimog' bilan o'qiladi.", "manba": "dars47.json: yakun[2]"},
+  {"q": "يَنزِلُ ٱلْمَاءُ مِن جَبَلٍ ثَلْجِىٍّ jumlasida nechta yashirish bor?", "opts": ["3 ta", "2 ta", "4 ta", "1 ta"], "ok": 0, "izoh": "يَنزِلُ (ن + ز), مِن جَبَلٍ (ن + ج) va جَبَلٍ ثَلْجِىٍّ (tanvin + ث) — jami 3 ta.", "manba": "dars47.json: slaydlar[0] «Yashirib talaffuz: 4-mashq», 4-jumla; yakun"}
+ ]
+}

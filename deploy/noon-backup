@@ -1,0 +1,8 @@
+#!/bin/sh
+# Har kuni: o'quvchilar bazasining zaxira nusxasi (/opt/noon/backup), 30 kundan eskisi o'chadi.
+set -e
+mkdir -p /opt/noon/backup
+[ -f /opt/noon/data/noon.db ] || exit 0
+sqlite3 /opt/noon/data/noon.db ".backup '/opt/noon/backup/noon-$(date +%F).db'"
+chown -R noon:noon /opt/noon/backup
+find /opt/noon/backup -name 'noon-*.db' -mtime +30 -delete

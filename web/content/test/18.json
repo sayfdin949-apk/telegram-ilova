@@ -1,0 +1,61 @@
+{
+ "dars": 18,
+ "nomi": "Takrorlash va nazorat (8–17-darslar) — test",
+ "savollar": [
+  {
+   "q": "Alif mad harfi qachon «aa» deb emas, «oo» deb o'qiladi?",
+   "opts": [
+    "Yupqa harfdan keyin kelsa",
+    "Yo'g'on (isti'lo) harfdan keyin kelsa",
+    "So'z boshida kelsa",
+    "Tashdiddan keyin kelsa"
+   ],
+   "ok": 1,
+   "izoh": "Yo'g'on harfdan keyin alif «oo» deb o'qiladi: طَالِبْ — «Toolib». (8-dars)"
+  },
+  {
+   "q": "مُرٌّ so'zi qanday o'qiladi?",
+   "opts": [
+    "«murrun»",
+    "«murun»",
+    "«muurun»",
+    "«murru»"
+   ],
+   "ok": 0,
+   "izoh": "Tanvinli tashdid: avval ر ikkilantiriladi, so'ng tanvin damma «-un» bilan o'qiladi. (10–11-darslar)"
+  },
+  {
+   "q": "رَأَيْتُ ٱلنَّاسَ qanday qo'shib o'qiladi?",
+   "opts": [
+    "«ro'aytu an-naasa»",
+    "«ro'aytul-naasa»",
+    "«ro'aytun-naasa»",
+    "«ro'aytu-l-naasa»"
+   ],
+   "ok": 2,
+   "izoh": "Vaslda vasliy hamza tushadi, ن shamsiy — lam ham o'qilmaydi, ن ikkilantiriladi: «ro'aytun-naasa». (12, 15, 16-darslar)"
+  },
+  {
+   "q": "Qaysi belgi qo'yilgan harf umuman o'qilmaydi?",
+   "opts": [
+    "ـٰ (kichkina alif)",
+    "ۦ (kichkina yaa)",
+    "ۥ (kichkina vaav)",
+    "ـ۟ (kichkina dumaloq belgi)"
+   ],
+   "ok": 3,
+   "izoh": "Kichkina dumaloq belgili harf o'qilmaydi. ـٰ ۦ ۥ — muqaddaralar, mad harflaridek cho'zib o'qiladi. (13–14-darslar)"
+  },
+  {
+   "q": "Qaysi holatda so'z oxirida sukunli Haa (هْ) bilan vaqf qilinadi?",
+   "opts": [
+    "Fathali tanvinli oddiy so'zda (كِتَابًا)",
+    "Toi marbuta bilan tugagan so'zda (جَمِيلَةً)",
+    "Mad harfi bilan tugagan so'zda (قُولِى)",
+    "Sukunli harf bilan tugagan so'zda (يَعْلَمْ)"
+   ],
+   "ok": 1,
+   "izoh": "Toi marbutali so'zda vaqfda sukunli Haa (هْ) eshitiladi. Fathali tanvinda alif bilan, mad harfida mad saqlanib vaqf qilinadi. (13, 17-darslar)"
+  }
+ ]
+}

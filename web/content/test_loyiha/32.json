@@ -1,0 +1,12 @@
+{
+ "dars": 32,
+ "nomi": "Ikki sukunli harf va urg'u — test",
+ "holat": "loyiha",
+ "savollar": [
+  {"q": "فِى ٱلْبَيْتِ qanday o'qiladi?", "opts": ["Fii al-bayti", "Fiilbayti", "Filbayti", "Fiyalbayti"], "ok": 2, "izoh": "Mad harfi (ى) sukunli harfga — vasliy hamzaga yo'liqib, talaffuzda tushib qoladi (hazf). Vasliy hamza ham o'qilmaydi: Filbayti.", "manba": "dars64.json: «Hazf bilan: misollar»; taqdimot 7, 101-slayd"},
+  {"q": "ٱكْتُبْ ٱلدَّرْسَ qanday o'qiladi?", "opts": ["Uktubaddarsa", "Uktubiddarsa", "Uktubuddarsa", "Uktub addarsa"], "ok": 1, "izoh": "Ikki sukunli harf yo'liqsa, birinchisiga kasra beriladi (harakatlantirish): Uktubiddarsa.", "manba": "dars64.json: «Harakatlantirish: misollar»; taqdimot 7, 103-slayd"},
+  {"q": "Tanvindan keyin sukunli harf kelsa (masalan, طَالِبٍ ٱلْكِتَابَ), tanvin qanday o'qiladi?", "opts": ["Tanvin tushib qoladi", "Tanvin alifga aylanadi", "Tanvin مْ bo'lib o'qiladi", "Tanvin نِ bo'lib o'qiladi"], "ok": 3, "izoh": "Tanvindan keyin sukunli harf kelsa ham harakatlantirish qoidasi qo'llanadi: tanvin نِ bo'lib o'qiladi — Toolibinilkitaaba.", "manba": "dars64.json: «Tanvindan keyin», mashq «diqqat»; taqdimot 7, 104-slayd"},
+  {"q": "Qaysi so'zda to'xtaganda tashdidga urg'u berish shart emas?", "opts": ["مُسْتَقِرٌّ", "عَدُوٌّ", "حَقٌّ", "تَحَلَّ"], "ok": 2, "izoh": "حَقٌّ dagi ق — qalqala harfi; tashdidli nuun, miim va qalqala harflarida tashdid o'zi yaqqol bilinadi. Qolganlarida urg'u kerak.", "manba": "dars65.json: «1-o'rindan istisno»; taqdimot 7, 112-slayd"},
+  {"q": "دَآبَّةٌ so'zida nima uchun urg'u beriladi?", "opts": ["Mad harfidan tashdidli harfga o'tganda tashdid bilinsin", "Hamzaning borligi bilinsin", "Ikkilik alifi birlikka o'xshab qolmasin", "Vasliy hamza o'qilsin"], "ok": 0, "izoh": "O'zgarmas cho'zishda mad harfidan tashdidli harfga o'tayotganda urg'u berilmasa, tashdid bilinmay bitta harfga o'xshab qoladi.", "manba": "dars65.json: «3. Maddan tashdidli harfga»; taqdimot 7, 114-slayd"}
+ ]
+}

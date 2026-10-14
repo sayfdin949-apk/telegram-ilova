@@ -1,0 +1,12 @@
+{
+ "dars": 13,
+ "nomi": "Toi marbuta; yozilmasa-da o'qiladigan harflar — test",
+ "holat": "loyiha",
+ "savollar": [
+  {"q": "Toi marbuta (ة، ـة) so'zning qaysi qismida keladi?", "opts": ["Doim so'z boshida", "Doim so'z oxirida", "Faqat so'z o'rtasida", "Istalgan qismida"], "ok": 1, "izoh": "Toi marbuta doim so'z oxirida keladi va muannas (ayol jinsi)ni bildiradi.", "manba": "dars30.json: slaydlar[0].bandlar[1]; taqdimot 6, 26-slayd"},
+  {"q": "قِصَّةً، رِسَالَةً so'zlarida tanvin fathadan keyin nega alif (ا) yozilmagan?", "opts": ["Bu so'zlar noaniq shaklda emas", "Alif faqat tanvin kasrada qo'shiladi", "Toi marbuta bilan tugagan so'zda tanvin fathaga alif qo'shilmaydi", "Alif yozilgan, lekin o'qilmaydi"], "ok": 2, "izoh": "Toi marbuta (ة) bilan tugagan so'zlarda tanvin fathaga alif qo'shilmaydi. Boshqa so'zlarda alif qo'shiladi: بَيْتًا.", "manba": "dars30.json: slaydlar[1]; taqdimot 6, 27-slayd"},
+  {"q": "عَزِيزَةٌ so'zida to'xtab o'qilganda toi marbuta nimaga aylanadi?", "opts": ["Sukunli Haa (هْ) ga: «Aziizah»", "Sukunli Taa (تْ) ga: «Aziizat»", "Alif (ا) ga: «Aziizaa»", "Sukunli nuun (نْ) ga: «Aziizan»"], "ok": 0, "izoh": "To'xtab o'qilganda toi marbuta sukunli Haa (هْ) ga aylanadi: عَزِيزَهْ — «Aziizah».", "manba": "dars30.json: slaydlar[0].bandlar[2], misollar[0]; taqdimot 6, 26-slayd"},
+  {"q": "Yozilmasa-da o'qiladigan (muqaddara) harflar nechta va qaysilar?", "opts": ["2 ta: ـٰ va ۥ", "4 ta: ا و ي ة", "3 ta: ء ؤ ئ", "3 ta: alifi, yoi va vovi muqaddara (ـٰ ۦ ۥ)"], "ok": 3, "izoh": "Muqaddaralar 3 ta — alif, yaa, vaav mad harflarining kichkina ko'rinishlari: ـٰ ۦ ۥ.", "manba": "dars31.json: slaydlar[0].bandlar[1–2]; taqdimot 6, 35-slayd"},
+  {"q": "لَهُۥ so'zi qanday o'qiladi?", "opts": ["«lahu»", "«lahuu»", "«lahii»", "«lahuv»"], "ok": 1, "izoh": "Dammadan keyingi kichkina vaav (ۥ) — vovi muqaddara, katta vaavdek cho'ziladi: «lahuu».", "manba": "dars31.json: slaydlar[6].misollar[0]; taqdimot 6, 43-slayd"}
+ ]
+}

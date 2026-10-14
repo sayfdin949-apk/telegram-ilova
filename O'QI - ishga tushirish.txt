@@ -1,0 +1,139 @@
+MUHAMMADAMIN - TELEGRAM ILOVA: ISHGA TUSHIRISH YO'RIQNOMASI
+===========================================================
+
+Bu papkada ikkita Telegram bot va ikkita Mini App (bot ichida ochiladigan ilova) bor:
+  - Talabalar boti: o'quvchilar uchun 36 ta dars (jonli taqdimotlar), video darslar, mashqlar, ball va reyting.
+  - Xodimlar boti: CEO, admin, ustoz va assistent uchun boshqaruv (statistika, kurs, o'quvchilar, panellar).
+Hammasi shu kompyuterda bitta dastur bo'lib ishlaydi. Quyidagi qadamlarni tartib bilan bajaring.
+
+
+1-QADAM. IKKITA BOT YARATISH (faqat bir marta)
+  1. Telegramda @BotFather ni oching va /newbot yuboring.
+  2. Bot nomini yozing: Muhammadamin darslar
+  3. Bot username ini yozing. U "bot" bilan tugashi shart, masalan: muhammadamin_darslar_bot
+     (band bo'lsa, boshqasini o'ylab toping: muhammadamin_fonetika_bot va hokazo).
+  4. BotFather token beradi (1234567890:AAH... ko'rinishida). Uni nusxalab oling.
+  5. Yana /newbot yuboring va ikkinchi botni yarating:
+     nomi: Muhammadamin boshqaruv      username: masalan muhammadamin_boshqaruv_bot
+  6. Ikkinchi tokenni ham nusxalab oling.
+  Diqqat: tokenni hech kimga yubormang. Token kimda bo'lsa, botingizni o'sha boshqara oladi.
+
+
+2-QADAM. TOKENLARNI KIRITISH (faqat bir marta)
+  1. "1 - Tokenlarni kiritish.bat" faylini ikki marta bosing.
+  2. Talabalar boti (Muhammadamin darslar) tokenini qo'ying va Enter bosing.
+     Qo'yish: sichqonchaning o'ng tugmasi yoki Ctrl+V. Token ekranda ko'rinmaydi - bu normal.
+  3. Keyin xodimlar boti (Muhammadamin boshqaruv) tokenini qo'ying va Enter bosing.
+  4. Dastur ikkala botni Telegramda tekshiradi va ularning nomini (@username) ko'rsatadi.
+     Tokenlar shu papkadagi server\.env fayliga saqlanadi. Bu faylni hech kimga bermang.
+
+
+3-QADAM. BOTLARNI ISHGA TUSHIRISH
+  1. "2 - Botlarni ishga tushirish.bat" ni ikki marta bosing.
+  2. 1-2 daqiqa kuting. Oynada quyidagilar chiqadi:
+       - talabalar boti havolasi (https://t.me/...),
+       - xodimlar boti havolasi,
+       - Mini App manzili (https://....trycloudflare.com/app/),
+       - birinchi marta: "Xodimlar botiga shu kodni yuboring: 123456".
+  3. Oynani yopishingiz mumkin - botlar orqa fonda ishlashda davom etadi.
+
+
+4-QADAM. O'ZINGIZNI CEO QILIB ULASH (faqat bir marta)
+  1. Xodimlar botini oching (havola 3-qadam oynasida) va "Start" ni bosing.
+     Bot "Bu bot faqat Muhammadamin xodimlari uchun" deb, kodni yuborishni so'raydi - bu normal.
+  2. Oynadagi 6 xonali kodni botga oddiy xabar qilib yuboring.
+  3. Bot "Siz CEO sifatida ulandingiz" deb javob beradi. Shundan keyin kod bekor bo'ladi.
+  Kod yodingizdan chiqsa: "4 - Holat.bat" ni ishga tushiring - kod o'sha yerda ko'rinadi.
+
+
+5-QADAM. XODIMLARNI TAKLIF QILISH
+  1. Xodimlar botiga yuboring:
+       /taklif admin       - admin uchun havola
+       /taklif ustoz       - ustoz uchun havola
+       /taklif assistent   - assistent uchun havola
+     Yoki: "Boshqaruv" ilovasining "Xodimlar" bo'limidagi "Taklif havolasi" tugmasi.
+  2. Bot bergan havolani faqat o'sha xodimga yuboring. Havola bir marta ishlaydi va 48 soat amal qiladi.
+  3. Xodim havolani ochib "Start" ni bosadi - rolini oladi, sizga xabar keladi.
+  Xodimlar ro'yxati: /xodimlar. Xodimni o'chirish: "Boshqaruv" ilovasining "Xodimlar" bo'limida.
+
+
+6-QADAM. O'QUVCHILAR VA DARSLAR
+  1. O'quvchilarga talabalar boti havolasini yuboring. Ular "Start" ni bosadi va "Darslarni ochish"
+     tugmasi yoki pastdagi "Darslar" menyu tugmasi orqali ilovani ochadi.
+  2. Darslar KETMA-KET ochiladi: har bir o'quvchiga dastlab faqat 1-dars ochiq. Dars tugatilgach
+     ("Darsni tugatish" - slaydlarning kamida 80% i ko'rilgan bo'lishi kerak) keyingi dars darhol ochiladi.
+     Yopiq darsni bosgan o'quvchi "Avval 3-darsni tugating" kabi xabar ko'radi. Yopiq darsning videolari
+     va mashqi ham yopiq. Bu qoidani server tekshiradi - ilovani chetlab o'tib bo'lmaydi.
+  3. Bundan tashqari ustoz umumiy chegara qo'yishi mumkin (boshida hamma 36 dars). Xodimlar botiga:
+       /ochiq 12    - o'quvchilar ko'pi bilan 1-12-darslargacha boradi, 13-36 "Ustoz ochganda ochiladi"
+       /ochiq       - hozir nechta dars ochiqligini ko'rsatadi
+     Yoki: "Boshqaruv" ilovasining "Kurs" bo'limi. /ochiq ni CEO, admin va ustoz bera oladi.
+     Ya'ni dars o'quvchiga ochiq bo'lishi uchun: ustoz ochgan bo'lishi VA oldingi darsni tugatgan bo'lishi kerak.
+  4. Qisqa statistika: /statistika. Har kuni soat 21:00 da CEO ga kunlik hisobot keladi.
+  5. O'quvchilarga har kuni 19:00 da eslatma boradi (o'sha kuni dars qilmaganlarga).
+     O'quvchi uni ilovaning "Profil" bo'limida o'chirib qo'yishi mumkin.
+
+
+7-QADAM. YANGI VIDEO DARS QO'SHISH
+  1. Video faylini (mp4) shu papkaga qo'ying:  C:\Users\N.M\Desktop\videolar
+     Fayl nomi aynan shu ko'rinishda bo'lsin:  Fonetika 5-dars - Video nomi.mp4
+     (5 o'rniga dars raqami; oxirida " (motion)" bo'lishi ham mumkin).
+     Bir darsga bir nechta video bo'lishi mumkin. Dars yozuvlari (siqilgan, masalan iPad yozuvi) uchun:
+       C:\Users\N.M\Desktop\videolar\siqilgan\N-dars_ipad.mp4   (N - dars raqami)
+     Bunday videoning ilovadagi nomi tools\kontent.py ichidagi SIQILGAN_NOMLAR ro'yxatidan olinadi
+     (ro'yxatda yo'q bo'lsa: "Darsning to'liq yozuvi"). Hozir: 2-dars - 2 ta video (d02, d02b), 3-dars - 1 ta (d03).
+     Video hali siqilayotgan bo'lsa (ffmpeg tugamagan), dastur uni o'tkazib yuboradi - tugagach qayta ishga tushiring.
+  2. "Telegram ilova" papkasini (shu yo'riqnoma turgan papka, videolar papkasi emas) oching,
+     manzil qatoriga cmd yozib Enter bosing va ochilgan oynaga yozing:
+       python tools\kontent.py
+     Dastur videoning muqova rasmini yasaydi, server\videolar.json va web\content\kurs.json ni o'zi
+     yangilaydi. server\videolar.json ni qo'lda o'zgartirish shart emas (dastur uni qayta yozadi).
+  3. Botlarni qayta ishga tushirish shart emas: ilova yangi videoni bir necha soniyada ko'radi.
+
+
+8-QADAM. YANGI TEST QO'SHISH
+  1. Test o'quvchi materiallari papkasidan olinadi:
+       C:\Users\N.M\Desktop\taqdimot\O'quvchi materiallari (36 dars)\_namuna\NN-dars\
+     (NN - dars raqami, masalan 09-dars). Ichida 2-test.html (savollar) va 3-kalit.html
+     (javoblar va izohlar) bo'lsin - 08-dars papkasidagi kabi.
+  2. 7-QADAMdagi kabi "Telegram ilova" papkasida cmd oching va python tools\kontent.py ni ishga
+     tushiring. U testni web\content\test\NN.json fayliga aylantiradi
+     va kurs.json ga ulaydi. Natija fayl ko'rinishi (08.json kabi):
+       {"dars": 9, "nomi": "Test nomi", "savollar": [
+         {"q": "Savol matni", "opts": ["A", "B", "C", "D"], "ok": 1, "izoh": "Izoh matni"}
+       ]}
+     "ok" - to'g'ri variantning tartib raqami, 0 dan boshlanadi (0 = birinchi variant).
+  3. Ballarni server hisoblaydi (test fayli bo'yicha), o'quvchi ularni o'zgartira olmaydi.
+  4. Tayyor test fayli (08.json kabi) bo'lsa, uni web\content\test\ papkasiga NN.json nomi bilan
+     qo'yib (masalan 09.json), python tools\kontent.py ni ishga tushirish ham kifoya.
+
+
+DARSLAR (JONLI TAQDIMOTLAR)
+  - O'quvchi ilovada darsni asl HTML taqdimot ko'rinishida ko'radi: slaydga bosilsa keyingi qism
+    ochiladi, chap chetiga bosilsa orqaga qaytadi. 3-7-darslarda "Kitob betlari" tugmasi ham bor.
+  - Kitob betlari (3-7-darslar va 18-dars) skanerdan olingan. Ilova nusxasida "Scanned with CamScanner"
+    belgisi va chetdagi barmoq izi avtomatik tozalanadi (tools\skaner_tozala.py); asl PDF larga tegilmaydi.
+  - Taqdimot fayllari (Desktop\taqdimot\Fonetika kursi (36 dars)) yoki Dars jadvali o'zgarsa,
+    7-QADAMdagi kabi python tools\kontent.py ni ishga tushiring - ilovadagi darslar yangilanadi.
+
+
+9-QADAM. TO'XTATISH VA HOLATNI KO'RISH
+  - To'xtatish: "3 - Botlarni to'xtatish.bat".
+  - Holat (ishlayaptimi, havolalar, ulash kodi, oxirgi xato): "4 - Holat.bat".
+  - Batafsil jurnal (xatolar uchun): log\server.log
+  - Tokenlarni almashtirish: avval 3, keyin 1, keyin 2.
+
+
+MUHIM CHEKLOVLAR
+  - Kompyuter yoqiq va internetga ulangan bo'lishi kerak. Kompyuter o'chsa yoki uxlab qolsa, botlar
+    ishlamaydi. Kompyuter qayta yoqilganda "2 - Botlarni ishga tushirish.bat" ni yana bosing
+    (avtomatik ishga tushirish qo'yilmagan).
+  - Mini App manzili (https://....trycloudflare.com) har ishga tushirishda yangi bo'ladi. Botlarning
+    "Darslar" va "Boshqaruv" menyu tugmalari yangi manzilga o'zi ulanadi. Eski xabarlardagi tugmalar
+    eskirishi mumkin - menyu tugmasi yoki /start dan foydalaning.
+  - Bu tezkor tunnel (Cloudflare quick tunnel) sinov va kichik guruh (pilot) uchun yetarli. O'quvchilar
+    ko'paysa, doimiy domen va server kerak bo'ladi.
+  - Tokenlarni (server\.env) hech kimga yubormang va hech qayerga joylamang. Token tarqalib ketsa:
+    @BotFather da /revoke qiling, keyin 3, 1 va 2 ni qaytadan bajaring.
+  - data\noon.db - o'quvchilarning ballari va progressi. Uni o'chirmang; vaqti-vaqti bilan nusxasini
+    boshqa joyga saqlab qo'ying.

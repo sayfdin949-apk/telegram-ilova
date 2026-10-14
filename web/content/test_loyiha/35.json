@@ -1,0 +1,12 @@
+{
+ "dars": 35,
+ "nomi": "O'qish matnlari 16–22 — test",
+ "holat": "loyiha",
+ "savollar": [
+  {"q": "17-matndagi حُرَّاسِهِۦ so'zidagi kichkina yaa (ۦ) qanday o'qiladi?", "opts": ["O'qilmaydi", "Kasradan keyin «ii» deb 2 harakat cho'ziladi", "«i» deb qisqa o'qiladi", "6 harakat cho'ziladi"], "ok": 1, "izoh": "Yoi muqaddara (ۦ) yozilmasa-da o'qiladigan mad harfi: kasradan keyin «ii» deb tabiiy cho'ziladi.", "manba": "dars82.json: 17-matn, 2-gap; taqdimot 8, 33-slayd"},
+  {"q": "17-matndagi وَصَلُوٓاْ إِلَىٰ birikmasida qaysi cho'zish bor?", "opts": ["Qo'shilgan cho'zish", "Tabiiy cho'zish", "O'zgaruvchan cho'zish", "Ajralgan cho'zish — 4 yoki 5 harakat"], "ok": 3, "izoh": "Mad harfi (و) bir so'zda, hamza (إِ) keyingi so'zda — ajralgan cho'zish. Dumaloq belgili alif (اْ) o'qilmaydi.", "manba": "dars82.json: 17-matn, 3-gap; taqdimot 8, 33-slayd"},
+  {"q": "18-matndagi يَجِىٓءُ so'zida qaysi cho'zish bor?", "opts": ["Qo'shilgan cho'zish", "Ajralgan cho'zish", "Tabiiy cho'zish", "O'zgarmas yumshoq cho'zish"], "ok": 0, "izoh": "Mad harfi (ى) va hamza bir so'zda kelgan — qo'shilgan cho'zish: 4 harakat shart, 5 harakat afzal.", "manba": "dars83.json: 18-matn, 4-gap; taqdimot 8, 35-slayd"},
+  {"q": "18-matndagi قَالَ يَزِيدُ ٱلْأَكْلَةُ gapida ٱلْأَكْلَةُ ning vasliy hamzasi qanday o'qiladi?", "opts": ["Fatha bilan o'qiladi", "Kasra bilan o'qiladi", "So'zlar orasida tushib qoladi", "Qat'iy hamza kabi aniq aytiladi"], "ok": 2, "izoh": "Qo'shib o'qiganda (vasl) so'zlar orasidagi vasliy hamza talaffuz qilinmaydi. Gap boshida bo'lsa, fatha bilan o'qilardi.", "manba": "dars83.json: 18-matn, 18-gap; taqdimot 8, 36-slayd"},
+  {"q": "20-matndagi نَصِيبَهُم مِّنَ birikmasida sukunli mim qanday o'qiladi?", "opts": ["Labda bildirib, aniq", "Labda kirgazib, dimog' bilan", "Labda yashirib, dimog' bilan", "Nunga almashtirib"], "ok": 1, "izoh": "Sukunli mimdan keyin م keldi — labda kirgazib (idg'om), dimog' bilan o'qiladi. Labda yashirish faqat ب oldida bo'ladi.", "manba": "dars85.json: 20-matn, 8-gap; taqdimot 8, 40-slayd"}
+ ]
+}

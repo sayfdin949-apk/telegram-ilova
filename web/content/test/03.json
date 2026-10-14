@@ -1,0 +1,61 @@
+{
+ "dars": 3,
+ "nomi": "Hamza, Roo, Zaa, Miim, Taa, Nuun — test",
+ "savollar": [
+  {
+   "q": "Bu harflardan qaysi biri Hams (jarangsiz)?",
+   "opts": [
+    "ز — Zaa",
+    "م — Miim",
+    "ت — Taa",
+    "ن — Nuun"
+   ],
+   "ok": 2,
+   "izoh": "Taa — Hams, Shidda, Istifola, Infitah, Ismat. Zaa, Miim va Nuun — Jahr (jarangli)."
+  },
+  {
+   "q": "Roo (ر) ning qaysi sifatida til uchi bir marta titraydi?",
+   "opts": [
+    "Safir",
+    "G'unna",
+    "Qalqala",
+    "Takrir"
+   ],
+   "ok": 3,
+   "izoh": "Takrir — titrash: Roo aytilganda til uchi bir marta titraydi. Safir — Zaa, G'unna — Miim va Nuun sifati."
+  },
+  {
+   "q": "Zaa (ز) va Roo (ر) yozuvda qanday farqlanadi?",
+   "opts": [
+    "Zaa ustida 1 nuqta bor, Roo nuqtasiz",
+    "Roo ustida 1 nuqta bor, Zaa nuqtasiz",
+    "Zaa ostida 1 nuqta bor, Roo nuqtasiz",
+    "Shakli bir xil, faqat o'qilishi farq qiladi"
+   ],
+   "ok": 0,
+   "izoh": "ز — ustida bitta nuqta, ر — nuqtasiz. Bitta nuqta ma'noni o'zgartiradi — adashtirmang."
+  },
+  {
+   "q": "Qaysi ikki harfda G'unna (ovozning bir qismi burundan) bor?",
+   "opts": [
+    "ر ز",
+    "م ن",
+    "ت ر",
+    "أ ت"
+   ],
+   "ok": 1,
+   "izoh": "Miim va Nuun — G'unna sifatiga ega: maxraji lab va til, tovushi burun ishtirokida chiqadi."
+  },
+  {
+   "q": "اَمَرْتُمْ qanday o'qiladi?",
+   "opts": [
+    "«amaratum»",
+    "«umirtum»",
+    "«amartum»",
+    "«amartam»"
+   ],
+   "ok": 2,
+   "izoh": "اَ — a, مَ — ma, رْ — r (sukun), تُ — tu, مْ — m (sukun): «amartum»."
+  }
+ ]
+}

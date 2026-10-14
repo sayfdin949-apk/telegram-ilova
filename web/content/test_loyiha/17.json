@@ -1,0 +1,12 @@
+{
+ "dars": 17,
+ "nomi": "Vaqf (to'xtash) — test",
+ "holat": "loyiha",
+ "savollar": [
+  {"q": "Vaqf nima?", "opts": ["So'zlarni birga qo'shib o'qish", "Jumlaning so'ngida to'xtash, tin olish", "Harfni ikkilantirish", "Harfni 2 harakat cho'zish"], "ok": 1, "izoh": "Vaqf — to'xtash, ya'ni jumla so'ngida tin olish. So'zlarni qo'shib o'qish — vasl.", "manba": "dars39.json: slaydlar[0].bandlar[0]; taqdimot 6, 93-slayd"},
+  {"q": "ٱلْمَرِيضُ يَنَامُ — oxirida vaqf qilinsa, يَنَامُ qanday o'qiladi?", "opts": ["«yanaam»", "«yanaamu»", "«yanaamaa»", "«yanaamun»"], "ok": 0, "izoh": "Oxirgi harf dammali — vaqfda harakat tushib, o'rniga sukun qo'yiladi: يَنَامْ — «yanaam».", "manba": "dars39.json: slaydlar[2].qatorlar[3], yakun[1]; taqdimot 6, 95-slayd"},
+  {"q": "حَفِظَ ٱلطَّالِبُ كِتَابًا — vaqfda كِتَابًا qanday o'qiladi?", "opts": ["«kitaaban»", "«kitaab»", "«kitaabaa»", "«kitaabah»"], "ok": 2, "izoh": "Fathali tanvinda nun tushib, o'rniga alif 2 harakat cho'ziladi: «kitaabaa».", "manba": "dars39.json: slaydlar[5].bandlar[1–2], slaydlar[6].qatorlar[1]; taqdimot 6, 99–100-slayd"},
+  {"q": "كَانَتِ ٱلسَّاعَةُ جَمِيلَةً — vaqfda جَمِيلَةً qanday o'qiladi?", "opts": ["«jamiilataa»", "«jamiilatan»", "«jamiilaa»", "«jamiilah»"], "ok": 3, "izoh": "Toi marbuta (ةً) mustasno: alif bilan emas, sukunli Haa (هْ) bilan vaqf qilinadi — «jamiilah».", "manba": "dars39.json: slaydlar[7]–[8]; taqdimot 6, 102–103-slayd"},
+  {"q": "قُولِى kabi mad harfi bilan tugagan so'zda qanday vaqf qilinadi?", "opts": ["Mad harfi tushib, sukun qo'yiladi", "Mad harfi talaffuz qilingan holda vaqf qilinadi", "Oxiriga alif qo'shiladi", "Sukunli Haa (هْ) qo'yiladi"], "ok": 1, "izoh": "Oxirgi harf mad harfi bo'lsa, u tushirilmaydi — talaffuz qilingan holda vaqf qilinadi.", "manba": "dars39.json: slaydlar[3], slaydlar[4]; taqdimot 6, 97–98-slayd"}
+ ]
+}

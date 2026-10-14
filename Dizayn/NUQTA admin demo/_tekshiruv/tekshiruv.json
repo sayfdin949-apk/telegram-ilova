@@ -1,0 +1,502 @@
+{
+ "pc_kun_bosh": {
+  "total": 214,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2",
+   "H3",
+   "H3",
+   "H3",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": []
+ },
+ "pc_kun_safar": {
+  "total": 277,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": []
+ },
+ "pc_kun_tugmalar": {
+  "total": 184,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": []
+ },
+ "pc_kun_funksiyalar": {
+  "total": 78,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": []
+ },
+ "pc_tun_bosh": {
+  "total": 214,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2",
+   "H3",
+   "H3",
+   "H3",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": []
+ },
+ "pc_tun_safar": {
+  "total": 277,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": []
+ },
+ "tel_kun_bosh": {
+  "total": 183,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2",
+   "H3",
+   "H3",
+   "H3",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": []
+ },
+ "tel_kun_bosh_44px": {
+  "n": 13,
+  "bad": []
+ },
+ "tel_kun_safar": {
+  "total": 253,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": []
+ },
+ "tel_kun_safar_44px": {
+  "n": 6,
+  "bad": []
+ },
+ "pc_tun_tugmalar": {
+  "total": 184,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": []
+ },
+ "tel_tun_tugmalar": {
+  "total": 146,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": [
+   "TABLE.dt",
+   "THEAD.",
+   "TR.",
+   "TH.r",
+   "TBODY.",
+   "TR.",
+   "TD.r",
+   "TR."
+  ]
+ },
+ "tel_tun_tugmalar_44px": {
+  "n": 10,
+  "bad": []
+ },
+ "pc_tun_funksiyalar": {
+  "total": 78,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": []
+ },
+ "tel_tun_funksiyalar": {
+  "total": 56,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": []
+ },
+ "tel_tun_funksiyalar_44px": {
+  "n": 13,
+  "bad": []
+ },
+ "tel_tun_bosh": {
+  "total": 183,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2",
+   "H3",
+   "H3",
+   "H3",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": []
+ },
+ "tel_tun_safar": {
+  "total": 253,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": []
+ },
+ "pc_24px": {
+  "n": 26,
+  "bad": []
+ },
+ "pc_kun_bosh_sahro": {
+  "total": 214,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2",
+   "H3",
+   "H3",
+   "H3",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": []
+ },
+ "pc_tun_bosh_sahro": {
+  "total": 214,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2",
+   "H3",
+   "H3",
+   "H3",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": []
+ },
+ "pc_kun_bosh_voha": {
+  "total": 214,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2",
+   "H3",
+   "H3",
+   "H3",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": []
+ },
+ "pc_tun_bosh_voha": {
+  "total": 214,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2",
+   "H3",
+   "H3",
+   "H3",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": []
+ },
+ "pc_kun_bosh_shahar": {
+  "total": 214,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2",
+   "H3",
+   "H3",
+   "H3",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": []
+ },
+ "pc_tun_bosh_shahar": {
+  "total": 214,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2",
+   "H3",
+   "H3",
+   "H3",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": []
+ },
+ "pc_kun_bosh_qahva": {
+  "total": 214,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2",
+   "H3",
+   "H3",
+   "H3",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": []
+ },
+ "pc_tun_bosh_qahva": {
+  "total": 214,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2",
+   "H3",
+   "H3",
+   "H3",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": []
+ },
+ "pc_kun_bosh_xattot": {
+  "total": 214,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2",
+   "H3",
+   "H3",
+   "H3",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": []
+ },
+ "pc_tun_bosh_xattot": {
+  "total": 214,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2",
+   "H3",
+   "H3",
+   "H3",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": []
+ },
+ "pc_kun_bosh_shom": {
+  "total": 210,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2",
+   "H3",
+   "H3",
+   "H3",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": []
+ },
+ "pc_tun_bosh_shom": {
+  "total": 210,
+  "low": [],
+  "lowN": 0,
+  "hs": [
+   "H1",
+   "H2",
+   "H2",
+   "H2",
+   "H3",
+   "H3",
+   "H3",
+   "H2",
+   "H2",
+   "H2"
+  ],
+  "ovX": false,
+  "ovScreen": false,
+  "wide": []
+ }
+}
