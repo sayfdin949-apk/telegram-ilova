@@ -3,6 +3,9 @@
  */
 const BOT_TOKEN = 'BU_YERGA_BOT_TOKENINI_QOYING';
 
+// Ilova sahifasi (GitHub Pages, gh-pages branchi). Oʻzgartirish shart emas.
+const APP_PAGE = 'https://sayfdin949-apk.github.io/telegram-ilova/';
+
 const SH_WORDS = 'Soʻzlar';
 const SH_RES = 'Natijalar';
 const SH_SET = 'Sozlamalar';
@@ -40,6 +43,26 @@ function setup() {
   const def = ss.getSheetByName('Sheet1') || ss.getSheetByName('Лист1') || ss.getSheetByName('Varaq1');
   if (def && ss.getSheets().length > 1) ss.deleteSheet(def);
   if (BOT_TOKEN.indexOf('BU_YERGA') === 0) throw new Error('Jadval tayyor. Endi BOT_TOKEN qatoriga bot tokenini qoʻyishni unutmang.');
+  botniUlash();
+}
+
+// Botning menyu tugmasini ilovaga ulaydi. setup() oʻzi chaqiradi.
+function botniUlash() {
+  let api = ScriptApp.getService().getUrl();
+  if (!api) throw new Error('Jadval tayyor. Endi Deploy > New deployment > Web app (Execute as: Me, Who has access: Anyone) qiling va setup ni yana bir marta ishga tushiring.');
+  api = api.replace(/\/dev$/, '/exec');
+  const me = tgApi('getMe', {});
+  tgApi('setChatMenuButton', { menu_button: { type: 'web_app', text: 'Lugʻat', web_app: { url: APP_PAGE + '?api=' + encodeURIComponent(api) } } });
+  tgApi('setMyDescription', { description: 'Arabcha soʻzlarni oʻrganish uchun ilova. Pastdagi "Lugʻat" tugmasini bosing.' });
+  console.log('TAYYOR! Bot ulandi: https://t.me/' + me.username + ' — chatdagi "Lugʻat" tugmasini bosing. Birinchi boʻlib siz oching (oʻqituvchi boʻlasiz).');
+}
+function tgApi(method, body) {
+  const r = UrlFetchApp.fetch('https://api.telegram.org/bot' + BOT_TOKEN + '/' + method, {
+    method: 'post', contentType: 'application/json', payload: JSON.stringify(body), muteHttpExceptions: true
+  });
+  const j = JSON.parse(r.getContentText() || '{}');
+  if (!j.ok) throw new Error('Telegram xatosi (' + method + '): ' + (j.description || r.getResponseCode()) + '. Token toʻgʻrimi?');
+  return j.result;
 }
 
 function doGet(e) { return handle((e && e.parameter) || {}); }
