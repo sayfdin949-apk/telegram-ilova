@@ -13,6 +13,15 @@ Ilovada nima bor:
   - Oʻqituvchi paneli: har bir oʻquvchining natijasi va eng koʻp xato qilinadigan soʻzlar.
 
 
+IKKI XIL ISHLASH USULI
+  A) ODDIY (Google kerak emas): faqat bot kerak. Soʻzlar ilovaning ichida, har bir oʻquvchining natijasi
+     Telegram bulutida saqlanadi (telefon va kompyuterda bir xil). Oʻqituvchi paneli yoʻq.
+     Sozlash: @BotFather -> /mybots -> bot -> Bot Settings -> Menu Button -> manzil:
+       https://sayfdin949-apk.github.io/telegram-ilova/
+     (yoki tokenni Claude'ga bering — u tugmani oʻzi ulaydi, keyin @BotFather da /revoke bilan tokenni yangilang).
+  B) TOʻLIQ (Google Jadval bilan): oʻqituvchi paneli, natijalar jadvalda, soʻzlarni jadvalda oʻzgartirish.
+     Quyidagi 1-3 qadamlar shu usul uchun. B usul ulanganda A usuldagi natijalar oʻtmaydi.
+
 Ilova sahifasi allaqachon internetda turibdi: https://sayfdin949-apk.github.io/telegram-ilova/
 Sizga faqat 3 ta qadam qoldi (hammasi ~5 daqiqa). Ularni faqat siz qila olasiz,
 chunki ular sizning Telegram va Google akkauntingizda bajariladi.
