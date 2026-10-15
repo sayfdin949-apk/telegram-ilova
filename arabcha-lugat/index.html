@@ -17,8 +17,12 @@
   --accent: var(--tg-theme-button-color, #2a8c6e);
   --accent-text: var(--tg-theme-button-text-color, #ffffff);
   --link: var(--tg-theme-link-color, #2a8c6e);
-  --line: color-mix(in srgb, var(--muted) 22%, transparent);
-  --soft: color-mix(in srgb, var(--accent) 12%, transparent);
+  /* color-mix eski telefonlarda ishlamaydi, shuning uchun rgba (Telegram ranglaridan JS qayta hisoblaydi) */
+  --line: rgba(138, 143, 152, .22);
+  --soft: rgba(42, 140, 110, .12);
+  --warn-soft: rgba(240, 140, 0, .14);
+  --ok-soft: rgba(34, 160, 107, .13);
+  --bad-soft: rgba(229, 72, 77, .13);
   --ok: #22a06b;
   --bad: #e5484d;
   --warn: #f08c00;
@@ -39,7 +43,7 @@ body {
 }
 body.no-tabs { padding-bottom: 24px; }
 button { font: inherit; color: inherit; border: 0; background: none; cursor: pointer; padding: 0; }
-input { font: inherit; color: inherit; }
+input { font: inherit; color: inherit; font-size: 16px; } /* iPhone: 16px dan kichik boʻlsa ekran kattalashib ketadi */
 svg.i { width: 20px; height: 20px; flex: none; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .ar { font-family: var(--ar); direction: rtl; unicode-bidi: isolate; }
 
@@ -59,14 +63,14 @@ h2 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacin
 .btn.ghost { background: var(--soft); color: var(--link); }
 .btn[disabled] { opacity: .45; }
 
-.banner { background: color-mix(in srgb, var(--warn) 14%, var(--card)); color: var(--text);
+.banner { background: var(--warn-soft); color: var(--text);
   border-radius: 12px; padding: 10px 12px; font-size: 13px; margin-bottom: 12px; }
 
 /* home */
 .hero { display: flex; align-items: center; gap: 12px; }
 .hero .grow { flex: 1; min-width: 0; }
 .streak { display: flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 999px;
-  background: color-mix(in srgb, var(--warn) 14%, transparent); color: var(--warn); font-weight: 800; }
+  background: var(--warn-soft); color: var(--warn); font-weight: 800; }
 .streak.off { background: var(--soft); color: var(--muted); }
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .stat { background: var(--card); border-radius: 14px; padding: 12px; text-align: center; }
@@ -119,8 +123,8 @@ h2 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacin
 .opt { background: var(--card); border: 2px solid transparent; border-radius: 14px; padding: 14px 16px; text-align: left; font-weight: 700; font-size: 16px; min-height: 56px; display: flex; align-items: center; gap: 10px; transition: border-color .15s, background .15s; }
 .opt.arabic { justify-content: center; }
 .opt.arabic .ar { font-size: 28px; font-weight: 400; }
-.opt.ok { border-color: var(--ok); background: color-mix(in srgb, var(--ok) 12%, var(--card)); }
-.opt.bad { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 12%, var(--card)); }
+.opt.ok { border-color: var(--ok); background: var(--ok-soft); }
+.opt.bad { border-color: var(--bad); background: var(--bad-soft); }
 .opt.dim { opacity: .5; }
 .feedback { margin-top: 16px; }
 .feedback .msg { display: flex; align-items: center; gap: 8px; font-weight: 800; margin-bottom: 10px; }
@@ -218,12 +222,29 @@ function toast(msg) {
 
 function speak(text) {
   try {
-    if (!window.speechSynthesis) return toast('Bu qurilmada ovoz yoʻq');
-    speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text); u.lang = 'ar-SA'; u.rate = .8;
-    const v = speechSynthesis.getVoices().find(v => /^ar/i.test(v.lang)); if (v) u.voice = v;
-    speechSynthesis.speak(u);
-  } catch (e) {}
+    // Android Telegram ichida speechSynthesis yoʻq yoki arabcha ovoz boʻlmaydi — unda audio orqali
+    const v = window.speechSynthesis && speechSynthesis.getVoices().find(v => /^ar/i.test(v.lang));
+    if (v) {
+      speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text); u.lang = v.lang; u.voice = v; u.rate = .8;
+      return speechSynthesis.speak(u);
+    }
+    if (speak.audio) speak.audio.pause();
+    const a = speak.audio = new Audio('https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=ar&ttsspeed=0.6&q=' + encodeURIComponent(text));
+    a.play().catch(() => toast('Ovozni yoqib boʻlmadi. Internetni tekshiring.'));
+  } catch (e) { toast('Bu qurilmada ovoz yoʻq'); }
+}
+
+// Telegram mavzusidagi ranglardan shaffof variantlarini yasash (color-mix oʻrniga)
+function rgba(hex, a) {
+  const m = /^#?([0-9a-f]{6})$/i.exec(hex || ''); if (!m) return '';
+  const n = parseInt(m[1], 16); return `rgba(${n >> 16}, ${(n >> 8) & 255}, ${n & 255}, ${a})`;
+}
+function applyTheme() {
+  const t = (tg && tg.themeParams) || {}, st = document.documentElement.style;
+  const soft = rgba(t.button_color, .12), line = rgba(t.hint_color, .22);
+  if (soft) st.setProperty('--soft', soft);
+  if (line) st.setProperty('--line', line);
 }
 
 /* ---------- server bilan aloqa ---------- */
@@ -547,6 +568,7 @@ async function boot() {
   if (tg) {
     tg.ready(); tg.expand();
     if (initData) document.documentElement.classList.add('tg');
+    applyTheme(); try { tg.onEvent('themeChanged', applyTheme); } catch (e) {}
     try { tg.setHeaderColor('secondary_bg_color'); tg.setBackgroundColor('secondary_bg_color'); } catch (e) {}
     tg.BackButton.onClick(() => { if (S.quiz) quitQuiz(); });
     try { tg.disableVerticalSwipes(); } catch (e) {}

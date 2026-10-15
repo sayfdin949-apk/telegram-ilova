@@ -24,6 +24,9 @@ chunki ular sizning Telegram va Google akkauntingizda bajariladi.
 
 
 2-QADAM. GOOGLE JADVAL (kompyuterda qulayroq)
+  TELEFONDAN qilsangiz: Google Sheets ilovasida Apps Script menyusi yoʻq. Shuning uchun Chrome brauzerda
+  sheets.new ni oching, Chrome menyusi (uch nuqta) -> "Kompyuter versiyasi" (Desktop site) ga belgi qoʻying.
+  Keyin quyidagi qadamlar xuddi kompyuterdagidek boʻladi (ekranni kattalashtirib ishlash mumkin).
   1. sheets.new saytini oching — yangi boʻsh jadval ochiladi.
   2. Menyu: Kengaytmalar (Extensions) -> Apps Script.
   3. Oynadagi hamma matnni oʻchiring va Code.gs faylining ichidagi hamma narsani qoʻying.
@@ -59,6 +62,10 @@ SOʻZLARNI OʻZGARTIRISH
 
 NATIJALAR
   "Natijalar" varagʻida har bir oʻquvchi bitta qator. Oxirgi ustunni ("Progress") qoʻlda oʻzgartirmang.
+
+TELEFONDA ISHLASHI
+  Ilova Telegramning iPhone, Android va kompyuter versiyalarida ishlaydi (oʻquvchilar uchun telefon asosiy).
+  "Eshitish" tugmasi: telefonda arabcha ovoz boʻlmasa, ovoz internet orqali olinadi.
 
 TEKSHIRISH
   https://sayfdin949-apk.github.io/telegram-ilova/ ni oddiy brauzerda ochsangiz "Namuna rejimi" chiqadi (25 ta soʻz, natija faqat
