@@ -182,11 +182,12 @@ h2 { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacin
 </div></nav>
 
 <script>
-/* ============================================================
-   SOZLAMA: Google Apps Script "Web app" manzilini shu yerga qoʻying
-   (Deploy > New deployment > Web app > URL, .../exec bilan tugaydi)
-   ============================================================ */
-const API_URL = 'BU_YERGA_APPS_SCRIPT_URL';
+/* Server manzili havoladan olinadi: index.html?api=https://script.google.com/macros/s/.../exec
+   (Code.gs dagi setup() bot tugmasini shu koʻrinishda oʻzi sozlaydi). Havolasiz ochilsa — namuna rejimi. */
+const API_URL = (function () {
+  try { const a = new URLSearchParams(location.search).get('api') || ''; if (/^https:\/\/script\.google(usercontent)?\.com\//.test(a)) return a; } catch (e) {}
+  return 'BU_YERGA_APPS_SCRIPT_URL';
+})();
 
 const SESSION_SIZE = 10;     // bitta mashqdagi savollar soni
 const NEW_PER_SESSION = 5;   // takrorlash boʻlsa, bitta mashqqa nechta yangi soʻz qoʻshiladi
@@ -382,7 +383,7 @@ function viewHome() {
   const doneToday = S.prog.day.d === today();
   const todayText = due ? `${due} ta soʻz takrorlashni kutyapti` : (fresh ? 'Takrorlash yoʻq — yangi soʻzlar oʻrganing' : 'Hammasi takrorlangan, ajoyib!');
   return `
-  ${DEMO ? `<div class="banner">Namuna rejimi: natijalar faqat shu qurilmada saqlanadi. ${API_URL.indexOf('BU_YERGA') === 0 ? 'index.html faylida API_URL qoʻyilmagan.' : 'Ilovani Telegram ichida oching.'}</div>` : ''}
+  ${DEMO ? `<div class="banner">Namuna rejimi: natijalar faqat shu qurilmada saqlanadi. Toʻliq ishlashi uchun ilovani bot orqali Telegram ichida oching.</div>` : ''}
   <div class="hero">
     <div class="grow">
       <div class="muted small">Salom${S.name ? ', ' + esc(S.name) : ''}</div>
