@@ -1,0 +1,71 @@
+ARABCHA LUGʻAT — TELEGRAM MINI ILOVA: SOZLASH YOʻRIQNOMASI
+==========================================================
+
+Bu papkada 2 ta fayl bor:
+  Code.gs     — server (Google Jadval + Google Apps Script). Soʻzlar va natijalar shu jadvalda turadi.
+  index.html  — ilovaning oʻzi (Telegram ichida ochiladigan sahifa).
+
+Ilovada nima bor:
+  - Bosh sahifa: bugungi mashq, ketma-ket kunlar, oʻrganilgan soʻzlar, darslar roʻyxati.
+  - Mashq: 10 ta savol (arabcha -> oʻzbekcha va oʻzbekcha -> arabcha), xato soʻz oxirida yana soʻraladi.
+    Soʻzlar "quti" usulida takrorlanadi: 1, 2, 4, 8, 16 kundan keyin. 3 marta toʻgʻri topilgan soʻz "oʻrganildi" hisoblanadi.
+  - Lugʻat: barcha soʻzlar, qidiruv (arabcha yoki oʻzbekcha), dars boʻyicha saralash, soʻzni bossangiz oʻqib beradi.
+  - Oʻqituvchi paneli: har bir oʻquvchining natijasi va eng koʻp xato qilinadigan soʻzlar.
+
+
+1-QADAM. BOT YARATISH
+  1. Telegramda @BotFather -> /newbot -> nom va username bering.
+  2. Token beradi (1234567890:AAH...). Uni hech kimga bermang.
+
+
+2-QADAM. GOOGLE JADVAL VA SERVER
+  1. sheets.google.com -> yangi boʻsh jadval yarating (nomi: Arabcha lugʻat).
+  2. Menyu: Kengaytmalar (Extensions) -> Apps Script.
+  3. Ochilgan oynadagi hamma matnni oʻchirib, Code.gs faylining ichidagi hamma narsani qoʻying.
+  4. Yuqoridagi roʻyxatdan "setup" funksiyasini tanlab, "Run" (Ishga tushirish) ni bosing.
+     Google ruxsat soʻraydi -> akkauntingizni tanlang -> Advanced -> Go to ... (unsafe) -> Allow.
+     "BOT_TOKEN qatoriga tokenni qoʻying" degan xato chiqadi — bu normal, jadval tayyor boʻldi.
+  5. 4-qatordagi BU_YERGA_BOT_TOKENINI_QOYING oʻrniga bot tokenini qoʻying (qoʻshtirnoq ichida qolsin). Saqlang (Ctrl+S).
+  6. Deploy -> New deployment -> tishli gʻildirak -> Web app.
+       Execute as: Me (oʻzim)
+       Who has access: Anyone (hamma)
+     Deploy ni bosing va "Web app URL" ni nusxalab oling (https://script.google.com/macros/s/.../exec).
+
+  Diqqat: Code.gs ni keyin oʻzgartirsangiz, Deploy -> Manage deployments -> qalam -> Version: New version -> Deploy.
+  Aks holda eski kod ishlayveradi. Manzil (URL) oʻzgarmaydi.
+
+
+3-QADAM. ILOVA SAHIFASI
+  1. index.html faylini Bloknot (Notepad) bilan oching.
+  2. Quyidagi qatorni toping:
+       const API_URL = 'BU_YERGA_APPS_SCRIPT_URL';
+     va BU_YERGA_APPS_SCRIPT_URL oʻrniga 2-qadamdagi Web app URL ni qoʻying. Saqlang.
+  3. Sahifani internetga joylang (bepul, eng osoni):
+       app.netlify.com/drop -> shu papkani (index.html bilan) sudrab tashlang.
+       Netlify https://....netlify.app manzil beradi. Uni nusxalab oling.
+     Boshqa variant: GitHub Pages (ochiq repozitoriy kerak).
+
+
+4-QADAM. ILOVANI BOTGA ULASH
+  1. @BotFather -> /mybots -> botingiz -> Bot Settings -> Menu Button -> Configure menu button.
+  2. 3-qadamdagi https://....netlify.app manzilini yuboring, tugma nomini yozing: Lugʻat
+  3. (Ixtiyoriy) /newapp orqali t.me/botingiz/lugat koʻrinishidagi toʻgʻridan-toʻgʻri havola ham olish mumkin.
+
+
+5-QADAM. BIRINCHI KIRISH
+  1. Ilovani BIRINCHI boʻlib SIZ oching — birinchi ochgan odam oʻqituvchi boʻladi
+     (jadvaldagi "Sozlamalar" varagʻi, B1 katak). Yana oʻqituvchi qoʻshish: B1 ga ID larni vergul bilan yozing.
+  2. Keyin bot havolasini oʻquvchilarga yuboring.
+
+
+SOʻZLARNI OʻZGARTIRISH
+  "Soʻzlar" varagʻida: A — arabcha, B — oʻzbekcha, C — dars (masalan 23-dars), D — oʻqilishi (ixtiyoriy).
+  Yangi qator qoʻshsangiz, oʻquvchilar ilovani qayta ochganda koʻradi. Qayta deploy kerak emas.
+  Arabcha soʻzni (A ustun) oʻzgartirsangiz, shu soʻz boʻyicha eski natijalar hisobga olinmay qoladi.
+
+NATIJALAR
+  "Natijalar" varagʻida har bir oʻquvchi bitta qator. Oxirgi ustunni ("Progress") qoʻlda oʻzgartirmang.
+
+TEKSHIRISH
+  index.html ni kompyuterda oddiy brauzerda ochsangiz "Namuna rejimi" chiqadi (25 ta soʻz, natija faqat
+  shu kompyuterda). Haqiqiy ishlash faqat Telegram ichida, bot orqali ochilganda boʻladi.
