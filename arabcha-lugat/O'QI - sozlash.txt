@@ -1,0 +1,81 @@
+ARABCHA LUGʻAT — TELEGRAM MINI ILOVA: SOZLASH YOʻRIQNOMASI
+==========================================================
+
+Bu papkada 2 ta fayl bor:
+  Code.gs     — server (Google Jadval + Google Apps Script). Soʻzlar va natijalar shu jadvalda turadi.
+  index.html  — ilovaning oʻzi. U GitHub Pages da joylangan (gh-pages branchi), qayta joylash shart emas.
+
+Ilovada nima bor:
+  - Bosh sahifa: bugungi mashq, ketma-ket kunlar, oʻrganilgan soʻzlar, darslar roʻyxati.
+  - Mashq: 10 ta savol (arabcha -> oʻzbekcha va oʻzbekcha -> arabcha), xato soʻz oxirida yana soʻraladi.
+    Soʻzlar "quti" usulida takrorlanadi: 1, 2, 4, 8, 16 kundan keyin. 3 marta toʻgʻri topilgan soʻz "oʻrganildi" hisoblanadi.
+  - Lugʻat: barcha soʻzlar, qidiruv (arabcha yoki oʻzbekcha), dars boʻyicha saralash, soʻzni bossangiz oʻqib beradi.
+  - Oʻqituvchi paneli: har bir oʻquvchining natijasi va eng koʻp xato qilinadigan soʻzlar.
+
+
+IKKI XIL ISHLASH USULI
+  A) ODDIY (Google kerak emas): faqat bot kerak. Soʻzlar ilovaning ichida, har bir oʻquvchining natijasi
+     Telegram bulutida saqlanadi (telefon va kompyuterda bir xil). Oʻqituvchi paneli yoʻq.
+     Sozlash: @BotFather -> /mybots -> bot -> Bot Settings -> Menu Button -> manzil:
+       https://sayfdin949-apk.github.io/telegram-ilova/
+     (yoki tokenni Claude'ga bering — u tugmani oʻzi ulaydi, keyin @BotFather da /revoke bilan tokenni yangilang).
+  B) TOʻLIQ (Google Jadval bilan): oʻqituvchi paneli, natijalar jadvalda, soʻzlarni jadvalda oʻzgartirish.
+     Quyidagi 1-3 qadamlar shu usul uchun. B usul ulanganda A usuldagi natijalar oʻtmaydi.
+
+Ilova sahifasi allaqachon internetda turibdi: https://sayfdin949-apk.github.io/telegram-ilova/
+Sizga faqat 3 ta qadam qoldi (hammasi ~5 daqiqa). Ularni faqat siz qila olasiz,
+chunki ular sizning Telegram va Google akkauntingizda bajariladi.
+
+
+1-QADAM. BOT YARATISH (Telegram)
+  1. Telegramda @BotFather -> /newbot -> bot nomi -> username (oxiri "bot" bilan tugasin).
+  2. BotFather token beradi (1234567890:AAH...). Nusxalab oling. Tokenni hech kimga bermang.
+
+
+2-QADAM. GOOGLE JADVAL (kompyuterda qulayroq)
+  TELEFONDAN qilsangiz: Google Sheets ilovasida Apps Script menyusi yoʻq. Shuning uchun Chrome brauzerda
+  sheets.new ni oching, Chrome menyusi (uch nuqta) -> "Kompyuter versiyasi" (Desktop site) ga belgi qoʻying.
+  Keyin quyidagi qadamlar xuddi kompyuterdagidek boʻladi (ekranni kattalashtirib ishlash mumkin).
+  1. sheets.new saytini oching — yangi boʻsh jadval ochiladi.
+  2. Menyu: Kengaytmalar (Extensions) -> Apps Script.
+  3. Oynadagi hamma matnni oʻchiring va Code.gs faylining ichidagi hamma narsani qoʻying.
+     Fayl: https://github.com/sayfdin949-apk/telegram-ilova/blob/ccr-63f433bf-7upmcj/arabcha-lugat/Code.gs
+     (u yerda "Copy raw file" tugmasi bor).
+  4. 4-qatordagi BU_YERGA_BOT_TOKENINI_QOYING oʻrniga tokenni qoʻying (qoʻshtirnoqlar qolsin). Ctrl+S.
+  5. Yuqori oʻngda: Deploy (Joylashtirish) -> New deployment -> tishli gʻildirak -> Web app.
+       Execute as: Me
+       Who has access: Anyone
+     Deploy -> Google ruxsat soʻraydi: akkauntni tanlang -> Advanced -> Go to ... (unsafe) -> Allow.
+
+
+3-QADAM. ISHGA TUSHIRISH
+  1. Apps Script oynasida yuqoridagi roʻyxatdan "setup" ni tanlang va "Run" ni bosing.
+  2. Pastdagi "Execution log" da "TAYYOR! Bot ulandi: https://t.me/..." yozuvi chiqadi.
+     setup oʻzi: jadval varaqlarini yaratadi, 245 ta soʻzni yozadi, botga "Lugʻat" tugmasini ulaydi.
+  3. Botni oching -> Start -> pastdagi "Lugʻat" tugmasini bosing.
+     BIRINCHI boʻlib SIZ oching — birinchi ochgan odam oʻqituvchi boʻladi ("Sozlamalar" varagʻi, B1).
+  4. Bot havolasini oʻquvchilarga yuboring.
+
+  Xato chiqsa:
+    "Telegram xatosi ... Not Found / Unauthorized" — token notoʻgʻri qoʻyilgan.
+    "Endi Deploy > New deployment ..." — 2-qadamning 5-bandi bajarilmagan.
+    Ilovada "Serverga ulanib boʻlmadi" — Deploy da "Who has access: Anyone" tanlanmagan.
+
+  Code.gs ni keyin oʻzgartirsangiz: Deploy -> Manage deployments -> qalam -> Version: New version -> Deploy.
+
+
+SOʻZLARNI OʻZGARTIRISH
+  "Soʻzlar" varagʻida: A — arabcha, B — oʻzbekcha, C — dars (masalan 23-dars), D — oʻqilishi (ixtiyoriy).
+  Yangi qator qoʻshsangiz, oʻquvchilar ilovani qayta ochganda koʻradi. Qayta deploy kerak emas.
+  Arabcha soʻzni (A ustun) oʻzgartirsangiz, shu soʻz boʻyicha eski natijalar hisobga olinmay qoladi.
+
+NATIJALAR
+  "Natijalar" varagʻida har bir oʻquvchi bitta qator. Oxirgi ustunni ("Progress") qoʻlda oʻzgartirmang.
+
+TELEFONDA ISHLASHI
+  Ilova Telegramning iPhone, Android va kompyuter versiyalarida ishlaydi (oʻquvchilar uchun telefon asosiy).
+  "Eshitish" tugmasi: telefonda arabcha ovoz boʻlmasa, ovoz internet orqali olinadi.
+
+TEKSHIRISH
+  https://sayfdin949-apk.github.io/telegram-ilova/ ni oddiy brauzerda ochsangiz "Namuna rejimi" chiqadi (25 ta soʻz, natija faqat
+  shu kompyuterda). Haqiqiy ishlash faqat Telegram ichida, bot orqali ochilganda boʻladi.
